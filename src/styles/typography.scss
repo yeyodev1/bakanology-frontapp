@@ -1,0 +1,77 @@
+@use './colorVariables.module.scss' as *;
+@use './fonts.module.scss' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Escala tipográfica editorial — clamp fluid entre 320px y 1920px
+// Display = serif Fraunces. Body = Plus Jakarta. Eyebrow = Space Grotesk.
+// ─────────────────────────────────────────────────────────────────────────────
+
+%display-base {
+  font-family: $font-display;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+  text-wrap: balance;
+}
+
+.display-xxl {
+  @extend %display-base;
+  font-size: clamp(3rem, 10vw, 9rem);
+}
+
+.display-xl {
+  @extend %display-base;
+  font-size: clamp(2.5rem, 7.5vw, 6.5rem);
+}
+
+.display-lg {
+  @extend %display-base;
+  font-size: clamp(2rem, 5.5vw, 4.75rem);
+}
+
+.display-md {
+  @extend %display-base;
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.display-sm {
+  @extend %display-base;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.eyebrow {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $lpb-graphite;
+}
+
+.eyebrow--green {
+  color: $lpb-green-dark;
+}
+
+.lede {
+  font-family: $font-sans;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  color: $lpb-graphite;
+  max-width: 60ch;
+}
+
+.body {
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: $lpb-graphite;
+}
+
+.italic-accent {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+}

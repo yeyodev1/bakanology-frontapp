@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="Luisa Pita Bejarano monograma">
+  <style>
+    .lpb-mono__letters { font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-style: italic; font-size: 64px; letter-spacing: -0.04em; fill: currentColor; }
+    .lpb-mono__frame   { stroke: currentColor; stroke-width: 1.5; fill: none; }
+  </style>
+  <circle cx="60" cy="60" r="56" class="lpb-mono__frame" opacity="0.5" />
+  <text x="60" y="78" text-anchor="middle" class="lpb-mono__letters">LpB</text>
+</svg>
