@@ -84,16 +84,31 @@ html.lenis body {
   overflow: clip;
 }
 
-// Container utility
+// Container utility — mobile-first paddings
 .container {
   width: 100%;
   max-width: 1320px;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-inline: clamp(1rem, 4.5vw, 2.5rem);
 }
 
 .container--narrow {
   max-width: 920px;
+}
+
+// Mobile-first body sizing — base 16px, escalas suaves
+@media (max-width: 480px) {
+  body {
+    font-size: 0.98rem;
+  }
+}
+
+// A11y: touch targets mínimos 44x44
+@media (pointer: coarse) {
+  button,
+  a {
+    min-height: 44px;
+  }
 }
 
 // Reveal initial states (las animaciones de GSAP los desplazan al show)

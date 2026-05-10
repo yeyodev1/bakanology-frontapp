@@ -83,6 +83,7 @@ onBeforeUnmount(() => ctx?.revert())
   gap: 1rem;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
   max-width: 760px;
+  margin-inline: auto;
 }
 
 .gallery__title {
@@ -92,8 +93,12 @@ onBeforeUnmount(() => ctx?.revert())
 
 .gallery__grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 
   @media (min-width: 720px) {
     grid-template-columns: repeat(6, 1fr);
@@ -108,6 +113,10 @@ onBeforeUnmount(() => ctx?.revert())
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+
+  @media (max-width: 720px) {
+    aspect-ratio: 4 / 5;
+  }
 }
 
 .gallery__img-wrap {

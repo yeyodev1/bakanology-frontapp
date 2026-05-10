@@ -56,18 +56,21 @@ onBeforeUnmount(() => ctx?.revert())
       </figure>
 
       <div class="authority__content">
-        <span class="eyebrow" data-rise>Sobre Luisa</span>
+        <span class="eyebrow" data-rise>Sobre Luisa Pita Bejarano</span>
         <h2 class="authority__title display-md" data-rise>
-          <span class="italic-accent">Coach</span> de mujeres adultas con vidas que no caben en un plan de 8 semanas.
+          <span class="italic-accent">Coach fitness y entrenadora personal</span> para mujeres con vidas que no caben en un plan de 8 semanas.
         </h2>
         <p class="authority__copy" data-rise>
-          Luisa Pita Bejarano es coach de transformación corporal especializada en mujeres adultas con
-          vidas ocupadas. Ha guiado a más de 200 mujeres en Ecuador y Latinoamérica en procesos de
-          cambio sostenidos — sin dietas restrictivas, sin rutinas imposibles, sin efecto rebote.
+          <strong>Luisa Pita Bejarano</strong> es coach fitness y entrenadora personal especializada en
+          mujeres adultas empoderadas. Ha guiado a más de 200 mujeres en Ecuador, Latinoamérica, USA
+          y Europa en procesos de transformación corporal sostenidos — sin dietas restrictivas, sin
+          rutinas imposibles, sin efecto rebote.
         </p>
         <p class="authority__copy" data-rise>
-          Esta comunidad es la evolución natural de su trabajo: dejar de empujar a sus alumnas en
-          bloques cortos para acompañarlas <em>un año completo</em>, con la profundidad que ese tiempo permite.
+          Su comunidad anual cerrada es la evolución natural de su trabajo: dejar de empujar a sus
+          alumnas en bloques cortos para acompañarlas <em>un año completo</em>, con la profundidad
+          que ese tiempo permite. Mujeres ocupadas, dueñas de negocio, madres y profesionales que
+          buscan resultados duraderos sin sacrificar su vida real.
         </p>
 
         <ul class="authority__pills" data-rise>

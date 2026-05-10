@@ -121,6 +121,7 @@ onBeforeUnmount(() => ctx?.revert())
   flex-direction: column;
   gap: 1rem;
   max-width: 780px;
+  margin-inline: auto;
 }
 
 .testimonials__title {

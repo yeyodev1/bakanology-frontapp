@@ -56,11 +56,11 @@ defineProps<{ items: string[]; speed?: number; theme?: 'light' | 'dark' | 'green
 .marquee__item {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   font-family: $font-display;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+  font-size: clamp(1.25rem, 5vw, 2.75rem);
   letter-spacing: -0.01em;
   white-space: nowrap;
 }

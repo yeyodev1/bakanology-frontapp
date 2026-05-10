@@ -59,19 +59,20 @@ onBeforeUnmount(() => ctx?.revert())
   <section class="manifesto" id="filosofia" ref="root">
     <div class="manifesto__inner container">
       <div class="manifesto__content">
-        <span class="eyebrow" data-fade>Filosofía</span>
+        <span class="eyebrow" data-fade>Filosofía de marca</span>
         <h2 class="manifesto__title display-lg">
-          <span class="manifesto__mask"><span class="manifesto__line">Esta no es</span></span>
-          <span class="manifesto__mask"><span class="manifesto__line">una dieta de</span></span>
-          <span class="manifesto__mask"><span class="manifesto__line manifesto__line--italic">30 días.</span></span>
+          <span class="manifesto__mask"><span class="manifesto__line">Coaching anual</span></span>
+          <span class="manifesto__mask"><span class="manifesto__line">para mujeres</span></span>
+          <span class="manifesto__mask"><span class="manifesto__line manifesto__line--italic">empoderadas.</span></span>
         </h2>
         <p class="manifesto__copy lede" data-fade>
-          Tampoco es un reto de 8 semanas. Es la decisión de dedicarte un año entero —
-          con un equipo que te empuja, una comunidad que te sostiene y una metodología probada
-          por miles de mujeres en Ecuador y Latinoamérica.
+          Luisa Pita Bejarano es coach fitness y entrenadora personal especializada en mujeres
+          ocupadas, dueñas de negocio y madres en Ecuador y Latinoamérica. No es una dieta de 30 días.
+          Tampoco un reto de 8 semanas.
         </p>
         <p class="manifesto__copy lede" data-fade>
-          Los programas cortos dan resultados que se evaporan.
+          Es la decisión de dedicarte un año entero — con una entrenadora que te empuja, una
+          comunidad cerrada que te sostiene y una metodología probada por más de doscientas mujeres.
           <em>Lo que se construye en doce meses se queda contigo.</em>
         </p>
         <dl class="manifesto__stats" data-fade>
@@ -149,6 +150,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .manifesto__copy {
   max-width: 52ch;
+  margin-inline: auto;
   color: $lpb-graphite;
 
   em {

@@ -8,12 +8,12 @@ import RevealText from '@/components/ui/RevealText.vue'
 
 const { luisa } = useCloudinary()
 
-// Imagen principal (Cloudinary). Como hero usamos foto editorial.
-const heroImage = luisa(2, { w: 2200, h: 2600, crop: 'fill', gravity: 'face' })
-const heroImagePoster = luisa(2, { w: 800, crop: 'fill', gravity: 'face', blur: 800 })
-
-// Video opcional — del funnel: 'IMG_8601_y5tgbu.mov' (vertical). Se usa como capa secundaria.
-const heroVideo = 'https://res.cloudinary.com/dpimsaaa4/video/upload/q_auto,f_auto/v1772741967/IMG_8601_y5tgbu.mov'
+// Imagen editorial Cloudinary. Mobile-first: srcset con anchos progresivos.
+const heroImage = luisa(2, { w: 1600, h: 2200, crop: 'fill', gravity: 'face' })
+const heroImageSm = luisa(2, { w: 720, h: 1100, crop: 'fill', gravity: 'face' })
+const heroImageMd = luisa(2, { w: 1100, h: 1500, crop: 'fill', gravity: 'face' })
+const heroImageLg = luisa(2, { w: 2000, h: 2600, crop: 'fill', gravity: 'face' })
+const heroImagePoster = luisa(2, { w: 320, crop: 'fill', gravity: 'face', blur: 1000 })
 
 const root = ref<HTMLElement | null>(null)
 const imageEl = ref<HTMLImageElement | null>(null)
@@ -57,36 +57,42 @@ onBeforeUnmount(() => {
         ref="imageEl"
         class="hero__image"
         :src="heroImage"
+        :srcset="`${heroImageSm} 720w, ${heroImageMd} 1100w, ${heroImage} 1600w, ${heroImageLg} 2000w`"
+        sizes="100vw"
         :style="{ backgroundImage: `url(${heroImagePoster})` }"
-        alt="Luisa Pita Bejarano — coach de transformación corporal"
+        alt="Luisa Pita Bejarano — coach fitness para mujeres empoderadas en Ecuador y Latinoamérica"
         loading="eager"
         fetchpriority="high"
+        decoding="async"
+        width="1600"
+        height="2200"
       />
-      <video class="hero__video" :src="heroVideo" autoplay loop muted playsinline preload="metadata" aria-hidden="true"></video>
       <div class="hero__veil" aria-hidden="true" />
     </div>
 
     <div class="hero__inner container">
       <span class="hero__eyebrow eyebrow eyebrow--green">
         <span class="hero__dot" aria-hidden="true" />
-        Por invitación · Comunidad anual cerrada
+        Coach Fitness · Comunidad anual cerrada
       </span>
 
       <h1 class="hero__title display-xxl">
-        <span class="hero__line">
-          <RevealText text="Un año" tag="span" :stagger="0.06" />
+        <span class="visually-hidden">Luisa Pita Bejarano — Coach Fitness para mujeres empoderadas.</span>
+        <span class="hero__line" aria-hidden="true">
+          <RevealText text="Coach" tag="span" :stagger="0.06" />
         </span>
-        <span class="hero__line">
-          <RevealText text="con Luisa" tag="span" :stagger="0.06" :delay="0.15" />
+        <span class="hero__line" aria-hidden="true">
+          <RevealText text="de mujeres" tag="span" :stagger="0.06" :delay="0.15" />
         </span>
-        <span class="hero__line hero__line--italic">
-          <RevealText text="cerca." tag="span" :stagger="0.06" :delay="0.3" />
+        <span class="hero__line hero__line--italic" aria-hidden="true">
+          <RevealText text="empoderadas." tag="span" :stagger="0.06" :delay="0.3" />
         </span>
       </h1>
 
       <p class="hero__lede">
-        Coaching anual de transformación corporal para mujeres ocupadas, dueñas de negocio y madres
-        decididas a no llegar al próximo año exactamente igual.
+        Entrenadora y coach fitness anual para mujeres ocupadas, dueñas de negocio y madres
+        decididas a transformar su cuerpo, su energía y su vida — en doce meses, sin dietas
+        restrictivas ni atajos.
       </p>
 
       <div class="hero__cta-row">
@@ -116,11 +122,23 @@ onBeforeUnmount(() => {
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
-  padding-block: clamp(7rem, 14vh, 9rem) clamp(2.5rem, 6vw, 4.5rem);
+  padding-block: clamp(6.5rem, 14vh, 9rem) clamp(2rem, 6vw, 4.5rem);
   background: $lpb-black;
   color: $lpb-white;
   overflow: clip;
   isolation: isolate;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .hero__media {
@@ -142,22 +160,6 @@ onBeforeUnmount(() => {
   background-color: $lpb-black;
 }
 
-.hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  opacity: 0.32;
-  mix-blend-mode: screen;
-  pointer-events: none;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
-}
-
 .hero__veil {
   position: absolute;
   inset: 0;
@@ -172,9 +174,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 1.6vw, 1.5rem);
-  max-width: 1240px;
   width: 100%;
-  margin-inline: auto;
 }
 
 .hero__eyebrow {
@@ -202,6 +202,7 @@ onBeforeUnmount(() => {
   font-family: $font-display;
   font-style: italic;
   font-weight: 400;
+  font-size: clamp(3.2rem, 13vw, 9rem);
   line-height: 0.92;
   margin: 0;
   letter-spacing: -0.025em;
@@ -233,8 +234,19 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem 2rem;
+  gap: 1rem 2rem;
   margin-top: clamp(1rem, 2vw, 1.75rem);
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.1rem;
+
+    :deep(.btn) {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 }
 
 .hero__quiet {

@@ -51,14 +51,14 @@ onBeforeUnmount(() => ctx?.revert())
   <section class="method" id="metodologia" ref="root">
     <div class="method__inner container">
       <header class="method__header">
-        <span class="eyebrow eyebrow--green">Metodología</span>
+        <span class="eyebrow eyebrow--green">Metodología Luisa Pita Bejarano</span>
         <h2 class="method__title display-lg">
           <span class="method__title-mask"><span>Tres pilares.</span></span>
           <span class="method__title-mask"><span class="method__title--italic">Doce meses.</span></span>
         </h2>
         <p class="method__lede lede">
-          Sistema completo, no piezas sueltas. La diferencia entre transformaciones que duran y
-          transformaciones que se evaporan en marzo.
+          Un sistema completo de coaching fitness anual: entrenamiento, nutrición flexible y
+          comunidad. La diferencia entre transformaciones que duran y las que se evaporan en marzo.
         </p>
       </header>
 
@@ -85,6 +85,7 @@ onBeforeUnmount(() => ctx?.revert())
   flex-direction: column;
   gap: 1.25rem;
   max-width: 760px;
+  margin-inline: auto;
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
 

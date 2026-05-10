@@ -172,6 +172,7 @@ const close = () => (open.value = false)
 .nav__cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
   background: $lpb-black;
   color: $lpb-white;
@@ -188,6 +189,14 @@ const close = () => (open.value = false)
     background: $lpb-green;
     color: $lpb-black;
     transform: translateY(-1px);
+  }
+
+  @media (max-width: 880px) {
+    margin-top: 1rem;
+    padding: 1rem 1.3rem;
+    font-size: 0.85rem;
+    background: $lpb-green;
+    color: $lpb-black;
   }
 }
 

@@ -97,6 +97,7 @@ onBeforeUnmount(() => ctx?.revert())
   flex-direction: column;
   gap: 1rem;
   max-width: 720px;
+  margin-inline: auto;
 }
 
 .faq__title {
@@ -127,11 +128,21 @@ onBeforeUnmount(() => ctx?.revert())
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.85rem;
     padding-block: clamp(1.2rem, 2.5vw, 1.75rem);
+    min-height: 60px;
 
     &::-webkit-details-marker {
       display: none;
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.75rem;
+      grid-template-columns: 1fr auto;
+
+      .faq__num {
+        display: none;
+      }
     }
   }
 }
@@ -172,8 +183,12 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .faq__answer {
-  padding: 0 0 1.5rem calc(0.75rem + 2.2rem); // alineado debajo del título (skip num + gap)
+  padding: 0 0 1.5rem calc(0.75rem + 2.2rem);
   max-width: 70ch;
+
+  @media (max-width: 480px) {
+    padding-left: 0;
+  }
 
   p {
     font-family: $font-sans;
