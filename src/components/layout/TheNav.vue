@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import { gsap } from 'gsap'
 import BrandWordmark from '@/components/ui/BrandWordmark.vue'
-import { buildVipUrl, SITE_COPY } from '@/config/site'
+import { buildVipUrl, SITE_COPY, INSTAGRAM_URL, INSTAGRAM_HANDLE } from '@/config/site'
 
 const scrolled = ref(false)
 const open = ref(false)
 const route = useRoute()
+const menuLinks = ref<HTMLElement | null>(null)
 
 const onScroll = () => {
   scrolled.value = window.scrollY > 24
@@ -19,8 +21,36 @@ onMounted(() => {
 
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
-const toggle = () => (open.value = !open.value)
-const close = () => (open.value = false)
+const toggle = () => {
+  open.value = !open.value
+  if (open.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+}
+
+const close = () => {
+  open.value = false
+  document.body.style.overflow = ''
+}
+
+// Animación GSAP para los enlaces del menú
+watch(open, async (val) => {
+  if (val) {
+    await nextTick()
+    if (menuLinks.value) {
+      const links = menuLinks.value.querySelectorAll('.nav__link, .nav__cta, .nav__mobile-footer')
+      gsap.fromTo(links, 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
+      )
+    }
+  }
+})
+
+// Cerrar menú al cambiar de ruta
+watch(() => route.path, close)
 </script>
 
 <template>
@@ -30,28 +60,44 @@ const close = () => (open.value = false)
         <BrandWordmark size="sm" />
       </RouterLink>
 
-      <nav class="nav__links" :aria-expanded="open">
-        <a href="#filosofia" class="nav__link" @click="close">Filosofía</a>
-        <a href="#metodologia" class="nav__link" @click="close">Metodología</a>
-        <a href="#comunidad" class="nav__link" @click="close">Comunidad</a>
-        <a href="#historias" class="nav__link" @click="close">Historias</a>
-        <a
-          class="nav__cta"
-          :href="buildVipUrl('nav')"
-          target="_blank"
-          rel="noopener"
-          @click="close"
-        >
-          <span>{{ SITE_COPY.ctaPrimary }}</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </nav>
+      <div class="nav__actions">
+        <nav class="nav__links" :class="{ 'nav__links--open': open }" ref="menuLinks">
+          <div class="nav__mobile-header">
+             <BrandWordmark size="sm" />
+          </div>
+          
+          <div class="nav__links-container">
+            <a href="#filosofia" class="nav__link" @click="close"><span>01.</span> Filosofía</a>
+            <a href="#metodologia" class="nav__link" @click="close"><span>02.</span> Metodología</a>
+            <a href="#comunidad" class="nav__link" @click="close"><span>03.</span> Comunidad</a>
+            <a href="#historias" class="nav__link" @click="close"><span>04.</span> Historias</a>
+            
+            <a
+              class="nav__cta"
+              :href="buildVipUrl('nav')"
+              target="_blank"
+              rel="noopener"
+              @click="close"
+            >
+              <span>{{ SITE_COPY.ctaPrimary }}</span>
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
 
-      <button class="nav__burger" type="button" @click="toggle" :aria-label="open ? 'Cerrar menú' : 'Abrir menú'" :aria-expanded="open">
-        <span /><span /><span />
-      </button>
+          <div class="nav__mobile-footer">
+            <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="nav__social">
+              Instagram {{ INSTAGRAM_HANDLE }}
+            </a>
+            <p class="nav__copy">© {{ new Date().getFullYear() }} Luisa Pita Bejarano</p>
+          </div>
+        </nav>
+
+        <button class="nav__burger" type="button" @click="toggle" :aria-label="open ? 'Cerrar menú' : 'Abrir menú'" :aria-expanded="open">
+          <span /><span />
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -60,14 +106,12 @@ const close = () => (open.value = false)
 .nav {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 100;
-  padding-block: 1.1rem;
-  transition: background-color .35s ease, border-color .35s ease, padding .25s ease, color .35s ease;
+  z-index: 1000;
+  padding-block: 1.5rem;
+  transition: background-color .4s ease, padding .4s ease, color .4s ease;
   color: $lpb-black;
-  border-bottom: 1px solid transparent;
 
-  // Cuando está sobre el hero negro
-  &:not(.nav--scrolled):not(.nav--legal) {
+  &:not(.nav--scrolled):not(.nav--legal):not(.nav--open) {
     color: $lpb-white;
   }
 
@@ -75,11 +119,16 @@ const close = () => (open.value = false)
   &--legal,
   &--open {
     background-color: rgba($lpb-paper, 0.85);
-    backdrop-filter: saturate(160%) blur(14px);
-    -webkit-backdrop-filter: saturate(160%) blur(14px);
-    border-bottom-color: $lpb-line;
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
     color: $lpb-black;
-    padding-block: 0.85rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid rgba($lpb-black, 0.05);
+  }
+
+  &--open {
+    background-color: $lpb-paper;
+    height: 100vh;
   }
 }
 
@@ -87,9 +136,8 @@ const close = () => (open.value = false)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
   width: 100%;
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  padding-inline: clamp(1.5rem, 6vw, 6rem);
   margin-inline: auto;
   max-width: 1440px;
 }
@@ -99,75 +147,96 @@ const close = () => (open.value = false)
   align-items: center;
   height: 28px;
   flex-shrink: 0;
+  z-index: 1001;
 }
 
-.nav__logo {
-  height: 26px;
-  width: auto;
-  color: currentColor;
+.nav__actions {
+  display: flex;
+  align-items: center;
 }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  margin-left: auto;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 
   @media (max-width: 880px) {
     position: fixed;
-    inset: 64px 0 auto 0;
-    flex-direction: column;
-    align-items: stretch;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
     background: $lpb-paper;
-    padding: 1.5rem clamp(1.25rem, 4vw, 2.5rem) 2rem;
-    gap: 0.25rem;
-    border-bottom: 1px solid $lpb-line;
-    transform: translateY(-110%);
-    transition: transform .4s cubic-bezier(.2,.7,0,1);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 7rem 2rem 4rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+    z-index: 1000;
+
+    &--open {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
 
-.nav--open .nav__links {
-  transform: translateY(0);
+.nav__mobile-header {
+  display: none;
+  @media (max-width: 880px) {
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+}
+
+.nav__links-container {
+  display: flex;
+  align-items: center;
+  gap: inherit;
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5rem;
+  }
 }
 
 .nav__link {
   font-family: $font-mono;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  position: relative;
-  padding: 0.4rem 0;
   color: currentColor;
-  opacity: 0.85;
-  transition: opacity .2s ease;
+  opacity: 0.8;
+  transition: opacity .25s ease, color .25s ease;
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 -2px 0;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .35s cubic-bezier(.2,.7,0,1);
+  span {
+    font-size: 0.7em;
+    opacity: 0.5;
+    margin-right: 0.5rem;
   }
 
   &:hover {
     opacity: 1;
-
-    &::after {
-      transform: scaleX(1);
-    }
+    color: $lpb-green-dark;
   }
 
   @media (max-width: 880px) {
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba($lpb-black, 0.08);
-    font-size: 0.95rem;
+    font-family: $font-display;
+    font-style: italic;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    text-transform: none;
+    letter-spacing: -0.02em;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba($lpb-black, 0.05);
+    padding-bottom: 1rem;
 
-    &::after {
+    span {
       display: none;
     }
   }
@@ -176,66 +245,93 @@ const close = () => (open.value = false)
 .nav__cta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
+  gap: 0.65rem;
   background: $lpb-black;
-  color: $lpb-white;
-  padding: 0.7rem 1.1rem;
+  color: $lpb-white !important;
+  padding: 0.8rem 1.4rem;
   border-radius: 999px;
   font-family: $font-mono;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: background .25s ease, transform .25s ease;
+  transition: background .3s ease, transform .3s ease;
 
   &:hover {
-    background: $lpb-green;
-    color: $lpb-black;
-    transform: translateY(-1px);
+    background: $lpb-green-dark;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 880px) {
-    margin-top: 1rem;
-    padding: 1rem 1.3rem;
-    font-size: 0.85rem;
-    background: $lpb-green;
-    color: $lpb-black;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 320px;
+    padding: 1.25rem 2rem;
+    font-size: 0.9rem;
+    justify-content: space-between;
   }
 }
 
-// Cuando estamos sobre hero negro, invertimos el CTA para contraste
-.nav:not(.nav--scrolled):not(.nav--legal) .nav__cta {
-  background: $lpb-white;
-  color: $lpb-black;
-
-  &:hover {
-    background: $lpb-green;
+.nav__mobile-footer {
+  display: none;
+  @media (max-width: 880px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding-top: 2rem;
+    border-top: 1px solid rgba($lpb-black, 0.1);
   }
+}
+
+.nav__social {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $lpb-graphite;
+}
+
+.nav__copy {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  color: rgba($lpb-black, 0.3);
+  text-transform: uppercase;
 }
 
 .nav__burger {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  padding: 8px;
+  justify-content: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  z-index: 1001;
+  color: currentColor;
 
   span {
     display: block;
-    width: 22px;
-    height: 1.5px;
+    width: 100%;
+    height: 2px;
     background: currentColor;
-    transition: transform .3s ease, opacity .25s ease;
+    transition: transform .4s cubic-bezier(.2,.7,0,1), opacity .3s ease;
+    transform-origin: center;
   }
 
   @media (max-width: 880px) {
-    display: inline-flex;
+    display: flex;
   }
 }
 
 .nav--open .nav__burger {
-  span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  span:nth-child(2) { opacity: 0; }
-  span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+  span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+}
+
+// Contraste para el CTA cuando no hay scroll y es home
+.nav:not(.nav--scrolled):not(.nav--legal):not(.nav--open) .nav__cta {
+  background: $lpb-white;
+  color: $lpb-black !important;
 }
 </style>
