@@ -49,7 +49,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="method" id="metodologia" ref="root">
-    <div class="method__inner container">
+    <div class="method__inner">
       <header class="method__header">
         <span class="eyebrow eyebrow--green">Metodología Luisa Pita Bejarano</span>
         <h2 class="method__title display-lg">
@@ -78,13 +78,24 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-black;
   color: $lpb-white;
   padding-block: clamp(5rem, 12vw, 9rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
+}
+
+.method__inner {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .method__header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1.25rem;
-  max-width: 760px;
+  width: 100%;
+  max-width: 1100px;
   margin-inline: auto;
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
@@ -106,6 +117,8 @@ onBeforeUnmount(() => ctx?.revert())
 
 .method__lede {
   color: rgba($lpb-white, 0.7);
+  max-width: 75ch;
+  margin-inline: auto;
 }
 
 .method__grid {
@@ -123,10 +136,10 @@ onBeforeUnmount(() => ctx?.revert())
 .method__card {
   position: relative;
   background: $lpb-black;
-  padding: clamp(2rem, 3.5vw, 3rem) clamp(1.5rem, 2.5vw, 2.25rem);
+  padding: clamp(2.5rem, 4vw, 4rem) clamp(1.5rem, 3vw, 3rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
   transition: background .35s ease;
 
   &:hover {

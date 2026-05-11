@@ -87,9 +87,9 @@ html.lenis body {
 // Container utility — mobile-first paddings
 .container {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1440px;
   margin-inline: auto;
-  padding-inline: clamp(1rem, 4.5vw, 2.5rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
 }
 
 .container--narrow {

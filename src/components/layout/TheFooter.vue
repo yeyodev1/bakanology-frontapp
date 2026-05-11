@@ -8,7 +8,7 @@ const year = new Date().getFullYear()
 
 <template>
   <footer class="footer">
-    <div class="footer__top container">
+    <div class="footer__top">
       <div class="footer__mark">
         <BrandWordmark size="lg" />
         <p class="footer__tagline">
@@ -32,9 +32,9 @@ const year = new Date().getFullYear()
       </div>
     </div>
 
-    <div class="footer__rule container" aria-hidden="true" />
+    <div class="footer__rule" aria-hidden="true" />
 
-    <div class="footer__bottom container">
+    <div class="footer__bottom">
       <nav class="footer__nav">
         <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="footer__link">
           Instagram <em>{{ INSTAGRAM_HANDLE }}</em>
@@ -52,12 +52,17 @@ const year = new Date().getFullYear()
   background: $lpb-black;
   color: $lpb-white;
   padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
 }
 
 .footer__top {
   display: grid;
   gap: 2.5rem;
   align-items: end;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 
   @media (min-width: 880px) {
     grid-template-columns: 1.4fr 1fr;
@@ -116,6 +121,9 @@ const year = new Date().getFullYear()
   height: 1px;
   background: rgba($lpb-white, 0.12);
   margin-block: clamp(2rem, 4vw, 3rem);
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .footer__bottom {
@@ -124,6 +132,9 @@ const year = new Date().getFullYear()
   gap: 1.25rem;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .footer__nav {

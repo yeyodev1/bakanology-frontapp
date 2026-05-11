@@ -57,7 +57,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="manifesto" id="filosofia" ref="root">
-    <div class="manifesto__inner container">
+    <div class="manifesto__inner">
       <div class="manifesto__content">
         <span class="eyebrow" data-fade>Filosofía de marca</span>
         <h2 class="manifesto__title display-lg">
@@ -110,12 +110,17 @@ onBeforeUnmount(() => ctx?.revert())
   padding-block: clamp(5rem, 12vw, 9rem);
   background: $lpb-cream;
   color: $lpb-black;
+  width: 100%;
 }
 
 .manifesto__inner {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
+  width: 100%;
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  margin-inline: auto;
+  max-width: 1440px;
 
   @media (min-width: 960px) {
     grid-template-columns: 1.15fr 0.85fr;
@@ -125,7 +130,12 @@ onBeforeUnmount(() => ctx?.revert())
 .manifesto__content {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.6rem;
+
+  @media (max-width: 960px) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .manifesto__title {
@@ -149,9 +159,13 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .manifesto__copy {
-  max-width: 52ch;
-  margin-inline: auto;
+  max-width: 65ch;
+  margin-inline: 0;
   color: $lpb-graphite;
+
+  @media (max-width: 960px) {
+    margin-inline: auto;
+  }
 
   em {
     font-family: $font-display;
@@ -164,20 +178,24 @@ onBeforeUnmount(() => ctx?.revert())
 .manifesto__stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
   margin: 1rem 0 0;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
   border-top: 1px solid rgba($lpb-black, 0.12);
+
+  @media (max-width: 480px) {
+    gap: 0.75rem;
+  }
 
   > div {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.45rem;
   }
 
   dt {
     font-family: $font-display;
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
     font-weight: 500;
     line-height: 1;
     color: $lpb-black;
@@ -190,6 +208,7 @@ onBeforeUnmount(() => ctx?.revert())
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: $lpb-graphite;
+    line-height: 1.3;
   }
 }
 
@@ -197,7 +216,7 @@ onBeforeUnmount(() => ctx?.revert())
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .manifesto__photo-wrap {

@@ -33,7 +33,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="community" id="comunidad" ref="root">
-    <div class="container community__inner">
+    <div class="community__inner">
       <header class="community__header">
         <span class="eyebrow">Qué incluye el año</span>
         <h2 class="community__title display-lg">
@@ -61,14 +61,19 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-paper;
   color: $lpb-black;
   padding-block: clamp(5rem, 12vw, 9rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
 }
 
 .community__inner {
   display: grid;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 
   @media (min-width: 960px) {
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: 0.7fr 1.3fr;
     align-items: start;
   }
 }
@@ -76,18 +81,26 @@ onBeforeUnmount(() => ctx?.revert())
 .community__header {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   position: sticky;
   top: 6rem;
 
   @media (max-width: 960px) {
     position: static;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 3rem;
   }
 }
 
 .community__title {
   margin: 0;
   font-style: normal;
+  line-height: 1;
+
+  @media (max-width: 960px) {
+    margin-inline: auto;
+  }
 }
 
 .community__title--italic {
@@ -107,8 +120,15 @@ onBeforeUnmount(() => ctx?.revert())
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1.5rem clamp(1rem, 3vw, 2.5rem);
-  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) 0;
   align-items: baseline;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+    justify-items: center;
+  }
 }
 
 .community__num {
@@ -141,7 +161,7 @@ onBeforeUnmount(() => ctx?.revert())
     color: $lpb-graphite;
     line-height: 1.55;
     margin: 0;
-    max-width: 56ch;
+    max-width: 65ch;
   }
 }
 

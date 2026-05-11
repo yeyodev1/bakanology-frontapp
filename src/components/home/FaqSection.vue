@@ -51,7 +51,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="faq" ref="root">
-    <div class="container faq__inner">
+    <div class="faq__inner">
       <header class="faq__header">
         <span class="eyebrow">Preguntas frecuentes</span>
         <h2 class="faq__title display-md">
@@ -71,7 +71,9 @@ onBeforeUnmount(() => ctx?.revert())
             </span>
           </summary>
           <div class="faq__answer">
-            <p>{{ item.a }}</p>
+            <div class="faq__answer-inner">
+              <p>{{ item.a }}</p>
+            </div>
           </div>
         </details>
       </div>
@@ -84,19 +86,26 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-paper;
   color: $lpb-black;
   padding-block: clamp(5rem, 12vw, 9rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
 }
 
 .faq__inner {
   display: flex;
   flex-direction: column;
   gap: clamp(2.5rem, 5vw, 4rem);
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .faq__header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1rem;
-  max-width: 720px;
+  max-width: 1100px;
   margin-inline: auto;
 }
 
@@ -119,6 +128,12 @@ onBeforeUnmount(() => ctx?.revert())
     }
     .faq__icon {
       transform: rotate(180deg);
+      background: $lpb-black;
+      color: $lpb-green;
+    }
+    .faq__answer {
+      grid-template-rows: 1fr;
+      padding-bottom: 2rem;
     }
   }
 
@@ -131,9 +146,14 @@ onBeforeUnmount(() => ctx?.revert())
     gap: 0.85rem;
     padding-block: clamp(1.2rem, 2.5vw, 1.75rem);
     min-height: 60px;
+    outline: none;
 
     &::-webkit-details-marker {
       display: none;
+    }
+
+    &:focus-visible {
+      color: $lpb-green-dark;
     }
 
     @media (max-width: 480px) {
@@ -163,6 +183,11 @@ onBeforeUnmount(() => ctx?.revert())
   color: $lpb-black;
   letter-spacing: -0.01em;
   text-wrap: balance;
+  transition: color .25s ease;
+}
+
+.faq__item:hover .faq__q {
+  color: $lpb-green-dark;
 }
 
 .faq__icon {
@@ -183,18 +208,26 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .faq__answer {
-  padding: 0 0 1.5rem calc(0.75rem + 2.2rem);
-  max-width: 70ch;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(.2, .7, 0, 1), padding 0.4s ease;
+  overflow: hidden;
+  padding-left: calc(0.75rem + 2.2rem);
 
   @media (max-width: 480px) {
     padding-left: 0;
   }
+}
+
+.faq__answer-inner {
+  min-height: 0;
 
   p {
     font-family: $font-sans;
     color: $lpb-graphite;
     line-height: 1.65;
     margin: 0;
+    max-width: 75ch;
   }
 }
 </style>

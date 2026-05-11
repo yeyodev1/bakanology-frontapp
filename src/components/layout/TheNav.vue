@@ -25,7 +25,7 @@ const close = () => (open.value = false)
 
 <template>
   <header class="nav" :class="{ 'nav--scrolled': scrolled, 'nav--open': open, 'nav--legal': route.name !== 'home' }">
-    <div class="nav__inner container">
+    <div class="nav__inner">
       <RouterLink :to="{ name: 'home' }" class="nav__brand" @click="close" aria-label="Luisa Pita Bejarano — inicio">
         <BrandWordmark size="sm" />
       </RouterLink>
@@ -88,6 +88,10 @@ const close = () => (open.value = false)
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  width: 100%;
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .nav__brand {

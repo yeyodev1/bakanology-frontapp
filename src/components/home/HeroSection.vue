@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
       <div class="hero__veil" aria-hidden="true" />
     </div>
 
-    <div class="hero__inner container">
+    <div class="hero__inner">
       <span class="hero__eyebrow eyebrow eyebrow--green">
         <span class="hero__dot" aria-hidden="true" />
         Coach Fitness · Comunidad anual cerrada
@@ -90,9 +90,8 @@ onBeforeUnmount(() => {
       </h1>
 
       <p class="hero__lede">
-        Entrenadora y coach fitness anual para mujeres ocupadas, dueñas de negocio y madres
-        decididas a transformar su cuerpo, su energía y su vida — en doce meses, sin dietas
-        restrictivas ni atajos.
+        Coach de mujeres ocupadas y dueñas de negocio. Un año entero junto a Luisa para
+        transformar tu cuerpo y tu vida — comunidad anual cerrada por invitación.
       </p>
 
       <div class="hero__cta-row">
@@ -175,6 +174,14 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: clamp(1rem, 1.6vw, 1.5rem);
   width: 100%;
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  margin-inline: auto;
+  max-width: 1440px;
+
+  @media (max-width: 720px) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .hero__eyebrow {
@@ -183,6 +190,10 @@ onBeforeUnmount(() => {
   gap: 0.65rem;
   color: $lpb-green;
   width: max-content;
+
+  @media (max-width: 720px) {
+    margin-inline: auto;
+  }
 }
 
 .hero__dot {
@@ -209,6 +220,10 @@ onBeforeUnmount(() => {
   color: $lpb-white;
   text-wrap: balance;
   max-width: 16ch;
+
+  @media (max-width: 720px) {
+    margin-inline: auto;
+  }
 }
 
 .hero__line {
@@ -228,6 +243,11 @@ onBeforeUnmount(() => {
   color: rgba($lpb-white, 0.78);
   max-width: 52ch;
   margin: 0.5rem 0 0;
+
+  @media (max-width: 720px) {
+    margin-inline: auto;
+    text-wrap: pretty;
+  }
 }
 
 .hero__cta-row {
@@ -236,6 +256,11 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 1rem 2rem;
   margin-top: clamp(1rem, 2vw, 1.75rem);
+
+  @media (max-width: 720px) {
+    justify-content: center;
+    margin-inline: auto;
+  }
 
   @media (max-width: 560px) {
     flex-direction: column;
@@ -282,6 +307,10 @@ onBeforeUnmount(() => {
   letter-spacing: 0.08em;
   color: rgba($lpb-white, 0.55);
   margin: 0.25rem 0 0;
+
+  @media (max-width: 720px) {
+    text-align: center;
+  }
 }
 
 .hero__scroll-cue {

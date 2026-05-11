@@ -35,7 +35,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="final-cta" ref="root">
-    <div class="container final-cta__inner">
+    <div class="final-cta__inner">
       <span class="eyebrow eyebrow--green" data-fade>Por invitación</span>
       <h2 class="final-cta__title display-xl">
         <span class="final-cta__line"><span>¿Estás lista</span></span>
@@ -71,6 +71,8 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-black;
   color: $lpb-white;
   padding-block: clamp(6rem, 14vw, 12rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
   overflow: clip;
   isolation: isolate;
 }
@@ -82,14 +84,17 @@ onBeforeUnmount(() => ctx?.revert())
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .final-cta__title {
   margin: 0;
   font-style: normal;
   color: $lpb-white;
-  max-width: 14ch;
+  max-width: none;
 }
 
 .final-cta__line {
@@ -113,7 +118,7 @@ onBeforeUnmount(() => ctx?.revert())
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   line-height: 1.45;
   color: rgba($lpb-white, 0.75);
-  max-width: 48ch;
+  max-width: 65ch;
   margin: 0.75rem auto 1.25rem;
   text-wrap: balance;
 }

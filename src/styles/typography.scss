@@ -60,7 +60,7 @@
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.55;
   color: $lpb-graphite;
-  max-width: 60ch;
+  max-width: 85ch;
 }
 
 .body {
@@ -68,6 +68,16 @@
   font-size: 1rem;
   line-height: 1.65;
   color: $lpb-graphite;
+}
+
+.community__title {
+  margin: 0;
+  font-style: normal;
+
+  @media (max-width: 960px) {
+    max-width: none;
+    margin-inline: auto;
+  }
 }
 
 .italic-accent {

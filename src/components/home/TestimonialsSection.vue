@@ -69,7 +69,7 @@ onBeforeUnmount(() => ctx?.revert())
 <template>
   <section class="testimonials" ref="root">
     <div class="testimonials__sticky">
-      <header class="testimonials__header container">
+      <header class="testimonials__header">
         <span class="eyebrow eyebrow--green">Historias</span>
         <h2 class="testimonials__title display-lg">
           Lo que cuentan<br />
@@ -102,6 +102,7 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-black;
   color: $lpb-white;
   overflow: clip;
+  width: 100%;
 
   @media (min-width: 880px) {
     height: auto;
@@ -114,14 +115,18 @@ onBeforeUnmount(() => ctx?.revert())
   flex-direction: column;
   gap: clamp(2rem, 5vw, 4rem);
   padding-block: clamp(4rem, 8vw, 6rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
 }
 
 .testimonials__header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1rem;
-  max-width: 780px;
+  max-width: 1100px;
   margin-inline: auto;
+  width: 100%;
 }
 
 .testimonials__title {
@@ -147,7 +152,9 @@ onBeforeUnmount(() => ctx?.revert())
     scrollbar-width: none;
     padding-block: 1rem;
 
-    &::-webkit-scrollbar { display: none; }
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -198,7 +205,7 @@ onBeforeUnmount(() => ctx?.revert())
   border-top: 1px solid rgba($lpb-white, 0.08);
   padding-top: 1rem;
 
-  > div {
+  >div {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;

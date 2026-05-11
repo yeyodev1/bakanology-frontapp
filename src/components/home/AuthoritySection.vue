@@ -48,7 +48,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="authority" ref="root">
-    <div class="container authority__inner">
+    <div class="authority__inner">
       <figure class="authority__photo" ref="photoEl">
         <div class="authority__photo-wrap">
           <img :src="portrait" alt="Luisa Pita Bejarano" loading="lazy" />
@@ -97,12 +97,17 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-cream;
   color: $lpb-black;
   padding-block: clamp(5rem, 12vw, 9rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
 }
 
 .authority__inner {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 
   @media (min-width: 960px) {
     grid-template-columns: 1fr 1.05fr;
@@ -138,6 +143,11 @@ onBeforeUnmount(() => ctx?.revert())
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+
+  @media (max-width: 960px) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .authority__title {

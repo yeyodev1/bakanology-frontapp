@@ -42,7 +42,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 <template>
   <section class="gallery" id="historias" ref="root">
-    <div class="container">
+    <div class="gallery__header-inner">
       <header class="gallery__header">
         <span class="eyebrow">Editorial</span>
         <h2 class="gallery__title display-md">
@@ -51,7 +51,7 @@ onBeforeUnmount(() => ctx?.revert())
       </header>
     </div>
 
-    <div class="gallery__grid container">
+    <div class="gallery__grid">
       <figure
         v-for="(s, i) in shots"
         :key="i"
@@ -75,14 +75,24 @@ onBeforeUnmount(() => ctx?.revert())
   background: $lpb-paper;
   color: $lpb-black;
   padding-block: clamp(5rem, 11vw, 8rem);
+  padding-inline: clamp(2.5rem, 9vw, 9rem);
+  width: 100%;
+}
+
+.gallery__header-inner {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 }
 
 .gallery__header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1rem;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  max-width: 760px;
+  max-width: 1100px;
   margin-inline: auto;
 }
 
@@ -95,6 +105,9 @@ onBeforeUnmount(() => ctx?.revert())
   display: grid;
   gap: 0.85rem;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
