@@ -31,25 +31,18 @@ let ctx: gsap.Context | null = null
 
 onMounted(() => {
   if (!root.value) return
-
-  document.body.style.overflowX = 'hidden'
-
   ctx = gsap.context(() => {
     gsap.from(root.value!.querySelectorAll('.testimonials__card'), {
-      opacity: 0,
-      y: 40,
+      clipPath: 'inset(0 100% 0 0)',
       duration: 0.9,
-      ease: 'power3.out',
+      ease: 'power4.out',
       stagger: 0.1,
-      scrollTrigger: { trigger: '.testimonials__track', start: 'top 80%' },
+      scrollTrigger: { trigger: '.testimonials__cards', start: 'top 78%' },
     })
   }, root.value)
 })
 
-onBeforeUnmount(() => {
-  ctx?.revert()
-  document.body.style.overflowX = ''
-})
+onBeforeUnmount(() => ctx?.revert())
 </script>
 
 <template>
@@ -63,7 +56,7 @@ onBeforeUnmount(() => {
         </h2>
       </header>
 
-      <div class="testimonials__track">
+      <div class="testimonials__cards">
         <article v-for="(t, i) in items" :key="i" class="testimonials__card">
           <span class="testimonials__num">{{ String(i + 1).padStart(2, '0') }} / {{ String(items.length).padStart(2, '0') }}</span>
           <blockquote class="testimonials__quote">
@@ -98,20 +91,29 @@ onBeforeUnmount(() => {
   padding-block: clamp(4rem, 8vw, 6rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
 
-  @media (min-width: 880px) {
-    justify-content: center;
+  @media (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: 0.55fr 1.45fr;
+    align-items: start;
+    gap: clamp(2rem, 4vw, 4rem);
   }
 }
 
 .testimonials__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 1rem;
-  max-width: 1100px;
-  margin-inline: auto;
-  width: 100%;
+
+  @media (min-width: 1000px) {
+    position: sticky;
+    top: 7rem;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 1000px) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .testimonials__title {
@@ -124,27 +126,19 @@ onBeforeUnmount(() => {
   color: $lpb-green;
 }
 
-.testimonials__track {
+.testimonials__cards {
   display: flex;
-  gap: clamp(1rem, 2vw, 1.75rem);
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  flex-direction: column;
+  gap: 1rem;
 
   @media (min-width: 880px) {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding-bottom: 0.5rem;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 1.5vw, 1.5rem);
   }
 
   @media (max-width: 880px) {
-    flex-direction: column;
     gap: 1rem;
-    overflow: visible;
-    padding-inline: 0;
   }
 }
 
@@ -152,24 +146,25 @@ onBeforeUnmount(() => {
   flex: 0 0 auto;
   background: $lpb-ink;
   border: 1px solid rgba($lpb-white, 0.08);
-  border-radius: 8px;
-  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: 12px;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  scroll-snap-align: start;
+  gap: 1.25rem;
+  will-change: transform;
 
   @media (max-width: 880px) {
     width: 100%;
+    border-radius: 8px;
   }
 
   @media (min-width: 880px) {
-    width: clamp(420px, 36vw, 560px);
-    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0, 1), border-color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0, 1), border-color 0.3s ease, box-shadow 0.4s ease;
 
     &:hover {
       transform: translateY(-4px);
       border-color: rgba($lpb-white, 0.2);
+      box-shadow: 0 20px 40px -24px rgba($lpb-black, 0.6);
     }
   }
 }
@@ -189,8 +184,8 @@ onBeforeUnmount(() => {
     font-family: $font-display;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    line-height: 1.35;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    line-height: 1.4;
     color: $lpb-white;
     margin: 0;
     text-wrap: balance;
@@ -200,9 +195,9 @@ onBeforeUnmount(() => {
 .testimonials__author {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   border-top: 1px solid rgba($lpb-white, 0.08);
-  padding-top: 1rem;
+  padding-top: 0.85rem;
 
   > div {
     display: flex;
@@ -212,23 +207,24 @@ onBeforeUnmount(() => {
 }
 
 .testimonials__photo {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
+  flex-shrink: 0;
 }
 
 .testimonials__name {
   font-family: $font-sans;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: $lpb-white;
 }
 
 .testimonials__role {
   font-family: $font-mono;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba($lpb-white, 0.55);
