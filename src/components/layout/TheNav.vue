@@ -132,7 +132,8 @@ watch(() => route.path, close)
     color: $lpb-white;
   }
 
-  &--scrolled, &--legal {
+  &--scrolled,
+  &--legal {
     background: rgba($lpb-paper, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -180,6 +181,7 @@ watch(() => route.path, close)
     span:nth-child(1) {
       transform: translateY(4px) rotate(45deg);
     }
+
     span:nth-child(2) {
       transform: translateY(-4px) rotate(-45deg);
     }
@@ -328,7 +330,8 @@ watch(() => route.path, close)
     display: none !important;
   }
 
-  .nav__burger, .nav__mobile-footer {
+  .nav__burger,
+  .nav__mobile-footer {
     display: none !important;
   }
 
