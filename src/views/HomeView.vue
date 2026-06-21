@@ -3,6 +3,7 @@ import PresaleHero from '@/components/presale/PresaleHero.vue'
 import PlansSection from '@/components/presale/PlansSection.vue'
 import BenefitsSection from '@/components/presale/BenefitsSection.vue'
 import TestimonialsSection from '@/components/home/TestimonialsSection.vue'
+import VideoSection from '@/components/home/VideoSection.vue'
 import FaqSection from '@/components/home/FaqSection.vue'
 import FinalCtaSection from '@/components/home/FinalCtaSection.vue'
 import MarqueeText from '@/components/ui/MarqueeText.vue'
@@ -24,6 +25,7 @@ const marqueeItems = [
     <PlansSection />
     <BenefitsSection />
     <MarqueeText :items="['No es para todas', 'Si calificas, recibes el aviso primero', 'Compromiso anual real']" theme="dark" :speed="48" />
+    <VideoSection />
     <TestimonialsSection />
     <FaqSection />
     <FinalCtaSection />

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { paymentService } from '@/services/paymentService'
 import type { PaymentBoxConfig } from '@/services/paymentService'
 import CheckoutModal from './CheckoutModal.vue'
@@ -86,6 +87,9 @@ function onBoxError(message: string) {
             <span v-if="loading">Preparando pago...</span>
             <span v-else>Pagar con tarjeta</span>
           </button>
+          <RouterLink :to="{ name: 'home', hash: '#video' }" class="plan-card__link">
+            Saber más sobre el año
+          </RouterLink>
           <p v-if="error" class="plan-card__error">{{ error }}</p>
         </article>
 
@@ -327,6 +331,20 @@ function onBoxError(message: string) {
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+}
+
+.plan-card__link {
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  color: $lpb-green-deep;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin-top: -0.25rem;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
