@@ -84,7 +84,7 @@ const isExpired = computed(() => {
   padding-block: clamp(6.5rem, 14vh, 9rem) clamp(2rem, 6vw, 4.5rem);
   background: $lpb-black;
   color: $lpb-white;
-  overflow: clip;
+  overflow: hidden;
   isolation: isolate;
 }
 

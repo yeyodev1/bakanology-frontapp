@@ -85,50 +85,52 @@ const logout = () => {
         :class="{ 'nav__content--open': open }"
         ref="menuContainer"
       >
-        <nav class="nav__links">
-          <template v-if="!userStore.isAuthenticated">
-            <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-              <span class="nav__num">01</span> Pricing
-            </RouterLink>
-            <RouterLink :to="{ name: 'login' }" class="nav__link" @click="close">
-              <span class="nav__num">02</span> Iniciar sesión
-            </RouterLink>
-            <RouterLink :to="{ name: 'register' }" class="nav__cta" @click="close">
-              <span>Registrarse ahora</span>
-              <i class="fa-solid fa-arrow-right" />
-            </RouterLink>
-          </template>
-          <template v-else>
-            <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-              <span class="nav__num">01</span> Pricing
-            </RouterLink>
-            <RouterLink
-              :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
-              class="nav__link"
-              @click="close"
-            >
-              <span class="nav__num">02</span>
-              {{ userStore.role === 'admin' ? 'Admin' : 'Mi cuenta' }}
-            </RouterLink>
-            <button type="button" class="nav__link nav__link--logout" @click="logout">
-              <span class="nav__num">03</span> Cerrar sesión
-            </button>
-            <RouterLink
-              :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
-              class="nav__cta"
-              @click="close"
-            >
-              <span>{{ userStore.role === 'admin' ? 'Admin' : 'Mi cuenta' }}</span>
-              <i class="fa-solid fa-arrow-right" />
-            </RouterLink>
-          </template>
-        </nav>
+        <div class="nav__content-inner">
+          <nav class="nav__links">
+            <template v-if="!userStore.isAuthenticated">
+              <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
+                <span class="nav__num">01</span> Pricing
+              </RouterLink>
+              <RouterLink :to="{ name: 'login' }" class="nav__link" @click="close">
+                <span class="nav__num">02</span> Iniciar sesión
+              </RouterLink>
+              <RouterLink :to="{ name: 'register' }" class="nav__cta" @click="close">
+                <span>Registrarse ahora</span>
+                <i class="fa-solid fa-arrow-right" />
+              </RouterLink>
+            </template>
+            <template v-else>
+              <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
+                <span class="nav__num">01</span> Pricing
+              </RouterLink>
+              <RouterLink
+                :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
+                class="nav__link"
+                @click="close"
+              >
+                <span class="nav__num">02</span>
+                {{ userStore.role === 'admin' ? 'Admin' : 'Mi cuenta' }}
+              </RouterLink>
+              <button type="button" class="nav__link nav__link--logout" @click="logout">
+                <span class="nav__num">03</span> Cerrar sesión
+              </button>
+              <RouterLink
+                :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
+                class="nav__cta"
+                @click="close"
+              >
+                <span>{{ userStore.role === 'admin' ? 'Admin' : 'Mi cuenta' }}</span>
+                <i class="fa-solid fa-arrow-right" />
+              </RouterLink>
+            </template>
+          </nav>
 
-        <div class="nav__mobile-footer">
-          <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="nav__social">
-            Instagram {{ INSTAGRAM_HANDLE }}
-          </a>
-          <p class="nav__copy">© {{ new Date().getFullYear() }} Luisa Pita Bejarano</p>
+          <div class="nav__mobile-footer">
+            <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="nav__social">
+              Instagram {{ INSTAGRAM_HANDLE }}
+            </a>
+            <p class="nav__copy">© {{ new Date().getFullYear() }} Luisa Pita Bejarano</p>
+          </div>
         </div>
       </div>
 
@@ -138,6 +140,7 @@ const logout = () => {
         @click="toggle"
         :aria-label="open ? 'Cerrar menú' : 'Abrir menú'"
       >
+        <span />
         <span />
         <span />
       </button>
@@ -187,7 +190,11 @@ const logout = () => {
 .nav__burger {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
   z-index: 1101;
   cursor: pointer;
   background: none;
@@ -197,30 +204,34 @@ const logout = () => {
 
   span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
     background: currentColor;
     border-radius: 1px;
-    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0, 1);
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0, 1), opacity 0.2s ease;
     transform-origin: center;
+    flex-shrink: 0;
   }
 
-  .nav--open & span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-  .nav--open & span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+  .nav--open & span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav--open & span:nth-child(2) { opacity: 0; }
+  .nav--open & span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
 
 .nav__backdrop {
   position: fixed;
   inset: 0;
   z-index: 1049;
-  background: rgba($lpb-black, 0.3);
+  background: rgba($lpb-black, 0.35);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
 
   &--visible {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 }
 
@@ -230,56 +241,76 @@ const logout = () => {
   left: 0;
   width: 100%;
   height: 100dvh;
-  background: $lpb-paper;
+  z-index: 1050;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 2rem 3rem;
-  z-index: 1050;
   overflow-y: auto;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  clip-path: circle(0% at 100% 2.4rem);
+  transition: clip-path 0.65s cubic-bezier(0.55, 0, 0.2, 1);
 
   &--open {
-    opacity: 1;
-    visibility: visible;
+    clip-path: circle(150% at 100% 2.4rem);
   }
+}
+
+.nav__content-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 2rem 2.5rem;
+  background: $lpb-paper;
 }
 
 .nav__links {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.25rem;
   width: 100%;
-  max-width: 380px;
-  text-align: center;
+  max-width: 360px;
+  margin: auto;
 }
 
 .nav__link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  font-family: $font-display;
-  font-size: 2rem;
-  font-weight: 450;
-  color: $lpb-black;
+  gap: 1rem;
+  font-family: $font-sans;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $lpb-graphite;
   text-decoration: none;
-  padding: 0.6rem 0;
+  padding: 1rem 1.25rem;
   border: none;
-  border-bottom: 1px solid rgba($lpb-black, 0.05);
-  transition: color 0.25s ease;
+  border-radius: 0.875rem;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   background: none;
   width: 100%;
   cursor: pointer;
 
-  &:hover { color: $lpb-green-dark; }
+  &:hover {
+    background: rgba($lpb-green, 0.08);
+    color: $lpb-green-deep;
+    transform: scale(1.02);
+  }
 
   .nav__num {
-    font-family: $font-mono; font-size: 0.65rem; font-weight: 600;
-    letter-spacing: 0.15em; color: $lpb-muted; margin-top: 0.25em;
+    font-family: $font-mono;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: $lpb-green;
+    background: rgba($lpb-green, 0.1);
+    padding: 0.2rem 0.45rem;
+    border-radius: 0.35rem;
+    line-height: 1;
+  }
+}
+
+.nav__link--logout {
+  &:hover {
+    background: rgba($alert-error, 0.08);
+    color: $alert-error;
+    transform: scale(1.02);
   }
 }
 
@@ -287,50 +318,74 @@ const logout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $lpb-black;
+  background: $lpb-graphite;
   color: $lpb-white;
   padding: 1rem 1.5rem;
   border-radius: 999px;
   font-family: $font-mono;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
+  border: none;
 
   &:hover {
-    background: $lpb-green-dark;
+    background: $lpb-green-deep;
     transform: scale(1.02);
   }
 
   i {
     font-size: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover i {
+    transform: translateX(4px);
   }
 }
 
 .nav__mobile-footer {
   margin-top: auto;
-  padding-top: 3rem;
-  text-align: center;
-  font-family: $font-mono;
-  text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: rgba($lpb-black, 0.35);
+  padding-top: 2rem;
+  text-align: left;
+  font-family: $font-sans;
+  font-size: 0.8rem;
+  color: $lpb-muted;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 
   a {
-    color: inherit;
+    color: $lpb-black;
     text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     transition: color 0.25s ease;
 
+    &::before {
+      content: '→';
+      font-size: 0.75rem;
+      color: $lpb-green;
+    }
+
     &:hover {
-      color: $lpb-green-dark;
+      color: $lpb-green-deep;
     }
   }
+}
+
+.nav__copy {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba($lpb-black, 0.25);
 }
 
 @media (min-width: 880px) {
@@ -349,16 +404,23 @@ const logout = () => {
 
   .nav__content {
     position: static;
-    background: transparent;
-    padding: 0;
+    clip-path: none !important;
     height: auto;
     width: auto;
     overflow: visible;
-    opacity: 1 !important;
-    visibility: visible !important;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+  }
+
+  .nav__content-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0;
+    background: none;
+    flex: none;
   }
 
   .nav__links {
