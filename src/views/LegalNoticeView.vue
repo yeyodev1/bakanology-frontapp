@@ -18,27 +18,26 @@ onMounted(() => {
           Volver al sitio
         </RouterLink>
         <h1>Aviso Legal</h1>
-        <p class="legal__updated">Última actualización: 10 de mayo de 2026</p>
+        <p class="legal__updated">Última actualización: 3 de julio de 2026</p>
       </header>
 
       <section>
         <h2>1. Titular del sitio</h2>
         <p>
-          El sitio <strong>luisapitabejarano.com</strong> es propiedad de Luisa Pita Bejarano, persona
-          natural con domicilio en Ecuador (<em>[PENDIENTE: nombre legal exacto, RUC/cédula, dirección física]</em>).
+          El sitio <strong>bakanology.bakano.ec</strong> es propiedad de bakano.ec, agencia de
+          marketing de performance con domicilio en Ecuador
+          (<em>[PENDIENTE: datos legales completos]</em>).
         </p>
         <p>
-          Contacto oficial: <em>[PENDIENTE: email oficial de contacto]</em>.
+          Contacto oficial: <em>hola@bakano.ec</em>.
         </p>
       </section>
 
       <section>
         <h2>2. Objeto del sitio</h2>
         <p>
-          luisapitabejarano.com es el sitio institucional de la marca personal de Luisa Pita Bejarano,
-          dirigido a presentar su trabajo como coach de transformación corporal y a invitar a mujeres
-          a unirse a su comunidad anual cerrada, cuyo registro de preventa se realiza en
-          <strong>vip.luisapitabejarano.com</strong>.
+          bakanology.bakano.ec es la plataforma de e-learning de bakano.ec, dirigida a enseñar
+          metodología de marketing de performance a dueños de negocio.
         </p>
       </section>
 
@@ -46,7 +45,7 @@ onMounted(() => {
         <h2>3. Propiedad intelectual</h2>
         <p>
           Todos los contenidos del sitio (textos, fotografías, gráficos, vídeos, logotipos y marca)
-          son propiedad de Luisa Pita Bejarano o se utilizan bajo licencia. Está prohibida su
+          son propiedad de bakano.ec o se utilizan bajo licencia. Está prohibida su
           reproducción, distribución o transformación sin autorización previa.
         </p>
       </section>
@@ -68,17 +67,16 @@ onMounted(() => {
           asumimos responsabilidad por daños derivados del uso del mismo.
         </p>
         <p>
-          La participación en la comunidad anual de Luisa Pita Bejarano se rige por términos y
-          condiciones específicos que se entregan en el momento de la inscripción.
+          El acceso a Bakanology Academy se rige por términos y condiciones específicos que se
+          entregan en el momento de la inscripción.
         </p>
       </section>
 
       <section>
         <h2>6. Enlaces externos</h2>
         <p>
-          El sitio puede contener enlaces a sitios externos (por ejemplo, Instagram o
-          vip.luisapitabejarano.com). No nos hacemos responsables del contenido o políticas de esos
-          sitios.
+          El sitio puede contener enlaces a sitios externos (por ejemplo, Instagram).
+          No nos hacemos responsables del contenido o políticas de esos sitios.
         </p>
       </section>
 
@@ -104,8 +102,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .legal {
-  background: $lpb-paper;
-  color: $lpb-black;
+  background: $bakano-light;
+  color: $bakano-dark;
   padding-block: clamp(7rem, 12vh, 9rem) clamp(4rem, 8vw, 6rem);
   min-height: 100vh;
 }
@@ -126,7 +124,7 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: $lpb-green-dark;
+  color: $bakano-pink;
   font-family: $font-mono;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -135,7 +133,7 @@ onMounted(() => {
   transition: color .25s ease, gap .25s ease;
 
   &:hover {
-    color: $lpb-black;
+    color: $bakano-dark;
     gap: 0.8rem;
   }
 }
@@ -147,11 +145,11 @@ h1 {
   font-size: clamp(2rem, 4.5vw, 3rem);
   letter-spacing: -0.015em;
   margin: 0.25rem 0 0;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .legal__updated {
-  color: $lpb-muted;
+  color: $gray-500;
   font-family: $font-mono;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -159,7 +157,7 @@ h1 {
 }
 
 section {
-  border-top: 1px solid rgba($lpb-black, 0.12);
+  border-top: 1px solid rgba($bakano-dark, 0.12);
   padding-top: 1.25rem;
 }
 
@@ -169,26 +167,26 @@ h2 {
   font-weight: 500;
   font-size: 1.2rem;
   margin: 0 0 0.75rem;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 p, li {
-  color: $lpb-graphite;
+  color: $gray-600;
   line-height: 1.65;
   font-size: 0.98rem;
 }
 
 strong {
-  color: $lpb-black;
+  color: $bakano-dark;
   font-weight: 600;
 }
 
 em {
-  background: rgba($lpb-green, 0.12);
+  background: rgba($bakano-pink, 0.12);
   padding: 0.1rem 0.45rem;
   border-radius: 0.25rem;
   font-style: normal;
-  color: $lpb-green-deep;
+  color: $bakano-pink;
   font-family: $font-mono;
   font-size: 0.85em;
 }

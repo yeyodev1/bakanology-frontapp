@@ -1,266 +1,208 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useCloudinary } from '@/composables/useCloudinary'
-import { gsap } from '@/composables/useScrollReveal'
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from '@/config/site'
 
-const { luisa } = useCloudinary()
-const portrait = luisa(2, { w: 1200, h: 1500, crop: 'fill', gravity: 'face' })
-
-const root = ref<HTMLElement | null>(null)
-const photoEl = ref<HTMLElement | null>(null)
-let ctx: gsap.Context | null = null
-
-onMounted(() => {
-  if (!root.value) return
-  ctx = gsap.context(() => {
-    if (photoEl.value) {
-      gsap.fromTo(
-        photoEl.value.querySelector('img'),
-        { yPercent: -8, scale: 1.06 },
-        {
-          yPercent: 8,
-          scale: 1.02,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: root.value,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        },
-      )
-    }
-
-    gsap.from(root.value!.querySelectorAll('[data-rise]'), {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      ease: 'power3.out',
-      stagger: 0.08,
-      scrollTrigger: { trigger: root.value, start: 'top 70%' },
-    })
-  }, root.value)
-})
-
-onBeforeUnmount(() => ctx?.revert())
+const { img } = useCloudinary()
+const luisPortrait = img('bakanology/luis-founder', { w: 800, h: 1000, crop: 'fill', gravity: 'face' })
+const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, crop: 'fill', gravity: 'face' })
 </script>
 
 <template>
-  <section class="authority" ref="root">
+  <section class="authority">
     <div class="authority__inner">
-      <figure class="authority__photo" ref="photoEl">
-        <div class="authority__photo-wrap">
-          <img :src="portrait" alt="Luisa Pita Bejarano" loading="lazy" />
+      <span class="authority__eyebrow">Creado por bakano.ec</span>
+      <h2 class="authority__title">Más de 70 clientes escalaron su facturación con nuestra metodología</h2>
+      <p class="authority__lede">
+        En bakano.ec hemos ayudado a más de 70 clientes a escalar su facturación en tan solo 6 meses.
+        Trabajamos con restaurantes que facturan desde $15K/mes y servicios desde $10K/mes.
+        Ahora ponemos toda esa experiencia en tus manos.
+      </p>
+
+      <div class="authority__founders">
+        <div class="authority__founder">
+          <div class="authority__founder-img">
+            <img :src="luisPortrait" alt="Luis — Fundador de bakano.ec" loading="lazy" />
+          </div>
+          <div class="authority__founder-info">
+            <strong class="authority__founder-name">Luis</strong>
+            <span class="authority__founder-role">Fundador · bakano.ec</span>
+          </div>
         </div>
-      </figure>
-
-      <div class="authority__content">
-        <span class="eyebrow" data-rise>Sobre Luisa Pita Bejarano</span>
-        <h2 class="authority__title display-md" data-rise>
-          <span class="italic-accent">Coach fitness y entrenadora personal</span> para mujeres con vidas que no caben en un plan de 8 semanas.
-        </h2>
-        <p class="authority__copy" data-rise>
-          <strong>Luisa Pita Bejarano</strong> es entrenadora personal y líder de comunidad con más
-          de una década transformando cuerpos de mujeres adultas en Ecuador, Latinoamérica, USA y
-          Europa. Su método se basa en consistencia, no en restricción — resultados reales que no
-          desaparecen cuando termina el programa.
-        </p>
-        <p class="authority__copy" data-rise>
-          Su comunidad anual cerrada nació de una convicción: los cambios profundos no caben en ocho
-          semanas. Por eso acompaña a sus alumnas <em>un año completo</em>, con la profundidad que
-          ese tiempo permite. Profesionales, líderes de hogar y emprendedoras que encontraron en el
-          acompañamiento anual la respuesta que los retos exprés nunca les dieron.
-        </p>
-
-        <ul class="authority__pills" data-rise>
-          <li>+200 mujeres acompañadas</li>
-          <li>Online · Ecuador, Latam, USA, Europa</li>
-          <li>Sin dietas restrictivas</li>
-        </ul>
-
-        <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="authority__instagram" data-rise>
-          <i class="fa-brands fa-instagram" aria-hidden="true" style="font-size: 1.2rem;"></i>
-          <span>{{ INSTAGRAM_HANDLE }}</span>
-        </a>
+        <div class="authority__founder">
+          <div class="authority__founder-img">
+            <img :src="denissePortrait" alt="Denisse — Cofundadora de bakano.ec" loading="lazy" />
+          </div>
+          <div class="authority__founder-info">
+            <strong class="authority__founder-name">Denisse</strong>
+            <span class="authority__founder-role">Cofundadora · bakano.ec</span>
+          </div>
+        </div>
       </div>
-      <div class="authority__deco" aria-hidden="true">
-        <span class="authority__deco-dot authority__deco-dot--1" />
-        <span class="authority__deco-dot authority__deco-dot--2" />
+
+      <div class="authority__stats">
+        <div class="authority__stat">
+          <span class="authority__stat-value">70+</span>
+          <span class="authority__stat-label">Clientes atendidos</span>
+        </div>
+        <div class="authority__stat">
+          <span class="authority__stat-value">6</span>
+          <span class="authority__stat-label">Meses para escalar</span>
+        </div>
+        <div class="authority__stat">
+          <span class="authority__stat-value">$15K</span>
+          <span class="authority__stat-label">Facturación mínima</span>
+        </div>
       </div>
+
+      <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="authority__instagram">
+        <i class="fa-brands fa-instagram" aria-hidden="true" />
+        <span>{{ INSTAGRAM_HANDLE }}</span>
+      </a>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .authority {
-  position: relative;
-  background: $lpb-cream;
-  color: $lpb-black;
-  padding-block: clamp(5rem, 12vw, 9rem);
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
-  width: 100%;
-  overflow: clip;
-}
-
-.authority__deco {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.authority__deco-dot {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.authority__deco-dot--1 {
-  top: -10%;
-  left: -6%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba($lpb-gold, 0.1) 0%, transparent 70%);
-}
-
-.authority__deco-dot--2 {
-  bottom: -8%;
-  right: 10%;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle, rgba($lpb-green, 0.1) 0%, transparent 70%);
+  padding-block: 5rem;
+  background: $white;
 }
 
 .authority__inner {
-  display: grid;
-  gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 800px;
+  margin: 0 auto;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  margin-inline: auto;
-  max-width: 1440px;
-
-  @media (min-width: 960px) {
-    grid-template-columns: 1fr 1.05fr;
-  }
+  gap: 1.5rem;
+  text-align: center;
 }
 
-.authority__photo {
+.authority__eyebrow {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $bakano-pink;
+  font-weight: 600;
+}
+
+.authority__title {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  color: $bakano-dark;
   margin: 0;
-  order: 2;
-
-  @media (min-width: 960px) {
-    order: 0;
-  }
+  max-width: 600px;
 }
 
-.authority__photo-wrap {
-  position: relative;
-  aspect-ratio: 4 / 5;
+.authority__lede {
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: $gray-600;
+  max-width: 600px;
+  margin: 0;
+}
+
+.authority__founders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.authority__founder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.authority__founder-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 30px 60px -20px rgba($lpb-black, 0.35);
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba($lpb-green, 0.15);
-    border-radius: inherit;
-    pointer-events: none;
-    transition: border-color .4s ease;
-  }
-
-  &:hover::after {
-    border-color: rgba($lpb-gold, 0.3);
-  }
+  border: 3px solid $bakano-pink;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
-    will-change: transform;
   }
 }
 
-.authority__content {
+.authority__founder-info {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-
-  @media (max-width: 960px) {
-    align-items: center;
-    text-align: center;
-  }
+  align-items: center;
+  gap: 0.15rem;
 }
 
-.authority__title {
-  margin: 0.5rem 0 0.5rem;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.1;
+.authority__founder-name {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $bakano-dark;
 }
 
-.authority__copy {
-  font-family: $font-sans;
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: $lpb-graphite;
-  max-width: 56ch;
-
-  em {
-    font-family: $font-display;
-    font-style: italic;
-    font-weight: 500;
-    color: $lpb-black;
-  }
+.authority__founder-role {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.authority__pills {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 0;
+.authority__stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
 
-  li {
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.5rem 0.9rem;
-    border: 1px solid rgba($lpb-green, 0.25);
-    border-radius: 999px;
-    color: $lpb-green-dark;
-    background: rgba($lpb-green, 0.06);
-    transition: background .3s ease, border-color .3s ease, color .3s ease;
+.authority__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
 
-    &:hover {
-      background: rgba($lpb-gold, 0.12);
-      border-color: rgba($lpb-gold, 0.4);
-      color: darken($lpb-gold, 12%);
-    }
-  }
+.authority__stat-value {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 2rem;
+  color: $bakano-pink;
+  line-height: 1;
+}
+
+.authority__stat-label {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .authority__instagram {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  color: $lpb-black;
+  gap: 0.5rem;
+  color: $bakano-dark;
   font-family: $font-mono;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-top: 0.5rem;
-  transition: color .25s ease, gap .25s ease;
-  width: max-content;
+  transition: color .25s ease;
 
   &:hover {
-    color: $lpb-green-dark;
-    gap: 0.9rem;
+    color: $bakano-pink;
   }
 }
 </style>

@@ -59,7 +59,7 @@ function displayUrl() {
 
 <style lang="scss" scoped>
 .card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -71,7 +71,7 @@ function displayUrl() {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 }
@@ -94,8 +94,8 @@ function displayUrl() {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -106,7 +106,7 @@ function displayUrl() {
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: $lpb-green-dark; }
+  &:hover { background: $bakano-green; }
 }
 
 .profile__input {
@@ -122,8 +122,8 @@ function displayUrl() {
 }
 
 .profile__save {
-  background: $lpb-green;
-  color: $lpb-black;
+  background: $bakano-green;
+  color: $bakano-dark;
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -133,7 +133,7 @@ function displayUrl() {
   border-radius: 999px;
   transition: background 0.2s ease;
 
-  &:hover:not(:disabled) { background: $lpb-green-dark; color: $lpb-white; }
+  &:hover:not(:disabled) { background: $bakano-green; color: $white; }
   &:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 
@@ -150,7 +150,7 @@ function displayUrl() {
   border: 1px solid $alert-error;
   transition: background 0.2s ease, color 0.2s ease;
 
-  &:hover:not(:disabled) { background: $alert-error; color: $lpb-white; }
+  &:hover:not(:disabled) { background: $alert-error; color: $white; }
   &:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 
@@ -159,9 +159,9 @@ function displayUrl() {
   font-size: 0.8rem;
   margin: 0;
 }
-.profile__hint { color: $lpb-muted; }
+.profile__hint { color: $gray-500; }
 .profile__error { color: $alert-error; }
-.profile__success { color: $lpb-green-deep; }
+.profile__success { color: $bakano-green; }
 
 @media (max-width: 640px) {
   .profile { flex-direction: column; align-items: flex-start; }

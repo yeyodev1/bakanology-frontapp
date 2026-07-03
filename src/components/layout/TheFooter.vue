@@ -12,8 +12,8 @@ const year = new Date().getFullYear()
       <div class="footer__mark">
         <BrandWordmark size="lg" />
         <p class="footer__tagline">
-          Un año contigo, un año cerca de Luisa.<br />
-          La comunidad anual cerrada para mujeres decididas.
+          Marketing de performance sin pagar una agencia.<br />
+          Creado por bakano.ec.
         </p>
       </div>
 
@@ -38,30 +38,33 @@ const year = new Date().getFullYear()
         <RouterLink :to="{ name: 'privacy-policy' }" class="footer__link">Políticas de privacidad</RouterLink>
         <RouterLink :to="{ name: 'legal-notice' }" class="footer__link">Aviso legal</RouterLink>
       </nav>
-      <p class="footer__copy">© {{ year }} Luisa Pita Bejarano · Ecuador</p>
+      <p class="footer__copy">© {{ year }} bakano.ec · Ecuador</p>
     </div>
   </footer>
 </template>
 
 <style lang="scss" scoped>
 .footer {
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
   width: 100%;
 }
 
 .footer__top {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 2.5rem;
-  align-items: end;
+  align-items: flex-start;
   width: 100%;
   margin-inline: auto;
   max-width: 1440px;
 
   @media (min-width: 880px) {
-    grid-template-columns: 1.4fr 1fr;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
     gap: 4rem;
   }
 }
@@ -70,24 +73,23 @@ const year = new Date().getFullYear()
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  color: $lpb-white;
+  color: $white;
+
+  :deep(svg) {
+    filter: brightness(0) invert(1);
+  }
 }
 
 .footer__tagline {
-  font-family: $font-display;
-  font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  line-height: 1.3;
-  color: rgba($lpb-white, 0.78);
-  max-width: 38ch;
+  font-family: $font-sans;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.4;
+  color: rgba($white, 0.7);
+  max-width: 40ch;
 }
 
 .footer__cta {
-  justify-self: start;
-
-  @media (min-width: 880px) {
-    justify-self: end;
-  }
+  flex-shrink: 0;
 }
 
 .footer__cta-link {
@@ -95,9 +97,9 @@ const year = new Date().getFullYear()
   align-items: center;
   gap: 0.8rem;
   padding: 1.1rem 1.7rem;
-  border: 1px solid rgba($lpb-white, 0.25);
+  border: 1px solid rgba($white, 0.25);
   border-radius: 999px;
-  color: $lpb-white;
+  color: $white;
   font-family: $font-mono;
   font-size: 0.85rem;
   font-weight: 600;
@@ -106,16 +108,16 @@ const year = new Date().getFullYear()
   transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
 
   &:hover {
-    background: $lpb-green;
-    color: $lpb-black;
-    border-color: $lpb-green;
+    background: $bakano-green;
+    color: $bakano-dark;
+    border-color: $bakano-green;
     transform: translateY(-1px);
   }
 }
 
 .footer__rule {
   height: 1px;
-  background: rgba($lpb-white, 0.12);
+  background: rgba($white, 0.12);
   margin-block: clamp(2rem, 4vw, 3rem);
   width: 100%;
   margin-inline: auto;
@@ -144,16 +146,16 @@ const year = new Date().getFullYear()
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($lpb-white, 0.65);
+  color: rgba($white, 0.65);
   transition: color .25s ease;
 
   em {
     font-style: normal;
-    color: $lpb-green;
+    color: $bakano-green;
   }
 
   &:hover {
-    color: $lpb-white;
+    color: $white;
   }
 }
 
@@ -162,7 +164,7 @@ const year = new Date().getFullYear()
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($lpb-white, 0.45);
+  color: rgba($white, 0.45);
   margin: 0;
 }
 </style>

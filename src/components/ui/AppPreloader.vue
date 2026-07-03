@@ -64,8 +64,8 @@ onBeforeUnmount(() => {
     aria-hidden="true"
   >
     <div class="preloader__stage">
-      <p class="preloader__label">Luisa Pita Bejarano</p>
-      <h1 class="preloader__title">Comunidad anual de transformación</h1>
+      <p class="preloader__label">Bakanology Academy</p>
+      <h1 class="preloader__title">Marketing de performance<br />sin pagar una agencia</h1>
     </div>
 
     <div class="preloader__footer">
@@ -87,8 +87,8 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   clip-path: inset(0 0 0 0);
   transform: scale(1);
   transition:
@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: $lpb-green;
+  color: $bakano-green;
   margin: 0;
   opacity: 0;
   transform: translateY(10px);
@@ -140,9 +140,8 @@ onBeforeUnmount(() => {
 .preloader__title {
   font-family: $font-display;
   font-size: clamp(2rem, 6.5vw, 4.5rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.05;
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0;
   max-width: 14ch;
@@ -170,21 +169,21 @@ onBeforeUnmount(() => {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba($lpb-white, 0.45);
+  color: rgba($white, 0.45);
   white-space: nowrap;
 }
 
 .preloader__track {
   flex: 1 1 auto;
   height: 1px;
-  background: rgba($lpb-white, 0.1);
+  background: rgba($white, 0.1);
   overflow: hidden;
 }
 
 .preloader__bar {
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, $lpb-green 0%, $lpb-gold 100%);
+  background: linear-gradient(90deg, $bakano-green 0%, $bakano-pink 100%);
   transition: width 0.2s ease-out;
 }
 
@@ -193,7 +192,7 @@ onBeforeUnmount(() => {
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: rgba($lpb-white, 0.55);
+  color: rgba($white, 0.55);
   min-width: 2ch;
   text-align: right;
 

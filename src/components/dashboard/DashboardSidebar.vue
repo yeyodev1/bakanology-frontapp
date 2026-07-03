@@ -23,7 +23,7 @@ const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 
-const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-06T00:00:00-05:00'
+const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-31T23:59:59-05:00'
 const isBeforeLaunch = computed(() => new Date().getTime() < new Date(launchDeadline).getTime())
 
 const activeModal = ref<'logout' | null>(null)
@@ -56,7 +56,7 @@ const menuItems = computed(() => {
     { name: 'courses', label: 'Mis cursos', icon: 'book-open' },
     { name: 'live-classes', label: 'Clases en vivo', icon: 'video' },
     { name: 'schedule', label: 'Horario', icon: 'calendar' },
-    { name: 'recipes', label: 'Recetas', icon: 'utensils' },
+    { name: 'recipes', label: 'Recursos', icon: 'folder-open' },
     { name: 'achievements', label: 'Logros', icon: 'trophy' },
     { name: 'payments', label: 'Pagos', icon: 'credit-card' },
   ]
@@ -161,7 +161,7 @@ function logout() {
               'fa-book-open': item.icon === 'book-open',
               'fa-video': item.icon === 'video',
               'fa-calendar-days': item.icon === 'calendar',
-              'fa-utensils': item.icon === 'utensils',
+              'fa-folder-open': item.icon === 'folder-open',
               'fa-trophy': item.icon === 'trophy',
               'fa-credit-card': item.icon === 'credit-card',
               'fa-user-shield': item.icon === 'user-shield',
@@ -183,7 +183,7 @@ function logout() {
         <div class="sidebar__profile-info">
           <span class="sidebar__profile-name">{{ userStore.fullName }}</span>
           <span class="sidebar__profile-status">
-            Miembro {{ userStore.subscriptionStatus === 'active' ? 'VIP' : 'registrado' }}
+            Miembro {{ userStore.subscriptionStatus === 'active' ? 'Premium' : 'registrado' }}
           </span>
         </div>
       </div>
@@ -203,7 +203,7 @@ function logout() {
         </button>
       </div>
 
-      <p class="sidebar__copy">© {{ new Date().getFullYear() }} Luisa Pita Bejarano</p>
+      <p class="sidebar__copy">© {{ new Date().getFullYear() }} bakano.ec</p>
     </div>
   </aside>
 
@@ -217,7 +217,7 @@ function logout() {
         <i class="fa-solid fa-lock toast-item__icon" />
         <div class="toast-item__content">
           <span class="toast-item__title">Contenido bloqueado</span>
-          <span class="toast-item__text">Disponible a partir del 6 de julio</span>
+          <span class="toast-item__text">Disponible pronto</span>
         </div>
         <button class="toast-item__close" type="button" aria-label="Cerrar" @click="dismissToast(t.id)">
           <i class="fa-solid fa-xmark" />
@@ -233,7 +233,7 @@ function logout() {
   <ConfirmModal
     :open="activeModal === 'logout'"
     title="Cerrar sesión"
-    message="Vas a cerrar tu sesión en Luisa Pita Bejarano Academy. Deberás volver a iniciar sesión para acceder a tu cuenta."
+    message="Vas a cerrar tu sesión en Bakanology Academy. Deberás volver a iniciar sesión para acceder a tu cuenta."
     action-label="Cerrar sesión"
     danger
     @confirm="logout"
@@ -254,7 +254,7 @@ function logout() {
   left: 0;
   width: 260px;
   height: 100dvh;
-  background: $lpb-paper;
+  background: $light;
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -270,12 +270,12 @@ function logout() {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background: $lpb-paper;
+  background: $light;
   border-bottom: 1px solid var(--border);
 }
 
 .sidebar__brand {
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .sidebar__close {
@@ -291,7 +291,7 @@ function logout() {
     display: block;
     width: 20px;
     height: 2px;
-    background: $lpb-black;
+    background: $bakano-dark;
     border-radius: 1px;
   }
 
@@ -314,23 +314,23 @@ function logout() {
   gap: 0.85rem;
   padding: 0.85rem 1rem;
   border-radius: 0.75rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($lpb-green, 0.08);
-    color: $lpb-black;
+    background: rgba($bakano-pink, 0.08);
+    color: $bakano-dark;
   }
 
   &--active {
-    background: rgba($lpb-green, 0.14);
-    color: $lpb-green-deep;
+    background: rgba($bakano-pink, 0.12);
+    color: $bakano-pink;
 
     .sidebar__icon {
-      color: $lpb-green-deep;
+      color: $bakano-pink;
     }
   }
 }
@@ -341,7 +341,7 @@ function logout() {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: $lpb-muted;
+  color: $gray-500;
   transition: color 0.2s ease;
 }
 
@@ -359,7 +359,7 @@ function logout() {
   gap: 0.75rem;
   padding: 0.5rem;
   border-radius: 0.75rem;
-  background: rgba($lpb-black, 0.03);
+  background: rgba($bakano-dark, 0.03);
   border: 1px solid var(--border);
 }
 
@@ -374,7 +374,7 @@ function logout() {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -386,7 +386,7 @@ function logout() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-green;
 }
 
 .sidebar__actions {
@@ -402,7 +402,7 @@ function logout() {
   width: 100%;
   padding: 0.7rem 0.75rem;
   border-radius: 0.625rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   font-family: $font-sans;
   font-size: 0.9rem;
   font-weight: 500;
@@ -410,8 +410,8 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($lpb-green, 0.08);
-    color: $lpb-black;
+    background: rgba($bakano-pink, 0.08);
+    color: $bakano-dark;
   }
 }
 
@@ -437,7 +437,7 @@ function logout() {
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
   text-align: center;
 }
@@ -446,7 +446,7 @@ function logout() {
   position: fixed;
   inset: 0;
   z-index: 890;
-  background: rgba($lpb-black, 0.35);
+  background: rgba($bakano-dark, 0.35);
   backdrop-filter: blur(4px);
 }
 
@@ -476,10 +476,10 @@ function logout() {
   align-items: flex-start;
   gap: 0.65rem;
   padding: 0.75rem 1rem;
-  background: $lpb-paper;
-  border: 1px solid rgba($lpb-black, 0.1);
+  background: $light;
+  border: 1px solid rgba($bakano-dark, 0.1);
   border-radius: 0.75rem;
-  box-shadow: 0 8px 32px rgba($lpb-black, 0.12);
+  box-shadow: 0 8px 32px rgba($bakano-dark, 0.12);
   font-family: $font-sans;
   line-height: 1.3;
 }
@@ -487,7 +487,7 @@ function logout() {
 .toast-item__icon {
   flex-shrink: 0;
   font-size: 0.9rem;
-  color: $lpb-amber;
+  color: $bakano-pink;
   margin-top: 0.1rem;
 }
 
@@ -501,12 +501,12 @@ function logout() {
 .toast-item__title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .toast-item__text {
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .toast-item__close {
@@ -517,16 +517,16 @@ function logout() {
   width: 22px;
   height: 22px;
   padding: 0;
-  background: rgba($lpb-black, 0.04);
+  background: rgba($bakano-dark, 0.04);
   border: none;
-  color: $lpb-muted;
+  color: $gray-500;
   cursor: pointer;
   border-radius: 0.35rem;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($lpb-black, 0.08);
-    color: $lpb-black;
+    background: rgba($bakano-dark, 0.08);
+    color: $bakano-dark;
   }
 }
 

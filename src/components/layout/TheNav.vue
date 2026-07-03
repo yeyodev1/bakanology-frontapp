@@ -89,7 +89,7 @@ const logout = () => {
           <nav class="nav__links">
             <template v-if="!userStore.isAuthenticated">
               <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-                <span class="nav__num">01</span> Pricing
+                <span class="nav__num">01</span> Planes
               </RouterLink>
               <RouterLink :to="{ name: 'login' }" class="nav__link" @click="close">
                 <span class="nav__num">02</span> Iniciar sesión
@@ -101,7 +101,7 @@ const logout = () => {
             </template>
             <template v-else>
               <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-                <span class="nav__num">01</span> Pricing
+                <span class="nav__num">01</span> Planes
               </RouterLink>
               <RouterLink
                 :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
@@ -129,7 +129,7 @@ const logout = () => {
             <a :href="INSTAGRAM_URL" target="_blank" rel="noopener" class="nav__social">
               Instagram {{ INSTAGRAM_HANDLE }}
             </a>
-            <p class="nav__copy">© {{ new Date().getFullYear() }} Luisa Pita Bejarano</p>
+            <p class="nav__copy">© {{ new Date().getFullYear() }} bakano.ec</p>
           </div>
         </div>
       </div>
@@ -151,25 +151,25 @@ const logout = () => {
 <style lang="scss" scoped>
 .nav {
   position: fixed;
-  top: 0;
+  top: var(--sticky-offset, 0);
   left: 0;
   width: 100%;
   z-index: 1000;
   padding-block: 1.2rem;
   transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  color: $lpb-black;
+  color: $bakano-dark;
 
   &:not(.nav--scrolled):not(.nav--legal):not(.nav--open) {
-    color: $lpb-white;
+    color: $white;
   }
 
   &--scrolled,
   &--legal {
-    background: rgba($lpb-paper, 0.92);
+    background: rgba($light, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     padding-block: 0.8rem;
-    border-bottom: 1px solid rgba($lpb-black, 0.06);
+    border-bottom: 1px solid rgba($bakano-dark, 0.06);
   }
 }
 
@@ -222,7 +222,7 @@ const logout = () => {
   position: fixed;
   inset: 0;
   z-index: 1049;
-  background: rgba($lpb-black, 0.35);
+  background: rgba($bakano-dark, 0.35);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -258,7 +258,7 @@ const logout = () => {
   display: flex;
   flex-direction: column;
   padding: 6rem 2rem 2.5rem;
-  background: $lpb-paper;
+  background: $light;
 }
 
 .nav__links {
@@ -277,7 +277,7 @@ const logout = () => {
   font-family: $font-sans;
   font-size: 1.2rem;
   font-weight: 500;
-  color: $lpb-graphite;
+  color: $gray-700;
   text-decoration: none;
   padding: 1rem 1.25rem;
   border: none;
@@ -288,8 +288,8 @@ const logout = () => {
   cursor: pointer;
 
   &:hover {
-    background: rgba($lpb-green, 0.08);
-    color: $lpb-green-deep;
+    background: rgba($bakano-pink, 0.08);
+    color: $bakano-pink;
     transform: scale(1.02);
   }
 
@@ -298,8 +298,8 @@ const logout = () => {
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: $lpb-green;
-    background: rgba($lpb-green, 0.1);
+    color: $bakano-pink;
+    background: rgba($bakano-pink, 0.1);
     padding: 0.2rem 0.45rem;
     border-radius: 0.35rem;
     line-height: 1;
@@ -318,8 +318,8 @@ const logout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $lpb-graphite;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   padding: 1rem 1.5rem;
   border-radius: 999px;
   font-family: $font-mono;
@@ -333,7 +333,7 @@ const logout = () => {
   border: none;
 
   &:hover {
-    background: $lpb-green-deep;
+    background: $bakano-pink;
     transform: scale(1.02);
   }
 
@@ -353,13 +353,13 @@ const logout = () => {
   text-align: left;
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 
   a {
-    color: $lpb-black;
+    color: $bakano-dark;
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
@@ -370,11 +370,11 @@ const logout = () => {
     &::before {
       content: '→';
       font-size: 0.75rem;
-      color: $lpb-green;
+      color: $bakano-pink;
     }
 
     &:hover {
-      color: $lpb-green-deep;
+      color: $bakano-pink;
     }
   }
 }
@@ -385,7 +385,7 @@ const logout = () => {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba($lpb-black, 0.25);
+  color: rgba($bakano-dark, 0.25);
 }
 
 @media (min-width: 880px) {
@@ -455,21 +455,21 @@ const logout = () => {
   }
 
   .nav__cta {
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     padding: 0.65rem 1.35rem;
     font-size: 0.75rem;
     margin-top: 0;
     gap: 0.5rem;
 
     .nav:not(.nav--scrolled):not(.nav--legal) & {
-      background: $lpb-white;
-      color: $lpb-black;
+      background: $white;
+      color: $bakano-dark;
     }
 
     &:hover {
-      background: $lpb-green-dark;
-      color: $lpb-white;
+      background: $bakano-pink;
+      color: $white;
       transform: none;
     }
   }

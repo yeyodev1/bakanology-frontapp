@@ -1,51 +1,22 @@
 <script setup lang="ts">
 const benefits = [
-  {
-    icon: 'fa-solid fa-heart-pulse',
-    title: 'Acompañamiento real',
-    description: 'Seguimiento directo de Luisa y su equipo para que nunca te sientas sola en el proceso.',
-  },
-  {
-    icon: 'fa-solid fa-dumbbell',
-    title: 'Entrenamientos efectivos',
-    description: 'Rutinas diseñadas para mujeres ocupadas, en casa o gimnasio, sin excusas.',
-  },
-  {
-    icon: 'fa-solid fa-carrot',
-    title: 'Nutrición sin restricciones',
-    description: 'Aprende a comer mejor sin dietas extremas ni contar cada caloría.',
-  },
-  {
-    icon: 'fa-solid fa-users',
-    title: 'Comunidad privada',
-    description: 'Rodéate de mujeres con metas similares que empujan en la misma dirección.',
-  },
-  {
-    icon: 'fa-solid fa-mobile-screen',
-    title: 'App y contenido exclusivo',
-    description: 'Acceso a videos, guías y recursos solo para miembros de la comunidad.',
-  },
-  {
-    icon: 'fa-solid fa-gift',
-    title: 'Precio de preventa',
-    description: 'Asegura tu cupo con el valor promocional antes de que cierre la convocatoria.',
-  },
+  { icon: 'fa-solid fa-graduation-cap', title: 'Cursos con metodología comprobada', description: 'La misma metodología que bacano.ec usa con más de 70 clientes. Aprende a identificar a quién venderle, qué venderle y cómo venderle.' },
+  { icon: 'fa-solid fa-database', title: 'CRM propio incluido', description: 'Tu propia máquina de gestión de clientes. Conecta tus redes sociales, responde desde un solo canal y gestiona reuniones con una agenda integrada.' },
+  { icon: 'fa-solid fa-headset', title: 'Soporte continuo', description: 'No solo tienes el Ferrari — tienes el conductor. Te guiamos paso a paso para que sepas gestionar tu CRM y aplicar la metodología.' },
+  { icon: 'fa-solid fa-certificate', title: 'Certificación al finalizar', description: 'Al completar los cursos recibes un certificado que acredita que dominas la metodología bacano.ec de marketing de performance.' },
 ]
 </script>
 
 <template>
   <section id="beneficios" class="benefits">
     <div class="benefits__inner">
-      <span class="eyebrow eyebrow--green">¿Qué incluye?</span>
-      <h2 class="benefits__title display-lg">Todo lo que necesitas para transformarte</h2>
-
-      <div class="benefits__grid">
+      <span class="benefits__eyebrow">¿Qué incluye?</span>
+      <h2 class="benefits__title">Todo lo que necesitas para escalar tu negocio</h2>
+      <div class="benefits__list">
         <article v-for="benefit in benefits" :key="benefit.title" class="benefit-card">
-          <div class="benefit-card__icon">
-            <i :class="benefit.icon" />
-          </div>
+          <div class="benefit-card__icon"><i :class="benefit.icon" /></div>
           <h3 class="benefit-card__title">{{ benefit.title }}</h3>
-          <p class="benefit-card__description">{{ benefit.description }}</p>
+          <p class="benefit-card__desc">{{ benefit.description }}</p>
         </article>
       </div>
     </div>
@@ -54,70 +25,83 @@ const benefits = [
 
 <style lang="scss" scoped>
 .benefits {
-  padding-block: clamp(5rem, 12vw, 9rem);
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
-  background: $lpb-white;
+  padding-block: 5rem;
+  background: $white;
 }
 
 .benefits__inner {
-  max-width: 1200px;
-  margin-inline: auto;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   text-align: center;
 }
 
-.benefits__title {
-  margin: 0.75rem 0 3rem;
-  color: $lpb-black;
+.benefits__eyebrow {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $bakano-pink;
+  font-weight: 600;
 }
 
-.benefits__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+.benefits__title {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: $bakano-dark;
+  margin: 0;
+  max-width: 600px;
+}
+
+.benefits__list {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  text-align: left;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .benefit-card {
-  background: $lpb-paper;
-  border: 1px solid rgba($lpb-black, 0.05);
-  border-radius: 1.25rem;
+  background: $bakano-light;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 50px rgba($lpb-black, 0.06);
-  }
+  text-align: left;
 }
 
 .benefit-card__icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba($lpb-green, 0.1);
-  color: $lpb-green-dark;
-  font-size: 1.1rem;
+  background: rgba($bakano-pink, 0.1);
+  border-radius: 0.75rem;
+  font-size: 1.25rem;
+  color: $bakano-pink;
 }
 
 .benefit-card__title {
   font-family: $font-display;
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $bakano-dark;
   margin: 0;
-  color: $lpb-black;
 }
 
-.benefit-card__description {
+.benefit-card__desc {
   font-family: $font-sans;
   font-size: 0.95rem;
-  line-height: 1.55;
-  color: $lpb-muted;
+  line-height: 1.6;
+  color: $gray-600;
   margin: 0;
 }
 </style>

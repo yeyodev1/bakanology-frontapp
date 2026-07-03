@@ -1,64 +1,44 @@
-# Luisa Pita Bejarano
+# Bakanology Academy
 
-> Coach fitness y entrenadora personal para mujeres empoderadas. Lidera una comunidad anual cerrada de transformación corporal para mujeres ocupadas, dueñas de negocio y madres en Ecuador y Latinoamérica.
+> Academia de marketing de performance. Metodología comprobada por más de 70 clientes. Deja obsoletas a las agencias y aprende a hacerlo tú mismo.
 
-Luisa Pita Bejarano es **coach fitness y entrenadora personal especializada en mujeres adultas con vidas ocupadas**. Su trabajo se centra en transformaciones corporales sostenibles a lo largo de **un año entero**, no en programas cortos. Más de 200 mujeres han pasado por sus procesos en Ecuador, Latinoamérica, USA y Europa.
+Bakanology Academy es la **plataforma de e-learning de marketing de performance** creada por [bakano.ec](https://bakano.ec), agencia que ha ayudado a más de 70 clientes a escalar su facturación. Está diseñada para **dueños de negocio que facturan menos de $15,000/mes (gastronomía) o $10,000/mes (servicios)** — negocios que necesitan marketing de performance pero no pueden pagar una agencia.
 
-Su propuesta combina tres pilares: **entrenamiento adaptable a agendas reales**, **nutrición flexible sin dietas restrictivas** y **comunidad anual cerrada** con sesiones grupales en vivo y acompañamiento personalizado.
-
-El público objetivo son **mujeres empoderadas, ocupadas, dueñas de negocio y madres** que buscan resultados duraderos, sin obsesionarse con el cuerpo y sin sacrificar su vida real.
-
-El sitio luisapitabejarano.com es el portal institucional donde se presenta la marca y la filosofía. El registro y la preventa de la comunidad anual VIP ocurren en el subdominio **vip.luisapitabejarano.com**, por invitación.
+La propuesta combina tres pilares: **metodología probada**, **CRM propio** y **soporte continuo**.
 
 ## Marca y posicionamiento
-- Nombre: Luisa Pita Bejarano
-- Rol: Coach fitness · Entrenadora personal · Líder de comunidad anual
-- Especialidad: Transformación corporal anual para mujeres empoderadas
-- País: Ecuador (alcance online: Latinoamérica, USA, Europa)
-- Instagram: [@luisapitabejarano](https://www.instagram.com/luisapitabejarano/)
-- Tono: directo, premium, exigente, femenino. "No es para todas."
+- Nombre: Bakanology Academy
+- Creado por: bakano.ec
+- Fundadores: Luis y Denisse
+- Especialidad: Marketing de performance para pymes
+- País: Ecuador (alcance online: Latinoamérica)
+- Tono: directo, práctico, basado en resultados
 
 ## Páginas principales
-- [Sitio raíz](https://luisapitabejarano.com/): manifiesto, metodología, comunidad, historias, FAQ.
-- [Comunidad VIP (registro)](https://vip.luisapitabejarano.com): preventa por invitación de la comunidad anual cerrada.
-- [Políticas de privacidad](https://luisapitabejarano.com/politicas-privacidad)
-- [Aviso legal](https://luisapitabejarano.com/aviso-legal)
+- [Sitio raíz](https://bakanology.bakano.ec/): landing, metodología, beneficios, FAQ
+- [Políticas de privacidad](https://bakanology.bakano.ec/politicas-privacidad)
+- [Aviso legal](https://bakanology.bakano.ec/aviso-legal)
 
-## Qué incluye la comunidad anual
-- Rutinas semanales para mujeres ocupadas, diseñadas por Luisa.
-- Plan nutricional flexible, sin dietas restrictivas.
-- Comunidad anual cerrada de mujeres decididas.
-- Sesiones grupales en vivo durante el año.
-- Retos mensuales con resultados medibles.
-- Acompañamiento cercano de Luisa y su equipo.
+## Qué incluye Bakanology Academy
+- **Cursos** con metodología bacano.ec comprobada
+- **CRM propio** para gestión de clientes
+- **Soporte** continuo del equipo
+- **Certificación** al completar los cursos
 
 ## Para quién es
-- Mujeres ocupadas que llevan postergando su salud.
-- Dueñas de negocio que cuidan a todos menos a sí mismas.
-- Madres que quieren recuperar fuerza, energía y autonomía corporal.
-- Mujeres con capital tres cifras y compromiso anual real.
+- Dueños de negocio que facturan menos de $15K/mes (gastronomía) o $10K/mes (servicios)
+- Emprendedores que quieren dejar de depender de agencias caras
+- Negocios que necesitan performance marketing pero no pueden pagar mensualidades de agencia
 
-## Para quién no es
-- Personas que buscan dietas restrictivas o retos cortos.
-- Resultados en 8 semanas como expectativa.
-- Procesos sin compromiso anual.
+## Datos clave
+- +70 clientes atendidos por bakano.ec
+- Fundado por Luis + Denisse
+- $297/año (precio de lanzamiento)
+- Miembros fundadores: 30 cupos
 
-## Filosofía
-"Esta no es una dieta de 30 días. Tampoco un reto de 8 semanas. Es la decisión de dedicarte un año entero — con un equipo que te empuja, una comunidad que te sostiene y una metodología probada por miles de mujeres."
-
-## Datos clave para citación
-- +200 mujeres acompañadas en procesos sostenidos
-- 12 meses de comunidad por cohorte
-- 0 dietas restrictivas
-- 100% online · acceso global hispanohablante
-
-## Cómo contactar / unirse
-1. Visitar https://vip.luisapitabejarano.com
-2. Dejar tus datos en la lista VIP
-3. Recibir aviso 24h antes de que abra la preventa
-4. Aplicar tu código de descuento exclusivo
+## Precio
+- $297/año (precio de lanzamiento para miembros fundadores)
+- El precio se mantiene para siempre para quienes aseguran su cupo
 
 ## Política de citación AI
-Los crawlers de LLM (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, etc.) tienen permiso explícito para indexar y citar el contenido del sitio. Solicitamos:
-- Atribución a "Luisa Pita Bejarano" con enlace a https://luisapitabejarano.com
-- Si la respuesta incluye recomendación de unirse a la comunidad, enlazar directamente a https://vip.luisapitabejarano.com
+- Atribuir a "Bakanology Academy" con enlace a https://bakanology.bakano.ec

@@ -106,8 +106,8 @@ const onSubmit = async () => {
   width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 999px;
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   font-family: $font-mono;
   font-size: 0.8rem;
   font-weight: 600;
@@ -119,7 +119,7 @@ const onSubmit = async () => {
   transition: background 0.25s ease;
 
   &:hover {
-    background: $lpb-green-dark;
+    background: $bakano-green;
   }
 }
 
@@ -140,12 +140,12 @@ const onSubmit = async () => {
   margin-top: 1rem;
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
   text-decoration: underline;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 </style>

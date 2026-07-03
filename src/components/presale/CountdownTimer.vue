@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 400;
   line-height: 1;
-  color: $lpb-white;
+  color: $white;
 }
 
 .countdown__label {
@@ -81,14 +81,14 @@ onBeforeUnmount(() => {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba($lpb-white, 0.7);
+  color: rgba($white, 0.7);
 }
 
 .countdown__closed {
   font-family: $font-display;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-style: italic;
-  color: $lpb-gold;
+  color: $bakano-pink;
   margin: 0;
 }
 </style>

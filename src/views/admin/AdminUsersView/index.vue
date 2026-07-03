@@ -315,8 +315,8 @@ onMounted(loadUsers)
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, $lpb-black 0%, $lpb-ink 100%);
-  color: $lpb-white;
+  background: linear-gradient(135deg, $bakano-dark 0%, $bakano-dark 100%);
+  color: $white;
   border-radius: 1.25rem;
   padding: 1.75rem 2rem;
 }
@@ -334,7 +334,7 @@ onMounted(loadUsers)
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba($lpb-white, 0.7);
+  color: rgba($white, 0.7);
 }
 
 .admin-users__timer-title {
@@ -342,32 +342,32 @@ onMounted(loadUsers)
   font-size: 1.6rem;
   font-weight: 400;
   margin: 0;
-  color: $lpb-white;
+  color: $white;
 }
 
 .admin-users__timer-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: rgba($lpb-white, 0.75);
+  color: rgba($white, 0.75);
   margin: 0;
   max-width: 45ch;
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__block) {
-  background: rgba($lpb-white, 0.1);
-  border-color: rgba($lpb-white, 0.15);
+  background: rgba($white, 0.1);
+  border-color: rgba($white, 0.15);
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__value) {
-  color: $lpb-white;
+  color: $white;
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__label) {
-  color: rgba($lpb-white, 0.7);
+  color: rgba($white, 0.7);
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__unit) {
-  color: rgba($lpb-white, 0.6);
+  color: rgba($white, 0.6);
 }
 
 .admin-users__top {
@@ -388,14 +388,14 @@ onMounted(loadUsers)
   font-family: $font-display;
   font-size: 1.85rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
 .admin-users__page-subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
 }
 
@@ -405,7 +405,7 @@ onMounted(loadUsers)
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .admin-users__alerts {
@@ -430,7 +430,7 @@ onMounted(loadUsers)
 
   &--success {
     background: $alert-success-bg;
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 }
 

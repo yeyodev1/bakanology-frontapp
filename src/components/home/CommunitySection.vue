@@ -6,9 +6,9 @@ const includes = [
   { num: '01', title: 'Rutinas semanales para mujeres ocupadas', body: 'Guías de entrenamiento progresivo que se adaptan a tu energía y agenda real. Cada semana construyes sobre la anterior, sin empezar de cero.' },
   { num: '02', title: 'Comunidad anual cerrada', body: 'Un círculo de mujeres que avanzan contigo. Sin curiosas, sin ruido. Solo decididas.' },
   { num: '03', title: 'Plan nutricional flexible', body: 'Un enfoque que se acopla a tu momento de vida. Viajas, celebras, cenas fuera — y sigues avanzando sin culpa ni rigidez.' },
-  { num: '04', title: 'Sesiones grupales con Luisa', body: 'Espacios en vivo durante el año para resolver dudas, ajustar tu plan y mantenerte en ruta.' },
+  { num: '04', title: 'Sesiones grupales con tus coaches', body: 'Espacios en vivo durante el año para resolver dudas, ajustar tu plan y mantenerte en ruta.' },
   { num: '05', title: 'Retos mensuales medibles', body: 'Pequeñas metas que se acumulan a lo largo de doce meses. Un cuerpo distinto al final del año.' },
-  { num: '06', title: 'Acompañamiento cercano', body: 'Luisa y su equipo cerca todo el año. No estás sola — estás dentro de una estructura que te empuja.' },
+  { num: '06', title: 'Acompañamiento cercano', body: 'nuestros coaches cerca todo el año. No estás sola — estás dentro de una estructura que te empuja.' },
 ]
 
 const root = ref<HTMLElement | null>(null)
@@ -58,8 +58,8 @@ onBeforeUnmount(() => ctx?.revert())
 
 <style lang="scss" scoped>
 .community {
-  background: $lpb-paper;
-  color: $lpb-black;
+  background: $light;
+  color: $bakano-dark;
   padding-block: clamp(5rem, 12vw, 10rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
   width: 100%;
@@ -99,7 +99,7 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .community__eyebrow {
-  color: $lpb-gold;
+  color: $bakano-pink;
 }
 
 .community__title {
@@ -114,7 +114,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .community__title--italic {
   font-style: italic;
-  color: $lpb-gold;
+  color: $bakano-pink;
   display: block;
   margin-top: 0.15em;
 }
@@ -123,7 +123,7 @@ onBeforeUnmount(() => ctx?.revert())
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid rgba($lpb-black, 0.12);
+  border-top: 1px solid rgba($bakano-dark, 0.12);
 }
 
 .community__row {
@@ -149,7 +149,7 @@ onBeforeUnmount(() => ctx?.revert())
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, $lpb-gold, $lpb-green, transparent);
+  background: linear-gradient(180deg, $bakano-pink, $bakano-green, transparent);
   border-radius: 2px;
   opacity: 0.3;
   transition: opacity .3s ease;
@@ -170,7 +170,7 @@ onBeforeUnmount(() => ctx?.revert())
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.18em;
-  color: $lpb-gold;
+  color: $bakano-pink;
   padding-top: 0.45rem;
   position: relative;
   z-index: 1;
@@ -178,7 +178,7 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .community__row:hover .community__num {
-  color: $lpb-green;
+  color: $bakano-green;
 }
 
 .community__text {
@@ -194,13 +194,13 @@ onBeforeUnmount(() => ctx?.revert())
     line-height: 1.15;
     letter-spacing: -0.015em;
     margin: 0;
-    color: $lpb-black;
+    color: $bakano-dark;
     text-wrap: balance;
   }
 
   p {
     font-family: $font-sans;
-    color: $lpb-graphite;
+    color: $gray-700;
     line-height: 1.6;
     margin: 0;
     max-width: 65ch;
@@ -211,7 +211,7 @@ onBeforeUnmount(() => ctx?.revert())
   position: absolute;
   inset: auto 0 0 0;
   height: 1px;
-  background: rgba($lpb-black, 0.1);
+  background: rgba($bakano-dark, 0.1);
   grid-column: 1 / -1;
 }
 </style>

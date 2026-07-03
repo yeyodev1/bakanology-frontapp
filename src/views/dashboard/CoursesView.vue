@@ -50,7 +50,7 @@ const dashboardStore = useDashboardStore()
 }
 
 .course-card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   overflow: hidden;
@@ -58,7 +58,7 @@ const dashboardStore = useDashboardStore()
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba($lpb-black, 0.08);
+    box-shadow: 0 12px 32px rgba($bakano-dark, 0.08);
   }
 
   &__thumb {
@@ -77,8 +77,8 @@ const dashboardStore = useDashboardStore()
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    background: $lpb-paper;
-    color: $lpb-black;
+    background: $light;
+    color: $bakano-dark;
     font-family: $font-mono;
     font-size: 0.65rem;
     font-weight: 600;
@@ -92,8 +92,8 @@ const dashboardStore = useDashboardStore()
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $bakano-dark;
     font-family: $font-mono;
     font-size: 0.65rem;
     font-weight: 600;
@@ -115,13 +115,13 @@ const dashboardStore = useDashboardStore()
     font-size: 1.15rem;
     font-weight: 400;
     margin: 0;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__subtitle {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
     line-height: 1.4;
     display: -webkit-box;
@@ -135,7 +135,7 @@ const dashboardStore = useDashboardStore()
     gap: 1rem;
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__progress {
@@ -148,21 +148,21 @@ const dashboardStore = useDashboardStore()
   &__progress-bar {
     flex: 1 1 auto;
     height: 6px;
-    background: rgba($lpb-black, 0.06);
+    background: rgba($bakano-dark, 0.06);
     border-radius: 999px;
     overflow: hidden;
   }
 
   &__progress-fill {
     height: 100%;
-    background: $lpb-green;
+    background: $bakano-green;
     border-radius: 999px;
   }
 
   &__progress-value {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 

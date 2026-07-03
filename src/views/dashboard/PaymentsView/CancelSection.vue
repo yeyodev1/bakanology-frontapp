@@ -36,7 +36,7 @@ const emit = defineEmits<{
 
 <style lang="scss" scoped>
 .cancel {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem 1.5rem;
@@ -44,11 +44,11 @@ const emit = defineEmits<{
   &--canceled {
     font-family: $font-sans;
     font-size: 0.9rem;
-    color: $lpb-graphite;
-    background: $lpb-cream;
+    color: $gray-600;
+    background: var(--cream);
 
     i {
-      color: $lpb-amber;
+      color: $bakano-pink;
       margin-right: 0.35rem;
     }
   }
@@ -66,19 +66,19 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 1.15rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
 .cancel__text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   margin: 0.25rem 0 0;
   max-width: 60ch;
 
   strong {
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 
@@ -95,7 +95,7 @@ const emit = defineEmits<{
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
   border: 1px solid rgba($alert-error, 0.3);
-  background: $lpb-white;
+  background: $white;
   color: $alert-error;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
@@ -103,7 +103,7 @@ const emit = defineEmits<{
 
   &:hover:not(:disabled) {
     background: $alert-error;
-    color: $lpb-white;
+    color: $white;
   }
 
   &:disabled {

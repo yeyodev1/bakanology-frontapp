@@ -32,7 +32,7 @@ defineProps<{
 
   &--success {
     background: $alert-success-bg;
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 }
 </style>

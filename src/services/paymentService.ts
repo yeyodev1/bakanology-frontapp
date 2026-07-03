@@ -1,75 +1,43 @@
 import APIBase from './httpBase'
 import type { ApiResponse } from './authService'
 
-export interface PreparePaymentResponse {
-  paymentId: string
-  payWithCard: string
+export interface CheckoutSessionResponse {
+  url: string
+  sessionId: string
+  isNewUser: boolean
+  plainPassword?: string
   clientTransactionId: string
-}
-
-export interface PaymentBoxConfig {
-  token: string
-  storeId: string
-  amount: number
-  amountWithoutTax: number
-  currency: string
-  clientTransactionId: string
-  reference: string
-  responseUrl: string
 }
 
 export interface ConfirmPaymentResponse {
   status: string
-  transactionId?: number
   isNewUser?: boolean
   plainPassword?: string
-  emailSent?: boolean
   email?: string
+  stripePaymentStatus?: string
 }
 
 class PaymentService extends APIBase {
-  async prepareAnnual(payload: { email: string; name: string; lastName: string }) {
-    return this.post<ApiResponse<PreparePaymentResponse>>('payments/prepare', {
-      ...payload,
-      origin: window.location.origin,
-    })
+  async createCheckoutSession(data: { email: string; name: string; lastName: string; origin?: string }) {
+    return this.post<ApiResponse<CheckoutSessionResponse>>('stripe/create-session', data)
   }
 
-  async prepareMonthly(payload: { email: string; name: string; lastName: string }) {
-    return this.post<ApiResponse<PreparePaymentResponse>>('payments/prepare-monthly', {
-      ...payload,
-      origin: window.location.origin,
-    })
+  async verifyPayment(sessionId: string) {
+    return this.get<ApiResponse<ConfirmPaymentResponse>>(`stripe/verify/${sessionId}`)
   }
 
-  async prepareBox(payload: { email: string; name: string; lastName: string; plan: 'annual' | 'monthly' }) {
-    return this.post<ApiResponse<PaymentBoxConfig>>('payments/prepare-box', {
-      ...payload,
-      origin: window.location.origin,
-    })
-  }
-
-  async confirmPayment(id: string, clientTransactionId: string) {
-    return this.get<ApiResponse<ConfirmPaymentResponse>>('payments/confirm', undefined, {
-      params: { id, clientTransactionId },
-    })
-  }
-
-  async resendWelcome(clientTransactionId: string) {
-    return this.post<ApiResponse<{ email: string }>>('payments/resend-welcome-public', { clientTransactionId })
+  async resendWelcomeEmail(sessionId: string) {
+    return this.post<ApiResponse<{ resent: boolean; email: string }>>('stripe/resend-email', { sessionId })
   }
 
   async history() {
     return this.get<ApiResponse<{ history: Array<{
       id: string
-      type: 'manual' | 'payphone'
-      plan: 'monthly' | 'annual'
+      type: 'manual' | 'stripe'
+      plan: 'annual' | 'lifetime'
       amount: number
       currency: 'USD'
       status: string
-      receiptImage?: string
-      notes?: string
-      payphoneTransactionId?: number | null
       clientTransactionId?: string
       createdAt: string
     }> }>>('payments/history')

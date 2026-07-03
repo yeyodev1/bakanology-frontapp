@@ -1,245 +1,274 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import { useCloudinary } from '@/composables/useCloudinary'
-import CountdownTimer from './CountdownTimer.vue'
-import AppButton from '@/components/ui/AppButton.vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
-const { luisa } = useCloudinary()
+const deadlineStr = import.meta.env.VITE_PRESALE_DEADLINE as string
 
-const deadline = import.meta.env.VITE_PRESALE_DEADLINE as string
-const heroImage = luisa(11, { w: 1600, h: 2200, crop: 'fill', gravity: 'face' })
-const heroImageSm = luisa(11, { w: 720, h: 1100, crop: 'fill', gravity: 'face' })
-const heroImageMd = luisa(11, { w: 1100, h: 1500, crop: 'fill', gravity: 'face' })
-const heroImageLg = luisa(11, { w: 2000, h: 2600, crop: 'fill', gravity: 'face' })
+const targetDate = computed(() => new Date(deadlineStr))
 
-const scrollToPlans = () => {
-  const el = document.getElementById('planes')
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+const now = ref(Date.now())
+let timer: ReturnType<typeof setInterval> | null = null
+
+const diff = computed(() => Math.max(0, targetDate.value.getTime() - now.value))
+const expired = computed(() => diff.value === 0)
+
+const pad = (n: number) => n.toString().padStart(2, '0')
+
+const days = computed(() => pad(Math.floor(diff.value / 86400000)))
+const hours = computed(() => pad(Math.floor((diff.value % 86400000) / 3600000)))
+const minutes = computed(() => pad(Math.floor((diff.value % 3600000) / 60000)))
+const seconds = computed(() => pad(Math.floor((diff.value % 60000) / 1000)))
+
+onMounted(() => { timer = setInterval(() => { now.value = Date.now() }, 1000) })
+onBeforeUnmount(() => { if (timer) clearInterval(timer) })
+
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
-
-const isExpired = computed(() => {
-  if (!deadline) return false
-  return new Date(deadline).getTime() < Date.now()
-})
 </script>
 
 <template>
-  <section class="presale-hero" data-theme="dark">
-    <div class="presale-hero__media">
-      <img
-        class="presale-hero__image"
-        :src="heroImage"
-        :srcset="`${heroImageSm} 720w, ${heroImageMd} 1100w, ${heroImage} 1600w, ${heroImageLg} 2000w`"
-        sizes="100vw"
-        alt="Luisa Pita Bejarano — comunidad anual de transformación corporal"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        width="1600"
-        height="2200"
-      />
-      <div class="presale-hero__veil" aria-hidden="true" />
-    </div>
+  <section class="hero">
+    <div class="hero__bg" />
 
-    <div class="presale-hero__inner">
-      <span class="presale-hero__eyebrow eyebrow eyebrow--green">
-        <span class="presale-hero__dot" aria-hidden="true" />
-        Preventa VIP abierta
-      </span>
+    <div class="hero__inner">
+      <span class="hero__eyebrow">Bakanology Academy</span>
 
-      <h1 class="presale-hero__title display-xl">
-        Comunidad anual cerrada
+      <h1 class="hero__title">
+        Marketing de performance<br>
+        <span class="hero__highlight">sin pagar una agencia</span>
       </h1>
 
-      <p class="presale-hero__lede">
-        Un año entero junto a Luisa para transformar tu cuerpo y tu vida.
-        Acompañamiento real, entrenamiento y nutrición sin dietas restrictivas.
-      </p>
-
-      <div class="presale-hero__countdown">
-        <p class="presale-hero__countdown-label">La preventa cierra en:</p>
-        <CountdownTimer :deadline="deadline" />
+      <div class="hero__pricing">
+        <span class="hero__price-label">Precio especial de lanzamiento</span>
+        <strong class="hero__price">$297 USD</strong>
+        <span class="hero__price-desc">Pago único — Acceso de por vida</span>
+        <span class="hero__price-desc">Sin renovaciones. Incluye todas las actualizaciones futuras.</span>
       </div>
 
-      <div class="presale-hero__cta-row">
-        <AppButton v-if="!isExpired" variant="primary" size="lg" @click="scrollToPlans">
+      <div class="hero__offer" v-if="!expired">
+        <span class="hero__offer-label">⚡ Oferta válida hasta el 31 de julio</span>
+        <div class="hero__countdown">
+          <div class="hero__countdown-unit">
+            <span class="hero__countdown-value">{{ days }}</span>
+            <span class="hero__countdown-label">Días</span>
+          </div>
+          <span class="hero__countdown-sep">:</span>
+          <div class="hero__countdown-unit">
+            <span class="hero__countdown-value">{{ hours }}</span>
+            <span class="hero__countdown-label">Horas</span>
+          </div>
+          <span class="hero__countdown-sep">:</span>
+          <div class="hero__countdown-unit">
+            <span class="hero__countdown-value">{{ minutes }}</span>
+            <span class="hero__countdown-label">Min</span>
+          </div>
+          <span class="hero__countdown-sep">:</span>
+          <div class="hero__countdown-unit">
+            <span class="hero__countdown-value">{{ seconds }}</span>
+            <span class="hero__countdown-label">Seg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__actions">
+        <button type="button" class="hero__btn hero__btn--primary" @click="scrollTo('vsl')">
+          Ver video
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="hero__btn hero__btn--ghost" @click="scrollTo('planes')">
           Ver planes
-        </AppButton>
-        <RouterLink v-else :to="{ name: 'register' }" class="presale-hero__link">
-          Únete a la lista de espera
-        </RouterLink>
+        </button>
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.presale-hero {
+.hero {
   position: relative;
+  width: 100%;
   min-height: 100vh;
-  min-height: 100svh;
   display: flex;
-  align-items: flex-end;
-  padding-block: clamp(6.5rem, 14vh, 9rem) clamp(2rem, 6vw, 4.5rem);
-  background: $lpb-black;
-  color: $lpb-white;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.presale-hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: clip;
-}
-
-.presale-hero__image {
-  position: absolute;
-  inset: -10% 0;
-  width: 100%;
-  height: 120%;
-  object-fit: cover;
-  object-position: center 25%;
-  background-color: $lpb-black;
-}
-
-.presale-hero__veil {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(60% 80% at 50% 110%, rgba($lpb-black, 0.95) 30%, rgba($lpb-black, 0.35) 70%, rgba($lpb-black, 0) 100%),
-    linear-gradient(180deg, rgba($lpb-black, 0.65) 0%, rgba($lpb-black, 0.2) 40%, rgba($lpb-black, 0.85) 100%);
-}
-
-.presale-hero__inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1rem, 1.6vw, 1.5rem);
-  width: 100%;
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
-  margin-inline: auto;
-  max-width: 1440px;
-
-  @media (max-width: 720px) {
-    align-items: center;
-    text-align: center;
-  }
-}
-
-.presale-hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  color: $lpb-green;
-  width: max-content;
-
-  @media (max-width: 720px) {
-    margin-inline: auto;
-  }
-}
-
-.presale-hero__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: $lpb-green;
-  box-shadow: 0 0 0 4px rgba($lpb-green, 0.25);
-  animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  50% { box-shadow: 0 0 0 10px rgba($lpb-green, 0); }
-}
-
-.presale-hero__title {
-  margin: 0;
-  color: $lpb-white;
-  max-width: 16ch;
-
-  @media (max-width: 720px) {
-    margin-inline: auto;
-  }
-}
-
-.presale-hero__lede {
-  font-family: $font-sans;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-  line-height: 1.55;
-  color: rgba($lpb-white, 0.78);
-  max-width: 52ch;
-  margin: 0;
-
-  @media (max-width: 720px) {
-    margin-inline: auto;
-  }
-}
-
-.presale-hero__countdown {
-  margin-top: 0.5rem;
-
-  @media (max-width: 720px) {
-    margin-inline: auto;
-  }
-}
-
-.presale-hero__countdown-label {
-  font-family: $font-mono;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba($lpb-white, 0.7);
-  margin: 0 0 0.75rem;
-}
-
-.presale-hero__cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 2rem;
-  margin-top: clamp(1rem, 2vw, 1.75rem);
-
-  @media (max-width: 720px) {
-    justify-content: center;
-    margin-inline: auto;
-  }
-
-  @media (max-width: 560px) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.1rem;
-
-    :deep(.btn) {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-}
-
-.presale-hero__link {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  padding: 1.15rem 1.95rem;
-  border-radius: 999px;
-  background: $lpb-green;
-  color: $lpb-black;
+  overflow: hidden;
+  background: $bakano-dark;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba($bakano-pink, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba($bakano-purple, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  max-width: 720px;
+}
+
+.hero__eyebrow {
   font-family: $font-mono;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $bakano-pink;
   font-weight: 600;
+}
+
+.hero__title {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  color: $white;
+  margin: 0;
+}
+
+.hero__highlight {
+  color: $bakano-pink;
+}
+
+.hero__pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.5rem 2.25rem;
+  border: 1px solid rgba($bakano-pink, 0.3);
+  border-radius: 1rem;
+  background: rgba($bakano-pink, 0.06);
+}
+
+.hero__price-label {
+  font-family: $font-mono;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: rgba($white, 0.5);
+}
+
+.hero__price {
+  font-family: $font-display;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1;
+  color: $white;
+}
+
+.hero__price-desc {
+  font-family: $font-sans;
+  font-size: 0.88rem;
+  color: rgba($white, 0.65);
+  line-height: 1.4;
+}
+
+.hero__offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero__offer-label {
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $alert-warning;
+}
+
+.hero__countdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero__countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 3rem;
+}
+
+.hero__countdown-value {
+  font-family: $font-display;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: $white;
+}
+
+.hero__countdown-label {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba($white, 0.55);
+}
+
+.hero__countdown-sep {
+  font-family: $font-display;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgba($white, 0.25);
+  margin-top: -1.25rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all .25s ease;
+  border: none;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.hero__btn--primary {
+  background: $bakano-pink;
+  color: $white;
 
   &:hover {
-    background: $lpb-green-dark;
-    color: $lpb-white;
-    transform: translateY(-2px);
+    background: $bakano-pink-dark;
+    transform: translateY(-1px);
+  }
+}
+
+.hero__btn--ghost {
+  background: transparent;
+  color: rgba($white, 0.8);
+  border: 1px solid rgba($white, 0.25);
+
+  &:hover {
+    color: $white;
+    border-color: $white;
   }
 }
 </style>

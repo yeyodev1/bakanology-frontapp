@@ -60,7 +60,7 @@ function submit() {
 
 <style lang="scss" scoped>
 .card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -72,7 +72,7 @@ function submit() {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 }
@@ -100,14 +100,14 @@ function submit() {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $lpb-graphite;
+    color: $gray-600;
   }
 
   &__input {
     font-family: $font-sans;
     font-size: 1rem;
-    color: $lpb-black;
-    background: $lpb-cream;
+    color: $bakano-dark;
+    background: var(--cream);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     padding: 0.85rem 1rem;
@@ -115,8 +115,8 @@ function submit() {
 
     &:focus {
       outline: none;
-      border-color: $lpb-green;
-      box-shadow: 0 0 0 3px rgba($lpb-green, 0.15);
+      border-color: $bakano-green;
+      box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
     }
   }
 
@@ -130,14 +130,14 @@ function submit() {
   &__success {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-green-deep;
+    color: $bakano-green;
     margin: 0;
   }
 
   &__submit {
     align-self: flex-start;
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -147,7 +147,7 @@ function submit() {
     border-radius: 999px;
     transition: background 0.2s ease;
 
-    &:hover { background: $lpb-green-dark; }
+    &:hover { background: $bakano-green; }
   }
 }
 

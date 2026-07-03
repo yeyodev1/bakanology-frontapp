@@ -9,7 +9,6 @@ import PendingBanner from './PendingBanner.vue'
 import PaymentPlanCards from './PaymentPlanCards.vue'
 import CancelSection from './CancelSection.vue'
 import PaymentHistory from './PaymentHistory.vue'
-import TransferInfoModal from './TransferInfoModal.vue'
 import type { PaymentItem } from './PaymentHistory.vue'
 
 const userStore = useUserStore()
@@ -21,18 +20,10 @@ const error = ref('')
 const success = ref('')
 const showCancelSubModal = ref(false)
 const showCancelPendingModal = ref(false)
-const showTransferModal = ref(false)
 
 const history = ref<PaymentItem[]>([])
 
-const monthlyPrice = Number(import.meta.env.VITE_MONTHLY_PRICE) || 47
 const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 297
-const whatsappNumber = (import.meta.env.VITE_ADMIN_WHATSAPP as string) || '593992019807'
-const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-06T00:00:00-05:00'
-
-const isMonthlyAvailable = computed(() => {
-  return new Date().getTime() >= new Date(launchDeadline).getTime()
-})
 
 const isActive = computed(() => {
   if (!userStore.accessUntil) return false
@@ -54,9 +45,8 @@ const currentPlan = computed(() => {
 })
 
 const planLabel = computed(() => {
-  if (userStore.foundingMember) return 'Miembro Fundador'
+  if (userStore.foundingMember || currentPlan.value === 'lifetime') return 'Miembro Fundador'
   if (currentPlan.value === 'annual') return 'Plan Anual'
-  if (currentPlan.value === 'monthly') return 'Plan Mensual'
   return 'Sin plan activo'
 })
 
@@ -66,10 +56,6 @@ const pendingPayments = computed(() =>
 
 const visibleHistory = computed(() =>
   history.value.filter((h) => h.status !== 'pending'),
-)
-
-const whatsappLink = computed(
-  () => `https://wa.me/${whatsappNumber}?text=Hola, quiero realizar el pago por transferencia bancaria para la academia de Luisa Pita Bejarano. ¿Podrían indicarme los datos bancarios para hacer el depósito?`,
 )
 
 const accessUntilLabel = computed(() => {
@@ -95,31 +81,19 @@ async function loadHistory() {
   }
 }
 
-async function payMonthly() {
-  await initiatePayment('monthly')
-}
-
 async function payAnnual() {
-  await initiatePayment('annual')
-}
-
-async function initiatePayment(plan: 'monthly' | 'annual') {
   loading.value = true
   error.value = ''
   try {
-    const payload = {
-      email: userStore.email || '',
-      name: userStore.name || '',
-      lastName: userStore.lastName || '',
-    }
-    const { data } =
-      plan === 'monthly'
-        ? await paymentService.prepareMonthly(payload)
-        : await paymentService.prepareAnnual(payload)
-
-    const payUrl = data.data.payWithCard
-    if (payUrl) {
-      window.location.href = payUrl
+    const user = userStore
+    const { data } = await paymentService.createCheckoutSession({
+      email: user.email || '',
+      name: user.name || '',
+      lastName: user.lastName || '',
+    })
+    const url = data.data.url
+    if (url) {
+      window.location.href = url
     } else {
       error.value = 'No se pudo iniciar el pago. Intenta de nuevo.'
     }
@@ -166,21 +140,8 @@ async function cancelPending() {
 }
 
 function goToPaymentPage() {
-  const el = document.querySelector('.cards')
+  const el = document.querySelector('.plans')
   el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
-
-function openTransferModal() {
-  showTransferModal.value = true
-}
-
-function closeTransferModal() {
-  showTransferModal.value = false
-}
-
-function goToWhatsApp() {
-  window.open(whatsappLink.value, '_blank', 'noopener')
-  closeTransferModal()
 }
 
 onMounted(loadHistory)
@@ -209,12 +170,8 @@ onMounted(loadHistory)
     <PaymentPlanCards
       v-if="!isActive"
       :loading="loading"
-      :is-monthly-available="isMonthlyAvailable"
-      :monthly-price="monthlyPrice"
       :annual-price="annualPrice"
-      @pay-monthly="payMonthly"
       @pay-annual="payAnnual"
-      @open-transfer="openTransferModal"
     />
 
     <CancelSection
@@ -230,7 +187,7 @@ onMounted(loadHistory)
     <ConfirmModal
       :open="showCancelSubModal"
       title="Cancelar suscripción"
-      message="¿Estás segura de cancelar tu suscripción? No se realizan reembolsos. Seguirás con acceso hasta el final del período pagado."
+      message="¿Estás seguro de cancelar tu suscripción? No se realizan reembolsos. Seguirás con acceso hasta el final del período pagado."
       action-label="Sí, cancelar"
       confirm-text="cancelar"
       danger
@@ -241,19 +198,12 @@ onMounted(loadHistory)
     <ConfirmModal
       :open="showCancelPendingModal"
       title="Cancelar pagos pendientes"
-      :message="`¿Estás segura de cancelar ${pendingPayments.length} pago(s) pendiente(s)? Esta acción no se puede deshacer.`"
+      :message="`¿Estás seguro de cancelar ${pendingPayments.length} pago(s) pendiente(s)? Esta acción no se puede deshacer.`"
       action-label="Sí, cancelar"
       confirm-text="cancelar"
       danger
       @confirm="cancelPending"
       @cancel="showCancelPendingModal = false"
-    />
-
-    <TransferInfoModal
-      :show="showTransferModal"
-      :annual-price="annualPrice"
-      @confirm="goToWhatsApp"
-      @cancel="closeTransferModal"
     />
   </div>
 </template>

@@ -1,149 +1,45 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import { gsap } from '@/composables/useScrollReveal'
+import { ref } from 'vue'
 
-const faq = [
-  {
-    q: '¿Cuánto cuesta la comunidad anual?',
-    a: 'El precio se anuncia el día que abre la preventa. Por ahora confirmamos que es capital tres cifras (USD) y cubre la comunidad un año entero. Las registradas en la lista VIP reciben un descuento exclusivo que el público general no ve.',
-  },
-  {
-    q: '¿Cuándo abre la preventa?',
-    a: 'No tenemos fecha pública aún. Las registradas en la lista VIP reciben aviso 24 horas antes de que abra. Si no estás en la lista, te enteras al mismo tiempo que el resto.',
-  },
-  {
-    q: '¿Por qué un año entero y no un programa corto?',
-    a: 'Porque transformar un cuerpo y un estilo de vida toma tiempo. Programas cortos dan resultados que se evaporan. Esta comunidad está hecha para lograr cambios que se sostengan en tu vida real.',
-  },
-  {
-    q: '¿Para quién es y para quién no es?',
-    a: 'Es para mujeres ocupadas y dueñas de negocio dispuestas a comprometerse un año entero. No es para quienes buscan dietas restrictivas, atajos o resultados en 8 semanas. La estructura asume que tu vida sigue mientras transformas tu cuerpo.',
-  },
-  {
-    q: '¿Tengo que vivir en Ecuador?',
-    a: 'No. La comunidad funciona online. Mujeres en Ecuador, Latinoamérica, USA y Europa pueden participar.',
-  },
-  {
-    q: '¿Y si me registro pero no califico?',
-    a: 'No pasa nada. Solo significa que esta cohorte no es para ti hoy. Podrás aplicar a una próxima edición cuando estés lista.',
-  },
+const faqs = [
+  { q: '¿Qué es Bakanology Academy?', a: 'Es la plataforma de e-learning de marketing de performance creada por bakano.ec. Incluye cursos basados en nuestra metodología comprobada, un CRM propio para gestionar clientes y soporte continuo del equipo.' },
+  { q: '¿Para quién es esta academia?', a: 'Para dueños de negocio que facturan menos de $15,000/mes (gastronomía) o $10,000/mes (servicios). Negocios que necesitan marketing de performance pero no pueden pagar una agencia.' },
+  { q: '¿Qué incluye el plan anual?', a: 'Acceso completo a todos los cursos de la plataforma, CRM propio para gestión de clientes, soporte continuo del equipo de bakano.ec y certificación al completar los cursos.' },
+  { q: '¿Necesito experiencia en marketing?', a: 'No. La metodología está diseñada para que任何人 la entienda y aplique. Los cursos son paso a paso y tienes soporte para resolver dudas.' },
+  { q: '¿Qué es el CRM que incluye?', a: 'Es un sistema de gestión de clientes donde puedes conectar tus redes sociales a un solo canal, gestionar tu agenda de reuniones y dar seguimiento a tus prospectos.' },
+  { q: '¿Hay soporte o es solo el curso?', a: 'Hay soporte. Como decimos en bakano.ec: te damos el Ferrari (la plataforma y el CRM) y el conductor (el soporte). Tú pones la gasolina (la pauta publicitaria).' },
+  { q: '¿Cuánto cuesta después del lanzamiento?', a: 'El precio de lanzamiento es $297/año. Para los miembros fundadores (30 cupos) este precio se mantiene para siempre. Después del lanzamiento el precio será $120/mes.' },
 ]
 
 const openIndex = ref<number | null>(null)
-const itemEls = ref<(HTMLElement | null)[]>([])
-const root = ref<HTMLElement | null>(null)
-let ctx: gsap.Context | null = null
 
-const setItemRef = (el: HTMLElement | null, i: number) => {
-  itemEls.value[i] = el
+function toggle(i: number) {
+  openIndex.value = openIndex.value === i ? null : i
 }
-
-const toggle = (i: number) => {
-  if (openIndex.value === i) {
-    closeItem(i)
-    openIndex.value = null
-  } else {
-    if (openIndex.value !== null) closeItem(openIndex.value)
-    openIndex.value = i
-    nextTick(() => openItem(i))
-  }
-}
-
-const openItem = (i: number) => {
-  const item = itemEls.value[i]
-  if (!item) return
-  const answer = item.querySelector('.faq__answer') as HTMLElement
-  const inner = item.querySelector('.faq__answer-inner') as HTMLElement
-  const icon = item.querySelector('.faq__icon') as HTMLElement
-  if (!answer || !inner) return
-
-  const tl = gsap.timeline()
-  gsap.set(answer, { display: 'block' })
-  tl.fromTo(
-    answer,
-    { height: 0, overflow: 'hidden' },
-    { height: inner.scrollHeight, duration: 0.55, ease: 'power4.out', clearProps: 'overflow' },
-  )
-  tl.fromTo(inner, { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }, '-=0.15')
-  if (icon) {
-    tl.to(icon, { rotation: 135, duration: 0.45, ease: 'back.out(1.7)' }, 0)
-  }
-}
-
-const closeItem = (i: number) => {
-  const item = itemEls.value[i]
-  if (!item) return
-  const answer = item.querySelector('.faq__answer') as HTMLElement
-  const inner = item.querySelector('.faq__answer-inner') as HTMLElement
-  const icon = item.querySelector('.faq__icon') as HTMLElement
-  if (!answer || !inner) return
-
-  const tl = gsap.timeline()
-  tl.to(inner, { opacity: 0, y: -8, duration: 0.15, ease: 'power2.in' })
-  tl.to(
-    answer,
-    { height: 0, duration: 0.4, ease: 'power4.inOut', overflow: 'hidden' },
-    '-=0.05',
-  )
-  tl.call(() => gsap.set(answer, { display: 'none' }))
-  if (icon) {
-    tl.to(icon, { rotation: 0, duration: 0.35, ease: 'power3.out' }, 0)
-  }
-}
-
-onMounted(() => {
-  if (!root.value) return
-  ctx = gsap.context(() => {
-    gsap.from(root.value!.querySelectorAll('.faq__item'), {
-      opacity: 0,
-      y: 30,
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.06,
-      scrollTrigger: { trigger: '.faq__list', start: 'top 80%' },
-    })
-  }, root.value)
-})
-
-onBeforeUnmount(() => ctx?.revert())
 </script>
 
 <template>
-  <section class="faq" ref="root">
+  <section id="faq" class="faq">
     <div class="faq__inner">
-      <header class="faq__header">
-        <span class="eyebrow">Preguntas frecuentes</span>
-        <h2 class="faq__title display-md">
-          Lo que las decididas <span class="italic-accent">suelen preguntar.</span>
-        </h2>
-      </header>
-
+      <span class="faq__eyebrow">Preguntas frecuentes</span>
+      <h2 class="faq__title">Todo lo que necesitas saber</h2>
       <div class="faq__list">
-        <div
-          v-for="(item, i) in faq"
+        <article
+          v-for="(faq, i) in faqs"
           :key="i"
           class="faq__item"
           :class="{ 'faq__item--open': openIndex === i }"
-          :ref="(el) => setItemRef(el as HTMLElement | null, i)"
         >
-          <button
-            class="faq__trigger"
-            @click="toggle(i)"
-            :aria-expanded="openIndex === i"
-            :aria-controls="`faq-answer-${i}`"
-          >
-            <span class="faq__num">{{ String(i + 1).padStart(2, '0') }}</span>
-            <span class="faq__q">{{ item.q }}</span>
-            <span class="faq__icon" aria-hidden="true">
-              <i class="fa-solid fa-plus"></i>
-            </span>
+          <button type="button" class="faq__question" @click="toggle(i)">
+            <span>{{ faq.q }}</span>
+            <svg class="faq__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
-          <div class="faq__answer" :id="`faq-answer-${i}`" role="region">
-            <div class="faq__answer-inner">
-              <p>{{ item.a }}</p>
-            </div>
+          <div class="faq__answer" v-if="openIndex === i">
+            <p>{{ faq.a }}</p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -151,176 +47,98 @@ onBeforeUnmount(() => ctx?.revert())
 
 <style lang="scss" scoped>
 .faq {
-  background: $lpb-paper;
-  color: $lpb-black;
-  padding-block: clamp(5rem, 12vw, 9rem);
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
-  width: 100%;
+  padding-block: 5rem;
+  background: $bakano-light;
 }
 
 .faq__inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 4rem);
-  width: 100%;
-  margin-inline: auto;
-  max-width: 1440px;
-}
-
-.faq__header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-inline: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
   text-align: center;
-  gap: 1rem;
-  max-width: 1100px;
-  margin-inline: auto;
 }
 
-.faq__title {
-  margin: 0;
-  font-style: normal;
-}
-
-.faq__list {
-  border-top: 1px solid rgba($lpb-black, 0.15);
-}
-
-.faq__item {
-  position: relative;
-  border-bottom: 1px solid rgba($lpb-black, 0.15);
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: -1rem;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, $lpb-green, $lpb-gold);
-    border-radius: 2px;
-    opacity: 0;
-    transition: opacity .3s ease;
-  }
-
-  &:hover::before,
-  &--open::before {
-    opacity: 0.4;
-  }
-
-  @media (max-width: 768px) {
-    &::before { display: none; }
-  }
-}
-
-.faq__trigger {
-  cursor: pointer;
-  list-style: none;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.85rem;
-  padding-block: clamp(1.2rem, 2.5vw, 1.75rem);
-  min-height: 60px;
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  text-align: left;
-  color: inherit;
-  font: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-
-  &:focus-visible {
-    color: $lpb-green-dark;
-    outline: 2px solid $lpb-green-dark;
-    outline-offset: 4px;
-    border-radius: 4px;
-  }
-
-  @media (max-width: 480px) {
-    gap: 0.75rem;
-    grid-template-columns: 1fr auto;
-
-    .faq__num {
-      display: none;
-    }
-  }
-}
-
-.faq__num {
+.faq__eyebrow {
   font-family: $font-mono;
   font-size: 0.75rem;
   letter-spacing: 0.18em;
-  color: $lpb-gold;
+  text-transform: uppercase;
+  color: $bakano-pink;
   font-weight: 600;
 }
 
-.faq__q {
+.faq__title {
   font-family: $font-display;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.15rem, 2vw, 1.6rem);
-  line-height: 1.25;
-  color: $lpb-black;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-  transition: color .25s ease;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: $bakano-dark;
+  margin: 0;
 }
 
-.faq__item:hover .faq__q {
-  color: darken($lpb-gold, 8%);
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
 }
 
-.faq__item--open .faq__q {
-  color: darken($lpb-gold, 5%);
-}
-
-.faq__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba($lpb-green, 0.3);
-  color: $lpb-green-dark;
-  background: rgba($lpb-green, 0.08);
-  transition: background .25s ease, color .25s ease, border-color .3s ease, box-shadow .3s ease;
+.faq__item {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow .25s ease;
 
   &:hover {
-    background: $lpb-green-dark;
-    color: $lpb-white;
+    box-shadow: 0 2px 12px rgba($bakano-dark, 0.06);
   }
 }
 
-.faq__item--open .faq__icon {
-  background: linear-gradient(135deg, $lpb-green-dark, $lpb-green);
-  color: $lpb-white;
-  border-color: $lpb-green;
-  box-shadow: 0 0 16px rgba($lpb-green, 0.2);
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: $bakano-dark;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+
+  span {
+    flex: 1;
+  }
+}
+
+.faq__chevron {
+  flex-shrink: 0;
+  color: $gray-400;
+  transition: transform .3s ease;
+}
+
+.faq__item--open .faq__chevron {
+  transform: rotate(180deg);
 }
 
 .faq__answer {
-  display: none;
-  overflow: hidden;
+  padding: 0 1.5rem 1.25rem;
 }
 
-.faq__answer-inner {
-  padding-left: calc(0.75rem + 2.2rem);
-  padding-bottom: 2rem;
-
-  @media (max-width: 480px) {
-    padding-left: 0;
-  }
-
-  p {
-    font-family: $font-sans;
-    color: $lpb-graphite;
-    line-height: 1.65;
-    margin: 0;
-    max-width: 75ch;
-  }
+.faq__answer p {
+  font-family: $font-sans;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: $gray-600;
+  margin: 0;
 }
 </style>

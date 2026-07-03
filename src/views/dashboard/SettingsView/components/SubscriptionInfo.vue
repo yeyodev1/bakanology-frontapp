@@ -52,7 +52,7 @@ function isActive(s: string) {
 
 <style lang="scss" scoped>
 .card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -64,7 +64,7 @@ function isActive(s: string) {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 }
@@ -80,7 +80,7 @@ function isActive(s: string) {
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem;
-  background: $lpb-cream;
+  background: var(--cream);
   border-radius: 0.75rem;
 
   &__label {
@@ -89,16 +89,16 @@ function isActive(s: string) {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__value {
     font-family: $font-sans;
     font-size: 1rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
 
-    &--active { color: $lpb-green-deep; }
+    &--active { color: $bakano-green; }
   }
 }
 
@@ -106,13 +106,13 @@ function isActive(s: string) {
   font-family: $font-sans;
   font-size: 1rem;
   font-weight: 600;
-  color: $lpb-graphite;
+  color: $gray-600;
   margin: 0;
 
   &__sub {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
   }
 
@@ -120,8 +120,8 @@ function isActive(s: string) {
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -131,7 +131,7 @@ function isActive(s: string) {
     border-radius: 999px;
     transition: background 0.2s ease;
 
-    &:hover { background: $lpb-green-dark; }
+    &:hover { background: $bakano-green; }
   }
 }
 </style>

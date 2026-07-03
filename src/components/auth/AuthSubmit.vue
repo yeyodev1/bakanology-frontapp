@@ -21,8 +21,8 @@ defineProps<{
   padding: 1rem 1.5rem;
   border: none;
   border-radius: 999px;
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
   font-family: $font-mono;
   font-size: 0.8rem;
   font-weight: 600;
@@ -32,7 +32,7 @@ defineProps<{
   transition: background 0.25s ease, transform 0.25s ease;
 
   &:hover:not(:disabled) {
-    background: $lpb-green-dark;
+    background: $bakano-green;
     transform: translateY(-2px);
   }
 
@@ -45,8 +45,8 @@ defineProps<{
 .auth-submit__spinner {
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgba($lpb-white, 0.3);
-  border-top-color: $lpb-white;
+  border: 2px solid rgba($white, 0.3);
+  border-top-color: $white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

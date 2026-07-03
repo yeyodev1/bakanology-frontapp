@@ -57,7 +57,7 @@ function onOverlayClick(event: MouseEvent) {
   justify-content: center;
   padding: 2rem 1rem;
   overflow-y: auto;
-  background: rgba($lpb-black, 0.5);
+  background: rgba($bakano-dark, 0.5);
   backdrop-filter: blur(6px);
   -webkit-overflow-scrolling: touch;
 }
@@ -66,11 +66,11 @@ function onOverlayClick(event: MouseEvent) {
   width: 100%;
   max-width: 520px;
   margin: auto 0;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 80px rgba($lpb-black, 0.25);
+  box-shadow: 0 24px 80px rgba($bakano-dark, 0.25);
 
   &--small {
     max-width: 400px;
@@ -89,7 +89,7 @@ function onOverlayClick(event: MouseEvent) {
   font-family: $font-display;
   font-size: 1.5rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
@@ -100,19 +100,19 @@ function onOverlayClick(event: MouseEvent) {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $lpb-muted;
+  color: $gray-500;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: $lpb-cream;
-    color: $lpb-black;
+    background: var(--cream);
+    color: $bakano-dark;
   }
 }
 
 .admin-modal__description {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-graphite;
+  color: $gray-700;
   margin: 0 0 1.5rem;
   line-height: 1.5;
 }
@@ -148,20 +148,20 @@ function onOverlayClick(event: MouseEvent) {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 500;
-  color: $lpb-graphite;
+  color: $gray-700;
 }
 
 :deep(.admin-modal__optional) {
   font-weight: 400;
-  color: $lpb-muted;
+  color: $gray-500;
   font-size: 0.8rem;
 }
 
 :deep(.admin-modal__input) {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $lpb-black;
-  background: $lpb-cream;
+  color: $bakano-dark;
+  background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 0.85rem;
   padding: 0.8rem 1rem;
@@ -169,12 +169,12 @@ function onOverlayClick(event: MouseEvent) {
 
   &:focus {
     outline: none;
-    border-color: $lpb-green;
-    box-shadow: 0 0 0 3px rgba($lpb-green, 0.12);
+    border-color: $bakano-green;
+    box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
   }
 
   &::placeholder {
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 

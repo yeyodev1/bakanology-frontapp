@@ -47,32 +47,32 @@ const emit = defineEmits<{
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($lpb-black, 0.55);
+  background: rgba($bakano-dark, 0.55);
   backdrop-filter: blur(6px);
 }
 
 .pfm__panel {
   width: 100%;
   max-width: 400px;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 60px rgba($lpb-black, 0.2);
+  box-shadow: 0 24px 60px rgba($bakano-dark, 0.2);
 }
 
 .pfm__title {
   font-family: $font-display;
   font-size: 1.3rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0 0 0.5rem;
 }
 
 .pfm__message {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   margin: 0 0 1.5rem;
   line-height: 1.5;
 }
@@ -96,21 +96,21 @@ const emit = defineEmits<{
   transition: background 0.2s ease, opacity 0.2s ease;
 
   &--primary {
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
 
     &:hover {
-      background: $lpb-green-dark;
+      background: $bakano-green;
     }
   }
 
   &--secondary {
     background: transparent;
-    color: $lpb-graphite;
+    color: $gray-600;
     border: 1px solid var(--border);
 
     &:hover {
-      background: $lpb-cream;
+      background: var(--cream);
     }
   }
 }

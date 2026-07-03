@@ -1,42 +1,40 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Luisa Pita Bejarano — Brand tokens canónicos
-// Tokens consistentes con funnel (CLAUDE.md). Sitio editorial luxe.
-// ─────────────────────────────────────────────────────────────────────────────
+// Bakano — Brand tokens
+$bakano-pink:        #e6285c;
+$bakano-dark:        #191423;
+$bakano-light:       #f5f3ef;
+$light:              $bakano-light;
+$bakano-purple:      #85529c;
+$bakano-green:       #3bb77e;
+$bakano-pink-dark:   #c91f4e;
 
-// Marca
-$lpb-green:        #16C784;
-$lpb-green-dark:   #0A9E68;
-$lpb-green-deep:   #087A50;
-$lpb-black:        #0D1117;
-$lpb-ink:          #1A1F2A;
-$lpb-graphite:     #3A4451;
-$lpb-muted:        #6B7280;
-$lpb-light:        #F0FFF8;
-$lpb-surface:      #F5FFFA;
-$lpb-cream:        #F8F5EF;
-$lpb-paper:        #FBFAF6;
-$lpb-white:        #FFFFFF;
-$lpb-line:         #E5E9EC;
+// Base
+$white:              #ffffff;
+$black:              #000000;
+$text-light:         #f5f5f5;
+$overlay-purple:     rgba($bakano-purple, 0.1);
 
-// Legacy aliases (compat con scaffold inicial — no romper imports antiguos)
-$primary:          $lpb-green;
-$primary-dark:     $lpb-black;
-$primary-light:    $lpb-white;
-$secondary:        $lpb-green-dark;
-$white:            $lpb-white;
-$text-light:       $lpb-white;
-$text-secondary:   $lpb-muted;
+// Legacy aliases
+$primary:            $bakano-pink;
+$primary-dark:       $bakano-dark;
+$primary-light:      $bakano-light;
 
-// Acentos vibrantes adicionales (armonía editorial ampliada)
-$lpb-gold:         #C9A84C;
-$lpb-amber:        #F59E0B;
+// Grays
+$gray-100:           #f8f9fa;
+$gray-200:           #e9ecef;
+$gray-300:           #dee2e6;
+$gray-400:           #ced4da;
+$gray-500:           #adb5bd;
+$gray-600:           #6c757d;
+$gray-700:           #495057;
+$gray-800:           #343a40;
+$gray-900:           #212529;
 
 // Alert colors
-$alert-warning:    #F59E0B;
-$alert-info:       #3B82F6;
-$alert-success:    $lpb-green;
-$alert-error:      #EF4444;
-$alert-warning-bg: rgba($alert-warning, 0.1);
-$alert-info-bg:    rgba($alert-info, 0.1);
-$alert-success-bg: rgba($alert-success, 0.1);
-$alert-error-bg:   rgba($alert-error, 0.1);
+$alert-warning:      #F59E0B;
+$alert-info:         #3B82F6;
+$alert-success:      $bakano-green;
+$alert-error:        #EF4444;
+$alert-warning-bg:   rgba($alert-warning, 0.1);
+$alert-info-bg:      rgba($alert-info, 0.1);
+$alert-success-bg:   rgba($alert-success, 0.1);
+$alert-error-bg:     rgba($alert-error, 0.1);

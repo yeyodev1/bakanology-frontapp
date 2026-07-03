@@ -129,32 +129,32 @@ export default { name: 'ConfirmModal' }
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($lpb-black, 0.55);
+  background: rgba($bakano-dark, 0.55);
   backdrop-filter: blur(6px);
 }
 
 .confirm-modal__panel {
   width: 100%;
   max-width: 420px;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 60px rgba($lpb-black, 0.2);
+  box-shadow: 0 24px 60px rgba($bakano-dark, 0.2);
 }
 
 .confirm-modal__title {
   font-family: $font-display;
   font-size: 1.4rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0 0 0.5rem;
 }
 
 .confirm-modal__message {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   margin: 0 0 1.25rem;
   line-height: 1.5;
 }
@@ -171,10 +171,10 @@ export default { name: 'ConfirmModal' }
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-graphite;
+  color: $gray-600;
 
   strong {
-    color: $lpb-black;
+    color: $bakano-dark;
     text-transform: none;
     font-size: 0.85rem;
   }
@@ -183,8 +183,8 @@ export default { name: 'ConfirmModal' }
 .confirm-modal__input {
   font-family: $font-sans;
   font-size: 1rem;
-  color: $lpb-black;
-  background: $lpb-cream;
+  color: $bakano-dark;
+  background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   padding: 0.85rem 1rem;
@@ -192,20 +192,20 @@ export default { name: 'ConfirmModal' }
 
   &:focus {
     outline: none;
-    border-color: $lpb-green;
-    box-shadow: 0 0 0 3px rgba($lpb-green, 0.15);
+    border-color: $bakano-green;
+    box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
   }
 
   &--valid {
-    border-color: $lpb-green-deep;
-    background: rgba($lpb-green, 0.06);
+    border-color: $bakano-green;
+    background: rgba($bakano-green, 0.06);
   }
 }
 
 .confirm-modal__hint {
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
 }
 
@@ -233,17 +233,17 @@ export default { name: 'ConfirmModal' }
 }
 
 .confirm-modal__btn--primary {
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
 
   &:hover:not(:disabled) {
-    background: $lpb-green-dark;
+    background: $bakano-green;
   }
 }
 
 .confirm-modal__btn--danger {
   background: $alert-error;
-  color: $lpb-white;
+  color: $white;
 
   &:hover:not(:disabled) {
     background: darken($alert-error, 8%);
@@ -252,19 +252,19 @@ export default { name: 'ConfirmModal' }
 
 .confirm-modal__btn--secondary {
   background: transparent;
-  color: $lpb-graphite;
+  color: $gray-600;
   border: 1px solid var(--border);
 
   &:hover {
-    background: $lpb-cream;
+    background: var(--cream);
   }
 }
 
 .confirm-modal__spinner {
   width: 0.85rem;
   height: 0.85rem;
-  border: 2px solid rgba($lpb-white, 0.3);
-  border-top-color: $lpb-white;
+  border: 2px solid rgba($white, 0.3);
+  border-top-color: $white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   display: inline-block;

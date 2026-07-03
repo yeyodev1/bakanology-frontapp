@@ -1,9 +1,6 @@
-# robots.txt — luisapitabejarano.com
-# Sitio institucional de Luisa Pita Bejarano, coach fitness para mujeres empoderadas.
+# robots.txt — bakanology.bakano.ec
+# Bakanology Academy — marketing de performance
 
-# ─────────────────────────────────────────────────────────────────────────────
-# 1. Buscadores tradicionales — acceso total
-# ─────────────────────────────────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 
@@ -37,10 +34,6 @@ Allow: /
 User-agent: Pinterestbot
 Allow: /
 
-# ─────────────────────────────────────────────────────────────────────────────
-# 2. LLM / AI crawlers — acceso explícito para citación en respuestas
-#    Aparecer en ChatGPT, Claude, Perplexity, Gemini, Copilot, etc.
-# ─────────────────────────────────────────────────────────────────────────────
 User-agent: GPTBot
 Allow: /
 
@@ -98,15 +91,9 @@ Allow: /
 User-agent: DiffBot
 Allow: /
 
-# ─────────────────────────────────────────────────────────────────────────────
-# 3. Reglas globales
-# ─────────────────────────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /api/
 Crawl-delay: 1
 
-# ─────────────────────────────────────────────────────────────────────────────
-# 4. Sitemaps + referencia llms.txt
-# ─────────────────────────────────────────────────────────────────────────────
-Sitemap: https://luisapitabejarano.com/sitemap.xml
+Sitemap: https://bakanology.bakano.ec/sitemap.xml

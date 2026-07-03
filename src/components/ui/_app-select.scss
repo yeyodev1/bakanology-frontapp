@@ -14,34 +14,34 @@
   width: 100%;
   min-height: 44px;
   padding: 0.75rem 1rem;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 0.85rem;
-  color: $lpb-black;
+  color: $bakano-dark;
   text-align: left;
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover:not(:disabled) {
-    border-color: rgba($lpb-black, 0.25);
+    border-color: rgba($bakano-dark, 0.25);
   }
 
   &:focus-visible {
     outline: none;
-    border-color: $lpb-green;
-    box-shadow: 0 0 0 3px rgba($lpb-green, 0.12);
+    border-color: $bakano-green;
+    box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
   }
 }
 
 .app-select--open .app-select__trigger {
-  border-color: $lpb-green;
-  box-shadow: 0 0 0 3px rgba($lpb-green, 0.12);
+  border-color: $bakano-green;
+  box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
 }
 
 .app-select--disabled .app-select__trigger {
   opacity: 0.55;
   cursor: not-allowed;
-  background: $lpb-cream;
+  background: var(--cream);
 }
 
 .app-select__label {
@@ -51,7 +51,7 @@
   text-overflow: ellipsis;
 
   &--placeholder {
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $lpb-muted;
+  color: $gray-500;
   font-size: 0.75rem;
   transition: transform 0.2s ease;
   flex-shrink: 0;
@@ -75,10 +75,10 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 0.85rem;
-  box-shadow: 0 16px 48px rgba($lpb-black, 0.12);
+  box-shadow: 0 16px 48px rgba($bakano-dark, 0.12);
   overflow: hidden;
   max-height: 320px;
   display: flex;
@@ -101,13 +101,13 @@
   gap: 0.5rem;
   padding: 0.75rem;
   border-bottom: 1px solid var(--border);
-  background: $lpb-white;
+  background: $white;
   z-index: 1;
 }
 
 .app-select__search-icon,
 .app-select__search-loading {
-  color: $lpb-muted;
+  color: $gray-500;
   font-size: 0.85rem;
   flex-shrink: 0;
 }
@@ -118,12 +118,12 @@
   background: transparent;
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-black;
+  color: $bakano-dark;
   outline: none;
   min-width: 0;
 
   &::placeholder {
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 
@@ -143,17 +143,17 @@
   padding: 0.65rem 0.75rem;
   border-radius: 0.55rem;
   font-size: 0.9rem;
-  color: $lpb-black;
+  color: $bakano-dark;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover,
   &--selected {
-    background: rgba($lpb-green, 0.08);
+    background: rgba($bakano-green, 0.08);
   }
 
   &:active {
-    background: rgba($lpb-green, 0.14);
+    background: rgba($bakano-green, 0.14);
   }
 }
 
@@ -164,7 +164,7 @@
 }
 
 .app-select__check {
-  color: $lpb-green-deep;
+  color: $bakano-green;
   font-size: 0.8rem;
   flex-shrink: 0;
 }
@@ -174,7 +174,7 @@
   padding: 1rem;
   text-align: center;
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .app-select-dropdown-enter-active,

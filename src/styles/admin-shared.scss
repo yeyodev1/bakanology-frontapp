@@ -24,23 +24,23 @@
 
 .admin-users__btn--primary,
 .admin-payments__btn--primary {
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
 
   &:hover:not(:disabled) {
-    background: $lpb-ink;
+    background: lighten($bakano-dark, 8%);
     transform: translateY(-1px);
   }
 }
 
 .admin-users__btn--ghost,
 .admin-payments__btn--ghost {
-  background: $lpb-white;
-  color: $lpb-graphite;
+  background: $white;
+  color: $gray-600;
   border-color: var(--border);
 
   &:hover:not(:disabled) {
-    background: $lpb-cream;
-    border-color: rgba($lpb-black, 0.15);
+    background: var(--cream);
+    border-color: rgba($bakano-dark, 0.15);
   }
 }

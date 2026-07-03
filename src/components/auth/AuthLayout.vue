@@ -28,23 +28,23 @@ defineProps<{
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: $lpb-paper;
+  background: $light;
 }
 
 .auth-layout__card {
   width: 100%;
   max-width: 420px;
-  background: $lpb-white;
-  border: 1px solid rgba($lpb-black, 0.06);
+  background: $white;
+  border: 1px solid rgba($bakano-dark, 0.06);
   border-radius: 1.5rem;
   padding: clamp(2rem, 6vw, 3rem);
-  box-shadow: 0 24px 80px rgba($lpb-black, 0.06);
+  box-shadow: 0 24px 80px rgba($bakano-dark, 0.06);
 }
 
 .auth-layout__brand {
   display: inline-flex;
   margin-bottom: 1.5rem;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .auth-layout__title {
@@ -52,14 +52,14 @@ defineProps<{
   font-size: clamp(1.6rem, 5vw, 2rem);
   font-weight: 400;
   margin: 0 0 0.5rem;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .auth-layout__subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0 0 1.75rem;
 }
 </style>

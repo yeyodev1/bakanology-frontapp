@@ -111,7 +111,7 @@ function formatDate(iso: string) {
         <span class="lesson-nav__label">Anterior</span>
         <span class="lesson-nav__title">{{ prevLesson.title }}</span>
       </RouterLink>
-      <div v-else class="lesson-nav__spacer" />
+      <div v-else />
       <RouterLink
         v-if="nextLesson"
         :to="{ name: 'lesson', params: { courseId: course.id, lessonId: nextLesson.id } }"
@@ -174,10 +174,11 @@ function formatDate(iso: string) {
   gap: 0.5rem;
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
 
-  &__link {
-    color: $lpb-green-deep;
+  a {
+    color: $bakano-green;
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
@@ -185,12 +186,12 @@ function formatDate(iso: string) {
   }
 
   &__current {
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 
 .video-player {
-  background: $lpb-black;
+  background: $bakano-dark;
   border-radius: 1rem;
   overflow: hidden;
   display: flex;
@@ -199,7 +200,7 @@ function formatDate(iso: string) {
   &__screen {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, rgba($lpb-ink, 1) 0%, rgba($lpb-black, 1) 100%);
+    background: linear-gradient(135deg, lighten($bakano-dark, 5%) 0%, $bakano-dark 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -209,19 +210,21 @@ function formatDate(iso: string) {
     width: 88px;
     height: 88px;
     border-radius: 50%;
-    background: rgba($lpb-white, 0.95);
-    color: $lpb-black;
+    background: rgba($white, 0.95);
+    color: $bakano-dark;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.75rem;
     padding-left: 0.25rem;
+    cursor: pointer;
     transition: transform 0.25s ease, background 0.25s ease;
-    box-shadow: 0 12px 40px rgba($lpb-black, 0.35);
+    box-shadow: 0 12px 40px rgba($bakano-dark, 0.35);
 
     &:hover {
       transform: scale(1.06);
-      background: $lpb-green;
+      background: $bakano-green;
     }
   }
 
@@ -232,8 +235,8 @@ function formatDate(iso: string) {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: rgba($lpb-black, 0.65);
-    color: $lpb-white;
+    background: rgba($bakano-dark, 0.65);
+    color: $white;
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
@@ -248,31 +251,33 @@ function formatDate(iso: string) {
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    background: rgba($lpb-white, 0.03);
-    border-top: 1px solid rgba($lpb-white, 0.08);
+    background: rgba($white, 0.03);
+    border-top: 1px solid rgba($white, 0.08);
   }
 
   &__control {
     width: 34px;
     height: 34px;
     border-radius: 50%;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $lpb-white;
-    background: rgba($lpb-white, 0.08);
+    color: $white;
+    background: rgba($white, 0.08);
     font-size: 0.8rem;
+    cursor: pointer;
     transition: background 0.2s ease;
 
     &:hover {
-      background: rgba($lpb-white, 0.18);
+      background: rgba($white, 0.18);
     }
   }
 
   &__track {
     flex: 1 1 auto;
     height: 5px;
-    background: rgba($lpb-white, 0.18);
+    background: rgba($white, 0.18);
     border-radius: 999px;
     overflow: hidden;
     cursor: pointer;
@@ -280,7 +285,7 @@ function formatDate(iso: string) {
 
   &__progress {
     height: 100%;
-    background: $lpb-green;
+    background: $bakano-green;
     border-radius: 999px;
     transition: width 0.3s ease;
   }
@@ -291,7 +296,7 @@ function formatDate(iso: string) {
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
-  background: $lpb-white;
+  background: $light;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -299,15 +304,15 @@ function formatDate(iso: string) {
   &__title {
     font-family: $font-display;
     font-size: 1.5rem;
-    font-weight: 400;
-    color: $lpb-black;
+    font-weight: 600;
+    color: $bakano-dark;
     margin: 0;
   }
 
   &__description {
     font-family: $font-sans;
     font-size: 0.95rem;
-    color: $lpb-graphite;
+    color: $gray-600;
     margin: 0.5rem 0 0;
     max-width: 720px;
     line-height: 1.6;
@@ -315,20 +320,21 @@ function formatDate(iso: string) {
 
   &__complete {
     flex-shrink: 0;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 0.85rem 1.25rem;
+    border: none;
     border-radius: 999px;
+    cursor: pointer;
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-green-dark;
-      color: $lpb-white;
+      background: darken(#3bb77e, 10%);
     }
   }
 
@@ -339,30 +345,34 @@ function formatDate(iso: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $lpb-green-deep;
+    color: $bakano-green;
     padding: 0.85rem 1.25rem;
     border-radius: 999px;
-    background: rgba($lpb-green, 0.12);
+    background: rgba($bakano-green, 0.12);
   }
 }
 
 .lesson-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
 
   &__link {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     padding: 1rem;
-    background: $lpb-white;
+    background: $light;
     border: 1px solid var(--border);
     border-radius: 0.75rem;
+    text-decoration: none;
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-cream;
+      background: var(--cream);
     }
 
     &--next {
@@ -377,19 +387,19 @@ function formatDate(iso: string) {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__title {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 
 .comments {
-  background: $lpb-white;
+  background: $light;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -400,8 +410,8 @@ function formatDate(iso: string) {
   &__title {
     font-family: $font-display;
     font-size: 1.25rem;
-    font-weight: 400;
-    color: $lpb-black;
+    font-weight: 600;
+    color: $bakano-dark;
     margin: 0;
   }
 
@@ -421,8 +431,8 @@ function formatDate(iso: string) {
     width: 100%;
     font-family: $font-sans;
     font-size: 0.95rem;
-    color: $lpb-black;
-    background: $lpb-cream;
+    color: $bakano-dark;
+    background: var(--cream);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     padding: 0.85rem 1rem;
@@ -430,26 +440,28 @@ function formatDate(iso: string) {
 
     &:focus {
       outline: none;
-      border-color: $lpb-green;
-      box-shadow: 0 0 0 3px rgba($lpb-green, 0.15);
+      border-color: $bakano-green;
+      box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
     }
   }
 
   &__submit {
     align-self: flex-end;
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 0.75rem 1.25rem;
+    border: none;
     border-radius: 999px;
+    cursor: pointer;
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-green-dark;
+      background: $bakano-green;
     }
   }
 }
@@ -469,8 +481,8 @@ function formatDate(iso: string) {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -497,19 +509,19 @@ function formatDate(iso: string) {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__date {
     font-family: $font-mono;
     font-size: 0.65rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__content {
     font-family: $font-sans;
     font-size: 0.9rem;
-    color: $lpb-graphite;
+    color: $gray-600;
     margin: 0;
     line-height: 1.5;
   }
@@ -518,11 +530,14 @@ function formatDate(iso: string) {
     align-self: flex-start;
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
     padding: 0.25rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
 
     &:hover {
-      color: $lpb-green-deep;
+      color: $bakano-green;
     }
   }
 }
@@ -534,14 +549,14 @@ function formatDate(iso: string) {
   &__title {
     font-family: $font-display;
     font-size: 1.5rem;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__link {
     display: inline-block;
     margin-top: 1rem;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -549,20 +564,7 @@ function formatDate(iso: string) {
     text-transform: uppercase;
     padding: 0.75rem 1.25rem;
     border-radius: 999px;
-  }
-}
-
-@media (max-width: 720px) {
-  .lesson-meta {
-    flex-direction: column;
-  }
-
-  .lesson-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .lesson-nav__spacer {
-    display: none;
+    text-decoration: none;
   }
 }
 </style>

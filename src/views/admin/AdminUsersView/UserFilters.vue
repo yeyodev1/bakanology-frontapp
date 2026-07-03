@@ -102,7 +102,7 @@ function onStatusChange(value: string | number) {
 }
 
 .admin-users__filter-icon {
-  color: $lpb-muted;
+  color: $gray-500;
   font-size: 0.85rem;
 }
 
