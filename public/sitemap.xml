@@ -4,30 +4,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://luisapitabejarano.com/</loc>
-    <lastmod>2026-05-10</lastmod>
+    <loc>https://bakanology.bakano.ec/</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://res.cloudinary.com/dkosgkjpq/image/upload/w_1600,h_2200,c_fill,g_face,q_auto,f_auto/luisa-pita/luisa-2.jpg</image:loc>
-      <image:title>Luisa Pita Bejarano — Coach fitness para mujeres empoderadas</image:title>
-      <image:caption>Coach de transformación corporal anual para mujeres ocupadas en Ecuador y Latinoamérica</image:caption>
+      <image:loc>https://res.cloudinary.com/mrp1wwq1/image/upload/w_1600,h_2200,c_fill,g_face,q_auto,f_auto/bakanology/luis-founder.jpg</image:loc>
+      <image:title>Luis — Fundador de Bakanology Academy</image:title>
+      <image:caption>Luis, fundador de bakano.ec y creador de la metodología Bakanology Academy</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://res.cloudinary.com/dkosgkjpq/image/upload/w_1200,h_1500,c_fill,g_face,q_auto,f_auto/luisa-pita/luisa-11.jpg</image:loc>
-      <image:title>Luisa Pita Bejarano — Retrato editorial</image:title>
-      <image:caption>Luisa Pita Bejarano, coach fitness y entrenadora personal de la comunidad anual cerrada</image:caption>
+      <image:loc>https://res.cloudinary.com/mrp1wwq1/image/upload/w_1200,h_1500,c_fill,g_face,q_auto,f_auto/bakanology/luis-coach.jpg</image:loc>
+      <image:title>Luis — Metodología Bakanology</image:title>
+      <image:caption>Luis, coach de performance marketing y fundador de Bakanology Academy</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://luisapitabejarano.com/politicas-privacidad</loc>
-    <lastmod>2026-05-10</lastmod>
+    <loc>https://bakanology.bakano.ec/politicas-privacidad</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://luisapitabejarano.com/aviso-legal</loc>
-    <lastmod>2026-05-10</lastmod>
+    <loc>https://bakanology.bakano.ec/aviso-legal</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

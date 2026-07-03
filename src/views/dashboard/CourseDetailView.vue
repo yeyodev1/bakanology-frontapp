@@ -83,8 +83,8 @@ function lockIcon(isLocked: boolean) {
     position: relative;
     width: 100%;
     padding: 2rem;
-    background: linear-gradient(to top, rgba($lpb-black, 0.9) 0%, rgba($lpb-black, 0.4) 60%, transparent 100%);
-    color: $lpb-white;
+    background: linear-gradient(to top, rgba($bakano-dark, 0.9) 0%, rgba($bakano-dark, 0.4) 60%, transparent 100%);
+    color: $white;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -96,7 +96,7 @@ function lockIcon(isLocked: boolean) {
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: $lpb-green;
+    color: $bakano-green;
   }
 
   &__title {
@@ -126,20 +126,20 @@ function lockIcon(isLocked: boolean) {
   &__progress-bar {
     width: 160px;
     height: 6px;
-    background: rgba($lpb-white, 0.2);
+    background: rgba($white, 0.2);
     border-radius: 999px;
     overflow: hidden;
   }
 
   &__progress-fill {
     height: 100%;
-    background: $lpb-green;
+    background: $bakano-green;
     border-radius: 999px;
   }
 }
 
 .lessons {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -148,7 +148,7 @@ function lockIcon(isLocked: boolean) {
     font-family: $font-display;
     font-size: 1.35rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0 0 1rem;
   }
 
@@ -165,13 +165,13 @@ function lockIcon(isLocked: boolean) {
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.75rem;
-  background: $lpb-cream;
+  background: var(--cream);
   border: 1px solid transparent;
   transition: background 0.2s ease, border-color 0.2s ease;
 
   &:hover:not(&--locked) {
-    background: rgba($lpb-green, 0.08);
-    border-color: rgba($lpb-green, 0.2);
+    background: rgba($bakano-green, 0.08);
+    border-color: rgba($bakano-green, 0.2);
   }
 
   &--locked {
@@ -180,14 +180,14 @@ function lockIcon(isLocked: boolean) {
   }
 
   &--completed &__status {
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 
   &__number {
     font-family: $font-mono;
     font-size: 0.8rem;
     font-weight: 700;
-    color: $lpb-muted;
+    color: $gray-500;
     width: 28px;
     text-align: center;
   }
@@ -203,14 +203,14 @@ function lockIcon(isLocked: boolean) {
     font-family: $font-sans;
     font-size: 0.95rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 
   &__duration {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
   }
 
@@ -221,8 +221,8 @@ function lockIcon(isLocked: boolean) {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: $lpb-white;
-    color: $lpb-black;
+    background: $white;
+    color: $bakano-dark;
     font-size: 0.85rem;
   }
 }
@@ -234,14 +234,14 @@ function lockIcon(isLocked: boolean) {
   &__title {
     font-family: $font-display;
     font-size: 1.5rem;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__link {
     display: inline-block;
     margin-top: 1rem;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $bakano-dark;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;

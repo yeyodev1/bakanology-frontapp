@@ -2,9 +2,16 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [vue({
+            template: {
+                compilerOptions: {
+                    isCustomElement: (tag) => tag === 'wistia-player',
+                },
+            },
+        })],
     server: {
         allowedHosts: [
+            'bakanology.bakano.ec',
             'testing-storybrand-frontend.bakano.ec',
         ]
     },

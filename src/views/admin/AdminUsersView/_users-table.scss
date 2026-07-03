@@ -1,7 +1,7 @@
 @use '@/styles/index.scss' as *;
 
 .admin-users__table-card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   overflow: hidden;
@@ -11,10 +11,10 @@
 .admin-users__table-wrap {
   overflow-x: auto;
   background-image:
-    linear-gradient(to right, $lpb-white, transparent),
-    linear-gradient(to left, $lpb-white, transparent),
-    radial-gradient(farthest-side at 0 50%, rgba($lpb-black, 0.1), transparent),
-    radial-gradient(farthest-side at 100% 50%, rgba($lpb-black, 0.1), transparent);
+    linear-gradient(to right, $white, transparent),
+    linear-gradient(to left, $white, transparent),
+    radial-gradient(farthest-side at 0 50%, rgba($bakano-dark, 0.1), transparent),
+    radial-gradient(farthest-side at 100% 50%, rgba($bakano-dark, 0.1), transparent);
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 24px 100%, 24px 100%, 14px 100%, 14px 100%;
@@ -41,8 +41,8 @@
     font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: $lpb-muted;
-    background: $lpb-cream;
+    color: $gray-500;
+    background: var(--cream);
     white-space: nowrap;
   }
 
@@ -55,7 +55,7 @@
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba($lpb-green, 0.03);
+    background: rgba($bakano-green, 0.03);
   }
 }
 
@@ -69,8 +69,8 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, $lpb-green 0%, $lpb-green-dark 100%);
-  color: $lpb-black;
+  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
+  color: $bakano-dark;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,7 +89,7 @@
 
 .admin-users__user-name {
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -104,7 +104,7 @@
   gap: 0.25rem;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
-  background: rgba($lpb-amber, 0.15);
+  background: rgba($bakano-pink, 0.15);
   color: #92400E;
   font-family: $font-mono;
   font-size: 0.6rem;
@@ -115,7 +115,7 @@
 
 .admin-users__user-email {
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -133,38 +133,38 @@
   letter-spacing: 0.02em;
 
   &--admin {
-    background: rgba($lpb-amber, 0.12);
+    background: rgba($bakano-pink, 0.12);
     color: #92400E;
   }
 
   &--user {
-    background: rgba($lpb-green, 0.1);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.1);
+    color: $bakano-green;
   }
 
   &--active {
-    background: rgba($lpb-green, 0.12);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.12);
+    color: $bakano-green;
   }
 
   &--pending {
-    background: rgba($lpb-amber, 0.12);
+    background: rgba($bakano-pink, 0.12);
     color: #92400E;
   }
 
   &--none {
-    background: rgba($lpb-black, 0.05);
-    color: $lpb-muted;
+    background: rgba($bakano-dark, 0.05);
+    color: $gray-500;
   }
 }
 
 .admin-users__access {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-black;
+  color: $bakano-dark;
 
   &--none {
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 
@@ -188,20 +188,20 @@
   }
 
   &--extend {
-    background: rgba($lpb-green, 0.1);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.1);
+    color: $bakano-green;
 
     &:hover {
-      background: rgba($lpb-green, 0.2);
+      background: rgba($bakano-green, 0.2);
     }
   }
 
   &--revoke {
-    background: rgba($lpb-amber, 0.1);
+    background: rgba($bakano-pink, 0.1);
     color: #92400E;
 
     &:hover {
-      background: rgba($lpb-amber, 0.2);
+      background: rgba($bakano-pink, 0.2);
     }
   }
 
@@ -215,21 +215,21 @@
   }
 
   &--founder {
-    background: rgba($lpb-black, 0.05);
-    color: $lpb-muted;
+    background: rgba($bakano-dark, 0.05);
+    color: $gray-500;
 
     &:hover {
-      background: rgba($lpb-amber, 0.15);
+      background: rgba($bakano-pink, 0.15);
       color: #92400E;
     }
   }
 
   &--founder-active {
-    background: rgba($lpb-amber, 0.15);
+    background: rgba($bakano-pink, 0.15);
     color: #92400E;
 
     &:hover {
-      background: rgba($lpb-amber, 0.25);
+      background: rgba($bakano-pink, 0.25);
     }
   }
 }
@@ -240,8 +240,8 @@
   gap: 0.4rem;
   padding: 0.45rem 0.75rem;
   border-radius: 999px;
-  background: rgba($lpb-green, 0.1);
-  color: $lpb-green-deep;
+  background: rgba($bakano-green, 0.1);
+  color: $bakano-green;
   font-family: $font-mono;
   font-size: 0.65rem;
   font-weight: 600;
@@ -263,8 +263,8 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba($lpb-black, 0.04);
-  color: $lpb-muted;
+  background: rgba($bakano-dark, 0.04);
+  color: $gray-500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,14 +276,14 @@
   font-family: $font-display;
   font-size: 1.25rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
 .admin-users__empty-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
   max-width: 320px;
 }
@@ -309,9 +309,9 @@
   border-radius: 0.5rem;
   background: linear-gradient(
     90deg,
-    rgba($lpb-black, 0.05) 25%,
-    rgba($lpb-black, 0.09) 50%,
-    rgba($lpb-black, 0.05) 75%
+    rgba($bakano-dark, 0.05) 25%,
+    rgba($bakano-dark, 0.09) 50%,
+    rgba($bakano-dark, 0.05) 75%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;

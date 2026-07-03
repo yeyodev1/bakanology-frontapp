@@ -94,12 +94,12 @@ const onSubmit = async () => {
 .auth-form__link {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
   text-align: center;
   text-decoration: none;
 
   &:hover {
-    color: $lpb-green-deep;
+    color: $bakano-green;
     text-decoration: underline;
   }
 }

@@ -58,7 +58,7 @@ function formatDate(iso: string) {
   font-family: $font-display;
   font-size: 1.35rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
@@ -68,7 +68,7 @@ function formatDate(iso: string) {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-green;
 
   &:hover { text-decoration: underline; }
 }
@@ -80,7 +80,7 @@ function formatDate(iso: string) {
 }
 
 .badge {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -94,8 +94,8 @@ function formatDate(iso: string) {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba($lpb-green, 0.12);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.12);
+    color: $bakano-green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,21 +106,21 @@ function formatDate(iso: string) {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__date {
     font-family: $font-mono;
     font-size: 0.65rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &--locked {
     opacity: 0.55;
 
     .badge__icon {
-      background: rgba($lpb-black, 0.05);
-      color: $lpb-muted;
+      background: rgba($bakano-dark, 0.05);
+      color: $gray-500;
     }
   }
 }

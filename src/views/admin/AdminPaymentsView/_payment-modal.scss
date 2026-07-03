@@ -5,8 +5,8 @@
   flex-direction: column;
   gap: 0.6rem;
   padding: 1rem;
-  background: rgba($lpb-green, 0.06);
-  border: 1px solid rgba($lpb-green, 0.2);
+  background: rgba($bakano-green, 0.06);
+  border: 1px solid rgba($bakano-green, 0.2);
   border-radius: 1rem;
 }
 
@@ -19,12 +19,12 @@
 .admin-payments__student-info-name {
   font-family: $font-sans;
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .admin-payments__student-info-email {
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .admin-payments__student-info-row {
@@ -35,12 +35,12 @@
 }
 
 .admin-payments__student-info-label {
-  color: $lpb-graphite;
+  color: $gray-600;
 }
 
 .admin-payments__student-info-value {
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .admin-payments__pending-days {
@@ -48,20 +48,20 @@
   align-items: flex-start;
   gap: 0.5rem;
   padding: 0.75rem;
-  background: $lpb-white;
+  background: $white;
   border-radius: 0.75rem;
   font-size: 0.85rem;
-  color: $lpb-graphite;
+  color: $gray-600;
   line-height: 1.45;
 
   i {
-    color: $lpb-green-deep;
+    color: $bakano-green;
     margin-top: 0.15rem;
     flex-shrink: 0;
   }
 
   strong {
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 
@@ -79,36 +79,36 @@
   padding: 1rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
-  background: $lpb-cream;
+  background: var(--cream);
   text-align: left;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    border-color: rgba($lpb-black, 0.2);
+    border-color: rgba($bakano-dark, 0.2);
   }
 
   &--active {
-    background: rgba($lpb-green, 0.08);
-    border-color: $lpb-green;
-    box-shadow: 0 0 0 3px rgba($lpb-green, 0.1);
+    background: rgba($bakano-green, 0.08);
+    border-color: $bakano-green;
+    box-shadow: 0 0 0 3px rgba($bakano-green, 0.1);
   }
 }
 
 .admin-payments__plan-option-name {
   font-family: $font-sans;
   font-weight: 600;
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .admin-payments__plan-option-desc {
   font-size: 0.8rem;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .admin-payments__plan-option-price {
   font-family: $font-display;
   font-size: 1.15rem;
-  color: $lpb-green-deep;
+  color: $bakano-green;
   margin-top: 0.25rem;
 }
 
@@ -120,13 +120,13 @@
   padding: 1.25rem;
   border: 2px dashed var(--border);
   border-radius: 1rem;
-  background: $lpb-cream;
+  background: var(--cream);
   text-align: center;
   transition: border-color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    border-color: $lpb-green;
-    background: rgba($lpb-green, 0.04);
+    border-color: $bakano-green;
+    background: rgba($bakano-green, 0.04);
   }
 }
 
@@ -147,12 +147,12 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-green;
 }
 
 .admin-payments__file-name {
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .admin-payments__preview {
@@ -160,7 +160,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: $lpb-cream;
+  background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 1rem;
 }
@@ -171,7 +171,7 @@
   object-fit: cover;
   border-radius: 0.75rem;
   border: 1px solid var(--border);
-  background: $lpb-white;
+  background: $white;
   flex-shrink: 0;
 }
 
@@ -184,7 +184,7 @@
 
 .admin-payments__preview-name {
   font-size: 0.9rem;
-  color: $lpb-black;
+  color: $bakano-dark;
   word-break: break-all;
 }
 

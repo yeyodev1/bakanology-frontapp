@@ -1,278 +1,226 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
 import { paymentService } from '@/services/paymentService'
-import type { PaymentBoxConfig } from '@/services/paymentService'
-import CheckoutModal from './CheckoutModal.vue'
 
-const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 297
-const monthlyPrice = Number(import.meta.env.VITE_MONTHLY_PRICE) || 45
-const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER as string) || '593999999999'
-const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-06T00:00:00-05:00'
-
-const isMonthlyAvailable = computed(() => {
-  return new Date().getTime() >= new Date(launchDeadline).getTime()
-})
-
+const email = ref('')
+const name = ref('')
+const lastName = ref('')
 const loading = ref(false)
 const error = ref('')
-const showModal = ref(false)
-const selectedPlan = ref<'annual' | 'monthly'>('annual')
-const boxConfig = ref<PaymentBoxConfig | null>(null)
 
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-  'Hola Luisa, quiero información sobre el plan mensual de la comunidad.',
-)}`
+const isValid = computed(() => email.value && name.value && lastName.value)
 
-function openCheckout(plan: 'annual' | 'monthly') {
-  selectedPlan.value = plan
-  error.value = ''
-  boxConfig.value = null
-  showModal.value = true
-}
-
-function closeCheckout() {
-  showModal.value = false
-  boxConfig.value = null
-}
-
-async function payWithCard(payload: { email: string; name: string; lastName: string }) {
+async function payWithStripe() {
+  if (!isValid.value) return
   loading.value = true
   error.value = ''
   try {
-    const { data } = await paymentService.prepareBox({
-      ...payload,
-      plan: selectedPlan.value,
+    const res = await paymentService.createCheckoutSession({
+      email: email.value,
+      name: name.value,
+      lastName: lastName.value,
+      origin: window.location.origin,
     })
-    boxConfig.value = data.data
-  } catch (err: unknown) {
-    const e = err as { message?: string }
-    error.value = e.message || 'Error al preparar el pago.'
+    if (res.data?.data?.url) {
+      window.location.href = res.data.data.url
+    } else {
+      error.value = 'Error al crear la sesión de pago'
+    }
+  } catch (e: any) {
+    error.value = e?.response?.data?.message || e?.message || 'Error al procesar el pago'
   } finally {
     loading.value = false
   }
-}
-
-function onBoxError(message: string) {
-  error.value = message
 }
 </script>
 
 <template>
   <section id="planes" class="plans">
     <div class="plans__inner">
-      <span class="eyebrow eyebrow--green">Elige tu compromiso</span>
-      <h2 class="plans__title display-lg">Planes de la comunidad</h2>
+      <span class="plans__eyebrow">Precio de lanzamiento</span>
+      <h2 class="plans__title">Asegura tu acceso de por vida</h2>
       <p class="plans__lede">
-        Precio especial de preventa por tiempo limitado. Ambos planes incluyen acceso completo a la comunidad.
+        <strong>30 cupos</strong> disponibles para miembros fundadores.
+        Este precio es por tiempo limitado y nunca volverá a estar disponible.
       </p>
 
-      <div class="plans__grid">
-        <article class="plan-card plan-card--featured">
-          <div class="plan-card__badge">Mejor valor</div>
-          <h3 class="plan-card__name">Anual</h3>
-          <p class="plan-card__description">Un año completo de acompañamiento. Paga una vez y asegura tu transformación.</p>
-          <div class="plan-card__price">
-            <span class="plan-card__currency">$</span>
-            <span class="plan-card__amount">{{ annualPrice }}</span>
-            <span class="plan-card__period">/año</span>
-          </div>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check" /> Acceso 12 meses</li>
-            <li><i class="fa-solid fa-check" /> Entrenamientos personalizados</li>
-            <li><i class="fa-solid fa-check" /> Plan nutricional flexible</li>
-            <li><i class="fa-solid fa-check" /> Comunidad privada</li>
-          </ul>
-          <button type="button" class="plan-card__button plan-card__button--primary" :disabled="loading" @click="openCheckout('annual')">
-            <span v-if="loading">Preparando pago...</span>
-            <span v-else>Pagar con tarjeta</span>
-          </button>
-          <RouterLink :to="{ name: 'home', hash: '#video' }" class="plan-card__link">
-            Saber más sobre el año
-          </RouterLink>
-          <p v-if="error" class="plan-card__error">{{ error }}</p>
-        </article>
+      <div class="plans__card">
+        <div class="plans__card-badge">Miembro fundador</div>
+        <h3 class="plans__card-name">Acceso de por vida</h3>
+        <p class="plans__card-desc">Paga una sola vez y accede para siempre a Bakanology Academy</p>
+        <div class="plans__card-price">
+          <span class="plans__card-currency">$</span>
+          <span class="plans__card-amount">297</span>
+        </div>
+        <span class="plans__card-period">Pago único — Sin renovaciones</span>
+        <ul class="plans__card-features">
+          <li><i class="fa-solid fa-check" /> Cursos de marketing de performance</li>
+          <li><i class="fa-solid fa-check" /> CRM propio incluido</li>
+          <li><i class="fa-solid fa-check" /> Soporte continuo del equipo</li>
+          <li><i class="fa-solid fa-check" /> Certificación al completar</li>
+          <li><i class="fa-solid fa-check" /> Todas las actualizaciones futuras</li>
+        </ul>
 
-        <article class="plan-card" :class="{ 'plan-card--disabled': !isMonthlyAvailable }">
-          <div v-if="!isMonthlyAvailable" class="plan-card__badge plan-card__badge--soon">
-            Desde el 6 de julio
-          </div>
-          <h3 class="plan-card__name">Mensual</h3>
-          <p class="plan-card__description">Flexibilidad mensual con renovación automática. Ideal para empezar.</p>
-          <div class="plan-card__price">
-            <span class="plan-card__currency">$</span>
-            <span class="plan-card__amount">{{ monthlyPrice }}</span>
-            <span class="plan-card__period">/mes</span>
-          </div>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check" /> Acceso mensual</li>
-            <li><i class="fa-solid fa-check" /> Entrenamientos personalizados</li>
-            <li><i class="fa-solid fa-check" /> Plan nutricional flexible</li>
-            <li><i class="fa-solid fa-check" /> Comunidad privada</li>
-          </ul>
-          <a
-            v-if="isMonthlyAvailable"
-            :href="whatsappUrl"
-            target="_blank"
-            rel="noopener"
-            class="plan-card__button plan-card__button--outline"
-          >
-            Escribir por WhatsApp
-          </a>
-          <button
-            v-else
-            type="button"
-            class="plan-card__button plan-card__button--outline"
-            disabled
-          >
-            No disponible hasta el 6 de julio
-          </button>
-        </article>
+        <div class="plans__form">
+          <input
+            v-model="name"
+            type="text"
+            placeholder="Nombre"
+            class="plans__input"
+            :disabled="loading"
+          />
+          <input
+            v-model="lastName"
+            type="text"
+            placeholder="Apellido"
+            class="plans__input"
+            :disabled="loading"
+          />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="Correo electrónico"
+            class="plans__input"
+            :disabled="loading"
+          />
+        </div>
+
+        <button
+          type="button"
+          class="plans__card-btn"
+          :disabled="loading || !isValid"
+          @click="payWithStripe"
+        >
+          <span v-if="loading">Procesando...</span>
+          <span v-else>Pagar $297 — Acceso de por vida</span>
+        </button>
+        <p v-if="error" class="plans__card-error">{{ error }}</p>
       </div>
     </div>
-
-    <CheckoutModal
-      :open="showModal"
-      :plan="selectedPlan"
-      :price="selectedPlan === 'annual' ? annualPrice : monthlyPrice"
-      :loading="loading"
-      :error="error"
-      :box-config="boxConfig"
-      @close="closeCheckout"
-      @submit="payWithCard"
-      @box-error="onBoxError"
-    />
   </section>
 </template>
 
 <style lang="scss" scoped>
 .plans {
-  padding-block: clamp(5rem, 12vw, 9rem);
-  padding-inline: clamp(2.5rem, 9vw, 9rem);
-  background: $lpb-paper;
+  padding-block: 5rem 4rem;
+  background: $bakano-light;
 }
 
 .plans__inner {
-  max-width: 1100px;
-  margin-inline: auto;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   text-align: center;
 }
 
+.plans__eyebrow {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $bakano-pink;
+  font-weight: 600;
+}
+
 .plans__title {
-  margin: 0.75rem 0 0;
-  color: $lpb-black;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: $bakano-dark;
+  margin: 0;
 }
 
 .plans__lede {
   font-family: $font-sans;
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  color: $lpb-muted;
-  max-width: 60ch;
-  margin: 1rem auto 3rem;
+  color: $gray-600;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 540px;
+  margin: 0;
 }
 
-.plans__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.plan-card {
-  position: relative;
-  background: $lpb-white;
-  border: 1px solid rgba($lpb-black, 0.06);
-  border-radius: 1.5rem;
-  padding: clamp(1.75rem, 4vw, 2.5rem);
-  text-align: left;
+.plans__card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+  box-shadow: 0 4px 24px rgba($bakano-dark, 0.06);
 }
 
-.plan-card--featured {
-  border-color: rgba($lpb-green, 0.35);
-  box-shadow: 0 24px 70px rgba($lpb-green, 0.1);
-}
-
-.plan-card__badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+.plans__card-badge {
   font-family: $font-mono;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: $lpb-green-dark;
-  background: rgba($lpb-green, 0.1);
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-
-  &--soon {
-    color: $lpb-muted;
-    background: rgba($lpb-black, 0.06);
-  }
+  background: $bakano-pink;
+  color: $white;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
 }
 
-.plan-card--disabled {
-  opacity: 0.85;
-  background: rgba($lpb-white, 0.7);
-}
-
-.plan-card__name {
+.plans__card-name {
   font-family: $font-display;
-  font-size: 1.75rem;
-  font-weight: 400;
-  margin: 0;
-  color: $lpb-black;
-}
-
-.plan-card__description {
-  font-family: $font-sans;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: $lpb-muted;
-  margin: 0;
-}
-
-.plan-card__price {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.15rem;
-  margin: 0.5rem 0;
-}
-
-.plan-card__currency {
-  font-family: $font-display;
+  font-weight: 700;
   font-size: 1.5rem;
-  color: $lpb-black;
-  margin-top: 0.25rem;
+  color: $bakano-dark;
+  margin: 0;
 }
 
-.plan-card__amount {
+.plans__card-desc {
+  font-family: $font-sans;
+  color: $gray-500;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.plans__card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+}
+
+.plans__card-currency {
+  font-family: $font-sans;
+  font-size: 1.5rem;
+  color: $gray-600;
+  font-weight: 600;
+}
+
+.plans__card-amount {
   font-family: $font-display;
-  font-size: clamp(3rem, 7vw, 4rem);
-  font-weight: 400;
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: $bakano-dark;
   line-height: 1;
-  color: $lpb-black;
 }
 
-.plan-card__period {
+.plans__card-period {
   font-family: $font-mono;
-  font-size: 0.8rem;
-  color: $lpb-muted;
-  align-self: flex-end;
-  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: $gray-500;
+  text-transform: uppercase;
+  margin-top: -0.5rem;
 }
 
-.plan-card__features {
+.plans__card-features {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+  width: 100%;
 
   li {
     display: flex;
@@ -280,79 +228,76 @@ function onBoxError(message: string) {
     gap: 0.6rem;
     font-family: $font-sans;
     font-size: 0.95rem;
-    color: $lpb-graphite;
+    color: $gray-700;
 
     i {
-      color: $lpb-green;
-      font-size: 0.8rem;
+      color: $bakano-green;
+      font-size: 0.85rem;
+      width: 1rem;
     }
   }
 }
 
-.plan-card__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+.plans__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   width: 100%;
-  padding: 1rem 1.5rem;
-  border-radius: 999px;
-  font-family: $font-mono;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
-  border: 1px solid transparent;
+}
 
-  &--primary {
-    background: $lpb-black;
-    color: $lpb-white;
+.plans__input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid $gray-300;
+  border-radius: 0.5rem;
+  font-family: $font-sans;
+  font-size: 0.95rem;
+  color: $bakano-dark;
+  background: $white;
+  transition: border-color 0.2s;
+  outline: none;
 
-    &:hover:not(:disabled) {
-      background: $lpb-green-dark;
-      transform: translateY(-2px);
-    }
+  &::placeholder {
+    color: $gray-400;
   }
 
-  &--outline {
-    background: transparent;
-    color: $lpb-black;
-    border-color: rgba($lpb-black, 0.15);
-
-    &:hover {
-      background: $lpb-black;
-      color: $lpb-white;
-    }
+  &:focus {
+    border-color: $bakano-pink;
   }
 
   &:disabled {
-    opacity: 0.7;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
-.plan-card__link {
+.plans__card-btn {
+  width: 100%;
+  padding: 1rem;
+  background: $bakano-pink;
+  color: $white;
+  border: none;
+  border-radius: 0.5rem;
   font-family: $font-sans;
-  font-size: 0.85rem;
-  color: $lpb-green-deep;
-  text-decoration: none;
-  text-align: center;
-  display: block;
-  margin-top: -0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .25s ease;
 
-  &:hover {
-    text-decoration: underline;
+  &:hover:not(:disabled) {
+    background: $bakano-pink-dark;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
-.plan-card__error {
+.plans__card-error {
   font-family: $font-sans;
   font-size: 0.85rem;
   color: $alert-error;
   margin: 0;
-  text-align: center;
 }
 </style>

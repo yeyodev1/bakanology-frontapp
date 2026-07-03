@@ -3,7 +3,7 @@ import { CLOUDINARY_CDN } from '@/config/site'
 interface ImgOpts {
   w?: number
   h?: number
-  ar?: string         // ej. '4:5' '16:9'
+  ar?: string
   crop?: 'fill' | 'fit' | 'thumb' | 'scale'
   gravity?: 'face' | 'auto' | 'center'
   quality?: 'auto' | number
@@ -30,13 +30,9 @@ export const useCloudinary = () => {
   const img = (publicId: string, opts: ImgOpts = {}) =>
     `${CLOUDINARY_CDN}/${build(opts)}/${publicId}`
 
-  const luisa = (variant: number, opts: ImgOpts = {}) =>
-    img(`luisa-pita/luisa-${variant}.jpg`, opts)
-
-  return { img, luisa, build }
+  return { img, build }
 }
 
-// Fallback estático para SSR-friendly templates: srcSet construido
 export const buildSrcSet = (publicId: string, widths: number[], opts: Omit<ImgOpts, 'w'> = {}) =>
   widths
     .map((w) => {

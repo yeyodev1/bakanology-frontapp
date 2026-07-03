@@ -134,7 +134,7 @@ function formatDate(iso: string) {
 }
 
 .stat-card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -145,18 +145,18 @@ function formatDate(iso: string) {
   &__value {
     font-family: $font-display;
     font-size: 1.75rem;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__label {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__bar {
     height: 6px;
-    background: rgba($lpb-black, 0.06);
+    background: rgba($bakano-dark, 0.06);
     border-radius: 999px;
     margin-top: 0.5rem;
     overflow: hidden;
@@ -164,21 +164,21 @@ function formatDate(iso: string) {
 
   &__fill {
     height: 100%;
-    background: $lpb-green;
+    background: $bakano-green;
     border-radius: 999px;
     transition: width 0.6s cubic-bezier(0.2, 0.7, 0, 1);
   }
 
   &--active &__value {
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 
   &--pending &__value {
-    color: $lpb-amber;
+    color: $bakano-pink;
   }
 
   &--none &__value {
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 
@@ -187,8 +187,8 @@ function formatDate(iso: string) {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background: linear-gradient(135deg, $lpb-green 0%, $lpb-green-dark 100%);
-  color: $lpb-black;
+  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
+  color: $bakano-dark;
   border-radius: 1rem;
   padding: 1.5rem 2rem;
 
@@ -217,8 +217,8 @@ function formatDate(iso: string) {
 
   &__cta {
     flex-shrink: 0;
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -229,7 +229,7 @@ function formatDate(iso: string) {
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-ink;
+      background: $bakano-dark;
     }
   }
 }
@@ -251,7 +251,7 @@ function formatDate(iso: string) {
   font-family: $font-display;
   font-size: 1.35rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
@@ -261,7 +261,7 @@ function formatDate(iso: string) {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-green;
 
   &:hover {
     text-decoration: underline;
@@ -275,7 +275,7 @@ function formatDate(iso: string) {
 }
 
 .course-card {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   overflow: hidden;
@@ -283,7 +283,7 @@ function formatDate(iso: string) {
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba($lpb-black, 0.08);
+    box-shadow: 0 12px 32px rgba($bakano-dark, 0.08);
   }
 
   &__thumb {
@@ -302,8 +302,8 @@ function formatDate(iso: string) {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    background: $lpb-paper;
-    color: $lpb-black;
+    background: $light;
+    color: $bakano-dark;
     font-family: $font-mono;
     font-size: 0.65rem;
     font-weight: 600;
@@ -325,13 +325,13 @@ function formatDate(iso: string) {
     font-size: 1.1rem;
     font-weight: 400;
     margin: 0;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__subtitle {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
     line-height: 1.4;
     display: -webkit-box;
@@ -350,21 +350,21 @@ function formatDate(iso: string) {
   &__progress-bar {
     flex: 1 1 auto;
     height: 6px;
-    background: rgba($lpb-black, 0.06);
+    background: rgba($bakano-dark, 0.06);
     border-radius: 999px;
     overflow: hidden;
   }
 
   &__progress-fill {
     height: 100%;
-    background: $lpb-green;
+    background: $bakano-green;
     border-radius: 999px;
   }
 
   &__progress-value {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 }
 
@@ -375,7 +375,7 @@ function formatDate(iso: string) {
 }
 
 .achievement-badge {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -389,8 +389,8 @@ function formatDate(iso: string) {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba($lpb-green, 0.12);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.12);
+    color: $bakano-green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -401,21 +401,21 @@ function formatDate(iso: string) {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 
   &__date {
     font-family: $font-mono;
     font-size: 0.65rem;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &--locked {
     opacity: 0.55;
 
     .achievement-badge__icon {
-      background: rgba($lpb-black, 0.05);
-      color: $lpb-muted;
+      background: rgba($bakano-dark, 0.05);
+      color: $gray-500;
     }
   }
 }

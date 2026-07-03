@@ -80,8 +80,8 @@ const goToApp = () => router.push({ name: 'dashboard' })
 .verify-state__spinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 3px solid rgba($lpb-green, 0.2);
-  border-top-color: $lpb-green;
+  border: 3px solid rgba($bakano-green, 0.2);
+  border-top-color: $bakano-green;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

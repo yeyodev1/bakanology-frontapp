@@ -15,14 +15,26 @@ declare module 'vue-router' {
   }
 }
 
-const SITE = 'https://luisapitabejarano.com'
+const SITE = 'https://bakanology.bakano.ec'
 const OG_IMAGE =
-  'https://res.cloudinary.com/dkosgkjpq/image/upload/w_1200,h_630,c_fill,g_face,q_auto,f_auto/luisa-pita/luisa-11.jpg'
+  'https://res.cloudinary.com/mrp1wwq1/image/upload/w_1200,h_630,c_fill,g_face,q_auto,f_auto/bakanology/luis-founder.jpg'
 
 const BRAND_TITLE =
-  'Luisa Pita Bejarano | Comunidad anual de transformación corporal para mujeres'
+  'Bakanology Academy | Marketing de performance sin pagar una agencia'
 const BRAND_DESC =
-  'Coach de mujeres ocupadas y dueñas de negocio. Un año entero junto a Luisa para transformar tu cuerpo y tu vida. Comunidad anual cerrada — preventa VIP por invitación.'
+  'Plataforma de e-learning de marketing de performance creada por bakano.ec. Metodología comprobada por 70+ clientes, CRM propio y soporte incluido.'
+
+function routeMeta(title: string, description: string, path: string): RouteMeta {
+  return {
+    title: `${title} | Bakanology Academy`,
+    description,
+    canonical: `${SITE}${path}`,
+    ogTitle: `${title} | Bakanology Academy`,
+    ogDescription: description,
+    ogUrl: `${SITE}${path}`,
+    ogImage: OG_IMAGE,
+  }
+}
 
 const routes: RouteRecordRaw[] = [
   {
@@ -43,128 +55,55 @@ const routes: RouteRecordRaw[] = [
     path: '/politicas-privacidad',
     name: 'privacy-policy',
     component: () => import('@/views/PrivacyPolicyView.vue'),
-    meta: {
-      title: 'Políticas de Privacidad | Luisa Pita Bejarano',
-      description:
-        'Cómo Luisa Pita Bejarano trata los datos personales recogidos en luisapitabejarano.com.',
-      canonical: `${SITE}/politicas-privacidad`,
-      ogTitle: 'Políticas de Privacidad | Luisa Pita Bejarano',
-      ogDescription: 'Tratamiento y protección de datos personales en luisapitabejarano.com.',
-      ogUrl: `${SITE}/politicas-privacidad`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Políticas de Privacidad', 'Cómo Bakanology Academy trata los datos personales recogidos en bakanology.bakano.ec.', '/politicas-privacidad'),
   },
   {
     path: '/aviso-legal',
     name: 'legal-notice',
     component: () => import('@/views/LegalNoticeView.vue'),
-    meta: {
-      title: 'Aviso Legal | Luisa Pita Bejarano',
-      description: 'Términos de uso del sitio luisapitabejarano.com.',
-      canonical: `${SITE}/aviso-legal`,
-      ogTitle: 'Aviso Legal | Luisa Pita Bejarano',
-      ogDescription: 'Términos de uso del sitio luisapitabejarano.com.',
-      ogUrl: `${SITE}/aviso-legal`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Aviso Legal', 'Términos de uso del sitio bakanology.bakano.ec.', '/aviso-legal'),
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('@/views/LoginView.vue'),
-    meta: {
-      title: 'Iniciar sesión | Luisa Pita Bejarano',
-      description: 'Accede a tu cuenta para unirte a la comunidad anual de transformación corporal.',
-      canonical: `${SITE}/login`,
-      ogTitle: 'Iniciar sesión | Luisa Pita Bejarano',
-      ogDescription: 'Accede a tu cuenta para unirte a la comunidad anual de transformación corporal.',
-      ogUrl: `${SITE}/login`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Iniciar sesión', 'Accede a tu cuenta de Bakanology Academy.', '/login'),
   },
   {
     path: '/registro',
     name: 'register',
     component: () => import('@/views/RegisterView.vue'),
-    meta: {
-      title: 'Crear cuenta | Luisa Pita Bejarano',
-      description: 'Crea tu cuenta y asegura tu cupo en la comunidad anual cerrada.',
-      canonical: `${SITE}/registro`,
-      ogTitle: 'Crear cuenta | Luisa Pita Bejarano',
-      ogDescription: 'Crea tu cuenta y asegura tu cupo en la comunidad anual cerrada.',
-      ogUrl: `${SITE}/registro`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Crear cuenta', 'Crea tu cuenta en Bakanology Academy y empieza a aprender marketing de performance.', '/registro'),
   },
   {
     path: '/verificar-email',
     name: 'verify-email',
     component: () => import('@/views/VerifyEmailView.vue'),
-    meta: {
-      title: 'Verificar email | Luisa Pita Bejarano',
-      description: 'Confirma tu correo para activar tu cuenta.',
-      canonical: `${SITE}/verificar-email`,
-      ogTitle: 'Verificar email | Luisa Pita Bejarano',
-      ogDescription: 'Confirma tu correo para activar tu cuenta.',
-      ogUrl: `${SITE}/verificar-email`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Verificar email', 'Confirma tu correo para activar tu cuenta en Bakanology Academy.', '/verificar-email'),
   },
   {
     path: '/recuperar-contrasena',
     name: 'forgot-password',
     component: () => import('@/views/ForgotPasswordView.vue'),
-    meta: {
-      title: 'Recuperar contraseña | Luisa Pita Bejarano',
-      description: 'Recupera el acceso a tu cuenta.',
-      canonical: `${SITE}/recuperar-contrasena`,
-      ogTitle: 'Recuperar contraseña | Luisa Pita Bejarano',
-      ogDescription: 'Recupera el acceso a tu cuenta.',
-      ogUrl: `${SITE}/recuperar-contrasena`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Recuperar contraseña', 'Recupera el acceso a tu cuenta de Bakanology Academy.', '/recuperar-contrasena'),
   },
   {
     path: '/restablecer-contrasena',
     name: 'reset-password',
     component: () => import('@/views/ResetPasswordView.vue'),
-    meta: {
-      title: 'Restablecer contraseña | Luisa Pita Bejarano',
-      description: 'Crea una nueva contraseña para tu cuenta.',
-      canonical: `${SITE}/restablecer-contrasena`,
-      ogTitle: 'Restablecer contraseña | Luisa Pita Bejarano',
-      ogDescription: 'Crea una nueva contraseña para tu cuenta.',
-      ogUrl: `${SITE}/restablecer-contrasena`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Restablecer contraseña', 'Crea una nueva contraseña para tu cuenta de Bakanology Academy.', '/restablecer-contrasena'),
   },
   {
     path: '/pago/confirmar',
     name: 'payment-result',
     component: () => import('@/views/PaymentResultView.vue'),
-    meta: {
-      title: 'Confirmación de pago | Luisa Pita Bejarano',
-      description: 'Resultado de tu pago en la comunidad anual Luisa Pita Bejarano.',
-      canonical: `${SITE}/pago/confirmar`,
-      ogTitle: 'Confirmación de pago | Luisa Pita Bejarano',
-      ogDescription: 'Resultado de tu pago en la comunidad anual Luisa Pita Bejarano.',
-      ogUrl: `${SITE}/pago/confirmar`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Confirmación de pago', 'Resultado de tu pago en Bakanology Academy.', '/pago/confirmar'),
   },
   {
     path: '/pay-response',
     name: 'pay-response',
     component: () => import('@/views/PaymentResultView.vue'),
-    meta: {
-      title: 'Confirmación de pago | Luisa Pita Bejarano',
-      description: 'Resultado de tu pago en la comunidad anual Luisa Pita Bejarano.',
-      canonical: `${SITE}/pay-response`,
-      ogTitle: 'Confirmación de pago | Luisa Pita Bejarano',
-      ogDescription: 'Resultado de tu pago en la comunidad anual Luisa Pita Bejarano.',
-      ogUrl: `${SITE}/pay-response`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Confirmación de pago', 'Resultado de tu pago en Bakanology Academy.', '/pay-response'),
   },
   {
     path: '/app',
@@ -175,141 +114,61 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'dashboard',
         component: () => import('@/views/dashboard/DashboardView.vue'),
-        meta: {
-          title: 'Mi cuenta | Luisa Pita Bejarano',
-          description: 'Tu espacio personal de aprendizaje y transformación.',
-          canonical: `${SITE}/app`,
-          ogTitle: 'Mi cuenta | Luisa Pita Bejarano',
-          ogDescription: 'Tu espacio personal de aprendizaje y transformación.',
-          ogUrl: `${SITE}/app`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Mi cuenta', 'Tu espacio personal de Bakanology Academy.', '/app'),
       },
       {
         path: 'cursos',
         name: 'courses',
         component: () => import('@/views/dashboard/CoursesView.vue'),
-        meta: {
-          title: 'Mis cursos | Luisa Pita Bejarano',
-          description: 'Todos tus cursos disponibles.',
-          canonical: `${SITE}/app/cursos`,
-          ogTitle: 'Mis cursos | Luisa Pita Bejarano',
-          ogDescription: 'Todos tus cursos disponibles.',
-          ogUrl: `${SITE}/app/cursos`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Mis cursos', 'Todos tus cursos disponibles en Bakanology Academy.', '/app/cursos'),
       },
       {
         path: 'cursos/:courseId',
         name: 'course-detail',
         component: () => import('@/views/dashboard/CourseDetailView.vue'),
-        meta: {
-          title: 'Curso | Luisa Pita Bejarano',
-          description: 'Contenido del curso.',
-          canonical: `${SITE}/app/cursos`,
-          ogTitle: 'Curso | Luisa Pita Bejarano',
-          ogDescription: 'Contenido del curso.',
-          ogUrl: `${SITE}/app/cursos`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Curso', 'Contenido del curso en Bakanology Academy.', '/app/cursos'),
       },
       {
         path: 'cursos/:courseId/clases/:lessonId',
         name: 'lesson',
         component: () => import('@/views/dashboard/LessonView.vue'),
-        meta: {
-          title: 'Clase | Luisa Pita Bejarano',
-          description: 'Clase en reproducción.',
-          canonical: `${SITE}/app/cursos`,
-          ogTitle: 'Clase | Luisa Pita Bejarano',
-          ogDescription: 'Clase en reproducción.',
-          ogUrl: `${SITE}/app/cursos`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Clase', 'Clase en reproducción en Bakanology Academy.', '/app/cursos'),
       },
       {
         path: 'clases-en-vivo',
         name: 'live-classes',
         component: () => import('@/views/dashboard/LiveClassesView.vue'),
-        meta: {
-          title: 'Clases en vivo | Luisa Pita Bejarano',
-          description: 'Próximas clases en vivo con Luisa.',
-          canonical: `${SITE}/app/clases-en-vivo`,
-          ogTitle: 'Clases en vivo | Luisa Pita Bejarano',
-          ogDescription: 'Próximas clases en vivo con Luisa.',
-          ogUrl: `${SITE}/app/clases-en-vivo`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Clases en vivo', 'Próximas clases en vivo de Bakanology Academy.', '/app/clases-en-vivo'),
       },
       {
         path: 'horario',
         name: 'schedule',
         component: () => import('@/views/dashboard/ScheduleView.vue'),
-        meta: {
-          title: 'Horario | Luisa Pita Bejarano',
-          description: 'Horario semanal de actividades.',
-          canonical: `${SITE}/app/horario`,
-          ogTitle: 'Horario | Luisa Pita Bejarano',
-          ogDescription: 'Horario semanal de actividades.',
-          ogUrl: `${SITE}/app/horario`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Horario', 'Horario semanal de actividades de Bakanology Academy.', '/app/horario'),
       },
       {
         path: 'recetas',
         name: 'recipes',
         component: () => import('@/views/dashboard/RecipesView.vue'),
-        meta: {
-          title: 'Recetas | Luisa Pita Bejarano',
-          description: 'Recetas saludables para tu transformación.',
-          canonical: `${SITE}/app/recetas`,
-          ogTitle: 'Recetas | Luisa Pita Bejarano',
-          ogDescription: 'Recetas saludables para tu transformación.',
-          ogUrl: `${SITE}/app/recetas`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Recursos', 'Recursos disponibles en Bakanology Academy.', '/app/recetas'),
       },
       {
         path: 'logros',
         name: 'achievements',
         component: () => import('@/views/dashboard/AchievementsView.vue'),
-        meta: {
-          title: 'Logros | Luisa Pita Bejarano',
-          description: 'Tus logros y reconocimientos.',
-          canonical: `${SITE}/app/logros`,
-          ogTitle: 'Logros | Luisa Pita Bejarano',
-          ogDescription: 'Tus logros y reconocimientos.',
-          ogUrl: `${SITE}/app/logros`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Logros', 'Tus logros y reconocimientos en Bakanology Academy.', '/app/logros'),
       },
       {
         path: 'configuracion',
         name: 'settings',
         component: () => import('@/views/dashboard/SettingsView/index.vue'),
-        meta: {
-          title: 'Configuración | Luisa Pita Bejarano',
-          description: 'Gestiona tu perfil y suscripción.',
-          canonical: `${SITE}/app/configuracion`,
-          ogTitle: 'Configuración | Luisa Pita Bejarano',
-          ogDescription: 'Gestiona tu perfil y suscripción.',
-          ogUrl: `${SITE}/app/configuracion`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Configuración', 'Gestiona tu perfil y suscripción en Bakanology Academy.', '/app/configuracion'),
       },
       {
         path: 'pagos',
         name: 'payments',
         component: () => import('@/views/dashboard/PaymentsView/index.vue'),
-        meta: {
-          title: 'Pagos | Luisa Pita Bejarano',
-          description: 'Gestiona tus pagos y suscripción.',
-          canonical: `${SITE}/app/pagos`,
-          ogTitle: 'Pagos | Luisa Pita Bejarano',
-          ogDescription: 'Gestiona tus pagos y suscripción.',
-          ogUrl: `${SITE}/app/pagos`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Pagos', 'Gestiona tus pagos y suscripción en Bakanology Academy.', '/app/pagos'),
       },
     ],
   },
@@ -326,29 +185,13 @@ const routes: RouteRecordRaw[] = [
         path: 'usuarios',
         name: 'admin-users',
         component: () => import('@/views/admin/AdminUsersView/index.vue'),
-        meta: {
-          title: 'Admin - Usuarios | Luisa Pita Bejarano',
-          description: 'Gestión de usuarios de la academia.',
-          canonical: `${SITE}/admin/usuarios`,
-          ogTitle: 'Admin - Usuarios | Luisa Pita Bejarano',
-          ogDescription: 'Gestión de usuarios de la academia.',
-          ogUrl: `${SITE}/admin/usuarios`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Admin - Usuarios', 'Gestión de usuarios de Bakanology Academy.', '/admin/usuarios'),
       },
       {
         path: 'pagos',
         name: 'admin-payments',
         component: () => import('@/views/admin/AdminPaymentsView/index.vue'),
-        meta: {
-          title: 'Admin - Pagos | Luisa Pita Bejarano',
-          description: 'Gestión de pagos manuales de la academia.',
-          canonical: `${SITE}/admin/pagos`,
-          ogTitle: 'Admin - Pagos | Luisa Pita Bejarano',
-          ogDescription: 'Gestión de pagos manuales de la academia.',
-          ogUrl: `${SITE}/admin/pagos`,
-          ogImage: OG_IMAGE,
-        } satisfies RouteMeta,
+        meta: routeMeta('Admin - Pagos', 'Gestión de pagos de Bakanology Academy.', '/admin/pagos'),
       },
     ],
   },
@@ -356,17 +199,8 @@ const routes: RouteRecordRaw[] = [
     path: '/no-permiso',
     name: 'no-permission',
     component: () => import('@/views/admin/NoPermissionView.vue'),
-    meta: {
-      title: 'Sin permiso | Luisa Pita Bejarano',
-      description: 'No tienes permiso para acceder a esta sección.',
-      canonical: `${SITE}/no-permiso`,
-      ogTitle: 'Sin permiso | Luisa Pita Bejarano',
-      ogDescription: 'No tienes permiso para acceder a esta sección.',
-      ogUrl: `${SITE}/no-permiso`,
-      ogImage: OG_IMAGE,
-    } satisfies RouteMeta,
+    meta: routeMeta('Sin permiso', 'No tienes permiso para acceder a esta sección.', '/no-permiso'),
   },
-  // 404 → home
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 
@@ -395,15 +229,12 @@ router.beforeEach((to) => {
     return { name: 'no-permission' }
   }
 
-  // El home solo es para no-autenticados; si está logueado redirige.
   if (to.name === 'home' && userStore.isAuthenticated) {
     if (userStore.role === 'admin') return { name: 'admin-users' }
     if (userStore.hasActiveAccess) return { name: 'dashboard' }
     return { name: 'payments' }
   }
 
-  // Los usuarios normales sin acceso activo no deben ver el dashboard /app;
-  // se envían a la página de pago dentro de la plataforma.
   if (
     to.name === 'dashboard' &&
     userStore.isAuthenticated &&
@@ -421,7 +252,6 @@ router.beforeEach((to) => {
   }
 })
 
-// ── SEO dinámico por ruta ──────────────────────────────────────────────────────
 const setMeta = (name: string, content: string) => {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
   if (!el) {

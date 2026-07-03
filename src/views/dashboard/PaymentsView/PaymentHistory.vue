@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface PaymentItem {
   id: string
-  plan: 'monthly' | 'annual'
+  plan: 'annual' | 'lifetime'
   amount: number
   status: string
   createdAt: string
@@ -53,7 +53,7 @@ function formatDate(iso: string) {
           </tr>
           <tr v-for="item in items" :key="item.id">
             <td>{{ formatDate(item.createdAt) }}</td>
-            <td>{{ item.plan === 'annual' ? 'Anualidad' : 'Mensualidad' }}</td>
+            <td>Anualidad</td>
             <td>USD {{ item.amount }}</td>
             <td>
               <span class="history__badge" :class="`history__badge--${item.status}`">
@@ -77,14 +77,14 @@ function formatDate(iso: string) {
 .history__title {
   font-family: $font-display;
   font-size: 1.25rem;
-  font-weight: 400;
-  color: $lpb-black;
+  font-weight: 600;
+  color: $bakano-dark;
   margin: 0;
 }
 
 .history__wrap {
   overflow-x: auto;
-  background: $lpb-white;
+  background: $light;
   border: 1px solid var(--border);
   border-radius: 1rem;
 }
@@ -107,8 +107,8 @@ function formatDate(iso: string) {
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: $lpb-muted;
-    background: $lpb-cream;
+    color: $gray-500;
+    background: var(--cream);
   }
 
   tr:last-child td { border-bottom: none; }
@@ -116,7 +116,7 @@ function formatDate(iso: string) {
 
 .history__empty {
   text-align: center;
-  color: $lpb-muted;
+  color: $gray-500;
   padding: 2rem;
 }
 
@@ -130,8 +130,8 @@ function formatDate(iso: string) {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
-  &--approved { background: rgba($lpb-green, 0.12); color: $lpb-green-deep; }
-  &--pending { background: rgba($lpb-amber, 0.12); color: $lpb-amber; }
+  &--approved { background: rgba($bakano-green, 0.12); color: $bakano-green; }
+  &--pending { background: rgba($bakano-pink, 0.12); color: $bakano-pink; }
   &--failed,
   &--canceled { background: rgba($alert-error, 0.1); color: $alert-error; }
 }

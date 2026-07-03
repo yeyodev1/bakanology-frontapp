@@ -38,8 +38,8 @@ async function setReminder() {
     const response = await launchReminderService.create()
     status.value = 'success'
     message.value = response.data.alreadyRegistered
-      ? 'Ya te habías registrado. Te avisamos el 6 de julio.'
-      : 'Listo. Te avisamos el 6 de julio para que no se te pase el lanzamiento.'
+      ? 'Ya te habías registrado. Te avisamos en el lanzamiento.'
+      : 'Listo. Te avisamos cuando abramos las puertas.'
   } catch (err: unknown) {
     status.value = 'error'
     const error = err as { message?: string }
@@ -52,15 +52,15 @@ async function setReminder() {
   <div v-if="isBeforeLaunch" class="launch-blocker">
     <div class="launch-blocker__card">
       <div class="launch-blocker__brand">
-        <span class="launch-blocker__logo">Luisa Pita Bejarano</span>
-        <span class="launch-blocker__tag">Academy</span>
+        <span class="launch-blocker__logo">Bakanology</span>
+        <span class="launch-blocker__tag">Academy · bakano.ec</span>
       </div>
 
       <h1 class="launch-blocker__title">
         Estamos preparando<br />algo increíble para ti
       </h1>
       <p class="launch-blocker__subtitle">
-        El contenido completo de la academia se abre el 6 de julio.
+        El contenido completo de la academia se abre el 31 de julio.
       </p>
 
       <CountdownTimer :target="deadline" label="Lanzamiento en" class="launch-blocker__timer" />
@@ -116,9 +116,9 @@ async function setReminder() {
   width: 100%;
   max-width: 560px;
   padding: 2.5rem 2rem;
-  background: $lpb-paper;
+  background: $light;
   border-radius: 1.5rem;
-  box-shadow: 0 24px 80px rgba($lpb-black, 0.08);
+  box-shadow: 0 24px 80px rgba($bakano-dark, 0.08);
   text-align: center;
 }
 
@@ -133,7 +133,8 @@ async function setReminder() {
 .launch-blocker__logo {
   font-family: $font-display;
   font-size: 1.5rem;
-  color: $lpb-black;
+  font-weight: 800;
+  color: $bakano-dark;
 }
 
 .launch-blocker__tag {
@@ -142,7 +143,7 @@ async function setReminder() {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-pink;
 }
 
 .launch-blocker__title {
@@ -150,7 +151,7 @@ async function setReminder() {
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.15;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin-bottom: 0.75rem;
 }
 
@@ -158,7 +159,7 @@ async function setReminder() {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $lpb-muted;
+  color: $gray-500;
   margin-bottom: 2rem;
 }
 
@@ -172,8 +173,8 @@ async function setReminder() {
   align-items: center;
   gap: 0.75rem;
   padding: 1.25rem;
-  background: rgba($lpb-green-deep, 0.05);
-  border: 1px solid rgba($lpb-green-deep, 0.12);
+  background: rgba($bakano-pink, 0.05);
+  border: 1px solid rgba($bakano-pink, 0.12);
   border-radius: 1rem;
   margin-bottom: 1.25rem;
 }
@@ -181,7 +182,7 @@ async function setReminder() {
 .launch-blocker__reminder-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
@@ -192,11 +193,11 @@ async function setReminder() {
   margin: 0;
 
   &--success {
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 
   &--error {
-    color: #c0392b;
+    color: $alert-error;
   }
 }
 
@@ -205,7 +206,7 @@ async function setReminder() {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 500;
-  color: $lpb-green-deep;
+  color: $bakano-pink;
   margin-bottom: 1rem;
   text-decoration: none;
 
@@ -222,13 +223,13 @@ async function setReminder() {
   border: none;
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $lpb-muted;
+  color: $gray-500;
   text-decoration: underline;
   cursor: pointer;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $lpb-black;
+    color: $bakano-dark;
   }
 }
 
@@ -238,7 +239,7 @@ async function setReminder() {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
 }
 

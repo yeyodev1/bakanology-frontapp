@@ -75,7 +75,7 @@ function typeClass(type: string) {
 }
 
 .day-column {
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1rem;
@@ -90,7 +90,7 @@ function typeClass(type: string) {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
@@ -105,7 +105,7 @@ function typeClass(type: string) {
   &__empty {
     font-family: $font-sans;
     font-size: 0.8rem;
-    color: $lpb-muted;
+    color: $gray-500;
     text-align: center;
     padding: 1rem 0;
   }
@@ -117,21 +117,21 @@ function typeClass(type: string) {
   gap: 0.25rem;
   padding: 0.75rem;
   border-radius: 0.6rem;
-  background: $lpb-cream;
-  border-left: 3px solid $lpb-green;
+  background: var(--cream);
+  border-left: 3px solid $bakano-green;
 
   &__time {
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__title {
     font-family: $font-sans;
     font-size: 0.85rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 
@@ -141,13 +141,13 @@ function typeClass(type: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
-  &--live { border-left-color: $lpb-green; }
-  &--qa { border-left-color: $lpb-amber; }
+  &--live { border-left-color: $bakano-green; }
+  &--qa { border-left-color: $bakano-pink; }
   &--workshop { border-left-color: $alert-info; }
-  &--review { border-left-color: $lpb-gold; }
+  &--review { border-left-color: $bakano-pink; }
 }
 
 @media (max-width: 1200px) {

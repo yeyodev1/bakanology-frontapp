@@ -3,27 +3,24 @@
 @use './typography.scss' as *;
 
 :root {
-  --bg:          #{$lpb-paper};
-  --bg-dark:     #{$lpb-black};
-  --text:        #{$lpb-black};
-  --text-soft:   #{$lpb-graphite};
-  --text-mute:   #{$lpb-muted};
-  --border:      #{rgba($lpb-black, 0.08)};
-  --accent:      #{$lpb-green};
-  --accent-dark: #{$lpb-green-dark};
-  --accent-gold: #{$lpb-gold};
-  --accent-amber: #{$lpb-amber};
-  --surface:     #{$lpb-surface};
-  --cream:       #{$lpb-cream};
-  --line:        #{$lpb-line};
+  --bg:          #{$bakano-light};
+  --bg-dark:     #{$bakano-dark};
+  --text:        #{$bakano-dark};
+  --text-soft:   #{$gray-600};
+  --text-mute:   #{$gray-500};
+  --border:      #{rgba($bakano-dark, 0.08)};
+  --accent:      #{$bakano-pink};
+  --accent-dark: #{$bakano-pink-dark};
+  --surface:     #{$white};
+  --line:        #{$gray-200};
 }
 
 [data-theme='dark'] {
-  --bg:          #{$lpb-black};
-  --text:        #{$lpb-white};
-  --text-soft:   #{rgba($lpb-white, 0.78)};
-  --text-mute:   #{rgba($lpb-white, 0.5)};
-  --border:      #{rgba($lpb-white, 0.12)};
+  --bg:          #{$bakano-dark};
+  --text:        #{$bakano-light};
+  --text-soft:   #{rgba($bakano-light, 0.78)};
+  --text-mute:   #{rgba($bakano-light, 0.5)};
+  --border:      #{rgba($bakano-light, 0.12)};
 }
 
 html {
@@ -45,8 +42,8 @@ body {
 }
 
 ::selection {
-  background: $lpb-green;
-  color: $lpb-black;
+  background: $bakano-pink;
+  color: $white;
 }
 
 a {
@@ -68,7 +65,6 @@ button {
   cursor: pointer;
 }
 
-// Lenis smooth scroll classes (recomendadas por la librería)
 html.lenis,
 html.lenis body {
   height: auto;
@@ -86,7 +82,6 @@ html.lenis body {
   overflow: clip;
 }
 
-// Container utility — mobile-first paddings
 .container {
   width: 100%;
   max-width: 1440px;
@@ -98,14 +93,12 @@ html.lenis body {
   max-width: 920px;
 }
 
-// Mobile-first body sizing — base 16px, escalas suaves
 @media (max-width: 480px) {
   body {
     font-size: 0.98rem;
   }
 }
 
-// A11y: touch targets mínimos 44x44
 @media (pointer: coarse) {
   button,
   a {
@@ -113,7 +106,6 @@ html.lenis body {
   }
 }
 
-// Reveal initial states (las animaciones de GSAP los desplazan al show)
 [data-reveal] {
   opacity: 0;
   transform: translateY(48px);

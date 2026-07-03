@@ -3,18 +3,14 @@ defineProps<{ size?: 'sm' | 'md' | 'lg'; variant?: 'full' | 'mono' }>()
 </script>
 
 <template>
-  <span class="wordmark" :class="[`wordmark--${size ?? 'md'}`, `wordmark--${variant ?? 'full'}`]" aria-label="Luisa Pita Bejarano">
-    <!-- Versión Logotipo Completo (Normal, HTML Puro) -->
+  <span class="wordmark" :class="[`wordmark--${size ?? 'md'}`, `wordmark--${variant ?? 'full'}`]" aria-label="Bakanology Academy">
     <div v-if="variant !== 'mono'" class="wordmark__full">
-      <span class="wordmark__name wordmark__name--italic">Luisa Pita </span>
-      <span class="wordmark__name wordmark__name--bold">Bejarano</span>
-      <div class="wordmark__line" aria-hidden="true" />
+      <span class="wordmark__name wordmark__name--bold">Bakanology</span>
+      <span class="wordmark__tag">Academy</span>
     </div>
-
-    <!-- Versión Monograma con Font Awesome -->
     <div v-else class="wordmark__mono">
-      <i class="fa-solid fa-crown wordmark__crown" aria-hidden="true"></i>
-      <span class="wordmark__initials">LpB</span>
+      <i class="fa-solid fa-rocket wordmark__rocket" aria-hidden="true"></i>
+      <span class="wordmark__initials">Bk</span>
     </div>
   </span>
 </template>
@@ -38,22 +34,19 @@ defineProps<{ size?: 'sm' | 'md' | 'lg'; variant?: 'full' | 'mono' }>()
   font-family: $font-display;
   letter-spacing: -0.02em;
 
-  &--italic {
-    font-style: italic;
-    font-weight: 400;
-  }
-
   &--bold {
-    font-weight: 600;
+    font-weight: 800;
   }
 }
 
-.wordmark__line {
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.3;
-  margin-top: 0.2em;
+.wordmark__tag {
+  font-family: $font-mono;
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 0.15em;
 }
 
 .wordmark__mono {
@@ -65,16 +58,15 @@ defineProps<{ size?: 'sm' | 'md' | 'lg'; variant?: 'full' | 'mono' }>()
   gap: 2px;
 }
 
-.wordmark__crown {
+.wordmark__rocket {
   font-size: 0.6em;
   opacity: 0.8;
-  color: $lpb-green;
+  color: $bakano-green;
 }
 
 .wordmark__initials {
   font-family: $font-display;
-  font-style: italic;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: -0.05em;
 }
 

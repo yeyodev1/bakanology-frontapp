@@ -133,7 +133,7 @@ function logout() {
 .admin {
   display: flex;
   min-height: 100vh;
-  background: $lpb-cream;
+  background: var(--cream);
 }
 
 .admin__sidebar {
@@ -142,7 +142,7 @@ function logout() {
   left: 0;
   width: 260px;
   height: 100dvh;
-  background: $lpb-paper;
+  background: $light;
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -155,12 +155,12 @@ function logout() {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background: $lpb-paper;
+  background: $light;
   border-bottom: 1px solid var(--border);
 }
 
 .admin__brand {
-  color: $lpb-black;
+  color: $bakano-dark;
 }
 
 .admin__close {
@@ -176,7 +176,7 @@ function logout() {
     display: block;
     width: 20px;
     height: 2px;
-    background: $lpb-black;
+    background: $bakano-dark;
     border-radius: 1px;
   }
 
@@ -199,23 +199,23 @@ function logout() {
   gap: 0.85rem;
   padding: 0.85rem 1rem;
   border-radius: 0.75rem;
-  color: $lpb-graphite;
+  color: $gray-700;
   font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($lpb-green, 0.08);
-    color: $lpb-black;
+    background: rgba($bakano-green, 0.08);
+    color: $bakano-dark;
   }
 
   &--active {
-    background: rgba($lpb-green, 0.14);
-    color: $lpb-green-deep;
+    background: rgba($bakano-green, 0.14);
+    color: $bakano-green;
 
     .admin__icon {
-      color: $lpb-green-deep;
+      color: $bakano-green;
     }
   }
 }
@@ -226,7 +226,7 @@ function logout() {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: $lpb-muted;
+  color: $gray-500;
   transition: color 0.2s ease;
 }
 
@@ -245,7 +245,7 @@ function logout() {
   width: 100%;
   padding: 0.7rem 0.75rem;
   border-radius: 0.625rem;
-  color: $lpb-graphite;
+  color: $gray-700;
   font-family: $font-sans;
   font-size: 0.9rem;
   font-weight: 500;
@@ -253,8 +253,8 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($lpb-green, 0.08);
-    color: $lpb-black;
+    background: rgba($bakano-green, 0.08);
+    color: $bakano-dark;
   }
 }
 
@@ -263,7 +263,7 @@ function logout() {
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
   text-align: center;
 }
@@ -287,12 +287,12 @@ function logout() {
   z-index: 800;
   padding: 0.55rem 0.9rem 0.55rem 0.75rem;
   border-radius: 999px;
-  background: rgba($lpb-paper, 0.92);
+  background: rgba($light, 0.92);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
-  color: $lpb-black;
+  color: $bakano-dark;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba($lpb-black, 0.08);
+  box-shadow: 0 4px 20px rgba($bakano-dark, 0.08);
 
   &-text {
     font-family: $font-mono;
@@ -336,7 +336,7 @@ function logout() {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.5rem 2rem;
-  background: rgba($lpb-cream, 0.92);
+  background: rgba(var(--cream), 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -348,7 +348,7 @@ function logout() {
   font-family: $font-display;
   font-size: 1.5rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
@@ -358,7 +358,7 @@ function logout() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-green-deep;
+  color: $bakano-green;
 
   &:hover {
     text-decoration: underline;
@@ -375,7 +375,7 @@ function logout() {
   position: fixed;
   inset: 0;
   z-index: 890;
-  background: rgba($lpb-black, 0.35);
+  background: rgba($bakano-dark, 0.35);
   backdrop-filter: blur(4px);
 }
 

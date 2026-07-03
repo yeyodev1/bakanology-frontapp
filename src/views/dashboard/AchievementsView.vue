@@ -18,66 +18,52 @@ function formatDate(iso: string | null) {
   <div class="achievements-view">
     <header class="summary-card">
       <div class="summary-card__text">
-        <span class="summary-card__eyebrow">Tu camino</span>
-        <p class="summary-card__description">
-          {{ unlocked.length }} de {{ dashboardStore.achievements.length }} desbloqueados.
-          Cada logro representa un compromiso real contigo.
-        </p>
+        <h2 class="summary-card__title">Logros</h2>
+        <p class="summary-card__count">{{ unlocked.length }} / {{ unlocked.length + locked.length }} obtenidos</p>
       </div>
-      <div class="summary-card__stat">
-        <span class="summary-card__stat-value">{{ Math.round((unlocked.length / dashboardStore.achievements.length) * 100) }}%</span>
-        <span class="summary-card__stat-label">Completado</span>
+      <div class="summary-card__progress">
+        <div
+          class="summary-card__bar"
+          :style="{ width: `${(unlocked.length / (unlocked.length + locked.length)) * 100}%` }"
+        />
       </div>
     </header>
 
-    <section v-if="unlocked.length" class="achievements-section">
-      <h2 class="achievements-section__title">
-        <i class="fa-solid fa-medal" aria-hidden="true" />
-        Desbloqueados
-      </h2>
-      <div class="achievements-grid">
-        <div
-          v-for="achievement in unlocked"
-          :key="achievement.id"
-          class="achievement-card achievement-card--unlocked"
-        >
-          <div class="achievement-card__ring">
-            <i :class="achievement.iconClass" aria-hidden="true" />
+    <section v-if="unlocked.length" class="section">
+      <h3 class="section__title">Desbloqueados</h3>
+      <div class="grid">
+        <div v-for="a in unlocked" :key="a.id" class="card card--unlocked">
+          <div class="card__icon">
+            <i :class="a.iconClass" />
           </div>
-          <div class="achievement-card__content">
-            <h3 class="achievement-card__title">{{ achievement.title }}</h3>
-            <p class="achievement-card__description">{{ achievement.description }}</p>
+          <div class="card__info">
+            <strong class="card__label">{{ a.title }}</strong>
+            <span class="card__desc">{{ a.description }}</span>
           </div>
-          <span v-if="achievement.unlockedAt" class="achievement-card__date">
-            <i class="fa-regular fa-calendar" aria-hidden="true" />
-            {{ formatDate(achievement.unlockedAt) }}
-          </span>
+          <span class="card__date">{{ formatDate(a.unlockedAt) }}</span>
         </div>
       </div>
     </section>
 
-    <section class="achievements-section">
-      <h2 class="achievements-section__title">
-        <i class="fa-solid fa-lock" aria-hidden="true" />
-        Por desbloquear
-      </h2>
-      <div class="achievements-grid">
-        <div
-          v-for="achievement in locked"
-          :key="achievement.id"
-          class="achievement-card achievement-card--locked"
-        >
-          <div class="achievement-card__ring">
-            <i :class="achievement.iconClass" aria-hidden="true" />
+    <section class="section">
+      <h3 class="section__title">Bloqueados</h3>
+      <div class="grid">
+        <div v-for="a in locked" :key="a.id" class="card card--locked">
+          <div class="card__icon card__icon--dim">
+            <i :class="a.iconClass" />
           </div>
-          <div class="achievement-card__content">
-            <h3 class="achievement-card__title">{{ achievement.title }}</h3>
-            <p class="achievement-card__description">{{ achievement.description }}</p>
+          <div class="card__info">
+            <strong class="card__label">{{ a.title }}</strong>
+            <span class="card__desc">{{ a.description }}</span>
           </div>
-          <span class="achievement-card__hint">Próximo logro</span>
+          <span class="card__lock"><i class="fa-solid fa-lock" /></span>
         </div>
       </div>
     </section>
+
+    <div v-if="unlocked.length === 0 && locked.length === 0" class="empty">
+      <p>No hay logros disponibles.</p>
+    </div>
   </div>
 </template>
 
@@ -85,213 +71,149 @@ function formatDate(iso: string | null) {
 .achievements-view {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .summary-card {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  background: $lpb-white;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: $light;
   border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  padding: 1.75rem 2rem;
+  border-radius: 1rem;
 
   &__text {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  &__eyebrow {
-    font-family: $font-mono;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: $lpb-green-dark;
-  }
-
-  &__description {
-    font-family: $font-sans;
-    font-size: 0.95rem;
-    color: $lpb-muted;
-    margin: 0;
-    max-width: 520px;
-  }
-
-  &__stat {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: $lpb-cream;
-    border: 1px solid var(--border);
-    flex-shrink: 0;
   }
 
-  &__stat-value {
+  &__title {
     font-family: $font-display;
-    font-size: 1.75rem;
-    color: $lpb-green-deep;
-    line-height: 1;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $bakano-dark;
+    margin: 0;
   }
 
-  &__stat-label {
+  &__count {
     font-family: $font-mono;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: $lpb-muted;
-    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: $gray-500;
+    margin: 0;
+  }
+
+  &__progress {
+    height: 6px;
+    background: rgba($bakano-dark, 0.07);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__bar {
+    height: 100%;
+    background: $bakano-green;
+    border-radius: 999px;
+    transition: width 0.5s ease;
   }
 }
 
-.achievements-section {
+.section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
   &__title {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: $font-sans;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: $lpb-graphite;
-    margin: 0;
-
-    i {
-      color: $lpb-green-dark;
-    }
-  }
-}
-
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.achievement-card {
-  background: $lpb-white;
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba($lpb-black, 0.07);
-  }
-
-  &__ring {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $lpb-cream;
-    border: 1px solid var(--border);
-
-    i {
-      font-size: 1.35rem;
-      color: $lpb-graphite;
-    }
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  &__title {
-    font-family: $font-display;
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: $lpb-black;
-    margin: 0;
-  }
-
-  &__description {
-    font-family: $font-sans;
-    font-size: 0.85rem;
-    color: $lpb-muted;
-    margin: 0;
-    line-height: 1.45;
-  }
-
-  &__date,
-  &__hint {
-    margin-top: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
     font-family: $font-mono;
     font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    width: max-content;
+    color: $gray-500;
+    margin: 0;
   }
+}
 
-  &__date {
-    color: $lpb-green-deep;
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-    i {
-      color: $lpb-green-dark;
-    }
-  }
-
-  &__hint {
-    color: $lpb-muted;
-  }
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: $light;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
 
   &--unlocked {
-    border-color: rgba($lpb-green, 0.25);
-
-    .achievement-card__ring {
-      background: rgba($lpb-green, 0.12);
-      border-color: rgba($lpb-green, 0.25);
-
-      i {
-        color: $lpb-green-deep;
-      }
-    }
+    background: rgba($bakano-green, 0.04);
+    border-color: rgba($bakano-green, 0.12);
   }
 
   &--locked {
     opacity: 0.65;
+  }
 
-    .achievement-card__ring {
-      background: rgba($lpb-black, 0.03);
+  &__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bakano-green;
+    color: $white;
+    border-radius: 50%;
+    font-size: 1rem;
+    flex-shrink: 0;
+
+    &--dim {
+      background: rgba($bakano-dark, 0.06);
+      color: $gray-500;
     }
   }
-}
 
-@media (max-width: 1200px) {
-  .achievements-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 720px) {
-  .summary-card {
+  &__info {
+    flex: 1 1 auto;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 0.15rem;
   }
 
-  .achievements-grid { grid-template-columns: 1fr; }
+  &__label {
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $bakano-dark;
+  }
+
+  &__desc {
+    font-family: $font-sans;
+    font-size: 0.85rem;
+    color: $gray-500;
+  }
+
+  &__date {
+    font-family: $font-mono;
+    font-size: 0.65rem;
+    color: $gray-400;
+    white-space: nowrap;
+  }
+
+  &__lock {
+    color: $gray-400;
+    font-size: 0.9rem;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: $gray-500;
+  font-family: $font-sans;
 }
 </style>

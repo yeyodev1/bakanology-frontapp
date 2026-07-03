@@ -24,7 +24,7 @@ const emit = defineEmits<{
       </div>
       <h2 class="hero__access">Acceso hasta {{ accessUntilLabel }}</h2>
       <p class="hero__status">
-        Tu suscripción está activa. Disfruta de la comunidad y todo el contenido de la academia.
+        Tu suscripción está activa. Disfruta del contenido completo de Bakanology Academy.
       </p>
     </div>
     <div v-if="accessUntilDate" class="hero__timer">
@@ -34,13 +34,13 @@ const emit = defineEmits<{
 
   <section v-else class="hero">
     <div class="hero__main">
-      <h2 class="hero__access">Elige tu plan</h2>
+      <h2 class="hero__access">Adquiere tu acceso</h2>
       <p class="hero__status">
         Precio especial de preventa. <strong>Plan Anual — USD {{ annualPrice }}</strong> por 12 meses.
-        Valor regular: <strong>USD 470</strong>.
+        Valor regular: <strong>USD 470</strong> (30 founding members).
       </p>
       <button class="hero__cta" @click="emit('go-to-payment-page')">
-        Ver formas de pago
+        Ver plan
       </button>
     </div>
   </section>
@@ -52,15 +52,15 @@ const emit = defineEmits<{
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background: $lpb-white;
+  background: $light;
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 2rem 2.25rem;
   flex-wrap: wrap;
 
   &--active {
-    background: linear-gradient(135deg, $lpb-green 0%, $lpb-green-dark 100%);
-    color: $lpb-black;
+    background: linear-gradient(135deg, $bakano-green 0%, darken(#3bb77e, 12%) 100%);
+    color: $white;
     border-color: transparent;
   }
 }
@@ -88,8 +88,13 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba($lpb-black, 0.08);
-  color: $lpb-black;
+  background: rgba($bakano-dark, 0.08);
+  color: $bakano-dark;
+
+  .hero--active & {
+    background: rgba($white, 0.15);
+    color: $white;
+  }
 }
 
 .hero__founder-badge {
@@ -100,14 +105,19 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: $lpb-black;
-  color: $lpb-white;
+  background: $bakano-dark;
+  color: $white;
+
+  .hero--active & {
+    background: rgba($white, 0.2);
+    color: $white;
+  }
 }
 
 .hero__access {
   font-family: $font-display;
   font-size: 1.85rem;
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -132,16 +142,16 @@ const emit = defineEmits<{
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.85rem 1.5rem;
+  border: none;
   border-radius: 999px;
-  background: $lpb-green;
-  color: $lpb-black;
+  background: $bakano-green;
+  color: $white;
   cursor: pointer;
   transition: background 0.2s ease;
   width: fit-content;
 
   &:hover {
-    background: $lpb-green-dark;
-    color: $lpb-white;
+    background: darken(#3bb77e, 10%);
   }
 }
 

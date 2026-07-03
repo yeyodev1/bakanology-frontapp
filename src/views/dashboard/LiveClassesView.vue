@@ -78,8 +78,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
 }
 
 .next-live {
-  background: linear-gradient(135deg, $lpb-green 0%, $lpb-green-dark 100%);
-  color: $lpb-black;
+  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
+  color: $bakano-dark;
   border-radius: 1rem;
   padding: 2rem;
   display: flex;
@@ -112,8 +112,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
 
   &__cta {
     margin-top: 0.75rem;
-    background: $lpb-black;
-    color: $lpb-white;
+    background: $bakano-dark;
+    color: $white;
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -124,7 +124,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-ink;
+      background: $bakano-dark;
     }
   }
 }
@@ -138,7 +138,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-display;
     font-size: 1.35rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 }
@@ -153,7 +153,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  background: $lpb-white;
+  background: $white;
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -166,7 +166,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     width: 64px;
     height: 64px;
     border-radius: 0.75rem;
-    background: $lpb-cream;
+    background: var(--cream);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,7 +178,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-display;
     font-size: 1.5rem;
     font-weight: 400;
-    color: $lpb-black;
+    color: $bakano-dark;
     line-height: 1;
   }
 
@@ -188,7 +188,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
   }
 
   &__info {
@@ -202,28 +202,28 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-sans;
     font-size: 1.05rem;
     font-weight: 600;
-    color: $lpb-black;
+    color: $bakano-dark;
     margin: 0;
   }
 
   &__coach {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $lpb-graphite;
+    color: $gray-600;
     margin: 0;
   }
 
   &__time {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $lpb-muted;
+    color: $gray-500;
     margin: 0;
   }
 
   &__link {
     flex-shrink: 0;
-    background: $lpb-green;
-    color: $lpb-black;
+    background: $bakano-green;
+    color: $bakano-dark;
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
@@ -234,8 +234,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
     transition: background 0.2s ease;
 
     &:hover {
-      background: $lpb-green-dark;
-      color: $lpb-white;
+      background: $bakano-green;
+      color: $white;
     }
   }
 
@@ -246,10 +246,10 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $lpb-muted;
+    color: $gray-500;
     padding: 0.65rem 1rem;
     border-radius: 999px;
-    background: rgba($lpb-black, 0.05);
+    background: rgba($bakano-dark, 0.05);
   }
 }
 

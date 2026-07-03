@@ -224,14 +224,14 @@ onMounted(loadPayments)
   font-family: $font-display;
   font-size: 1.85rem;
   font-weight: 400;
-  color: $lpb-black;
+  color: $bakano-dark;
   margin: 0;
 }
 
 .admin-payments__page-subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $lpb-muted;
+  color: $gray-500;
   margin: 0;
 }
 
@@ -262,7 +262,7 @@ onMounted(loadPayments)
 }
 
 .admin-payments__filter-icon {
-  color: $lpb-muted;
+  color: $gray-500;
   font-size: 0.85rem;
 }
 
@@ -272,7 +272,7 @@ onMounted(loadPayments)
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $lpb-muted;
+  color: $gray-500;
 }
 
 .admin-payments__alerts {
@@ -297,7 +297,7 @@ onMounted(loadPayments)
 
   &--success {
     background: $alert-success-bg;
-    color: $lpb-green-deep;
+    color: $bakano-green;
   }
 }
 
