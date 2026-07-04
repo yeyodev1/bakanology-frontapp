@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import TheNav from '@/components/layout/TheNav.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
-import AppPreloader from '@/components/ui/AppPreloader.vue'
 import StickyOfferBar from '@/components/presale/StickyOfferBar.vue'
 
 useSmoothScroll()
 
 const route = useRoute()
 const userStore = useUserStore()
-const preloaded = ref(false)
-
-const showPreloader = computed(
-  () => !userStore.isAuthenticated && route.name === 'home' && !preloaded.value,
-)
 
 const isDashboard = computed(() => route.path.startsWith('/app') || route.path.startsWith('/admin'))
 const showStickyBar = computed(() => !isDashboard.value && !userStore.isAuthenticated)
@@ -24,7 +18,6 @@ const showStickyBar = computed(() => !isDashboard.value && !userStore.isAuthenti
 
 <template>
   <div class="app" :class="{ 'app--sticky': showStickyBar }">
-    <AppPreloader v-if="showPreloader" @done="preloaded = true" />
     <StickyOfferBar v-if="showStickyBar" />
     <TheNav v-if="!isDashboard" />
     <main class="app__main" :class="{ 'app__main--dashboard': isDashboard }">
