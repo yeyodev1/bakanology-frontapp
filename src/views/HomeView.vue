@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import PresaleHero from '@/components/presale/PresaleHero.vue'
-import VslSection from '@/components/presale/VslSection.vue'
-import PlansSection from '@/components/presale/PlansSection.vue'
-import BenefitsSection from '@/components/presale/BenefitsSection.vue'
-import AuthoritySection from '@/components/home/AuthoritySection.vue'
-import FaqSection from '@/components/home/FaqSection.vue'
-import FinalCtaSection from '@/components/home/FinalCtaSection.vue'
+import UrgencyBanner from '@/components/landing/UrgencyBanner.vue'
+import FudmasterHero from '@/components/landing/FudmasterHero.vue'
+import LiveAcademySection from '@/components/landing/LiveAcademySection.vue'
+import PainPointsSection from '@/components/landing/PainPointsSection.vue'
+import ComparisonToggle from '@/components/landing/ComparisonToggle.vue'
+import PricingSection from '@/components/landing/PricingSection.vue'
+import ResultsSection from '@/components/landing/ResultsSection.vue'
+import AuthorityCtaSection from '@/components/landing/AuthorityCtaSection.vue'
+import GuaranteeSection from '@/components/landing/GuaranteeSection.vue'
+import LandingFaqSection from '@/components/landing/LandingFaqSection.vue'
+import LandingCtaSection from '@/components/landing/LandingCtaSection.vue'
+import SocialProofBubble from '@/components/landing/SocialProofBubble.vue'
+import PricingModal from '@/components/landing/PricingModal.vue'
 </script>
 
 <template>
   <div class="home">
-    <PresaleHero />
-    <VslSection />
-    <BenefitsSection />
-    <PlansSection />
-    <AuthoritySection />
-    <FaqSection />
-    <FinalCtaSection />
+    <UrgencyBanner />
+    <FudmasterHero />
+    <LiveAcademySection />
+    <PainPointsSection />
+    <ComparisonToggle />
+    <PricingSection />
+    <ResultsSection />
+    <AuthorityCtaSection />
+    <GuaranteeSection />
+    <LandingFaqSection />
+    <LandingCtaSection />
+    <SocialProofBubble />
+    <PricingModal />
   </div>
 </template>
 
@@ -24,5 +36,6 @@ import FinalCtaSection from '@/components/home/FinalCtaSection.vue'
 .home {
   display: block;
   background: var(--bg);
+  --sticky-offset: 4rem;
 }
 </style>

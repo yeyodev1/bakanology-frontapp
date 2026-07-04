@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useUserStore } from '@/stores/user'
 import { useSmoothScroll } from '@/composables/useSmoothScroll'
 import TheNav from '@/components/layout/TheNav.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
-import StickyOfferBar from '@/components/presale/StickyOfferBar.vue'
-
 useSmoothScroll()
 
 const route = useRoute()
-const userStore = useUserStore()
 
 const isDashboard = computed(() => route.path.startsWith('/app') || route.path.startsWith('/admin'))
-const showStickyBar = computed(() => !isDashboard.value && !userStore.isAuthenticated)
+const isHome = computed(() => route.name === 'home')
 </script>
 
 <template>
-  <div class="app" :class="{ 'app--sticky': showStickyBar }">
-    <StickyOfferBar v-if="showStickyBar" />
-    <TheNav v-if="!isDashboard" />
+  <div class="app" :class="{ 'app--home': isHome }">
+    <TheNav v-if="!isDashboard && !isHome" />
     <main class="app__main" :class="{ 'app__main--dashboard': isDashboard }">
       <RouterView v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -42,11 +37,6 @@ const showStickyBar = computed(() => !isDashboard.value && !userStore.isAuthenti
 
 .app__main {
   flex: 1 1 auto;
-}
-
-.app--sticky {
-  padding-top: 48px;
-  --sticky-offset: 48px;
 }
 
 .fade-enter-active,
