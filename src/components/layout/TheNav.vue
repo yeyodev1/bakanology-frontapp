@@ -161,6 +161,10 @@ const logout = () => {
 
   &:not(.nav--scrolled):not(.nav--legal):not(.nav--open) {
     color: $white;
+
+    .nav__brand :deep(.wordmark__image) {
+      filter: brightness(0) invert(1);
+    }
   }
 
   &--scrolled,

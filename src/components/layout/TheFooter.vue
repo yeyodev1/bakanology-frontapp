@@ -75,7 +75,8 @@ const year = new Date().getFullYear()
   gap: 1.25rem;
   color: $white;
 
-  :deep(svg) {
+  :deep(svg),
+  :deep(.wordmark__image) {
     filter: brightness(0) invert(1);
   }
 }
