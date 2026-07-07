@@ -16,8 +16,7 @@ declare module 'vue-router' {
 }
 
 const SITE = 'https://bakanology.bakano.ec'
-const OG_IMAGE =
-  'https://res.cloudinary.com/mrp1wwq1/image/upload/w_1200,h_630,c_fill,g_face,q_auto,f_auto/bakanology/luis-founder.jpg'
+const OG_IMAGE = `${SITE}/logo-share.png`
 
 const BRAND_TITLE =
   'Bakanology Academy | Marketing de performance sin pagar una agencia'
