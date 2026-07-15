@@ -22,6 +22,7 @@ const showCancelSubModal = ref(false)
 const showCancelPendingModal = ref(false)
 
 const history = ref<PaymentItem[]>([])
+const hasActiveStripeSubscription = ref(false)
 
 const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 297
 
@@ -46,6 +47,7 @@ const currentPlan = computed(() => {
 
 const planLabel = computed(() => {
   if (userStore.foundingMember || currentPlan.value === 'lifetime') return 'Miembro Fundador'
+  if (currentPlan.value === 'monthly') return 'Suscripción Mensual'
   if (currentPlan.value === 'annual') return 'Plan Anual'
   return 'Sin plan activo'
 })
@@ -73,6 +75,10 @@ async function loadHistory() {
   try {
     const { data } = await paymentService.history()
     history.value = data.data.history
+    hasActiveStripeSubscription.value = data.data.hasActiveStripeSubscription
+    if (hasActiveStripeSubscription.value && userStore.subscriptionStatus !== 'active') {
+      userStore.setUser({ subscriptionStatus: 'active' })
+    }
   } catch (err: unknown) {
     const e = err as { message?: string }
     error.value = e.message || 'Error al cargar historial'
@@ -110,9 +116,17 @@ async function cancelSubscription() {
   error.value = ''
   success.value = ''
   try {
-    await paymentService.cancelSubscription()
+    const { data } = await paymentService.cancelSubscription()
     userStore.setUser({ subscriptionStatus: 'canceled' })
-    success.value = 'Suscripción cancelada. Seguirás con acceso hasta el final del período pagado.'
+    hasActiveStripeSubscription.value = false
+    const confirmedUntil = data.data.accessUntil
+      ? new Date(data.data.accessUntil).toLocaleDateString('es-EC', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+      : accessUntilLabel.value
+    success.value = `Cancelación confirmada por Stripe. No habrá nuevas renovaciones. Conservas acceso hasta el ${confirmedUntil}.`
     showCancelSubModal.value = false
   } catch (err: unknown) {
     const e = err as { message?: string }
@@ -175,7 +189,7 @@ onMounted(loadHistory)
     />
 
     <CancelSection
-      :is-active="isActive"
+      :has-active-subscription="hasActiveStripeSubscription"
       :is-canceled="isCanceled"
       :cancel-loading="cancelLoading"
       :access-until-label="accessUntilLabel"
@@ -187,7 +201,7 @@ onMounted(loadHistory)
     <ConfirmModal
       :open="showCancelSubModal"
       title="Cancelar suscripción"
-      message="¿Estás seguro de cancelar tu suscripción? No se realizan reembolsos. Seguirás con acceso hasta el final del período pagado."
+      message="¿Estás seguro de cancelar tu suscripción mensual? No volverá a renovarse. No se realizan reembolsos y conservarás el acceso hasta el final del período pagado."
       action-label="Sí, cancelar"
       confirm-text="cancelar"
       danger

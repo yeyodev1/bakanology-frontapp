@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  isActive: boolean
+  hasActiveSubscription: boolean
   isCanceled: boolean
   cancelLoading: boolean
   accessUntilLabel: string
@@ -12,12 +12,13 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <section v-if="isActive && !isCanceled" class="cancel">
+  <section v-if="hasActiveSubscription" class="cancel">
     <div class="cancel__content">
       <div>
-        <h3 class="cancel__title">Cancelar suscripción</h3>
+        <span class="cancel__status"><i></i> Renovación automática activa</span>
+        <h3 class="cancel__title">Cancelar suscripción mensual</h3>
         <p class="cancel__text">
-          Puedes cancelar para que no se renueve automáticamente. Seguirás con acceso hasta el final de tu período pagado. <strong>No aplicamos reembolsos.</strong>
+          Cancela la renovación automática cuando quieras. No habrá nuevos cobros y seguirás con acceso hasta el final de tu período pagado. <strong>No aplicamos reembolsos.</strong>
         </p>
       </div>
       <button class="cancel__btn" :disabled="cancelLoading" @click="emit('cancel-subscription')">
@@ -27,9 +28,15 @@ const emit = defineEmits<{
   </section>
 
   <section v-else-if="isCanceled" class="cancel cancel--canceled">
+    <span class="cancel__status cancel__status--canceled"><i></i> Cancelación confirmada por Stripe</span>
+    <h3 class="cancel__title">Tu suscripción ya no se renovará</h3>
+    <p>Stripe no realizará nuevos cobros. Conservas acceso a Bakanology hasta el <strong>{{ accessUntilLabel }}</strong>.</p>
+  </section>
+
+  <section v-else class="cancel cancel--inactive">
     <p>
-      <i class="fa-solid fa-circle-info" />
-      Tu suscripción está cancelada. Seguirás con acceso hasta el {{ accessUntilLabel }}.
+      <i class="fa-solid fa-circle-check" />
+      No tienes una suscripción mensual activa en Stripe ni cobros automáticos pendientes.
     </p>
   </section>
 </template>
@@ -52,6 +59,31 @@ const emit = defineEmits<{
       margin-right: 0.35rem;
     }
   }
+
+  &--inactive {
+    color: $gray-600;
+    background: var(--cream);
+
+    i { color: $bakano-green; margin-right: 0.35rem; }
+  }
+}
+
+.cancel__status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+  color: $bakano-green;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: $bakano-green; }
+
+  &--canceled { color: $gray-600; }
+  &--canceled i { background: $gray-500; }
 }
 
 .cancel__content {

@@ -31,10 +31,10 @@ class PaymentService extends APIBase {
   }
 
   async history() {
-    return this.get<ApiResponse<{ history: Array<{
+    return this.get<ApiResponse<{ hasActiveStripeSubscription: boolean; history: Array<{
       id: string
       type: 'manual' | 'stripe'
-      plan: 'annual' | 'lifetime'
+      plan: 'monthly' | 'annual' | 'lifetime'
       amount: number
       currency: 'USD'
       status: string
@@ -48,7 +48,13 @@ class PaymentService extends APIBase {
   }
 
   async cancelSubscription() {
-    return this.post<ApiResponse<{ email: string; subscriptionStatus: string }>>('payments/cancel-subscription', {})
+    return this.post<ApiResponse<{
+      email: string
+      subscriptionStatus: 'canceled'
+      stripeSubscriptionStatus: 'canceled'
+      canceledAt: string
+      accessUntil: string | null
+    }>>('payments/cancel-subscription', {})
   }
 }
 
