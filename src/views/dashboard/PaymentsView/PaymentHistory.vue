@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface PaymentItem {
   id: string
-  plan: 'annual' | 'lifetime'
+  plan: 'monthly' | 'annual' | 'lifetime'
   amount: number
   status: string
   createdAt: string
@@ -20,6 +20,12 @@ function statusLabel(status: string) {
     case 'canceled': return 'Cancelado'
     default: return status
   }
+}
+
+function planLabel(plan: PaymentItem['plan']) {
+  if (plan === 'monthly') return 'Suscripción mensual'
+  if (plan === 'lifetime') return 'Acceso de por vida'
+  return 'Anualidad'
 }
 
 function formatDate(iso: string) {
@@ -53,7 +59,7 @@ function formatDate(iso: string) {
           </tr>
           <tr v-for="item in items" :key="item.id">
             <td>{{ formatDate(item.createdAt) }}</td>
-            <td>Anualidad</td>
+            <td>{{ planLabel(item.plan) }}</td>
             <td>USD {{ item.amount }}</td>
             <td>
               <span class="history__badge" :class="`history__badge--${item.status}`">
