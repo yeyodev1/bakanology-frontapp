@@ -1,158 +1,215 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
-import { useDashboardStore } from '@/stores/dashboard'
-import { useUserStore } from '@/stores/user'
-import UserAvatar from '@/components/ui/UserAvatar.vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
+import { academyService, type Course, type Lesson, type MediaAsset } from '@/services/academyService'
 
 const route = useRoute()
-const dashboardStore = useDashboardStore()
-const userStore = useUserStore()
+const router = useRouter()
 
-const course = computed(() => dashboardStore.courseById(route.params.courseId as string))
-const lesson = computed(() =>
-  dashboardStore.lessonById(route.params.courseId as string, route.params.lessonId as string),
-)
-
-const newComment = ref('')
+const course = ref<Course | null>(null)
+const lesson = ref<Lesson | null>(null)
+const videoUrl = ref('')
+const loading = ref(true)
+const error = ref('')
+const watchedSeconds = ref(0)
+const saveInterval = ref<number | null>(null)
+const isCompleted = ref(false)
 
 const lessonIndex = computed(() => {
   if (!course.value || !lesson.value) return -1
-  return course.value.lessons.findIndex((l) => l.id === lesson.value?.id)
+  return course.value.lessons?.findIndex((l) => l._id === lesson.value?._id) ?? -1
 })
 
 const nextLesson = computed(() => {
-  if (!course.value || lessonIndex.value === -1) return null
+  if (!course.value || lessonIndex.value === -1 || !course.value.lessons) return null
   return course.value.lessons[lessonIndex.value + 1] || null
 })
 
 const prevLesson = computed(() => {
-  if (!course.value || lessonIndex.value === -1) return null
+  if (!course.value || lessonIndex.value === -1 || !course.value.lessons) return null
   return course.value.lessons[lessonIndex.value - 1] || null
 })
 
-function markCompleted() {
-  if (course.value && lesson.value) {
-    dashboardStore.completeLesson(course.value.id, lesson.value.id)
+const storageKey = computed(() => lesson.value ? `lesson-progress-${lesson.value._id}` : null)
+
+function loadSavedProgress() {
+  if (!storageKey.value) return 0
+  try {
+    const saved = localStorage.getItem(storageKey.value)
+    const seconds = saved ? parseInt(saved, 10) : 0
+    const completedKey = `${storageKey.value}-completed`
+    if (localStorage.getItem(completedKey) === 'true') {
+      isCompleted.value = true
+    }
+    return seconds
+  } catch {
+    return 0
   }
 }
 
-function submitComment() {
-  if (!newComment.value.trim()) return
-  dashboardStore.addComment(
-    newComment.value.trim(),
-    userStore.fullName,
-    userStore.profilePicture,
-  )
-  newComment.value = ''
+function saveProgress() {
+  if (!storageKey.value || !lesson.value) return
+  try {
+    localStorage.setItem(storageKey.value, String(watchedSeconds.value))
+    academyService.updateProgress(lesson.value._id, watchedSeconds.value, false).catch(() => {})
+  } catch {}
 }
 
-function formatDate(iso: string) {
-  const date = new Date(iso)
-  return date.toLocaleDateString('es-EC', { day: 'numeric', month: 'short', year: 'numeric' })
+onMounted(async () => {
+  try {
+    const courseId = String(route.params.courseId)
+    course.value = await academyService.getCourse(courseId)
+    lesson.value = course.value.lessons?.find((l) => l._id === route.params.lessonId) ?? null
+
+    if (lesson.value?.video) {
+      const savedSeconds = loadSavedProgress()
+      videoUrl.value = getVideoDeliveryUrl(lesson.value.video, savedSeconds)
+      
+      if (lesson.value.progress?.completed) {
+        isCompleted.value = true
+        watchedSeconds.value = lesson.value.durationSeconds || 0
+      } else if (lesson.value.progress?.watchedSeconds) {
+        watchedSeconds.value = lesson.value.progress.watchedSeconds
+      } else {
+        watchedSeconds.value = savedSeconds
+      }
+      
+      saveInterval.value = window.setInterval(saveProgress, 15000)
+    } else if (lesson.value) {
+      if (lesson.value.progress?.completed) {
+        isCompleted.value = true
+      }
+    }
+  } catch (e) {
+    error.value = 'No se pudo cargar la clase.'
+  } finally {
+    loading.value = false
+  }
+})
+
+onBeforeUnmount(() => {
+  if (saveInterval.value) {
+    clearInterval(saveInterval.value)
+    saveProgress()
+  }
+})
+
+function getVideoDeliveryUrl(video: MediaAsset, startTime = 0) {
+  if (video.provider === 'bunny' && video.publicId) {
+    const libraryId = '714808'
+    const startTimeParam = startTime > 0 ? `&start_time=${startTime}` : ''
+    return `https://iframe.mediadelivery.net/embed/${libraryId}/${video.publicId}?preload=true&responsive=true&autoplay=false${startTimeParam}`
+  }
+  return video.deliveryUrl || ''
+}
+
+function formatDuration(seconds: number) {
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return `${m}:${s.toString().padStart(2, '0')}`
+}
+
+function openLesson(lessonItem: Lesson) {
+  if (course.value) {
+    saveProgress()
+    router.push({ name: 'lesson', params: { courseId: course.value._id, lessonId: lessonItem._id } })
+  }
+}
+
+function getCourseLessons() {
+  return course.value?.lessons || []
+}
+
+function markCompleted() {
+  if (lesson.value) {
+    isCompleted.value = true
+    academyService.updateProgress(lesson.value._id, lesson.value.durationSeconds, true).catch(() => {})
+    if (storageKey.value) {
+      localStorage.setItem(storageKey.value, String(lesson.value.durationSeconds))
+      localStorage.setItem(`${storageKey.value}-completed`, 'true')
+    }
+    window.dispatchEvent(new CustomEvent('progress-updated'))
+  }
 }
 </script>
 
 <template>
-  <div v-if="course && lesson" class="lesson-view">
-    <nav class="breadcrumbs">
-      <RouterLink :to="{ name: 'courses' }" class="breadcrumbs__link">Cursos</RouterLink>
-      <span class="breadcrumbs__sep">/</span>
-      <RouterLink :to="{ name: 'course-detail', params: { courseId: course.id } }" class="breadcrumbs__link">{{ course.title }}</RouterLink>
-      <span class="breadcrumbs__sep">/</span>
-      <span class="breadcrumbs__current">{{ lesson.title }}</span>
-    </nav>
+  <div v-if="loading" class="loading">Cargando clase...</div>
+  <div v-else-if="error" class="error">{{ error }}</div>
+  <div v-else-if="course && lesson" class="lesson-view">
+    <div class="lesson-header">
+      <nav class="breadcrumbs">
+        <RouterLink :to="{ name: 'courses' }" class="breadcrumbs__link">Cursos</RouterLink>
+        <span class="breadcrumbs__sep">/</span>
+        <RouterLink :to="{ name: 'course-detail', params: { courseId: course._id } }" class="breadcrumbs__link">{{ course.title }}</RouterLink>
+        <span class="breadcrumbs__sep">/</span>
+        <span class="breadcrumbs__current">{{ lesson.title }}</span>
+      </nav>
+      <button class="complete-btn" :class="{ 'complete-btn--completed': isCompleted }" type="button" @click="markCompleted">
+        <i :class="isCompleted ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle-check'" />
+        <span>{{ isCompleted ? 'Completada' : 'Marcar como completada' }}</span>
+      </button>
+    </div>
 
     <div class="video-player">
-      <div class="video-player__screen">
-        <button class="video-player__play" type="button" aria-label="Reproducir clase">
-          <i class="fa-solid fa-play" aria-hidden="true" />
-        </button>
-        <span class="video-player__duration">
-          <i class="fa-regular fa-clock" aria-hidden="true" />
-          {{ lesson.duration }}
-        </span>
+      <div v-if="videoUrl" class="video-player__container">
+        <iframe
+          :src="videoUrl"
+          :title="lesson.title"
+          class="video-player__iframe"
+          allow="autoplay; fullscreen; encrypted-media"
+          allowfullscreen
+          sandbox="allow-same-origin allow-scripts allow-popups"
+        />
       </div>
-      <div class="video-player__controls">
-        <button class="video-player__control" type="button" aria-label="Reproducir">
-          <i class="fa-solid fa-play" aria-hidden="true" />
-        </button>
-        <div class="video-player__track">
-          <div class="video-player__progress" :style="{ width: lesson.isCompleted ? '100%' : '12%' }" />
-        </div>
-        <button class="video-player__control" type="button" aria-label="Pantalla completa">
-          <i class="fa-solid fa-expand" aria-hidden="true" />
-        </button>
+      <div v-else class="video-player__placeholder">
+        <i class="fa-solid fa-video-slash" />
+        <p>Video no disponible</p>
+      </div>
+      <div class="video-player__duration">
+        <i class="fa-regular fa-clock" />
+        {{ formatDuration(lesson.durationSeconds) }}
       </div>
     </div>
 
     <div class="lesson-meta">
-      <div>
-        <h1 class="lesson-meta__title">{{ lesson.title }}</h1>
-        <p class="lesson-meta__description">{{ lesson.description }}</p>
-      </div>
-      <button
-        v-if="!lesson.isCompleted"
-        class="lesson-meta__complete"
-        type="button"
-        @click="markCompleted"
-      >
-        Marcar como completada
-      </button>
-      <span v-else class="lesson-meta__completed">✓ Clase completada</span>
+      <h1 class="lesson-meta__title">{{ lesson.title }}</h1>
+      <p v-if="lesson.summary" class="lesson-meta__description">{{ lesson.summary }}</p>
+      <div v-if="lesson.content" class="lesson-content" v-html="lesson.content" />
     </div>
 
     <div class="lesson-nav">
-      <RouterLink
-        v-if="prevLesson"
-        :to="{ name: 'lesson', params: { courseId: course.id, lessonId: prevLesson.id } }"
-        class="lesson-nav__link lesson-nav__link--prev"
-      >
-        <span class="lesson-nav__label">Anterior</span>
+      <div v-if="prevLesson" class="lesson-nav__link" @click="openLesson(prevLesson)">
+        <span class="lesson-nav__label"><i class="fa-solid fa-arrow-left" /> Anterior</span>
         <span class="lesson-nav__title">{{ prevLesson.title }}</span>
-      </RouterLink>
+      </div>
       <div v-else />
-      <RouterLink
-        v-if="nextLesson"
-        :to="{ name: 'lesson', params: { courseId: course.id, lessonId: nextLesson.id } }"
-        class="lesson-nav__link lesson-nav__link--next"
-      >
-        <span class="lesson-nav__label">Siguiente</span>
+      <div v-if="nextLesson" class="lesson-nav__link lesson-nav__link--next" @click="openLesson(nextLesson)">
+        <span class="lesson-nav__label">Siguiente <i class="fa-solid fa-arrow-right" /></span>
         <span class="lesson-nav__title">{{ nextLesson.title }}</span>
-      </RouterLink>
+      </div>
     </div>
 
-    <section class="comments">
-      <h2 class="comments__title">Comentarios de la comunidad</h2>
-      <div class="comments__list">
-        <div v-for="comment in dashboardStore.comments" :key="comment.id" class="comment">
-          <UserAvatar
-            v-if="comment.authorPicture"
-            :name="comment.author"
-            :picture="comment.authorPicture"
-            size="md"
-          />
-          <div v-else class="comment__avatar">{{ comment.avatar }}</div>
-          <div class="comment__body">
-            <div class="comment__header">
-              <span class="comment__author">{{ comment.author }}</span>
-              <span class="comment__date">{{ formatDate(comment.date) }}</span>
-            </div>
-            <p class="comment__content">{{ comment.content }}</p>
-            <button class="comment__like" type="button">♡ {{ comment.likes }}</button>
-          </div>
+    <div v-if="getCourseLessons().length" class="lesson-sidebar">
+      <h2><i class="fa-solid fa-list-ol" /> Contenido del curso</h2>
+      <div
+        v-for="(l, index) in getCourseLessons()"
+        :key="l._id"
+        class="lesson-sidebar__item"
+        :class="{ 'lesson-sidebar__item--active': l._id === lesson?._id, 'lesson-sidebar__item--completed': l.progress?.completed }"
+        @click="openLesson(l)"
+      >
+        <span class="lesson-sidebar__number">
+          <i v-if="l.progress?.completed" class="fa-solid fa-check"></i>
+          <span v-else>{{ index + 1 }}</span>
+        </span>
+        <div class="lesson-sidebar__info">
+          <span class="lesson-sidebar__title">{{ l.title }}</span>
+          <span class="lesson-sidebar__duration">{{ formatDuration(l.durationSeconds) }}</span>
         </div>
+        <i v-if="l._id === lesson?._id" class="fa-solid fa-play-circle lesson-sidebar__playing" />
       </div>
-      <form class="comments__form" @submit.prevent="submitComment">
-        <textarea
-          v-model="newComment"
-          class="comments__input"
-          rows="3"
-          placeholder="Escribe un comentario..."
-        />
-        <button class="comments__submit" type="submit">Comentar</button>
-      </form>
-    </section>
+    </div>
   </div>
 
   <div v-else class="empty-state">
@@ -162,409 +219,107 @@ function formatDate(iso: string) {
 </template>
 
 <style lang="scss" scoped>
-.lesson-view {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.lesson-view { display: flex; flex-direction: column; gap: 1.5rem; }
+.loading, .error { text-align: center; padding: 4rem 1rem; color: $gray-500; }
+.error { color: $alert-error; }
+
+.lesson-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+.breadcrumbs { display: flex; align-items: center; gap: 0.5rem; font-family: $font-sans; font-size: 0.85rem; color: $gray-500; flex: 1;
+  a { color: $bakano-pink; text-decoration: none; &:hover { text-decoration: underline; } }
+  &__current { color: $bakano-dark; font-weight: 600; }
 }
 
-.breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.complete-btn {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  background: $white;
+  border: 2px solid $bakano-pink;
+  border-radius: 999px;
+  color: $bakano-dark;
   font-family: $font-sans;
-  font-size: 0.85rem;
-  color: $gray-500;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  white-space: nowrap;
 
-  a {
-    color: $bakano-green;
-    text-decoration: none;
+  i { color: $bakano-pink; font-size: 1.2rem; transition: transform 0.2s ease; }
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &__current {
-    color: $bakano-dark;
-  }
-}
-
-.video-player {
-  background: $bakano-dark;
-  border-radius: 1rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  &__screen {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, lighten($bakano-dark, 5%) 0%, $bakano-dark 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__play {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    background: rgba($white, 0.95);
-    color: $bakano-dark;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.75rem;
-    padding-left: 0.25rem;
-    cursor: pointer;
-    transition: transform 0.25s ease, background 0.25s ease;
-    box-shadow: 0 12px 40px rgba($bakano-dark, 0.35);
-
-    &:hover {
-      transform: scale(1.06);
-      background: $bakano-green;
-    }
-  }
-
-  &__duration {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba($bakano-dark, 0.65);
+  &:hover {
+    background: $bakano-pink;
     color: $white;
-    font-family: $font-mono;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    padding: 0.4rem 0.75rem;
-    border-radius: 999px;
-    backdrop-filter: blur(6px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($bakano-pink, 0.25);
+    i { color: $white; transform: scale(1.1); }
   }
 
-  &__controls {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: rgba($white, 0.03);
-    border-top: 1px solid rgba($white, 0.08);
-  }
+  &:active { transform: translateY(0); }
 
-  &__control {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $white;
-    background: rgba($white, 0.08);
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: rgba($white, 0.18);
-    }
-  }
-
-  &__track {
-    flex: 1 1 auto;
-    height: 5px;
-    background: rgba($white, 0.18);
-    border-radius: 999px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  &__progress {
-    height: 100%;
+  &--completed {
     background: $bakano-green;
-    border-radius: 999px;
-    transition: width 0.3s ease;
-  }
-}
-
-.lesson-meta {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  background: $light;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1.5rem;
-
-  &__title {
-    font-family: $font-display;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: $bakano-dark;
-    margin: 0;
-  }
-
-  &__description {
-    font-family: $font-sans;
-    font-size: 0.95rem;
-    color: $gray-600;
-    margin: 0.5rem 0 0;
-    max-width: 720px;
-    line-height: 1.6;
-  }
-
-  &__complete {
-    flex-shrink: 0;
-    background: $bakano-green;
+    border-color: $bakano-green;
     color: $white;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.85rem 1.25rem;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: darken(#3bb77e, 10%);
-    }
-  }
-
-  &__completed {
-    flex-shrink: 0;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: $bakano-green;
-    padding: 0.85rem 1.25rem;
-    border-radius: 999px;
-    background: rgba($bakano-green, 0.12);
+    pointer-events: none;
+    i { color: $white; }
   }
 }
 
-.lesson-nav {
-  display: flex;
-  gap: 1rem;
-
-  > * {
-    flex: 1;
+.video-player { background: $bakano-dark; border-radius: 1rem; overflow: hidden; position: relative;
+  &__container { position: relative; aspect-ratio: 16 / 9; }
+  &__iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  &__placeholder { aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: rgba(255,255,255,0.3); font-size: 3rem;
+    p { font-size: 1rem; font-family: $font-sans; }
   }
-
-  &__link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 1rem;
-    background: $light;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    text-decoration: none;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: var(--cream);
-    }
-
-    &--next {
-      text-align: right;
-      align-items: flex-end;
-    }
-  }
-
-  &__label {
-    font-family: $font-mono;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: $gray-500;
-  }
-
-  &__title {
-    font-family: $font-sans;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: $bakano-dark;
-  }
+  &__duration { position: absolute; bottom: 1rem; right: 1rem; display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(0,0,0,0.65); color: $white; font-family: $font-mono; font-size: 0.7rem; font-weight: 600; padding: 0.4rem 0.75rem; border-radius: 999px; backdrop-filter: blur(6px); }
 }
 
-.comments {
-  background: $light;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  &__title {
-    font-family: $font-display;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: $bakano-dark;
-    margin: 0;
-  }
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  &__input {
-    width: 100%;
-    font-family: $font-sans;
-    font-size: 0.95rem;
-    color: $bakano-dark;
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    padding: 0.85rem 1rem;
-    resize: vertical;
-
-    &:focus {
-      outline: none;
-      border-color: $bakano-green;
-      box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
-    }
-  }
-
-  &__submit {
-    align-self: flex-end;
-    background: $bakano-dark;
-    color: $white;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.25rem;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: $bakano-green;
-    }
-  }
+.lesson-meta { background: $white; border: 1px solid $gray-200; border-radius: 1rem; padding: 1.5rem;
+  &__title { font-family: $font-display; font-size: 1.5rem; font-weight: 700; margin: 0 0 0.75rem; color: $bakano-dark; }
+  &__description { font-family: $font-sans; font-size: 0.95rem; color: $gray-600; margin: 0 0 1rem; line-height: 1.6; }
 }
 
-.comment {
-  display: flex;
-  gap: 0.75rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-
-  &:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  &__avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: $bakano-green;
-    color: $white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  &__body {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  &__author {
-    font-family: $font-sans;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: $bakano-dark;
-  }
-
-  &__date {
-    font-family: $font-mono;
-    font-size: 0.65rem;
-    color: $gray-500;
-  }
-
-  &__content {
-    font-family: $font-sans;
-    font-size: 0.9rem;
-    color: $gray-600;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  &__like {
-    align-self: flex-start;
-    font-family: $font-mono;
-    font-size: 0.7rem;
-    color: $gray-500;
-    padding: 0.25rem 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-      color: $bakano-green;
-    }
-  }
+.lesson-content { font-family: $font-sans; font-size: 0.95rem; line-height: 1.7; color: $gray-700;
+  :deep(h2), :deep(h3) { font-family: $font-display; margin: 1.5rem 0 0.75rem; }
+  :deep(strong) { color: $bakano-dark; }
 }
 
-.empty-state {
-  text-align: center;
-  padding: 4rem 1rem;
-
-  &__title {
-    font-family: $font-display;
-    font-size: 1.5rem;
-    color: $bakano-dark;
+.lesson-nav { display: flex; gap: 1rem;
+  > * { flex: 1; }
+  &__link { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem; background: $white; border: 1px solid $gray-200; border-radius: 0.75rem; cursor: pointer; transition: all 0.2s;
+    &:hover { border-color: $bakano-pink; background: rgba($bakano-pink, 0.03); }
+    &--next { text-align: right; align-items: flex-end; }
   }
-
-  &__link {
-    display: inline-block;
-    margin-top: 1rem;
-    background: $bakano-green;
-    color: $white;
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.25rem;
-    border-radius: 999px;
-    text-decoration: none;
+  &__label { font-family: $font-mono; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: $gray-500;
+    i { margin: 0 0.3rem; }
   }
+  &__title { font-family: $font-sans; font-size: 0.9rem; font-weight: 600; color: $bakano-dark; }
+}
+
+.lesson-sidebar { background: $white; border: 1px solid $gray-200; border-radius: 1rem; padding: 1.5rem;
+  h2 { font-family: $font-display; font-size: 1.2rem; font-weight: 700; margin: 0 0 1rem; color: $bakano-dark; i { margin-right: 0.5rem; color: $bakano-pink; } }
+  &__item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;
+    &:hover { background: rgba($bakano-pink, 0.05); }
+    &--active { background: rgba($bakano-pink, 0.08); border: 1px solid rgba($bakano-pink, 0.2); }
+    &--completed { opacity: 0.7; }
+  }
+  &__number { width: 2rem; height: 2rem; border-radius: 50%; background: linear-gradient(135deg, $bakano-dark, $bakano-purple); color: $white; display: flex; align-items: center; justify-content: center; font-family: $font-mono; font-size: 0.7rem; font-weight: 600; flex-shrink: 0;
+    .lesson-sidebar__item--completed & { background: $bakano-green; }
+  }
+  &__info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  &__title { font-family: $font-sans; font-size: 0.85rem; font-weight: 600; color: $bakano-dark; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  &__duration { font-family: $font-mono; font-size: 0.7rem; color: $gray-500; }
+  &__playing { color: $bakano-pink; font-size: 1.2rem; }
+}
+
+.empty-state { text-align: center; padding: 4rem 1rem;
+  &__title { font-family: $font-display; font-size: 1.5rem; color: $bakano-dark; }
+  &__link { display: inline-block; margin-top: 1rem; background: $bakano-pink; color: $white; font-family: $font-mono; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.25rem; border-radius: 999px; text-decoration: none; }
+}
+
+@media (max-width: 768px) {
+  .lesson-header { flex-direction: column; align-items: flex-start; }
+  .complete-btn { width: 100%; justify-content: center; }
 }
 </style>

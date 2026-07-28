@@ -53,6 +53,7 @@ function dismissToast(id: number) {
 const menuItems = computed(() => {
   const items = [
     { name: 'dashboard', label: 'Inicio', icon: 'home' },
+    { name: 'purchased-products', label: 'Productos adquiridos', icon: 'bag-shopping' },
     { name: 'courses', label: 'Mis cursos', icon: 'book-open' },
     { name: 'live-classes', label: 'Clases en vivo', icon: 'video' },
     { name: 'schedule', label: 'Horario', icon: 'calendar' },
@@ -78,7 +79,7 @@ function onLinkClick() {
 }
 
 function handleNavClick(name: string) {
-  if (name === 'payments') {
+  if (name === 'payments' || name === 'purchased-products') {
     router.push({ name })
     emit('close')
     return
@@ -158,6 +159,7 @@ function logout() {
             class="fa-solid"
             :class="{
               'fa-house': item.icon === 'home',
+              'fa-bag-shopping': item.icon === 'bag-shopping',
               'fa-book-open': item.icon === 'book-open',
               'fa-video': item.icon === 'video',
               'fa-calendar-days': item.icon === 'calendar',
