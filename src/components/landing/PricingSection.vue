@@ -3,101 +3,101 @@ import { usePricingModal } from '@/composables/usePricingModal'
 
 const { open } = usePricingModal()
 
-const subscriberFeatures = [
+const monthlyFeatures = [
   { label: 'Acceso a todos los cursos', included: true },
-  { label: 'CRM propio incluido', included: true },
-  { label: 'Soporte continuo del equipo', included: true },
   { label: 'Nuevos cursos cada mes', included: true },
-  { label: 'Auditoría 1 a 1 si no tienes resultados', included: false },
-  { label: 'Acceso de por vida', included: false },
+  { label: 'Soporte continuo del equipo', included: true },
+  { label: 'Cancela cuando quieras', included: true },
+  { label: 'CRM Bakanology incluido', included: false },
+  { label: 'Telegram VIP incluido', included: false },
 ]
 
-const founderFeatures = [
+const annualFeatures = [
   { label: 'Acceso a todos los cursos', included: true },
-  { label: 'CRM propio incluido', included: true },
-  { label: 'Soporte continuo del equipo', included: true },
   { label: 'Nuevos cursos cada mes', included: true },
-  { label: 'Auditoría 1 a 1 si no tienes resultados', included: true },
-  { label: 'Acceso de por vida', included: true },
+  { label: 'Soporte continuo del equipo', included: true },
+  { label: '12 meses al precio de 6', included: true },
+  { label: 'CRM Bakanology incluido', included: true },
+  { label: 'Telegram VIP incluido', included: true },
 ]
 </script>
 
 <template>
   <section class="pricing" id="planes">
     <div class="pricing__inner">
-      <span class="pricing__eyebrow">⚠️ Cupos fundador por agotarse</span>
+      <span class="pricing__eyebrow">⚠️ Oferta de lanzamiento por tiempo limitado</span>
       <h2 class="pricing__title">¿Por qué esta es una oportunidad matemática?</h2>
       <p class="pricing__lede">
-        Ya puedes suscribirte por $47 al mes, o llevarte el año al precio de 6 meses. Los números hablan solos:
+        Suscríbete por $47 al mes, o llévate 12 meses al precio de 6. Los números hablan solos:
       </p>
 
       <div class="pricing__comparison">
         <article class="pricing__column pricing__column--subscriber">
-          <span class="pricing__badge pricing__badge--outline">Suscripción</span>
-          <h3 class="pricing__column-title">Disponible hoy</h3>
+          <span class="pricing__badge pricing__badge--outline">Plan mensual</span>
+          <h3 class="pricing__column-title">Flexibilidad total</h3>
           <div class="pricing__price">
             <span class="pricing__currency">$</span>
             <span class="pricing__amount">47</span>
             <span class="pricing__period">/ mes</span>
           </div>
-          <p class="pricing__note">o $282 / año — 12 meses al precio de 6</p>
+          <p class="pricing__note">$564 al año · sin permanencia</p>
           <ul class="pricing__features">
-            <li v-for="(f, i) in subscriberFeatures" :key="i" :class="{ 'pricing__feature--missing': !f.included }">
+            <li v-for="(f, i) in monthlyFeatures" :key="i" :class="{ 'pricing__feature--missing': !f.included }">
               <i :class="f.included ? 'fa-solid fa-check' : 'fa-solid fa-xmark'" />
               {{ f.label }}
             </li>
           </ul>
           <button type="button" class="pricing__column-btn" @click="open('monthly')">
-            Quiero suscribirme
+            Quiero el plan mensual
           </button>
         </article>
 
         <article class="pricing__column pricing__column--founder">
           <span class="pricing__badge pricing__badge--highlight">Mejor inversión</span>
-          <h3 class="pricing__column-title">Miembro fundador</h3>
-          <p class="pricing__spots">Solo 30 cupos restantes</p>
+          <h3 class="pricing__column-title">Plan anual</h3>
+          <p class="pricing__spots">6 meses gratis por lanzamiento</p>
           <div class="pricing__price">
             <span class="pricing__currency">$</span>
-            <span class="pricing__amount">297</span>
-            <span class="pricing__period">/ único pago</span>
+            <span class="pricing__amount">282</span>
+            <span class="pricing__period">/ año</span>
           </div>
-          <p class="pricing__note">Acceso de por vida</p>
+          <p class="pricing__note">Equivale a $23.50 al mes</p>
           <ul class="pricing__features">
-            <li v-for="(f, i) in founderFeatures" :key="i">
+            <li v-for="(f, i) in annualFeatures" :key="i">
               <i class="fa-solid fa-check" />
               {{ f.label }}
             </li>
           </ul>
-          <p class="pricing__savings">Ahorro: $267 USD cada año</p>
+          <p class="pricing__savings">Ahorro: $282 USD al año</p>
         </article>
       </div>
 
       <div class="pricing__card">
         <span class="pricing__card-badge">Mejor oferta disponible</span>
-        <h3 class="pricing__card-title">Be founder</h3>
-        <p class="pricing__card-subtitle">Acceso de por vida a toda Bakanology Academy</p>
+        <h3 class="pricing__card-title">Plan anual</h3>
+        <p class="pricing__card-subtitle">12 meses de Bakanology Academy al precio de 6</p>
         <div class="pricing__card-price">
           <span class="pricing__card-old">$564</span>
           <div>
             <span class="pricing__card-currency">$</span>
-            <span class="pricing__card-amount">297</span>
-            <span class="pricing__card-period">USD</span>
+            <span class="pricing__card-amount">282</span>
+            <span class="pricing__card-period">/ año</span>
           </div>
         </div>
 
         <ul class="pricing__card-features">
           <li><i class="fa-solid fa-check" /> Acceso a todos los cursos</li>
-          <li><i class="fa-solid fa-check" /> CRM propio incluido</li>
-          <li><i class="fa-solid fa-check" /> Comunidad privada de dueños</li>
-          <li><i class="fa-solid fa-check" /> Actualizaciones de por vida</li>
+          <li><i class="fa-solid fa-check" /> CRM Bakanology incluido</li>
+          <li><i class="fa-solid fa-check" /> Telegram VIP de dueños de negocio</li>
+          <li><i class="fa-solid fa-check" /> Nuevos cursos cada mes</li>
         </ul>
 
         <button
           type="button"
           class="pricing__card-btn"
-          @click="open('lifetime')"
+          @click="open('annual')"
         >
-          Quiero este precio
+          Quiero 6 meses gratis
           <i class="fa-solid fa-arrow-right" />
         </button>
 

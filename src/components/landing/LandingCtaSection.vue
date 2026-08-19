@@ -9,28 +9,28 @@ const { open } = usePricingModal()
     <div class="final-cta__inner">
       <span class="final-cta__eyebrow">Oferta por tiempo limitado</span>
       <h2 class="final-cta__title">
-        Asegura tu lugar como<br />
-        <span class="final-cta__highlight">miembro fundador</span>
+        Llévate 12 meses<br />
+        <span class="final-cta__highlight">al precio de 6</span>
       </h2>
       <p class="final-cta__lede">
-        Acceso de por vida a Bakanology Academy por un único pago. Sin renovaciones. Incluye todas las actualizaciones futuras.
+        Un año completo de Bakanology Academy con CRM y Telegram VIP incluidos. O empieza con el plan mensual de $47 y cancela cuando quieras.
       </p>
       <div class="final-cta__price">
         <span class="final-cta__old">$564</span>
         <div>
           <span class="final-cta__currency">$</span>
-          <span class="final-cta__amount">297</span>
-          <span class="final-cta__period">USD</span>
+          <span class="final-cta__amount">282</span>
+          <span class="final-cta__period">/ año</span>
         </div>
       </div>
       <div class="final-cta__actions">
-        <button type="button" class="final-cta__btn" @click="open">
-          Quiero ser miembro fundador
+        <button type="button" class="final-cta__btn" @click="open('annual')">
+          Quiero 6 meses gratis
           <i class="fa-solid fa-arrow-right" />
         </button>
       </div>
       <div class="final-cta__legal">
-        <p>Oferta válida por tiempo limitado. 30 cupos máximo.</p>
+        <p>Oferta de lanzamiento válida por tiempo limitado.</p>
       </div>
     </div>
   </section>

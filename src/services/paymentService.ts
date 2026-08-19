@@ -23,7 +23,7 @@ class PaymentService extends APIBase {
     name: string
     lastName: string
     origin?: string
-    plan?: 'monthly' | 'annual' | 'lifetime'
+    plan?: 'monthly' | 'annual'
   }) {
     return this.post<ApiResponse<CheckoutSessionResponse>>('stripe/create-session', data)
   }
