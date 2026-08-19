@@ -31,7 +31,7 @@ const points = [
 
       <button type="button" class="pain-points__cta" @click="open">
         <i class="fa-solid fa-gift" />
-        Reclama tu descuento de fundador
+        Reclama tus 6 meses gratis
       </button>
     </div>
   </section>
