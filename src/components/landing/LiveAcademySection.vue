@@ -32,7 +32,7 @@ const releases = [
       </div>
 
       <p class="live-academy__note">
-        *Al ser Miembro Fundador, recibes todo esto sin pagar un centavo extra.
+        *Con el plan anual, recibes todo esto sin pagar un centavo extra.
       </p>
     </div>
   </section>
