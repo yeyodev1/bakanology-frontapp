@@ -18,7 +18,13 @@ export interface ConfirmPaymentResponse {
 }
 
 class PaymentService extends APIBase {
-  async createCheckoutSession(data: { email: string; name: string; lastName: string; origin?: string }) {
+  async createCheckoutSession(data: {
+    email: string
+    name: string
+    lastName: string
+    origin?: string
+    plan?: 'monthly' | 'annual' | 'lifetime'
+  }) {
     return this.post<ApiResponse<CheckoutSessionResponse>>('stripe/create-session', data)
   }
 

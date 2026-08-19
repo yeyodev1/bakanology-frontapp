@@ -21,6 +21,7 @@ const showSkeleton = computed(() => props.loading || isHydrating.value)
 const pageTitle = computed(() => {
   const titles: Record<string, string> = {
     dashboard: 'Inicio',
+    'purchased-products': 'Productos adquiridos',
     courses: 'Mis cursos',
     'course-detail': 'Curso',
     lesson: 'Clase',

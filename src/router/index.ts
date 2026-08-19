@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, type RouteMeta, type RouteRecordRaw } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { resolveSafeRedirect } from './safeRedirect'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -116,6 +117,16 @@ const routes: RouteRecordRaw[] = [
         meta: routeMeta('Mi cuenta', 'Tu espacio personal de Bakanology Academy.', '/app'),
       },
       {
+        path: 'productos-adquiridos',
+        name: 'purchased-products',
+        component: () => import('@/views/dashboard/PurchasedProductsView.vue'),
+        meta: routeMeta(
+          'Productos adquiridos',
+          'Lee tus productos digitales de Bakanology.',
+          '/app/productos-adquiridos',
+        ),
+      },
+      {
         path: 'cursos',
         name: 'courses',
         component: () => import('@/views/dashboard/CoursesView.vue'),
@@ -222,7 +233,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   const userStore = useUserStore()
   if (to.meta.requiresAuth && !userStore.isAuthenticated) {
-    return { name: 'login' }
+    return { name: 'login', query: { redirect: to.fullPath } }
   }
   if (to.meta.requiresAdmin && userStore.role !== 'admin') {
     return { name: 'no-permission' }
@@ -245,6 +256,8 @@ router.beforeEach((to) => {
 
   const publicAuthRoutes = ['login', 'register', 'forgot-password', 'reset-password']
   if (publicAuthRoutes.includes(String(to.name)) && userStore.isAuthenticated) {
+    const redirect = to.name === 'login' ? resolveSafeRedirect(router, to.query.redirect) : null
+    if (redirect) return redirect
     if (userStore.role === 'admin') return { name: 'admin-users' }
     if (userStore.hasActiveAccess) return { name: 'dashboard' }
     return { name: 'payments' }

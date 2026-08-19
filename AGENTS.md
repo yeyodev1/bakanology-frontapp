@@ -12,9 +12,9 @@
 
 ## Architecture
 - Entry `src/main.ts`: creates Pinia, hydrates `useUserStore()` from localStorage, then mounts after `router.isReady()`.
-- Router `src/router/index.ts`: 18 named routes. Route `meta` drives dynamic SEO in `afterEach`. Auth guards in `beforeEach` (see **Auth flow** below).
+- Router `src/router/index.ts`: route `meta` drives dynamic SEO in `afterEach`; auth guards run in `beforeEach` (see **Auth flow** below).
 - Stores: `user` (Pinia, localStorage-backed auth/session) and `dashboard` (Pinia, **all hardcoded/mock data** — courses, lessons, recipes, schedule, live classes, achievements).
-- HTTP: `src/services/httpBase.ts` — Axios base class; all service files (`authService`, `userService`, `paymentService`, `presaleService`, `launchReminderService`, `adminService`) extend it as instantiated singletons. `/api` suffix is auto-appended to the URL.
+- HTTP: `src/services/httpBase.ts` — Axios base class; service files including `productService` extend it as instantiated singletons. `/api` suffix is auto-appended to the URL.
 - Asynchronous `auth:token-expired` CustomEvent on 401 responses (listened for elsewhere).
 - Views: `src/views/home`, `src/views/dashboard/` (routed views use `index.vue` convention), `src/views/admin/`, `src/views/auth/`, plus legal pages.
 - Components: `src/components/{layout,home,ui,auth,dashboard,admin,presale}/`.
@@ -27,7 +27,8 @@
   - `requiresAdmin` → non-admin users redirected to `no-permission`.
   - Authenticated users visiting `/` (home) are redirected to `dashboard`, `payments`, or `admin-users` based on role/access.
   - Authenticated users without active access cannot see dashboard routes → redirected to `payments`.
-  - Authenticated users visiting public auth pages (`login`, `register`, etc.) are redirected away.
+- Authenticated users visiting public auth pages (`login`, `register`, etc.) are redirected away.
+- `/app/productos-adquiridos` requires authentication but intentionally bypasses academy access and pre-launch blockers; login accepts only validated internal `redirect` paths.
 
 ## Path alias
 - `@/` → `./src` (both Vite and TypeScript config).

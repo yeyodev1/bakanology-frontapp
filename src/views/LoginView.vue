@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { authService } from '@/services/authService'
 import AuthLayout from '@/components/auth/AuthLayout.vue'
@@ -8,8 +8,10 @@ import AuthInput from '@/components/auth/AuthInput.vue'
 import AuthSubmit from '@/components/auth/AuthSubmit.vue'
 import AuthError from '@/components/auth/AuthError.vue'
 import AuthToggle from '@/components/auth/AuthToggle.vue'
+import { resolveSafeRedirect } from '@/router/safeRedirect'
 
 const router = useRouter()
+const route = useRoute()
 const userStore = useUserStore()
 
 const email = ref('')
@@ -39,7 +41,10 @@ const onSubmit = async () => {
       foundingMember: data.data.user.foundingMember,
     })
 
-    if (data.data.user.role === 'admin') {
+    const redirect = resolveSafeRedirect(router, route.query.redirect)
+    if (redirect) {
+      router.push(redirect)
+    } else if (data.data.user.role === 'admin') {
       router.push({ name: 'admin-users' })
     } else if (userStore.hasActiveAccess) {
       router.push({ name: 'dashboard' })
