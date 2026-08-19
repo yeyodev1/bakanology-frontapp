@@ -8,11 +8,7 @@ import PlanSelector from '@/components/landing/PlanSelector.vue'
 const { isOpen, close, selectedPlan } = usePricingModal()
 
 const currentPlan = computed(() => getPlan(selectedPlan.value))
-const secureNote = computed(() =>
-  selectedPlan.value === 'lifetime'
-    ? 'Pago 100% seguro vía Stripe · Sin renovaciones'
-    : 'Pago 100% seguro vía Stripe · Cancela cuando quieras',
-)
+const secureNote = 'Pago 100% seguro vía Stripe · Cancela cuando quieras'
 
 const email = ref('')
 const name = ref('')
