@@ -10,16 +10,16 @@ interface Notification {
 
 const notifications: Notification[] = [
   { business: 'Taz Taz', city: 'Guayaquil', action: 'compró Bakanology Academy y está mejorando su facturación', timeAgo: 'hace 2 min' },
-  { business: 'Sweet Glase', city: 'Quito', action: 'se unió como miembro fundador', timeAgo: 'hace 5 min' },
-  { business: 'Restaurante La Canoa', city: 'Cuenca', action: 'activó su acceso de por vida', timeAgo: 'hace 8 min' },
+  { business: 'Sweet Glase', city: 'Quito', action: 'activó su plan anual', timeAgo: 'hace 5 min' },
+  { business: 'Restaurante La Canoa', city: 'Cuenca', action: 'se suscribió a la academia', timeAgo: 'hace 8 min' },
   { business: 'Nicole Pastry Arts', city: 'Guayaquil', action: 'está aplicando la metodología de ventas', timeAgo: 'hace 12 min' },
   { business: 'Café del Barrio', city: 'Manta', action: 'compró Bakanology Academy y está mejorando su facturación', timeAgo: 'hace 15 min' },
-  { business: 'Fritega', city: 'Quito', action: 'se unió como miembro fundador', timeAgo: 'hace 19 min' },
-  { business: 'Sucree', city: 'Guayaquil', action: 'activó su acceso de por vida', timeAgo: 'hace 23 min' },
+  { business: 'Fritega', city: 'Quito', action: 'activó su plan anual', timeAgo: 'hace 19 min' },
+  { business: 'Sucree', city: 'Guayaquil', action: 'se suscribió a la academia', timeAgo: 'hace 23 min' },
   { business: 'Los Hornos de María', city: 'Ambato', action: 'está aplicando la metodología de ventas', timeAgo: 'hace 27 min' },
   { business: 'Sushi Roll', city: 'Cuenca', action: 'compró Bakanology Academy y está mejorando su facturación', timeAgo: 'hace 31 min' },
-  { business: 'El Mercado Gastro', city: 'Loja', action: 'se unió como miembro fundador', timeAgo: 'hace 36 min' },
-  { business: 'La Pizarra', city: 'Guayaquil', action: 'activó su acceso de por vida', timeAgo: 'hace 42 min' },
+  { business: 'El Mercado Gastro', city: 'Loja', action: 'activó su plan anual', timeAgo: 'hace 36 min' },
+  { business: 'La Pizarra', city: 'Guayaquil', action: 'se suscribió a la academia', timeAgo: 'hace 42 min' },
   { business: 'Crepes & Waffles Local', city: 'Quito', action: 'está aplicando la metodología de ventas', timeAgo: 'hace 48 min' },
 ]
 
