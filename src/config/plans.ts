@@ -1,4 +1,4 @@
-export type PlanId = 'monthly' | 'annual' | 'lifetime'
+export type PlanId = 'monthly' | 'annual'
 
 export interface PlanOption {
   id: PlanId
@@ -12,16 +12,16 @@ export interface PlanOption {
 
 export const MONTHLY_PRICE = 47
 export const ANNUAL_PRICE = 282
-export const LIFETIME_PRICE = 297
 export const YEARLY_EQUIVALENT = MONTHLY_PRICE * 12
 
-const LIFETIME_OPTION: PlanOption = {
-  id: 'lifetime',
-  label: 'De por vida',
-  price: LIFETIME_PRICE,
-  period: 'único pago',
-  note: 'Oferta fundador · acceso para siempre',
-  badge: 'Mejor inversión',
+const ANNUAL_OPTION: PlanOption = {
+  id: 'annual',
+  label: 'Anual',
+  price: ANNUAL_PRICE,
+  period: '/ año',
+  note: '12 meses al precio de 6 · incluye CRM y Telegram VIP',
+  badge: '6 meses gratis',
+  highlight: true,
 }
 
 export const PLAN_OPTIONS: PlanOption[] = [
@@ -32,17 +32,8 @@ export const PLAN_OPTIONS: PlanOption[] = [
     period: '/ mes',
     note: 'Cancela cuando quieras',
   },
-  {
-    id: 'annual',
-    label: 'Anual',
-    price: ANNUAL_PRICE,
-    period: '/ año',
-    note: '12 meses al precio de 6 · incluye CRM y Telegram VIP',
-    badge: '6 meses gratis',
-    highlight: true,
-  },
-  LIFETIME_OPTION,
+  ANNUAL_OPTION,
 ]
 
 export const getPlan = (id: PlanId): PlanOption =>
-  PLAN_OPTIONS.find((plan) => plan.id === id) ?? LIFETIME_OPTION
+  PLAN_OPTIONS.find((plan) => plan.id === id) ?? ANNUAL_OPTION
