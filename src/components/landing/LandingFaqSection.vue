@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const faqs = [
   { q: '¿Por qué no ofrecen reembolso?', a: 'Porque Bakanology no es un curso para "ver", es un sistema para "implementar". Entregamos propiedad intelectual, herramientas y estrategias que usamos en nuestros propios negocios. Buscamos dueños comprometidos, no curiosos.' },
   { q: '¿Qué garantía tengo de que esto funciona?', a: 'Nuestra garantía son nuestros resultados y clientes. Si aplicas la metodología, ves todos los cursos y demuestras que no mejoraste en 30 días, te regalamos una auditoría 1 a 1 para ajustar tu operación.' },
-  { q: '¿Qué pasa si me trabo o no entiendo algo?', a: 'No te dejamos solo. Como Miembro Fundador tienes acceso a soporte directo del equipo de bakano.ec y a la comunidad privada de dueños.' },
+  { q: '¿Qué pasa si me trabo o no entiendo algo?', a: 'No te dejamos solo. Con tu membresía tienes acceso a soporte directo del equipo de bakano.ec y a la comunidad privada de dueños.' },
   { q: '¿Sirve para mi tipo de negocio?', a: 'La metodología está pensada para gastronomía y servicios que facturan desde $10,000/mes. Los principios de adquisición, CRM y control de números aplican a cualquier modelo de venta.' },
 ]
 
