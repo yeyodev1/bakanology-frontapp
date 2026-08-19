@@ -2,8 +2,17 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { paymentService } from '@/services/paymentService'
 import { usePricingModal } from '@/composables/usePricingModal'
+import { getPlan } from '@/config/plans'
+import PlanSelector from '@/components/landing/PlanSelector.vue'
 
-const { isOpen, close } = usePricingModal()
+const { isOpen, close, selectedPlan } = usePricingModal()
+
+const currentPlan = computed(() => getPlan(selectedPlan.value))
+const secureNote = computed(() =>
+  selectedPlan.value === 'lifetime'
+    ? 'Pago 100% seguro vía Stripe · Sin renovaciones'
+    : 'Pago 100% seguro vía Stripe · Cancela cuando quieras',
+)
 
 const email = ref('')
 const name = ref('')
@@ -31,6 +40,7 @@ async function handleSubmit() {
       name: name.value,
       lastName: lastName.value,
       origin: window.location.origin,
+      plan: selectedPlan.value,
     })
     if (res.data?.data?.url) {
       success.value = true
@@ -84,22 +94,14 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
             <div class="pricing-modal__header">
               <span class="pricing-modal__eyebrow">Oferta por tiempo limitado</span>
               <h2 id="pricing-modal-title" class="pricing-modal__title">
-                Asegura tu acceso de por vida
+                Elige tu plan y asegura tu acceso
               </h2>
               <p class="pricing-modal__subtitle">
                 Completa tus datos y continúa al pago seguro.
               </p>
             </div>
 
-            <div class="pricing-modal__price">
-              <span class="pricing-modal__old">$564</span>
-              <div>
-                <span class="pricing-modal__currency">$</span>
-                <span class="pricing-modal__amount">297</span>
-                <span class="pricing-modal__period">USD</span>
-              </div>
-              <span class="pricing-modal__badge">único pago</span>
-            </div>
+            <PlanSelector v-model="selectedPlan" :disabled="loading" />
 
             <form class="pricing-modal__form" @submit.prevent="handleSubmit">
               <div class="pricing-modal__field">
@@ -152,8 +154,8 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                     <i class="fa-solid fa-check" />
                     Redirigiendo...
                   </span>
-                  <span v-else key="cta">
-                    Quiero este precio
+                  <span v-else :key="`cta-${currentPlan.id}`">
+                    Continuar con ${{ currentPlan.price }} {{ currentPlan.period }}
                     <i class="fa-solid fa-arrow-right" />
                   </span>
                 </Transition>
@@ -166,7 +168,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 
             <p class="pricing-modal__secure">
               <i class="fa-solid fa-lock" />
-              Pago 100% seguro vía Stripe · Sin renovaciones
+              {{ secureNote }}
             </p>
           </div>
         </Transition>
@@ -282,57 +284,6 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   font-size: 0.95rem;
   color: $gray-600;
   margin: 0;
-}
-
-.pricing-modal__price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  padding: 1rem;
-  background: $bakano-light;
-  border-radius: 1rem;
-
-  .pricing-modal__old {
-    font-family: $font-sans;
-    font-size: 1.2rem;
-    color: $gray-400;
-    text-decoration: line-through;
-  }
-
-  .pricing-modal__currency {
-    font-family: $font-sans;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: $gray-600;
-  }
-
-  .pricing-modal__amount {
-    font-family: $font-display;
-    font-size: clamp(2.5rem, 6vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1;
-    color: $bakano-dark;
-  }
-
-  .pricing-modal__period {
-    font-family: $font-sans;
-    font-size: 0.95rem;
-    color: $gray-600;
-  }
-
-  .pricing-modal__badge {
-    font-family: $font-mono;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: $bakano-pink;
-    color: $white;
-    padding: 0.35rem 0.7rem;
-    border-radius: 999px;
-  }
 }
 
 .pricing-modal__form {
