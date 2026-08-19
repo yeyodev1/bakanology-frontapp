@@ -28,7 +28,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
     <div class="urgency-banner__inner">
       <p class="urgency-banner__text">
         <span class="urgency-banner__chip">Oferta especial</span>
-        Acceso de por vida · precio sube cuando termine el contador
+        12 meses al precio de 6 · la oferta termina con el contador
       </p>
 
       <div class="urgency-banner__countdown" v-if="!expired">
