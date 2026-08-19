@@ -25,28 +25,31 @@ const founderFeatures = [
 <template>
   <section class="pricing" id="planes">
     <div class="pricing__inner">
-      <span class="pricing__eyebrow">⚠️ El modelo cambia pronto</span>
+      <span class="pricing__eyebrow">⚠️ Cupos fundador por agotarse</span>
       <h2 class="pricing__title">¿Por qué esta es una oportunidad matemática?</h2>
       <p class="pricing__lede">
-        Pronto pasaremos a un modelo de suscripción mensual. Los números hablan solos:
+        Ya puedes suscribirte por $47 al mes, o llevarte el año al precio de 6 meses. Los números hablan solos:
       </p>
 
       <div class="pricing__comparison">
         <article class="pricing__column pricing__column--subscriber">
-          <span class="pricing__badge pricing__badge--outline">Cliente suscriptor</span>
-          <h3 class="pricing__column-title">A partir del próximo mes</h3>
+          <span class="pricing__badge pricing__badge--outline">Suscripción</span>
+          <h3 class="pricing__column-title">Disponible hoy</h3>
           <div class="pricing__price">
             <span class="pricing__currency">$</span>
-            <span class="pricing__amount">564</span>
-            <span class="pricing__period">/ año</span>
+            <span class="pricing__amount">47</span>
+            <span class="pricing__period">/ mes</span>
           </div>
-          <p class="pricing__note">($47 al mes)</p>
+          <p class="pricing__note">o $282 / año — 12 meses al precio de 6</p>
           <ul class="pricing__features">
             <li v-for="(f, i) in subscriberFeatures" :key="i" :class="{ 'pricing__feature--missing': !f.included }">
               <i :class="f.included ? 'fa-solid fa-check' : 'fa-solid fa-xmark'" />
               {{ f.label }}
             </li>
           </ul>
+          <button type="button" class="pricing__column-btn" @click="open('monthly')">
+            Quiero suscribirme
+          </button>
         </article>
 
         <article class="pricing__column pricing__column--founder">
@@ -92,7 +95,7 @@ const founderFeatures = [
         <button
           type="button"
           class="pricing__card-btn"
-          @click="open"
+          @click="open('lifetime')"
         >
           Quiero este precio
           <i class="fa-solid fa-arrow-right" />
@@ -155,13 +158,17 @@ const founderFeatures = [
 
 .pricing__comparison {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
   margin-top: 1rem;
 
   @media (min-width: 720px) {
-    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
+
+    > * {
+      flex: 1 1 0;
+    }
   }
 }
 
@@ -284,6 +291,27 @@ const founderFeatures = [
 
   i {
     color: $gray-400 !important;
+  }
+}
+
+.pricing__column-btn {
+  width: 100%;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+  background: transparent;
+  color: $bakano-dark;
+  border: 1.5px solid $gray-300;
+  border-radius: 999px;
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    border-color: $bakano-dark;
+    background: $gray-100;
+    transform: translateY(-2px);
   }
 }
 
