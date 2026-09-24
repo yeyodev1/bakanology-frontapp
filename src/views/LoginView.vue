@@ -61,7 +61,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <AuthLayout title="Bienvenida de nuevo" subtitle="Ingresa para continuar con tu proceso.">
+  <AuthLayout title="Hola de nuevo" subtitle="Ingresa para continuar con tu proceso.">
     <form class="auth-form" @submit.prevent="onSubmit">
       <AuthError :message="error" />
       <AuthInput
@@ -99,12 +99,13 @@ const onSubmit = async () => {
 .auth-form__link {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: $gray-600;
   text-align: center;
   text-decoration: none;
+  text-underline-offset: 3px;
 
   &:hover {
-    color: $bakano-green;
+    color: $bakano-pink;
     text-decoration: underline;
   }
 }
