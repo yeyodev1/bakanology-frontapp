@@ -88,7 +88,7 @@ function onOverlayClick(event: MouseEvent) {
 .admin-modal__title {
   font-family: $font-display;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0;
 }
