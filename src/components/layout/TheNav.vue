@@ -89,10 +89,10 @@ const logout = () => {
           <nav class="nav__links">
             <template v-if="!userStore.isAuthenticated">
               <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-                <span class="nav__num">01</span> Planes
+                Planes
               </RouterLink>
               <RouterLink :to="{ name: 'login' }" class="nav__link" @click="close">
-                <span class="nav__num">02</span> Iniciar sesión
+                Iniciar sesión
               </RouterLink>
               <RouterLink :to="{ name: 'register' }" class="nav__cta" @click="close">
                 <span>Registrarse ahora</span>
@@ -101,18 +101,17 @@ const logout = () => {
             </template>
             <template v-else>
               <RouterLink :to="{ name: 'home', hash: '#planes' }" class="nav__link" @click="close">
-                <span class="nav__num">01</span> Planes
+                Planes
               </RouterLink>
               <RouterLink
                 :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
                 class="nav__link"
                 @click="close"
               >
-                <span class="nav__num">02</span>
                 {{ userStore.role === 'admin' ? 'Admin' : 'Mi cuenta' }}
               </RouterLink>
               <button type="button" class="nav__link nav__link--logout" @click="logout">
-                <span class="nav__num">03</span> Cerrar sesión
+                Cerrar sesión
               </button>
               <RouterLink
                 :to="{ name: userStore.role === 'admin' ? 'admin-users' : 'dashboard' }"
@@ -296,18 +295,6 @@ const logout = () => {
     color: $bakano-pink;
     transform: scale(1.02);
   }
-
-  .nav__num {
-    font-family: $font-mono;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: $bakano-pink;
-    background: rgba($bakano-pink, 0.1);
-    padding: 0.2rem 0.45rem;
-    border-radius: 0.35rem;
-    line-height: 1;
-  }
 }
 
 .nav__link--logout {
@@ -322,22 +309,20 @@ const logout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $bakano-dark;
+  background: $bakano-pink;
   color: $white;
   padding: 1rem 1.5rem;
   border-radius: 999px;
-  font-family: $font-mono;
-  text-transform: uppercase;
-  font-size: 0.75rem;
+  font-family: $font-sans;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
   margin-top: 1rem;
   text-decoration: none;
   transition: background 0.3s ease, transform 0.3s ease;
   border: none;
 
   &:hover {
-    background: $bakano-pink;
+    background: $bakano-pink-dark;
     transform: scale(1.02);
   }
 
@@ -449,20 +434,13 @@ const logout = () => {
       opacity: 1;
       color: inherit;
     }
-
-    .nav__num {
-      font-size: 0.6rem;
-      color: inherit;
-      opacity: 0.4;
-      margin-top: 0;
-    }
   }
 
   .nav__cta {
-    background: $bakano-dark;
+    background: $bakano-pink;
     color: $white;
     padding: 0.65rem 1.35rem;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     margin-top: 0;
     gap: 0.5rem;
 
