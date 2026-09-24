@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
 
 <template>
   <Transition name="bubble">
-    <div v-if="visible" class="social-proof" role="status" aria-live="polite">
+    <div v-if="visible" class="social-proof" aria-hidden="true">
       <div class="social-proof__avatar">
         <i class="fa-solid fa-store" />
       </div>
@@ -86,9 +86,22 @@ onBeforeUnmount(() => {
 
   @media (max-width: 520px) {
     left: 0.75rem;
-    right: 0.75rem;
     bottom: 0.75rem;
-    max-width: none;
+    max-width: min(300px, calc(100vw - 1.5rem));
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.85rem;
+
+    .social-proof__avatar {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8rem;
+    }
+
+    .social-proof__text {
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
   }
 }
 
