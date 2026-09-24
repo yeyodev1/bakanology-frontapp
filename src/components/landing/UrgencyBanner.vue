@@ -10,7 +10,10 @@ const targetDate = computed(() => new Date(deadlineStr))
 const now = ref(Date.now())
 let timer: ReturnType<typeof setInterval> | null = null
 
-const diff = computed(() => Math.max(0, targetDate.value.getTime() - now.value))
+const diff = computed(() => {
+  const target = targetDate.value.getTime()
+  return Number.isFinite(target) ? Math.max(0, target - now.value) : 0
+})
 const expired = computed(() => diff.value === 0)
 const pad = (n: number) => n.toString().padStart(2, '0')
 
@@ -24,15 +27,17 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 </script>
 
 <template>
-  <div class="urgency-banner" role="banner">
+  <div class="urgency-banner" role="region" aria-label="Oferta especial">
     <div class="urgency-banner__inner">
       <p class="urgency-banner__text">
         <span class="urgency-banner__chip">Oferta especial</span>
-        12 meses al precio de 6 · la oferta termina con el contador
+        <span class="urgency-banner__copy">
+          12 meses al precio de 6<span v-if="!expired"> · la oferta termina con el contador</span><span v-else> en el plan anual</span>
+        </span>
       </p>
 
       <div class="urgency-banner__countdown" v-if="!expired">
-        <div class="urgency-banner__timer">
+        <div class="urgency-banner__timer" role="timer" aria-label="Tiempo restante de la oferta">
           <div class="urgency-banner__unit">
             <span class="urgency-banner__value">{{ days }}</span>
             <span class="urgency-banner__unit-label">Días</span>
@@ -108,8 +113,12 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 
   @media (max-width: 760px) {
     grid-column: 1 / -1;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
+}
+
+.urgency-banner__copy {
+  min-width: 0;
 }
 
 .urgency-banner__chip {
@@ -143,6 +152,11 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   flex-direction: column;
   align-items: center;
   min-width: 2rem;
+  font-variant-numeric: tabular-nums;
+
+  @media (max-width: 420px) {
+    min-width: 1.55rem;
+  }
 }
 
 .urgency-banner__value {
@@ -150,6 +164,10 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   font-size: 1.05rem;
   font-weight: 800;
   line-height: 1;
+
+  @media (max-width: 420px) {
+    font-size: 0.95rem;
+  }
 }
 
 .urgency-banner__unit-label {
@@ -175,6 +193,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 
   @media (max-width: 760px) {
     justify-content: flex-end;
+    gap: 0.6rem;
   }
 }
 
@@ -194,9 +213,19 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
 
+  @media (max-width: 420px) {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $white;
+    outline-offset: 3px;
   }
 }
 
@@ -209,8 +238,17 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   transition: color 0.2s ease;
   white-space: nowrap;
 
+  display: inline-flex;
+  align-items: center;
+
   &:hover {
     color: $white;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $white;
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 </style>
