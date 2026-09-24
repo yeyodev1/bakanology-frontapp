@@ -62,7 +62,7 @@ defineProps<{
 .section__title {
   font-family: $font-display;
   font-size: 1.35rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0;
 }
@@ -129,7 +129,7 @@ defineProps<{
   &__title {
     font-family: $font-display;
     font-size: 1.1rem;
-    font-weight: 400;
+    font-weight: 700;
     margin: 0;
     color: $bakano-dark;
   }
