@@ -6,7 +6,6 @@ export interface PresaleStatus {
   isActive: boolean
   annualPrice: number
   monthlyPrice: number
-  whatsappNumber: string
 }
 
 class PresaleService extends APIBase {
