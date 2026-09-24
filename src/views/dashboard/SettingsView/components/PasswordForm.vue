@@ -63,7 +63,7 @@ function submit() {
   &__title {
     font-family: $font-display;
     font-size: 1.25rem;
-    font-weight: 400;
+    font-weight: 700;
     color: $bakano-dark;
     margin: 0;
   }
