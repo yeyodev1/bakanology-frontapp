@@ -59,9 +59,8 @@ Los cursos de Bakanology Academy enseñan la metodología bacano.ec:
 
 ## 6. Precio
 
-- **$297/año** — precio de lanzamiento para miembros fundadores
-- 30 cupos de miembros fundadores disponibles
-- El precio se mantiene para siempre
+- **$47/mes** — suscripción mensual, se cancela cuando quieras
+- **$282/año** — 12 meses al precio de 6
 - Lanzamiento oficial: 1 de agosto
 
 ---
