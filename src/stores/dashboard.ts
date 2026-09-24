@@ -403,7 +403,7 @@ const subscriptionData: Subscription = {
   plan: 'annual',
   startedAt: '2026-06-15T00:00:00Z',
   expiresAt: '2027-06-15T23:59:59Z',
-  amount: 297,
+  amount: 282,
 }
 
 export const useDashboardStore = defineStore('dashboard', {
