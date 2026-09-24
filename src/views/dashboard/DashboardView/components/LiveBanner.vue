@@ -44,7 +44,7 @@ defineProps<{
   &__title {
     font-family: $font-display;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 700;
     margin: 0.25rem 0 0;
   }
 
