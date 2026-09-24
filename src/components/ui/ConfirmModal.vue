@@ -146,7 +146,7 @@ export default { name: 'ConfirmModal' }
 .confirm-modal__title {
   font-family: $font-display;
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0 0 0.5rem;
 }
