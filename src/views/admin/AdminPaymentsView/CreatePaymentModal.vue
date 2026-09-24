@@ -14,7 +14,7 @@ const emit = defineEmits<{
 }>()
 
 const monthlyPrice = Number(import.meta.env.VITE_MONTHLY_PRICE) || 47
-const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 297
+const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 282
 
 const error = ref('')
 const searchResults = ref<AdminUser[]>([])
