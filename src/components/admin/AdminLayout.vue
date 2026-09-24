@@ -206,16 +206,16 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-green, 0.08);
+    background: rgba($bakano-pink, 0.08);
     color: $bakano-dark;
   }
 
   &--active {
-    background: rgba($bakano-green, 0.14);
-    color: $bakano-green;
+    background: rgba($bakano-pink, 0.14);
+    color: $bakano-pink;
 
     .admin__icon {
-      color: $bakano-green;
+      color: $bakano-pink;
     }
   }
 }
@@ -253,7 +253,7 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-green, 0.08);
+    background: rgba($bakano-pink, 0.08);
     color: $bakano-dark;
   }
 }
@@ -336,7 +336,7 @@ function logout() {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.5rem 2rem;
-  background: rgba(var(--cream), 0.92);
+  background: rgba($bakano-light, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -347,7 +347,8 @@ function logout() {
 .admin__title {
   font-family: $font-display;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: $bakano-dark;
   margin: 0;
 }
@@ -358,7 +359,7 @@ function logout() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $bakano-green;
+  color: $bakano-pink;
 
   &:hover {
     text-decoration: underline;
