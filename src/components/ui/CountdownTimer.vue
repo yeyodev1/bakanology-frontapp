@@ -95,7 +95,7 @@ onUnmounted(() => {
 .countdown-timer__value {
   font-family: $font-display;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1;
   color: $bakano-dark;
 }
