@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
 .countdown__value {
   font-family: $font-display;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1;
   color: $white;
 }
