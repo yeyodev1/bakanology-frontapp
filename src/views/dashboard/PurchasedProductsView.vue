@@ -291,7 +291,7 @@ onBeforeUnmount(closeReader)
   color: $bakano-dark;
   font-family: $font-display;
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
 }
 
@@ -344,7 +344,7 @@ onBeforeUnmount(closeReader)
   &--empty { color: $bakano-purple; background: rgba($bakano-purple, 0.1); }
 }
 
-.state-card__title { margin: 0; color: $bakano-dark; font-family: $font-display; font-size: 1.5rem; font-weight: 400; }
+.state-card__title { margin: 0; color: $bakano-dark; font-family: $font-display; font-size: 1.5rem; font-weight: 700; }
 .state-card__text { max-width: 460px; margin: 0.5rem 0 1.25rem; color: $gray-600; }
 
 .reader-error {
@@ -406,7 +406,7 @@ onBeforeUnmount(closeReader)
   color: $bakano-dark;
   font-family: $font-display;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .ebook-reader__close {
