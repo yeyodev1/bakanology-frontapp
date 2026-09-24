@@ -57,7 +57,7 @@ function formatDate(iso: string) {
 .section__title {
   font-family: $font-display;
   font-size: 1.35rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0;
 }
