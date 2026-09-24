@@ -31,6 +31,7 @@ const founderTarget = ref<AdminUser | null>(null)
 const founderLoading = ref(false)
 
 const releaseDate = (import.meta.env.VITE_PRESALE_DEADLINE as string) || '2026-07-06T23:59:59-05:00'
+const isBeforeRelease = new Date(releaseDate).getTime() > Date.now()
 
 const hasFilters = computed(() => filters.role !== '' || filters.subscriptionStatus !== '')
 
@@ -185,7 +186,7 @@ onMounted(loadUsers)
 
 <template>
   <div class="admin-users">
-    <section class="admin-users__timer-banner">
+    <section v-if="isBeforeRelease" class="admin-users__timer-banner">
       <div class="admin-users__timer-info">
         <span class="admin-users__timer-eyebrow">Lanzamiento de la comunidad</span>
         <h2 class="admin-users__timer-title">Acceso se libera el 6 de julio</h2>
@@ -340,7 +341,7 @@ onMounted(loadUsers)
 .admin-users__timer-title {
   font-family: $font-display;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0;
   color: $white;
 }
@@ -387,7 +388,7 @@ onMounted(loadUsers)
 .admin-users__page-title {
   font-family: $font-display;
   font-size: 1.85rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0;
 }
