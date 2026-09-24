@@ -106,20 +106,19 @@ const onSubmit = async () => {
   width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 999px;
-  background: $bakano-dark;
+  background: $bakano-pink;
   color: $white;
-  font-family: $font-mono;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 700;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    background: $bakano-green;
+    background: $bakano-pink-dark;
+    box-shadow: 0 10px 24px rgba($bakano-pink, 0.3);
   }
 }
 
@@ -140,8 +139,9 @@ const onSubmit = async () => {
   margin-top: 1rem;
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: $gray-600;
   text-decoration: underline;
+  text-underline-offset: 3px;
   transition: color 0.2s ease;
 
   &:hover {
