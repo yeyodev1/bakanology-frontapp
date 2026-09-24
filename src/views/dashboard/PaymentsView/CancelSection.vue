@@ -97,7 +97,7 @@ const emit = defineEmits<{
 .cancel__title {
   font-family: $font-display;
   font-size: 1.15rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0;
 }
