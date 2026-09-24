@@ -149,7 +149,7 @@ async function setReminder() {
 .launch-blocker__title {
   font-family: $font-display;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
   color: $bakano-dark;
   margin-bottom: 0.75rem;
