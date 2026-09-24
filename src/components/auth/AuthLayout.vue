@@ -27,8 +27,10 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: $light;
+  padding: clamp(1rem, 4vw, 2rem);
+  background:
+    radial-gradient(60rem 30rem at 50% -10%, rgba($bakano-pink, 0.08), transparent 70%),
+    $light;
 }
 
 .auth-layout__card {
@@ -37,8 +39,10 @@ defineProps<{
   background: $white;
   border: 1px solid rgba($bakano-dark, 0.06);
   border-radius: 1.5rem;
-  padding: clamp(2rem, 6vw, 3rem);
-  box-shadow: 0 24px 80px rgba($bakano-dark, 0.06);
+  padding: clamp(1.75rem, 6vw, 3rem);
+  box-shadow:
+    0 1px 2px rgba($bakano-dark, 0.04),
+    0 24px 64px rgba($bakano-dark, 0.08);
 }
 
 .auth-layout__brand {
@@ -50,7 +54,10 @@ defineProps<{
 .auth-layout__title {
   font-family: $font-display;
   font-size: clamp(1.6rem, 5vw, 2rem);
-  font-weight: 400;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
   margin: 0 0 0.5rem;
   color: $bakano-dark;
 }
@@ -59,7 +66,8 @@ defineProps<{
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $gray-500;
+  color: $gray-600;
+  text-wrap: pretty;
   margin: 0 0 1.75rem;
 }
 </style>
