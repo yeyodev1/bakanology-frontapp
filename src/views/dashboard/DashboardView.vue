@@ -3,27 +3,25 @@ import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { academyService, type Course } from '@/services/academyService'
 import { useDashboardStore } from '@/stores/dashboard'
+import { useUserStore } from '@/stores/user'
 import LaunchBlocker from '@/components/dashboard/LaunchBlocker.vue'
 
 const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-06T00:00:00-05:00'
 const isBeforeLaunch = computed(() => new Date().getTime() < new Date(launchDeadline).getTime())
 
 const dashboardStore = useDashboardStore()
+const userStore = useUserStore()
 const courses = ref<Course[]>([])
 const loading = ref(true)
 
-const subscriptionStatusLabel = computed(() => {
-  switch (dashboardStore.subscription.status) {
-    case 'active': return 'Activa'
-    case 'pending': return 'Pendiente'
-    default: return 'Inactiva'
-  }
-})
+const accessState = computed(() => (userStore.hasActiveAccess ? 'active' : 'inactive'))
+const subscriptionStatusLabel = computed(() => (userStore.hasActiveAccess ? 'Activa' : 'Inactiva'))
 
 const expiresAtLabel = computed(() => {
-  if (!dashboardStore.subscription.expiresAt) return 'Sin fecha'
-  const date = new Date(dashboardStore.subscription.expiresAt)
-  return date.toLocaleDateString('es-EC', { day: 'numeric', month: 'long', year: 'numeric' })
+  if (!userStore.accessUntil) return 'Sin fecha de vencimiento'
+  const date = new Date(userStore.accessUntil)
+  const label = date.toLocaleDateString('es-EC', { day: 'numeric', month: 'long', year: 'numeric' })
+  return userStore.hasActiveAccess ? `Acceso hasta el ${label}` : `Venció el ${label}`
 })
 
 const totalProgress = computed(() => {
@@ -68,9 +66,9 @@ onMounted(async () => {
         <span class="stat-card__value">{{ dashboardStore.completedAchievements.length }}</span>
         <span class="stat-card__label">Logros desbloqueados</span>
       </div>
-      <div class="stat-card" :class="`stat-card--${dashboardStore.subscription.status}`">
+      <div class="stat-card" :class="`stat-card--${accessState}`">
         <span class="stat-card__value">{{ subscriptionStatusLabel }}</span>
-        <span class="stat-card__label">Suscripción hasta {{ expiresAtLabel }}</span>
+        <span class="stat-card__label">{{ expiresAtLabel }}</span>
       </div>
     </section>
 
@@ -79,7 +77,14 @@ onMounted(async () => {
         <h2 class="section__title">Continúa aprendiendo</h2>
         <RouterLink :to="{ name: 'courses' }" class="section__link">Ver todos los cursos</RouterLink>
       </div>
-      <div v-if="loading" class="loading">Cargando cursos...</div>
+      <div v-if="loading" class="course-grid" aria-busy="true" aria-label="Cargando cursos">
+        <div v-for="n in 3" :key="n" class="course-card course-card--skeleton" />
+      </div>
+      <div v-else-if="!recentCourses.length" class="empty">
+        <i class="fa-solid fa-graduation-cap" aria-hidden="true" />
+        <p class="empty__title">Todavía no hay cursos publicados</p>
+        <p class="empty__text">Te avisaremos por correo cuando se publique el primero.</p>
+      </div>
       <div v-else class="course-grid">
         <RouterLink
           v-for="course in recentCourses"
@@ -128,24 +133,32 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .dashboard-view { display: flex; flex-direction: column; gap: 2rem; padding-top: 16px; }
-.loading { text-align: center; padding: 2rem; color: $gray-500; }
+.empty { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 2.5rem 1.5rem; text-align: center; background: $white; border: 1px dashed $gray-300; border-radius: 1rem; color: $gray-600;
+  i { font-size: 1.75rem; color: $bakano-pink; margin-bottom: 0.5rem; }
+  &__title { margin: 0; font-family: $font-sans; font-weight: 700; color: $bakano-dark; }
+  &__text { margin: 0; font-size: 0.9rem; }
+}
+.course-card--skeleton { min-height: 260px; background: linear-gradient(90deg, rgba($bakano-dark, 0.05) 25%, rgba($bakano-dark, 0.09) 50%, rgba($bakano-dark, 0.05) 75%); background-size: 200% 100%; animation: dashboard-shimmer 1.4s ease-in-out infinite; }
+@keyframes dashboard-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-.stats { display: flex; flex-wrap: wrap; gap: 1rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 1rem; }
+@media (min-width: 1100px) { .stats { grid-template-columns: repeat(4, 1fr); } }
 
-.stat-card { flex: 1 1 calc(25% - 1rem); min-width: 200px; background: $white; border: 1px solid $gray-200; border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;
+.stat-card { min-width: 0; background: $white; border: 1px solid $gray-200; border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;
   &__value { font-family: $font-display; font-size: 1.75rem; font-weight: 700; color: $bakano-dark; }
   &__label { font-family: $font-sans; font-size: 0.85rem; color: $gray-600; }
   &__bar { height: 6px; background: $gray-200; border-radius: 999px; margin-top: 0.5rem; overflow: hidden; }
   &__fill { height: 100%; background: linear-gradient(90deg, $bakano-pink, $bakano-purple); border-radius: 999px; transition: width 0.6s cubic-bezier(0.2, 0.7, 0, 1); }
   &--active &__value { color: $bakano-green; }
+  &--inactive &__value { color: $gray-600; }
   &--pending &__value { color: $alert-warning; }
   &--none &__value { color: $gray-500; }
 }
 
 .section { display: flex; flex-direction: column; gap: 1rem; }
-.section__header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.section__header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; row-gap: 0.25rem; }
 .section__title { font-family: $font-display; font-size: 1.35rem; font-weight: 700; color: $bakano-dark; margin: 0; }
-.section__link { font-family: $font-mono; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: $bakano-pink; &:hover { text-decoration: underline; } }
+.section__link { font-family: $font-mono; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; color: $bakano-pink; &:hover { text-decoration: underline; } }
 
 .course-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
 
