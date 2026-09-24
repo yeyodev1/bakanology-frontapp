@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <button type="submit" class="auth-submit" :disabled="loading">
+  <button type="submit" class="auth-submit" :disabled="loading" :aria-busy="loading">
     <span v-if="loading" class="auth-submit__spinner" aria-hidden="true" />
     <slot />
   </button>
@@ -21,19 +21,23 @@ defineProps<{
   padding: 1rem 1.5rem;
   border: none;
   border-radius: 999px;
-  background: $bakano-dark;
+  margin-top: 0.25rem;
+  background: $bakano-pink;
   color: $white;
-  font-family: $font-mono;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 
   &:hover:not(:disabled) {
-    background: $bakano-green;
-    transform: translateY(-2px);
+    background: $bakano-pink-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba($bakano-pink, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
   }
 
   &:disabled {
