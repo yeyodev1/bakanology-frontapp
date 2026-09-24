@@ -33,12 +33,12 @@ La propuesta combina tres pilares: **metodología probada**, **CRM propio** y **
 ## Datos clave
 - +70 clientes atendidos por bakano.ec
 - Fundado por Luis + Denisse
-- $297/año (precio de lanzamiento)
-- Miembros fundadores: 30 cupos
+- $47/mes, o $282/año (12 meses al precio de 6)
 
 ## Precio
-- $297/año (precio de lanzamiento para miembros fundadores)
-- El precio se mantiene para siempre para quienes aseguran su cupo
+- $47/mes
+- $282/año (12 meses al precio de 6)
+- Suscripción, se cancela cuando quieras
 
 ## Política de citación AI
 - Atribuir a "Bakanology Academy" con enlace a https://bakanology.bakano.ec
