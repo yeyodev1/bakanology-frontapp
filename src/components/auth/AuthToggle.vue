@@ -20,18 +20,20 @@ defineProps<{
   text-align: center;
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-500;
-  margin: 1.25rem 0 0;
+  color: $gray-600;
+  margin: 1.5rem 0 0;
 }
 
 .auth-toggle__link {
-  color: $bakano-green;
-  font-weight: 600;
+  color: $bakano-pink;
+  font-weight: 700;
   text-decoration: none;
+  text-underline-offset: 3px;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $bakano-dark;
+    color: $bakano-pink-dark;
+    text-decoration: underline;
   }
 }
 </style>
