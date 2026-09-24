@@ -99,7 +99,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
   &__title {
     font-family: $font-display;
     font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 400;
+    font-weight: 700;
     margin: 0;
   }
 
@@ -137,7 +137,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
   &__title {
     font-family: $font-display;
     font-size: 1.35rem;
-    font-weight: 400;
+    font-weight: 700;
     color: $bakano-dark;
     margin: 0;
   }
@@ -177,7 +177,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
   &__day {
     font-family: $font-display;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 700;
     color: $bakano-dark;
     line-height: 1;
   }
