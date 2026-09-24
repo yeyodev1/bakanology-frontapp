@@ -43,7 +43,8 @@ const annualFeatures = [
           <p class="pricing__note">$564 al año · sin permanencia</p>
           <ul class="pricing__features">
             <li v-for="(f, i) in monthlyFeatures" :key="i" :class="{ 'pricing__feature--missing': !f.included }">
-              <i :class="f.included ? 'fa-solid fa-check' : 'fa-solid fa-xmark'" />
+              <i :class="f.included ? 'fa-solid fa-check' : 'fa-solid fa-xmark'" aria-hidden="true" />
+              <span v-if="!f.included" class="sr-only">No incluido:</span>
               {{ f.label }}
             </li>
           </ul>
@@ -57,61 +58,36 @@ const annualFeatures = [
           <h3 class="pricing__column-title">Plan anual</h3>
           <p class="pricing__spots">6 meses gratis por lanzamiento</p>
           <div class="pricing__price">
+            <span class="pricing__old">$564</span>
             <span class="pricing__currency">$</span>
             <span class="pricing__amount">282</span>
             <span class="pricing__period">/ año</span>
           </div>
-          <p class="pricing__note">Equivale a $23.50 al mes</p>
+          <p class="pricing__note">Equivale a $23.50 al mes · ahorras $282</p>
           <ul class="pricing__features">
             <li v-for="(f, i) in annualFeatures" :key="i">
-              <i class="fa-solid fa-check" />
+              <i class="fa-solid fa-check" aria-hidden="true" />
               {{ f.label }}
             </li>
           </ul>
-          <p class="pricing__savings">Ahorro: $282 USD al año</p>
+          <button type="button" class="pricing__cta" @click="open('annual')">
+            Quiero 6 meses gratis
+            <i class="fa-solid fa-arrow-right" aria-hidden="true" />
+          </button>
+          <p class="pricing__secure">
+            <i class="fa-solid fa-lock" aria-hidden="true" />
+            Pago 100% seguro vía Stripe
+          </p>
         </article>
       </div>
 
-      <div class="pricing__card">
-        <span class="pricing__card-badge">Mejor oferta disponible</span>
-        <h3 class="pricing__card-title">Plan anual</h3>
-        <p class="pricing__card-subtitle">12 meses de Bakanology Academy al precio de 6</p>
-        <div class="pricing__card-price">
-          <span class="pricing__card-old">$564</span>
-          <div>
-            <span class="pricing__card-currency">$</span>
-            <span class="pricing__card-amount">282</span>
-            <span class="pricing__card-period">/ año</span>
-          </div>
-        </div>
-
-        <ul class="pricing__card-features">
-          <li><i class="fa-solid fa-check" /> Acceso a todos los cursos</li>
-          <li><i class="fa-solid fa-check" /> CRM Bakanology incluido</li>
-          <li><i class="fa-solid fa-check" /> Telegram VIP de dueños de negocio</li>
-          <li><i class="fa-solid fa-check" /> Nuevos cursos cada mes</li>
-        </ul>
-
-        <button
-          type="button"
-          class="pricing__card-btn"
-          @click="open('annual')"
-        >
-          Quiero 6 meses gratis
-          <i class="fa-solid fa-arrow-right" />
-        </button>
-
-        <p class="pricing__secure">
-          <i class="fa-solid fa-lock" />
-          Pago 100% seguro vía Stripe
-        </p>
-      </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .pricing {
+  scroll-margin-top: 5.5rem;
   padding-block: clamp(4rem, 8vw, 6rem);
   background: $bakano-light;
   color: $bakano-dark;
@@ -165,6 +141,7 @@ const annualFeatures = [
 
   @media (min-width: 720px) {
     flex-direction: row;
+    align-items: stretch;
 
     > * {
       flex: 1 1 0;
@@ -184,8 +161,17 @@ const annualFeatures = [
   text-align: center;
 
   &--founder {
-    border-color: $bakano-pink;
-    box-shadow: 0 8px 32px rgba($bakano-pink, 0.12);
+    order: -1;
+    border: 2px solid $bakano-pink;
+    box-shadow: 0 16px 48px rgba($bakano-pink, 0.14);
+  }
+
+  @media (min-width: 720px) {
+    padding: 2.5rem 2rem;
+
+    &--founder {
+      order: 0;
+    }
   }
 }
 
@@ -263,7 +249,7 @@ const annualFeatures = [
 .pricing__features {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 1rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -297,7 +283,7 @@ const annualFeatures = [
 .pricing__column-btn {
   width: 100%;
   padding: 0.85rem;
-  margin-top: 0.5rem;
+  margin-top: auto;
   background: transparent;
   color: $bakano-dark;
   border: 1.5px solid $gray-300;
@@ -315,119 +301,19 @@ const annualFeatures = [
   }
 }
 
-.pricing__savings {
+.pricing__old {
+  align-self: center;
+  margin-right: 0.5rem;
   font-family: $font-sans;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: $bakano-green;
-  margin: 0.5rem 0 0;
-}
-
-.pricing__card {
-  width: 100%;
-  max-width: 420px;
-  background: $white;
-  border: 2px solid $bakano-pink;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 0 16px 48px rgba($bakano-pink, 0.14);
-  margin-top: 1rem;
-}
-
-.pricing__card-badge {
-  font-family: $font-mono;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ff8a65, $bakano-pink);
-  color: $white;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-}
-
-.pricing__card-title {
-  font-family: $font-display;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 800;
-  margin: 0;
-}
-
-.pricing__card-subtitle {
-  font-family: $font-sans;
-  font-size: 0.95rem;
-  color: $gray-600;
-  margin: -0.5rem 0 0;
-}
-
-.pricing__card-price {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.pricing__card-old {
-  font-family: $font-sans;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: $gray-400;
   text-decoration: line-through;
 }
 
-.pricing__card-currency {
-  font-family: $font-sans;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: $gray-600;
-}
-
-.pricing__card-amount {
-  font-family: $font-display;
-  font-size: clamp(3rem, 7vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1;
-  color: $bakano-dark;
-}
-
-.pricing__card-period {
-  font-family: $font-sans;
-  font-size: 1rem;
-  color: $gray-600;
-}
-
-.pricing__card-features {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: $font-sans;
-    font-size: 0.92rem;
-    color: $gray-700;
-
-    i {
-      color: $bakano-green;
-      font-size: 0.85rem;
-      width: 1rem;
-    }
-  }
-}
-
-.pricing__card-btn {
+.pricing__cta {
   width: 100%;
   padding: 1rem;
-  margin-top: 0.5rem;
+  margin-top: auto;
   background: linear-gradient(90deg, $bakano-pink, $bakano-pink-dark);
   color: $white;
   border: none;
@@ -454,6 +340,19 @@ const annualFeatures = [
   &:hover i {
     transform: translateX(4px);
   }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .pricing__secure {
