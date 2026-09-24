@@ -24,7 +24,7 @@ const showCancelPendingModal = ref(false)
 const history = ref<PaymentItem[]>([])
 const hasActiveStripeSubscription = ref(false)
 
-const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 297
+const annualPrice = Number(import.meta.env.VITE_ANNUAL_PRICE) || 282
 
 const isActive = computed(() => {
   if (!userStore.accessUntil) return false
