@@ -76,7 +76,7 @@ onUnmounted(() => {
 .no-permission__title {
   font-family: $font-display;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 700;
   color: $bakano-dark;
   margin: 0 0 0.75rem;
 }
