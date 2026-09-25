@@ -156,10 +156,10 @@ const logout = () => {
   z-index: 1000;
   padding-block: 1.2rem;
   transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  color: $bakano-dark;
+  color: var(--c-text);
 
   &:not(.nav--scrolled):not(.nav--legal):not(.nav--open) {
-    color: $white;
+    color: var(--c-on-accent);
 
     .nav__brand :deep(.wordmark__image) {
       filter: brightness(0) invert(1);
@@ -168,11 +168,11 @@ const logout = () => {
 
   &--scrolled,
   &--legal {
-    background: rgba($light, 0.92);
+    background: rgb(var(--c-bg-rgb) / 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     padding-block: 0.8rem;
-    border-bottom: 1px solid rgba($bakano-dark, 0.06);
+    border-bottom: 1px solid rgb(var(--c-text-rgb) / 0.06);
   }
 }
 
@@ -225,7 +225,7 @@ const logout = () => {
   position: fixed;
   inset: 0;
   z-index: 1049;
-  background: rgba($bakano-dark, 0.35);
+  background: rgb(var(--c-ink-rgb) / 0.35);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -261,7 +261,7 @@ const logout = () => {
   display: flex;
   flex-direction: column;
   padding: 6rem 2rem 2.5rem;
-  background: $light;
+  background: var(--c-bg);
 }
 
 .nav__links {
@@ -280,7 +280,7 @@ const logout = () => {
   font-family: $font-sans;
   font-size: 1.2rem;
   font-weight: 500;
-  color: $gray-700;
+  color: var(--c-text-2);
   text-decoration: none;
   padding: 1rem 1.25rem;
   border: none;
@@ -291,16 +291,16 @@ const logout = () => {
   cursor: pointer;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
-    color: $bakano-pink;
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    color: var(--c-accent-text);
     transform: scale(1.02);
   }
 }
 
 .nav__link--logout {
   &:hover {
-    background: rgba($alert-error, 0.08);
-    color: $alert-error;
+    background: rgb(var(--c-error-rgb) / 0.08);
+    color: var(--c-error);
     transform: scale(1.02);
   }
 }
@@ -309,8 +309,8 @@ const logout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   padding: 1rem 1.5rem;
   border-radius: 999px;
   font-family: $font-sans;
@@ -322,7 +322,7 @@ const logout = () => {
   border: none;
 
   &:hover {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
     transform: scale(1.02);
   }
 
@@ -342,13 +342,13 @@ const logout = () => {
   text-align: left;
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 
   a {
-    color: $bakano-dark;
+    color: var(--c-text);
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
@@ -359,11 +359,11 @@ const logout = () => {
     &::before {
       content: '→';
       font-size: 0.75rem;
-      color: $bakano-pink;
+      color: var(--c-accent-text);
     }
 
     &:hover {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
     }
   }
 }
@@ -374,7 +374,7 @@ const logout = () => {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba($bakano-dark, 0.25);
+  color: rgb(var(--c-text-rgb) / 0.25);
 }
 
 @media (min-width: 880px) {
@@ -437,21 +437,21 @@ const logout = () => {
   }
 
   .nav__cta {
-    background: $bakano-pink;
-    color: $white;
+    background: var(--c-accent-fill);
+    color: var(--c-on-accent);
     padding: 0.65rem 1.35rem;
     font-size: 0.875rem;
     margin-top: 0;
     gap: 0.5rem;
 
     .nav:not(.nav--scrolled):not(.nav--legal) & {
-      background: $white;
-      color: $bakano-dark;
+      background: var(--c-surface);
+      color: var(--c-text);
     }
 
     &:hover {
-      background: $bakano-pink;
-      color: $white;
+      background: var(--c-accent-fill);
+      color: var(--c-on-accent);
       transform: none;
     }
   }
