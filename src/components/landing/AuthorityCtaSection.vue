@@ -71,8 +71,8 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
 <style lang="scss" scoped>
 .authority-cta {
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: linear-gradient(180deg, $bakano-dark 0%, #0f0d18 100%);
-  color: $white;
+  background: linear-gradient(180deg, var(--c-ink) 0%, #0f0d18 100%);
+  color: var(--c-on-accent);
 }
 
 .authority-cta__inner {
@@ -105,7 +105,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -118,7 +118,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
 }
 
 .authority-cta__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .authority-cta__lede,
@@ -126,12 +126,12 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
   font-family: $font-sans;
   font-size: 1rem;
   line-height: 1.65;
-  color: rgba($white, 0.75);
+  color: rgb(var(--c-on-accent-rgb) / 0.75);
   margin: 0;
   max-width: 56ch;
 
   strong {
-    color: $white;
+    color: var(--c-on-accent);
     font-weight: 700;
   }
 }
@@ -154,8 +154,8 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem;
-  background: rgba($white, 0.05);
-  border: 1px solid rgba($white, 0.08);
+  background: rgb(var(--c-on-accent-rgb) / 0.05);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   border-radius: 0.75rem;
   text-align: center;
 
@@ -163,14 +163,14 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
     font-family: $font-display;
     font-size: 1.6rem;
     font-weight: 800;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 
   span {
     font-family: $font-sans;
     font-size: 0.75rem;
     line-height: 1.4;
-    color: rgba($white, 0.6);
+    color: rgb(var(--c-on-accent-rgb) / 0.6);
   }
 }
 
@@ -179,8 +179,8 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
   align-items: center;
   gap: 0.6rem;
   margin-top: 0.5rem;
-  background: $white;
-  color: $bakano-dark;
+  background: var(--c-surface);
+  color: var(--c-text);
   border-radius: 999px;
   padding: 1rem 1.75rem;
   font-family: $font-sans;
@@ -191,7 +191,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba($white, 0.2);
+    box-shadow: 0 12px 32px rgb(var(--c-on-accent-rgb) / 0.2);
   }
 
   i {
@@ -210,13 +210,13 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
   align-items: center;
   gap: 1rem;
   padding: 0.75rem;
-  background: rgba($white, 0.04);
-  border: 1px solid rgba($white, 0.08);
+  background: rgb(var(--c-on-accent-rgb) / 0.04);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   border-radius: 999px;
   transition: border-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba($bakano-pink, 0.35);
+    border-color: rgb(var(--c-accent-rgb) / 0.35);
     transform: translateX(4px);
   }
 
@@ -225,7 +225,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
     height: 4rem;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid $bakano-pink;
+    border: 2px solid var(--c-accent);
   }
 
   div {
@@ -244,7 +244,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 400, h: 400, cr
     font-family: $font-mono;
     font-size: 0.7rem;
     letter-spacing: 0.04em;
-    color: rgba($white, 0.55);
+    color: rgb(var(--c-on-accent-rgb) / 0.55);
   }
 }
 </style>
