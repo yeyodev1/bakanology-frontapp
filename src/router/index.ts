@@ -203,6 +203,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/admin/AdminPaymentsView/index.vue'),
         meta: routeMeta('Admin - Pagos', 'Gestión de pagos de Bakanology Academy.', '/admin/pagos'),
       },
+      {
+        path: 'comentarios',
+        name: 'admin-comments',
+        component: () => import('@/views/admin/AdminCommentsView/index.vue'),
+        meta: routeMeta('Admin - Comentarios', 'Moderación de comentarios de las clases de Bakanology Academy.', '/admin/comentarios'),
+      },
     ],
   },
   {
