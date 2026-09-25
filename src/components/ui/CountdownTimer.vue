@@ -73,7 +73,7 @@ onUnmounted(() => {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .countdown-timer__display {
@@ -87,8 +87,8 @@ onUnmounted(() => {
   align-items: center;
   min-width: 56px;
   padding: 0.75rem 0.5rem;
-  background: rgba($bakano-dark, 0.04);
-  border: 1px solid rgba($bakano-dark, 0.06);
+  background: rgb(var(--c-text-rgb) / 0.04);
+  border: 1px solid rgb(var(--c-text-rgb) / 0.06);
   border-radius: 0.75rem;
 }
 
@@ -97,7 +97,7 @@ onUnmounted(() => {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .countdown-timer__unit {
@@ -106,14 +106,14 @@ onUnmounted(() => {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin-top: 0.25rem;
 }
 
 .countdown-timer__finished {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $bakano-green;
+  color: var(--c-success-text);
   font-weight: 500;
 }
 </style>
