@@ -79,10 +79,10 @@ onBeforeUnmount(() => {
   gap: 0.85rem;
   max-width: 360px;
   padding: 0.85rem 1rem;
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
-  box-shadow: 0 12px 40px rgba($bakano-dark, 0.18);
+  box-shadow: 0 12px 40px rgb(var(--c-shadow-rgb) / 0.18);
 
   @media (max-width: 520px) {
     left: 0.75rem;
@@ -110,8 +110,8 @@ onBeforeUnmount(() => {
   height: 2.75rem;
   flex-shrink: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, $bakano-pink, $bakano-purple);
-  color: $white;
+  background: linear-gradient(135deg, var(--c-accent-fill), var(--c-purple-deep));
+  color: var(--c-on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
   font-family: $font-sans;
   font-size: 0.85rem;
   line-height: 1.45;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 
   strong {
@@ -141,14 +141,14 @@ onBeforeUnmount(() => {
   font-family: $font-mono;
   font-size: 0.65rem;
   letter-spacing: 0.04em;
-  color: $gray-500;
+  color: var(--c-text-muted);
   display: flex;
   align-items: center;
   gap: 0.35rem;
 
   i {
     font-size: 0.6rem;
-    color: $bakano-pink;
+    color: var(--c-accent-text);
   }
 }
 
@@ -159,20 +159,20 @@ onBeforeUnmount(() => {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: $bakano-green;
-  box-shadow: 0 0 0 0 rgba($bakano-green, 0.6);
+  background: var(--c-success-fill);
+  box-shadow: 0 0 0 0 rgb(var(--c-success-rgb) / 0.6);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba($bakano-green, 0.6);
+    box-shadow: 0 0 0 0 rgb(var(--c-success-rgb) / 0.6);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba($bakano-green, 0);
+    box-shadow: 0 0 0 8px rgb(var(--c-success-rgb) / 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba($bakano-green, 0);
+    box-shadow: 0 0 0 0 rgb(var(--c-success-rgb) / 0);
   }
 }
 
