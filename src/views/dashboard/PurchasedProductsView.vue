@@ -195,7 +195,7 @@ onBeforeUnmount(closeReader)
 .products-view__intro {
   max-width: 680px;
   margin: 0;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-family: $font-sans;
   line-height: 1.6;
 }
@@ -212,10 +212,10 @@ onBeforeUnmount(closeReader)
   width: 100%;
   min-height: 300px;
   overflow: hidden;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
-  box-shadow: 0 14px 40px rgba($bakano-dark, 0.05);
+  box-shadow: 0 14px 40px rgb(var(--c-shadow-rgb) / 0.05);
 }
 
 .product-card__cover {
@@ -227,8 +227,8 @@ onBeforeUnmount(closeReader)
   min-height: 300px;
   padding: 1.5rem;
   overflow: hidden;
-  color: $white;
-  background: linear-gradient(145deg, $bakano-dark 0%, $bakano-purple 58%, $bakano-pink 100%);
+  color: var(--c-on-accent);
+  background: linear-gradient(145deg, var(--c-ink) 0%, var(--c-purple-deep) 58%, var(--c-accent-fill) 100%);
 
   &::after {
     content: '';
@@ -237,9 +237,9 @@ onBeforeUnmount(closeReader)
     bottom: -70px;
     width: 190px;
     height: 190px;
-    border: 1px solid rgba($white, 0.22);
+    border: 1px solid rgb(var(--c-on-accent-rgb) / 0.22);
     border-radius: 50%;
-    box-shadow: 0 0 0 28px rgba($white, 0.05), 0 0 0 58px rgba($white, 0.04);
+    box-shadow: 0 0 0 28px rgb(var(--c-on-accent-rgb) / 0.05), 0 0 0 58px rgb(var(--c-on-accent-rgb) / 0.04);
   }
 }
 
@@ -259,8 +259,8 @@ onBeforeUnmount(closeReader)
   z-index: 1;
   align-self: center;
   font-size: 4.25rem;
-  color: $bakano-green;
-  filter: drop-shadow(0 12px 24px rgba($bakano-dark, 0.28));
+  color: var(--c-success-text);
+  filter: drop-shadow(0 12px 24px rgb(var(--c-shadow-rgb) / 0.28));
 }
 
 .product-card__content {
@@ -276,8 +276,8 @@ onBeforeUnmount(closeReader)
 
 .product-card__type {
   padding: 0.3rem 0.65rem;
-  color: $bakano-pink;
-  background: rgba($bakano-pink, 0.08);
+  color: var(--c-accent-text);
+  background: rgb(var(--c-accent-fill-rgb) / 0.08);
   border-radius: 999px;
   font-family: $font-mono;
   font-size: 0.65rem;
@@ -288,7 +288,7 @@ onBeforeUnmount(closeReader)
 
 .product-card__title {
   margin: 0;
-  color: $bakano-dark;
+  color: var(--c-text);
   font-family: $font-display;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
@@ -298,7 +298,7 @@ onBeforeUnmount(closeReader)
 .product-card__description {
   max-width: 720px;
   margin: 0;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.6;
@@ -308,7 +308,7 @@ onBeforeUnmount(closeReader)
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem 1.25rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-family: $font-mono;
   font-size: 0.68rem;
   font-weight: 600;
@@ -325,7 +325,7 @@ onBeforeUnmount(closeReader)
   width: 100%;
   padding: 3.5rem 1.5rem;
   text-align: center;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
 }
@@ -337,15 +337,15 @@ onBeforeUnmount(closeReader)
   width: 54px;
   height: 54px;
   margin-bottom: 1rem;
-  color: $alert-error;
+  color: var(--c-error);
   background: $alert-error-bg;
   border-radius: 50%;
 
-  &--empty { color: $bakano-purple; background: rgba($bakano-purple, 0.1); }
+  &--empty { color: var(--c-purple); background: rgb(var(--c-purple-rgb) / 0.1); }
 }
 
-.state-card__title { margin: 0; color: $bakano-dark; font-family: $font-display; font-size: 1.5rem; font-weight: 700; }
-.state-card__text { max-width: 460px; margin: 0.5rem 0 1.25rem; color: $gray-600; }
+.state-card__title { margin: 0; color: var(--c-text); font-family: $font-display; font-size: 1.5rem; font-weight: 700; }
+.state-card__text { max-width: 460px; margin: 0.5rem 0 1.25rem; color: var(--c-text-2); }
 
 .reader-error {
   display: flex;
@@ -353,7 +353,7 @@ onBeforeUnmount(closeReader)
   gap: 0.5rem;
   margin: 0;
   padding: 0.8rem 1rem;
-  color: $alert-error;
+  color: var(--c-error);
   background: $alert-error-bg;
   border-radius: 0.75rem;
   font-size: 0.9rem;
@@ -367,7 +367,7 @@ onBeforeUnmount(closeReader)
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($bakano-dark, 0.82);
+  background: rgb(var(--c-ink-rgb) / 0.82);
   backdrop-filter: blur(8px);
 }
 
@@ -377,10 +377,10 @@ onBeforeUnmount(closeReader)
   width: min(1100px, 100%);
   height: min(92vh, 960px);
   overflow: hidden;
-  background: $white;
-  border: 1px solid rgba($white, 0.2);
+  background: var(--c-surface);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.2);
   border-radius: 1.25rem;
-  box-shadow: 0 28px 90px rgba($bakano-dark, 0.42);
+  box-shadow: 0 28px 90px rgb(var(--c-shadow-rgb) / 0.42);
 }
 
 .ebook-reader__header {
@@ -393,7 +393,7 @@ onBeforeUnmount(closeReader)
 }
 
 .ebook-reader__eyebrow {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-family: $font-mono;
   font-size: 0.62rem;
   font-weight: 700;
@@ -403,7 +403,7 @@ onBeforeUnmount(closeReader)
 
 .ebook-reader__title {
   margin: 0.2rem 0 0;
-  color: $bakano-dark;
+  color: var(--c-text);
   font-family: $font-display;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-weight: 700;
@@ -415,7 +415,7 @@ onBeforeUnmount(closeReader)
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   background: var(--cream);
   border-radius: 50%;
   font-size: 1.1rem;
@@ -427,8 +427,8 @@ onBeforeUnmount(closeReader)
   gap: 0.45rem;
   margin: 0;
   padding: 0.65rem 1.25rem;
-  color: $gray-600;
-  background: rgba($bakano-green, 0.08);
+  color: var(--c-text-2);
+  background: rgb(var(--c-success-fill-rgb) / 0.08);
   font-size: 0.78rem;
 }
 
@@ -437,7 +437,7 @@ onBeforeUnmount(closeReader)
   width: 100%;
   min-height: 0;
   border: 0;
-  background: $gray-100;
+  background: var(--c-surface-2);
 }
 
 .reader-fade-enter-active,
@@ -446,7 +446,7 @@ onBeforeUnmount(closeReader)
 .reader-fade-leave-to { opacity: 0; }
 
 .product-card--loading { min-height: 240px; }
-.product-card__cover--skeleton { min-height: 240px; background: rgba($bakano-dark, 0.08); }
+.product-card__cover--skeleton { min-height: 240px; background: rgb(var(--c-text-rgb) / 0.08); }
 .product-card__cover--skeleton::after { display: none; }
 
 .skeleton-line {
@@ -454,7 +454,7 @@ onBeforeUnmount(closeReader)
   width: 90%;
   height: 0.9rem;
   border-radius: 0.4rem;
-  background: linear-gradient(90deg, rgba($bakano-dark, 0.05) 25%, rgba($bakano-dark, 0.1) 50%, rgba($bakano-dark, 0.05) 75%);
+  background: linear-gradient(90deg, rgb(var(--c-text-rgb) / 0.05) 25%, rgb(var(--c-text-rgb) / 0.1) 50%, rgb(var(--c-text-rgb) / 0.05) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 
