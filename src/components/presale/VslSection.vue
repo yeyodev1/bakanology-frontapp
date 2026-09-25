@@ -33,7 +33,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .vsl {
   padding: 5rem 1.5rem;
-  background: $bakano-dark;
+  background: var(--c-ink);
 }
 
 .vsl__inner {
@@ -51,7 +51,7 @@ onMounted(() => {
   font-weight: 800;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   line-height: 1.1;
-  color: $white;
+  color: var(--c-on-accent);
   margin: 0;
 }
 
@@ -59,7 +59,7 @@ onMounted(() => {
   font-family: $font-sans;
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.6;
-  color: rgba($white, 0.65);
+  color: rgb(var(--c-on-accent-rgb) / 0.65);
   max-width: 520px;
   margin: 0 0 1rem;
 }
@@ -68,7 +68,7 @@ onMounted(() => {
   width: 100%;
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba($black, 0.45);
+  box-shadow: 0 8px 40px rgb(var(--c-shadow-rgb) / 0.45);
 
   wistia-player {
     display: block;
