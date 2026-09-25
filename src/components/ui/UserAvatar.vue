@@ -55,8 +55,8 @@ function onImgError() {
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
-  color: $bakano-dark;
+  background: linear-gradient(135deg, var(--c-success-fill) 0%, var(--c-success-fill) 100%);
+  color: var(--c-text);
   font-family: $font-mono;
   font-weight: 700;
 }
