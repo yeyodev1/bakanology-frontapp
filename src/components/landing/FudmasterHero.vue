@@ -62,8 +62,8 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   overflow: hidden;
   padding-top: 7rem;
 
@@ -77,8 +77,8 @@ onMounted(() => {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse 70% 50% at 10% 30%, rgba($bakano-pink, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 80%, rgba($bakano-purple, 0.1) 0%, transparent 55%);
+    radial-gradient(ellipse 70% 50% at 10% 30%, rgb(var(--c-accent-fill-rgb) / 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgb(var(--c-purple-rgb) / 0.1) 0%, transparent 55%);
   pointer-events: none;
 }
 
@@ -140,7 +140,7 @@ onMounted(() => {
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -153,14 +153,14 @@ onMounted(() => {
 }
 
 .fud-hero__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .fud-hero__lede {
   font-family: $font-sans;
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.65;
-  color: rgba($white, 0.75);
+  color: rgb(var(--c-on-accent-rgb) / 0.75);
   margin: 0;
   max-width: 46ch;
 }
@@ -192,13 +192,13 @@ onMounted(() => {
   text-decoration: none;
 
   &--primary {
-    background: linear-gradient(90deg, $bakano-pink, $bakano-pink-dark);
-    color: $white;
-    box-shadow: 0 8px 28px rgba($bakano-pink, 0.35);
+    background: linear-gradient(90deg, var(--c-accent-fill), var(--c-accent-fill-hover));
+    color: var(--c-on-accent);
+    box-shadow: 0 8px 28px rgb(var(--c-accent-rgb) / 0.35);
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 34px rgba($bakano-pink, 0.45);
+      box-shadow: 0 12px 34px rgb(var(--c-accent-rgb) / 0.45);
     }
   }
 }
@@ -210,10 +210,10 @@ onMounted(() => {
   font-family: $font-mono;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: rgba($white, 0.6);
+  color: rgb(var(--c-on-accent-rgb) / 0.6);
 
   i {
-    color: $alert-warning;
+    color: var(--c-warning);
   }
 }
 </style>
