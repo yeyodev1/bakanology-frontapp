@@ -29,7 +29,7 @@ const scrollToPlans = () => {
 <style lang="scss" scoped>
 .final-cta {
   padding-block: 5rem;
-  background: $bakano-dark;
+  background: var(--c-ink);
   position: relative;
   overflow: hidden;
 }
@@ -52,7 +52,7 @@ const scrollToPlans = () => {
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -61,19 +61,19 @@ const scrollToPlans = () => {
   font-weight: 800;
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.15;
-  color: $white;
+  color: var(--c-on-accent);
   margin: 0;
 }
 
 .final-cta__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .final-cta__lede {
   font-family: $font-sans;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: rgba($white, 0.8);
+  color: rgb(var(--c-on-accent-rgb) / 0.8);
   margin: 0;
 }
 
@@ -101,11 +101,11 @@ const scrollToPlans = () => {
 }
 
 .final-cta__btn--primary {
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
 
   &:hover {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
     transform: translateY(-1px);
   }
 }
@@ -117,7 +117,7 @@ const scrollToPlans = () => {
 .final-cta__legal p {
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: rgba($white, 0.4);
+  color: rgb(var(--c-on-accent-rgb) / 0.4);
   margin: 0;
 }
 </style>
