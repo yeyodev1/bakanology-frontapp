@@ -91,19 +91,19 @@ function formatDuration(seconds: number) {
 <style lang="scss" scoped>
 .courses-view { display: flex; flex-direction: column; gap: 1.5rem; }
 
-.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 4rem 1rem; color: $gray-500;
-  &-spinner { width: 40px; height: 40px; border: 3px solid rgba($bakano-dark, 0.1); border-top-color: $bakano-pink; border-radius: 50%; animation: spin 0.8s linear infinite; }
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 4rem 1rem; color: var(--c-text-muted);
+  &-spinner { width: 40px; height: 40px; border: 3px solid rgb(var(--c-text-rgb) / 0.1); border-top-color: var(--c-accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.error { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 3rem 1rem; color: $alert-error;
+.error { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 3rem 1rem; color: var(--c-error);
   i { font-size: 2rem; }
 }
 
 .empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 4rem 1rem; text-align: center;
-  &__icon { font-size: 4rem; color: rgba($bakano-dark, 0.15); margin-bottom: 0.5rem; }
-  h3 { font-family: $font-display; font-size: 1.3rem; color: $bakano-dark; margin: 0 0 0.5rem; }
-  p { margin: 0; color: $gray-600; }
+  &__icon { font-size: 4rem; color: rgb(var(--c-text-rgb) / 0.15); margin-bottom: 0.5rem; }
+  h3 { font-family: $font-display; font-size: 1.3rem; color: var(--c-text); margin: 0 0 0.5rem; }
+  p { margin: 0; color: var(--c-text-2); }
 }
 
 .course-list { display: flex; flex-wrap: wrap; gap: 1.25rem; }
@@ -112,8 +112,8 @@ function formatDuration(seconds: number) {
   flex: 1 1 calc(33.333% - 1.25rem);
   min-width: 280px;
   max-width: calc(33.333% - 1.25rem);
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -122,14 +122,14 @@ function formatDuration(seconds: number) {
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba($bakano-dark, 0.12);
+    box-shadow: 0 12px 32px rgb(var(--c-shadow-rgb) / 0.12);
   }
 
   &__thumb {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: linear-gradient(135deg, $bakano-dark 0%, $bakano-purple 100%);
+    background: linear-gradient(135deg, var(--c-ink) 0%, var(--c-purple-deep) 100%);
 
     img { width: 100%; height: 100%; object-fit: cover; }
   }
@@ -142,7 +142,7 @@ function formatDuration(seconds: number) {
 
   &__category {
     position: absolute; top: 0.75rem; left: 0.75rem;
-    background: $white; color: $bakano-dark;
+    background: var(--c-surface); color: var(--c-text);
     font-family: $font-mono; font-size: 0.65rem; font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.35rem 0.6rem; border-radius: 999px;
@@ -151,7 +151,7 @@ function formatDuration(seconds: number) {
 
   &__badge {
     position: absolute; top: 0.75rem; right: 0.75rem;
-    background: $bakano-green; color: $white;
+    background: var(--c-success-fill); color: var(--c-on-accent);
     font-family: $font-mono; font-size: 0.65rem; font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.35rem 0.6rem; border-radius: 999px;
@@ -163,17 +163,17 @@ function formatDuration(seconds: number) {
   }
 
   &__title {
-    font-family: $font-display; font-size: 1.15rem; font-weight: 600; margin: 0; color: $bakano-dark;
+    font-family: $font-display; font-size: 1.15rem; font-weight: 600; margin: 0; color: var(--c-text);
   }
 
   &__subtitle {
-    font-family: $font-sans; font-size: 0.85rem; color: $gray-600; margin: 0;
+    font-family: $font-sans; font-size: 0.85rem; color: var(--c-text-2); margin: 0;
     line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
 
   &__meta {
-    display: flex; gap: 1rem; font-family: $font-mono; font-size: 0.7rem; color: $gray-500;
-    i { margin-right: 0.3rem; color: $bakano-pink; }
+    display: flex; gap: 1rem; font-family: $font-mono; font-size: 0.7rem; color: var(--c-text-muted);
+    i { margin-right: 0.3rem; color: var(--c-accent-text); }
   }
 
   &__progress {
@@ -181,12 +181,12 @@ function formatDuration(seconds: number) {
   }
 
   &__progress-bar {
-    flex: 1 1 auto; height: 6px; background: $gray-200; border-radius: 999px; overflow: hidden;
+    flex: 1 1 auto; height: 6px; background: var(--c-surface-3); border-radius: 999px; overflow: hidden;
   }
 
-  &__progress-fill { height: 100%; background: linear-gradient(90deg, $bakano-pink, $bakano-purple); border-radius: 999px; transition: width 0.6s ease; }
+  &__progress-fill { height: 100%; background: linear-gradient(90deg, var(--c-accent-fill), var(--c-purple-deep)); border-radius: 999px; transition: width 0.6s ease; }
 
-  &__progress-value { font-family: $font-mono; font-size: 0.7rem; color: $bakano-pink; font-weight: 600; }
+  &__progress-value { font-family: $font-mono; font-size: 0.7rem; color: var(--c-accent-text); font-weight: 600; }
 }
 
 @media (max-width: 1200px) {
