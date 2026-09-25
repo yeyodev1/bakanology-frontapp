@@ -74,3 +74,10 @@ const props = defineProps({
   }
 }
 </style>
+
+<style lang="scss">
+// El logo es negro con punto rosa: en tema oscuro se invierte y el rosa conserva su tono
+:root[data-theme='dark'] .wordmark__image {
+  filter: invert(1) hue-rotate(180deg);
+}
+</style>
