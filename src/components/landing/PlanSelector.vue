@@ -66,8 +66,8 @@ function select(id: PlanId) {
   gap: 0.85rem;
   width: 100%;
   padding: 0.9rem 1rem;
-  background: $white;
-  border: 1.5px solid $gray-200;
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-border);
   border-radius: 1rem;
   cursor: pointer;
   text-align: left;
@@ -75,7 +75,7 @@ function select(id: PlanId) {
     background 0.25s ease;
 
   &:hover:not(:disabled) {
-    border-color: $gray-400;
+    border-color: var(--c-border-strong);
     transform: translateY(-1px);
   }
 
@@ -85,12 +85,12 @@ function select(id: PlanId) {
   }
 
   &--active {
-    border-color: $bakano-pink;
-    background: rgba($bakano-pink, 0.04);
-    box-shadow: 0 6px 20px rgba($bakano-pink, 0.15);
+    border-color: var(--c-accent);
+    background: rgb(var(--c-accent-fill-rgb) / 0.04);
+    box-shadow: 0 6px 20px rgb(var(--c-accent-rgb) / 0.15);
 
     &:hover:not(:disabled) {
-      border-color: $bakano-pink;
+      border-color: var(--c-accent);
     }
   }
 }
@@ -99,7 +99,7 @@ function select(id: PlanId) {
   flex-shrink: 0;
   width: 1.15rem;
   height: 1.15rem;
-  border: 2px solid $gray-300;
+  border: 2px solid var(--c-border-strong);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@ function select(id: PlanId) {
   transition: border-color 0.25s ease;
 
   .plan-selector__option--active & {
-    border-color: $bakano-pink;
+    border-color: var(--c-accent);
   }
 }
 
@@ -115,7 +115,7 @@ function select(id: PlanId) {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: $bakano-pink;
+  background: var(--c-accent-fill);
 }
 
 .plan-selector__info {
@@ -137,7 +137,7 @@ function select(id: PlanId) {
   font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .plan-selector__badge {
@@ -146,8 +146,8 @@ function select(id: PlanId) {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
 }
@@ -155,7 +155,7 @@ function select(id: PlanId) {
 .plan-selector__note {
   font-family: $font-sans;
   font-size: 0.75rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   line-height: 1.3;
 }
 
@@ -172,13 +172,13 @@ function select(id: PlanId) {
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .plan-selector__period {
   font-family: $font-sans;
   font-size: 0.7rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 /* Transitions */
