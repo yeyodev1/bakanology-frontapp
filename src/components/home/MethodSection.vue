@@ -80,8 +80,8 @@ onBeforeUnmount(() => ctx?.revert())
 
 <style lang="scss" scoped>
 .method {
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   padding-block: clamp(5rem, 12vw, 9rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
   width: 100%;
@@ -107,7 +107,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .method__title {
   margin: 0;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .method__title-mask {
@@ -117,11 +117,11 @@ onBeforeUnmount(() => ctx?.revert())
 
 .method__title--italic {
   font-style: italic;
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .method__lede {
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   max-width: 75ch;
   margin-inline: auto;
 }
@@ -130,8 +130,8 @@ onBeforeUnmount(() => ctx?.revert())
   display: grid;
   gap: 1px;
   grid-template-columns: 1fr;
-  background: rgba($white, 0.12);
-  border-block: 1px solid rgba($white, 0.12);
+  background: rgb(var(--c-on-accent-rgb) / 0.12);
+  border-block: 1px solid rgb(var(--c-on-accent-rgb) / 0.12);
 
   @media (min-width: 880px) {
     grid-template-columns: repeat(3, 1fr);
@@ -140,7 +140,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .method__card {
   position: relative;
-  background: $bakano-dark;
+  background: var(--c-ink);
   padding: clamp(2.5rem, 4vw, 4rem) clamp(1.5rem, 3vw, 3rem);
   display: flex;
   flex-direction: column;
@@ -152,7 +152,7 @@ onBeforeUnmount(() => ctx?.revert())
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(ellipse at 50% 0%, rgba($bakano-green, 0.06), transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, rgb(var(--c-success-fill-rgb) / 0.06), transparent 70%);
     opacity: 0;
     transition: opacity .4s ease;
     pointer-events: none;
@@ -169,13 +169,13 @@ onBeforeUnmount(() => ctx?.revert())
     transition: opacity .4s ease;
   }
 
-  &--1::after { background: $bakano-green; }
-  &--2::after { background: $bakano-pink; }
-  &--3::after { background: linear-gradient(90deg, $bakano-green, $bakano-green); }
+  &--1::after { background: var(--c-success-fill); }
+  &--2::after { background: var(--c-accent-fill); }
+  &--3::after { background: linear-gradient(90deg, var(--c-success-fill), var(--c-success-fill)); }
 
   &:hover {
-    background: $bakano-dark;
-    box-shadow: 0 8px 32px rgba($bakano-green, 0.08);
+    background: var(--c-ink);
+    box-shadow: 0 8px 32px rgb(var(--c-success-rgb) / 0.08);
   }
 
   &:hover::before {
@@ -200,18 +200,18 @@ onBeforeUnmount(() => ctx?.revert())
   border: none;
 
   .method__card--1 & {
-    background: rgba($bakano-green, 0.2);
-    color: $bakano-green;
+    background: rgb(var(--c-success-fill-rgb) / 0.2);
+    color: var(--c-success-text);
   }
 
   .method__card--2 & {
-    background: rgba($bakano-pink, 0.2);
-    color: $bakano-pink;
+    background: rgb(var(--c-accent-fill-rgb) / 0.2);
+    color: var(--c-accent-text);
   }
 
   .method__card--3 & {
-    background: rgba($bakano-green, 0.2);
-    color: $bakano-green;
+    background: rgb(var(--c-success-fill-rgb) / 0.2);
+    color: var(--c-success-text);
   }
 }
 
@@ -227,7 +227,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .method__card-body {
   font-family: $font-sans;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   font-size: 1rem;
   line-height: 1.55;
   margin: 0;
