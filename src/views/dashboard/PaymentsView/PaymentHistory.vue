@@ -84,13 +84,13 @@ function formatDate(iso: string) {
   font-family: $font-display;
   font-size: 1.25rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .history__wrap {
   overflow-x: auto;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
 }
@@ -113,7 +113,7 @@ function formatDate(iso: string) {
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     background: var(--cream);
   }
 
@@ -122,7 +122,7 @@ function formatDate(iso: string) {
 
 .history__empty {
   text-align: center;
-  color: $gray-500;
+  color: var(--c-text-muted);
   padding: 2rem;
 }
 
@@ -136,9 +136,9 @@ function formatDate(iso: string) {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
-  &--approved { background: rgba($bakano-green, 0.12); color: $bakano-green; }
-  &--pending { background: rgba($bakano-pink, 0.12); color: $bakano-pink; }
+  &--approved { background: rgb(var(--c-success-fill-rgb) / 0.12); color: var(--c-success-text); }
+  &--pending { background: rgb(var(--c-accent-fill-rgb) / 0.12); color: var(--c-accent-text); }
   &--failed,
-  &--canceled { background: rgba($alert-error, 0.1); color: $alert-error; }
+  &--canceled { background: rgb(var(--c-error-rgb) / 0.1); color: var(--c-error); }
 }
 </style>
