@@ -95,8 +95,8 @@ const current = computed(() => (active.value ? after : before))
 <style lang="scss" scoped>
 .comparison {
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: linear-gradient(180deg, $bakano-dark 0%, #0f0d18 100%);
-  color: $white;
+  background: linear-gradient(180deg, var(--c-ink) 0%, #0f0d18 100%);
+  color: var(--c-on-accent);
 }
 
 .comparison__inner {
@@ -115,7 +115,7 @@ const current = computed(() => (active.value ? after : before))
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -128,14 +128,14 @@ const current = computed(() => (active.value ? after : before))
 }
 
 .comparison__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .comparison__lede {
   font-family: $font-sans;
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   margin: 0;
   max-width: 56ch;
 }
@@ -144,7 +144,7 @@ const current = computed(() => (active.value ? after : before))
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba($white, 0.08);
+  background: rgb(var(--c-on-accent-rgb) / 0.08);
   padding: 0.4rem;
   border-radius: 999px;
   margin-top: 0.5rem;
@@ -153,7 +153,7 @@ const current = computed(() => (active.value ? after : before))
 .comparison__toggle-btn {
   background: none;
   border: none;
-  color: rgba($white, 0.6);
+  color: rgb(var(--c-on-accent-rgb) / 0.6);
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
@@ -163,8 +163,8 @@ const current = computed(() => (active.value ? after : before))
   transition: all 0.25s ease;
 
   &--active {
-    background: $white;
-    color: $bakano-dark;
+    background: var(--c-surface);
+    color: var(--c-text);
   }
 }
 
@@ -172,7 +172,7 @@ const current = computed(() => (active.value ? after : before))
   width: 3rem;
   height: 1.6rem;
   border-radius: 999px;
-  background: rgba($white, 0.15);
+  background: rgb(var(--c-on-accent-rgb) / 0.15);
   border: none;
   position: relative;
   cursor: pointer;
@@ -185,12 +185,12 @@ const current = computed(() => (active.value ? after : before))
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
-    background: $white;
+    background: var(--c-surface);
     transition: transform 0.25s ease;
   }
 
   &--active {
-    background: $bakano-pink;
+    background: var(--c-accent-fill);
 
     span {
       transform: translateX(1.4rem);
@@ -200,14 +200,14 @@ const current = computed(() => (active.value ? after : before))
 
 .comparison__card {
   width: 100%;
-  background: rgba($white, 0.04);
-  border: 1px solid rgba($white, 0.1);
+  background: rgb(var(--c-on-accent-rgb) / 0.04);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.1);
   border-radius: 1.25rem;
   padding: 2rem;
   transition: border-color 0.3s ease;
 
   &--active {
-    border-color: rgba($bakano-green, 0.4);
+    border-color: rgb(var(--c-success-rgb) / 0.4);
   }
 }
 
@@ -232,30 +232,30 @@ const current = computed(() => (active.value ? after : before))
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.5);
+  color: rgb(var(--c-on-accent-rgb) / 0.5);
 }
 
 .comparison__metric-value {
   font-family: $font-display;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 800;
-  color: $white;
+  color: var(--c-on-accent);
 
   .comparison__card--active & {
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 }
 
 .comparison__metric-note {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: rgba($white, 0.65);
+  color: rgb(var(--c-on-accent-rgb) / 0.65);
 }
 
 .comparison__disclaimer {
   font-family: $font-sans;
   font-size: 0.75rem;
-  color: rgba($white, 0.4);
+  color: rgb(var(--c-on-accent-rgb) / 0.4);
   margin: 0;
 }
 
@@ -263,8 +263,8 @@ const current = computed(() => (active.value ? after : before))
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: $bakano-green;
-  color: $white;
+  background: var(--c-success-fill);
+  color: var(--c-on-accent);
   border: none;
   border-radius: 999px;
   padding: 1rem 1.75rem;
@@ -276,7 +276,7 @@ const current = computed(() => (active.value ? after : before))
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba($bakano-green, 0.35);
+    box-shadow: 0 10px 28px rgb(var(--c-success-rgb) / 0.35);
   }
 }
 </style>
