@@ -76,8 +76,8 @@ const scrollToPlans = () => {
   left: 0;
   right: 0;
   z-index: 10000;
-  background: $bakano-dark;
-  border-bottom: 1px solid rgba($white, 0.08);
+  background: var(--c-ink);
+  border-bottom: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   padding: 0.4rem 1rem;
 }
 
@@ -101,19 +101,19 @@ const scrollToPlans = () => {
   font-family: $font-display;
   font-weight: 800;
   font-size: 0.85rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   white-space: nowrap;
 }
 
 .sticky-bar__sep {
-  color: rgba($white, 0.15);
+  color: rgb(var(--c-on-accent-rgb) / 0.15);
   font-size: 0.85rem;
 }
 
 .sticky-bar__desc {
   font-family: $font-sans;
   font-size: 0.78rem;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   white-space: nowrap;
 }
 
@@ -128,7 +128,7 @@ const scrollToPlans = () => {
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba($white, 0.4);
+  color: rgb(var(--c-on-accent-rgb) / 0.4);
 }
 
 .sticky-bar__timer {
@@ -140,7 +140,7 @@ const scrollToPlans = () => {
 .sticky-bar__unit {
   display: flex;
   gap: 1px;
-  background: rgba($white, 0.07);
+  background: rgb(var(--c-on-accent-rgb) / 0.07);
   border-radius: 4px;
   padding: 2px;
   position: relative;
@@ -152,12 +152,12 @@ const scrollToPlans = () => {
   justify-content: center;
   width: 1.15rem;
   height: 1.4rem;
-  background: rgba($white, 0.1);
+  background: rgb(var(--c-on-accent-rgb) / 0.1);
   border-radius: 3px;
   font-family: $font-mono;
   font-size: 0.8rem;
   font-weight: 700;
-  color: $white;
+  color: var(--c-on-accent);
   line-height: 1;
 }
 
@@ -170,7 +170,7 @@ const scrollToPlans = () => {
   font-size: 0.45rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba($white, 0.3);
+  color: rgb(var(--c-on-accent-rgb) / 0.3);
   white-space: nowrap;
 }
 
@@ -178,7 +178,7 @@ const scrollToPlans = () => {
   font-family: $font-mono;
   font-size: 0.8rem;
   font-weight: 700;
-  color: rgba($white, 0.2);
+  color: rgb(var(--c-on-accent-rgb) / 0.2);
   line-height: 1.4rem;
 }
 
@@ -186,8 +186,8 @@ const scrollToPlans = () => {
   font-family: $font-sans;
   font-size: 0.72rem;
   font-weight: 700;
-  color: $white;
-  background: $bakano-pink;
+  color: var(--c-on-accent);
+  background: var(--c-accent-fill);
   border: none;
   padding: 0.4rem 1rem;
   border-radius: 0.35rem;
@@ -196,7 +196,7 @@ const scrollToPlans = () => {
   white-space: nowrap;
 
   &:hover {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
   }
 }
 
