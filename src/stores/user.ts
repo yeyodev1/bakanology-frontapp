@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useTheme, type ThemePreference } from '@/composables/useTheme'
 
 export interface UserState {
   id: string | null
@@ -111,7 +112,12 @@ export const useUserStore = defineStore('user', {
      subscriptionStatus?: 'none' | 'pending' | 'active' | 'canceled'
      accessUntil?: string | null
      foundingMember?: boolean
+     themePreference?: ThemePreference
    }) {
+      // Al iniciar sesión gana el tema guardado en la cuenta
+      if (payload.themePreference) {
+        useTheme().setPreference(payload.themePreference, { sync: false })
+      }
       if (payload.id !== undefined) {
         this.id = payload.id
         setItem(STORAGE_KEYS.id, payload.id)
