@@ -79,7 +79,7 @@ function formatDate(iso: string | null) {
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
 
@@ -93,27 +93,27 @@ function formatDate(iso: string | null) {
     font-family: $font-display;
     font-size: 1.35rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 
   &__count {
     font-family: $font-mono;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
   }
 
   &__progress {
     height: 6px;
-    background: rgba($bakano-dark, 0.07);
+    background: rgb(var(--c-text-rgb) / 0.07);
     border-radius: 999px;
     overflow: hidden;
   }
 
   &__bar {
     height: 100%;
-    background: $bakano-green;
+    background: var(--c-success-fill);
     border-radius: 999px;
     transition: width 0.5s ease;
   }
@@ -130,7 +130,7 @@ function formatDate(iso: string | null) {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
   }
 }
@@ -146,13 +146,13 @@ function formatDate(iso: string | null) {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 0.875rem;
 
   &--unlocked {
-    background: rgba($bakano-green, 0.04);
-    border-color: rgba($bakano-green, 0.12);
+    background: rgb(var(--c-success-fill-rgb) / 0.04);
+    border-color: rgb(var(--c-success-rgb) / 0.12);
   }
 
   &--locked {
@@ -165,15 +165,15 @@ function formatDate(iso: string | null) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $bakano-green;
-    color: $white;
+    background: var(--c-success-fill);
+    color: var(--c-on-accent);
     border-radius: 50%;
     font-size: 1rem;
     flex-shrink: 0;
 
     &--dim {
-      background: rgba($bakano-dark, 0.06);
-      color: $gray-500;
+      background: rgb(var(--c-text-rgb) / 0.06);
+      color: var(--c-text-muted);
     }
   }
 
@@ -188,24 +188,24 @@ function formatDate(iso: string | null) {
     font-family: $font-sans;
     font-size: 0.95rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__desc {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__date {
     font-family: $font-mono;
     font-size: 0.65rem;
-    color: $gray-400;
+    color: var(--c-text-faint);
     white-space: nowrap;
   }
 
   &__lock {
-    color: $gray-400;
+    color: var(--c-text-faint);
     font-size: 0.9rem;
   }
 }
@@ -213,7 +213,7 @@ function formatDate(iso: string | null) {
 .empty {
   text-align: center;
   padding: 3rem 1rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-family: $font-sans;
 }
 </style>
