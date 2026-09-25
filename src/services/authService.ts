@@ -30,6 +30,7 @@ export interface AuthResponse {
     subscriptionStatus: 'none' | 'pending' | 'active' | 'canceled'
     accessUntil: string | null
     foundingMember: boolean
+    themePreference?: 'light' | 'dark' | 'system'
   }
 }
 
@@ -44,6 +45,7 @@ export interface MeResponse {
   subscriptionStatus: 'none' | 'pending' | 'active' | 'canceled'
   accessUntil: string | null
   foundingMember: boolean
+  themePreference?: 'light' | 'dark' | 'system'
 }
 
 class AuthService extends APIBase {
