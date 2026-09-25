@@ -58,7 +58,7 @@ function formatDate(iso: string) {
   font-family: $font-display;
   font-size: 1.35rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -68,7 +68,7 @@ function formatDate(iso: string) {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $bakano-green;
+  color: var(--c-success-text);
 
   &:hover { text-decoration: underline; }
 }
@@ -80,7 +80,7 @@ function formatDate(iso: string) {
 }
 
 .badge {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -94,8 +94,8 @@ function formatDate(iso: string) {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba($bakano-green, 0.12);
-    color: $bakano-green;
+    background: rgb(var(--c-success-fill-rgb) / 0.12);
+    color: var(--c-success-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,21 +106,21 @@ function formatDate(iso: string) {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__date {
     font-family: $font-mono;
     font-size: 0.65rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &--locked {
     opacity: 0.55;
 
     .badge__icon {
-      background: rgba($bakano-dark, 0.05);
-      color: $gray-500;
+      background: rgb(var(--c-text-rgb) / 0.05);
+      color: var(--c-text-muted);
     }
   }
 }
