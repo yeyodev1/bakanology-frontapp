@@ -52,7 +52,7 @@ function submit() {
 
 <style lang="scss" scoped>
 .card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -64,7 +64,7 @@ function submit() {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 }
@@ -86,13 +86,13 @@ function submit() {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $gray-600;
+    color: var(--c-text-2);
   }
 
   &__input {
     font-family: $font-sans;
     font-size: 1rem;
-    color: $bakano-dark;
+    color: var(--c-text);
     background: var(--cream);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
@@ -101,29 +101,29 @@ function submit() {
 
     &:focus {
       outline: none;
-      border-color: $bakano-green;
-      box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
+      border-color: var(--c-success);
+      box-shadow: 0 0 0 3px rgb(var(--c-success-rgb) / 0.15);
     }
   }
 
   &__error {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $alert-error;
+    color: var(--c-error);
     margin: 0;
   }
 
   &__success {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $bakano-green;
+    color: var(--c-success-text);
     margin: 0;
   }
 
   &__submit {
     align-self: flex-start;
-    background: $bakano-dark;
-    color: $white;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -133,7 +133,7 @@ function submit() {
     border-radius: 999px;
     transition: background 0.2s ease;
 
-    &:hover { background: $bakano-green; }
+    &:hover { background: var(--c-success-fill); }
   }
 }
 </style>
