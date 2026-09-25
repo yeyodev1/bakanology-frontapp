@@ -26,20 +26,20 @@ defineProps<{ items: string[]; speed?: number; theme?: 'light' | 'dark' | 'green
   border-block: 1px solid transparent;
 
   &--dark {
-    background: $bakano-dark;
-    color: $white;
-    border-color: rgba($white, 0.08);
+    background: var(--c-ink);
+    color: var(--c-on-accent);
+    border-color: rgb(var(--c-on-accent-rgb) / 0.08);
   }
 
   &--light {
-    background: $light;
-    color: $bakano-dark;
-    border-color: $gray-200;
+    background: var(--c-bg);
+    color: var(--c-text);
+    border-color: var(--c-border);
   }
 
   &--green {
-    background: linear-gradient(90deg, $bakano-green 0%, #1DB87A 40%, #C9A84C 100%);
-    color: $bakano-dark;
+    background: linear-gradient(90deg, var(--c-success-fill) 0%, #1DB87A 40%, #C9A84C 100%);
+    color: var(--c-text);
   }
 }
 
@@ -69,15 +69,15 @@ defineProps<{ items: string[]; speed?: number; theme?: 'light' | 'dark' | 'green
 }
 
 .marquee__bullet {
-  color: $bakano-green;
+  color: var(--c-success-text);
   font-style: normal;
   font-family: $font-mono;
   font-size: 0.8em;
 }
 
 .marquee--green .marquee__bullet {
-  color: $bakano-pink;
-  text-shadow: 0 0 8px rgba($bakano-pink, 0.4);
+  color: var(--c-accent-text);
+  text-shadow: 0 0 8px rgb(var(--c-accent-rgb) / 0.4);
 }
 
 @keyframes marquee-scroll {
