@@ -37,7 +37,7 @@ defineProps<{
 }
 
 .admin-payments__stat {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -46,20 +46,20 @@ defineProps<{
   gap: 0.35rem;
 
   &--approved {
-    background: rgba($bakano-green, 0.08);
-    border-color: rgba($bakano-green, 0.2);
+    background: rgb(var(--c-success-fill-rgb) / 0.08);
+    border-color: rgb(var(--c-success-rgb) / 0.2);
   }
 
   &--amount {
-    background: rgba($bakano-pink, 0.08);
-    border-color: rgba($bakano-pink, 0.25);
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    border-color: rgb(var(--c-accent-rgb) / 0.25);
   }
 }
 
 .admin-payments__stat-value {
   font-family: $font-display;
   font-size: 1.65rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .admin-payments__stat-label {
@@ -68,7 +68,7 @@ defineProps<{
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 @media (max-width: 720px) {
