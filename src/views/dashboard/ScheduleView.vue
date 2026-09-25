@@ -1,160 +1,82 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useDashboardStore } from '@/stores/dashboard'
-
-const dashboardStore = useDashboardStore()
-
-const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
-
-type ScheduleItem = typeof dashboardStore.schedule[number]
-
-const groupedSchedule = computed(() => {
-  const grouped: Record<string, ScheduleItem[]> = {}
-  days.forEach((day) => (grouped[day] = []))
-  dashboardStore.schedule.forEach((item) => {
-    const list = grouped[item.day] || []
-    list.push(item)
-    grouped[item.day] = list
-  })
-  Object.keys(grouped).forEach((day) => {
-    const list = grouped[day]
-    if (list) list.sort((a, b) => a.time.localeCompare(b.time))
-  })
-  return grouped
-})
-
-function typeLabel(type: string) {
-  const labels: Record<string, string> = {
-    live: 'En vivo',
-    qa: 'Preguntas',
-    workshop: 'Taller',
-    review: 'Revisión',
-  }
-  return labels[type] || type
-}
-
-function typeClass(type: string) {
-  return `schedule-card--${type}`
-}
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <div class="schedule-view">
-    <div class="schedule-grid">
-      <div v-for="day in days" :key="day" class="day-column">
-        <h2 class="day-column__title">{{ day }}</h2>
-        <div class="day-column__items">
-          <div
-            v-for="item in (groupedSchedule[day] ?? [])"
-            :key="item.id"
-            class="schedule-card"
-            :class="typeClass(item.type)"
-          >
-            <span class="schedule-card__time">{{ item.time }}</span>
-            <h3 class="schedule-card__title">{{ item.title }}</h3>
-            <span class="schedule-card__type">{{ typeLabel(item.type) }}</span>
-          </div>
-          <div v-if="(groupedSchedule[day] ?? []).length === 0" class="day-column__empty">Sin actividades</div>
-        </div>
-      </div>
+  <section class="coming-soon" aria-labelledby="coming-soon-title">
+    <div class="coming-soon__icon" aria-hidden="true">
+      <i class="fa-solid fa-calendar-days" />
     </div>
-  </div>
+    <span class="coming-soon__badge">Próximamente</span>
+    <h2 id="coming-soon-title" class="coming-soon__title">Muy pronto abriremos el horario</h2>
+    <p class="coming-soon__text">
+      Estamos preparando el calendario semanal de actividades de Bakanology. Te avisaremos por correo cuando esté disponible.
+    </p>
+    <RouterLink :to="{ name: 'courses' }" class="coming-soon__link">Mientras tanto, sigue con tus cursos</RouterLink>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.schedule-view {
+.coming-soon {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.schedule-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1rem;
-}
-
-.day-column {
-  background: var(--c-surface);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
-  min-height: 240px;
+  max-width: 34rem;
+  margin: 2rem auto;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px dashed var(--c-border-strong);
+  border-radius: 1.25rem;
 
-  &__title {
-    font-family: $font-mono;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--c-text-muted);
-    margin: 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  &__items {
+  &__icon {
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgb(var(--c-accent-fill-rgb) / 0.12);
+    color: var(--c-accent-text);
+    font-size: 1.4rem;
   }
 
-  &__empty {
-    font-family: $font-sans;
-    font-size: 0.8rem;
-    color: var(--c-text-muted);
-    text-align: center;
-    padding: 1rem 0;
-  }
-}
-
-.schedule-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem;
-  border-radius: 0.6rem;
-  background: var(--cream);
-  border-left: 3px solid var(--c-success);
-
-  &__time {
-    font-family: $font-mono;
+  &__badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgb(var(--c-text-rgb) / 0.08);
+    color: var(--c-text-2);
     font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--c-text-muted);
-  }
-
-  &__title {
-    font-family: $font-sans;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--c-text);
-    margin: 0;
-  }
-
-  &__type {
-    font-family: $font-mono;
-    font-size: 0.6rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--c-text-muted);
   }
 
-  &--live { border-left-color: var(--c-success); }
-  &--qa { border-left-color: var(--c-accent); }
-  &--workshop { border-left-color: var(--c-info); }
-  &--review { border-left-color: var(--c-accent); }
-}
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--c-text);
+  }
 
-@media (max-width: 1200px) {
-  .schedule-grid { grid-template-columns: repeat(3, 1fr); }
-}
+  &__text {
+    margin: 0;
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--c-text-2);
+  }
 
-@media (max-width: 720px) {
-  .schedule-grid { grid-template-columns: 1fr; }
+  &__link {
+    margin-top: 0.5rem;
+    font-family: $font-sans;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--c-accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
 </style>
