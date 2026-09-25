@@ -102,27 +102,27 @@ function openLesson(lesson: Lesson) {
 
 <style lang="scss" scoped>
 .course-detail { display: flex; flex-direction: column; gap: 2rem; }
-.loading, .error { text-align: center; padding: 4rem 1rem; color: $gray-500; }
-.error { color: $alert-error; }
+.loading, .error { text-align: center; padding: 4rem 1rem; color: var(--c-text-muted); }
+.error { color: var(--c-error); }
 
 .course-header {
-  background: linear-gradient(135deg, $bakano-dark 0%, $bakano-purple 100%);
+  background: linear-gradient(135deg, var(--c-ink) 0%, var(--c-purple-deep) 100%);
   border-radius: 1.25rem;
   padding: 2rem;
-  color: $white;
+  color: var(--c-on-accent);
   
   .back-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba($white, 0.8);
+    color: rgb(var(--c-on-accent-rgb) / 0.8);
     text-decoration: none;
     font-family: $font-mono;
     font-size: 0.8rem;
     margin-bottom: 1.5rem;
     transition: color 0.2s;
     
-    &:hover { color: $white; }
+    &:hover { color: var(--c-on-accent); }
   }
 }
 
@@ -130,7 +130,7 @@ function openLesson(lesson: Lesson) {
 
 .course-badge {
   display: inline-block;
-  background: rgba($white, 0.15);
+  background: rgb(var(--c-on-accent-rgb) / 0.15);
   backdrop-filter: blur(10px);
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
@@ -152,14 +152,14 @@ function openLesson(lesson: Lesson) {
 .course-summary {
   font-family: $font-sans;
   font-size: 1rem;
-  color: rgba($white, 0.8);
+  color: rgb(var(--c-on-accent-rgb) / 0.8);
   margin: 0;
   line-height: 1.6;
   max-width: 600px;
 }
 
 .course-progress {
-  background: rgba($white, 0.1);
+  background: rgb(var(--c-on-accent-rgb) / 0.1);
   backdrop-filter: blur(10px);
   border-radius: 0.75rem;
   padding: 1rem 1.25rem;
@@ -176,13 +176,13 @@ function openLesson(lesson: Lesson) {
       font-family: $font-mono;
       font-weight: 700;
       font-size: 1rem;
-      color: $bakano-green;
+      color: var(--c-success-text);
     }
   }
   
   .progress-bar {
     height: 8px;
-    background: rgba($white, 0.2);
+    background: rgb(var(--c-on-accent-rgb) / 0.2);
     border-radius: 999px;
     overflow: hidden;
     margin-bottom: 0.5rem;
@@ -190,7 +190,7 @@ function openLesson(lesson: Lesson) {
   
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, $bakano-green, #5dd8a1);
+    background: linear-gradient(90deg, var(--c-success-fill), var(--c-success));
     border-radius: 999px;
     transition: width 0.6s ease;
   }
@@ -198,13 +198,13 @@ function openLesson(lesson: Lesson) {
   .progress-text {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: rgba($white, 0.6);
+    color: rgb(var(--c-on-accent-rgb) / 0.6);
   }
 }
 
 .course-description {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
   padding: 1.5rem;
   
@@ -212,11 +212,11 @@ function openLesson(lesson: Lesson) {
     font-family: $font-display;
     font-size: 1.2rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0 0 1rem;
     
     i {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
       margin-right: 0.5rem;
     }
   }
@@ -226,7 +226,7 @@ function openLesson(lesson: Lesson) {
     font-family: $font-sans;
     font-size: 0.95rem;
     line-height: 1.75;
-    color: $gray-600;
+    color: var(--c-text-2);
   }
 
   :deep(p) {
@@ -236,7 +236,7 @@ function openLesson(lesson: Lesson) {
   }
 
   :deep(strong) {
-    color: $bakano-dark;
+    color: var(--c-text);
     font-weight: 600;
   }
 
@@ -249,7 +249,7 @@ function openLesson(lesson: Lesson) {
   :deep(li) {
     margin-bottom: 0.5rem;
 
-    &::marker { color: $bakano-pink; }
+    &::marker { color: var(--c-accent-text); }
   }
 }
 
@@ -258,11 +258,11 @@ function openLesson(lesson: Lesson) {
     font-family: $font-display;
     font-size: 1.35rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0 0 1rem;
     
     i {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
       margin-right: 0.5rem;
     }
   }
@@ -279,25 +279,25 @@ function openLesson(lesson: Lesson) {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
   
   &:hover {
-    border-color: $bakano-pink;
-    box-shadow: 0 4px 12px rgba($bakano-pink, 0.1);
+    border-color: var(--c-accent);
+    box-shadow: 0 4px 12px rgb(var(--c-accent-rgb) / 0.1);
     transform: translateX(4px);
   }
   
   &--completed {
-    border-color: $bakano-green;
-    background: rgba($bakano-green, 0.03);
+    border-color: var(--c-success);
+    background: rgb(var(--c-success-fill-rgb) / 0.03);
     
     &:hover {
-      border-color: $bakano-green;
-      box-shadow: 0 4px 12px rgba($bakano-green, 0.1);
+      border-color: var(--c-success);
+      box-shadow: 0 4px 12px rgb(var(--c-success-rgb) / 0.1);
     }
   }
 }
@@ -306,8 +306,8 @@ function openLesson(lesson: Lesson) {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, $bakano-dark, $bakano-purple);
-  color: $white;
+  background: linear-gradient(135deg, var(--c-ink), var(--c-purple-deep));
+  color: var(--c-on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,7 +317,7 @@ function openLesson(lesson: Lesson) {
   flex-shrink: 0;
   
   .lesson-item--completed & {
-    background: linear-gradient(135deg, $bakano-green, #5dd8a1);
+    background: linear-gradient(135deg, var(--c-success-fill), var(--c-success));
   }
 }
 
@@ -329,14 +329,14 @@ function openLesson(lesson: Lesson) {
     font-family: $font-sans;
     font-size: 1rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0 0 0.25rem;
   }
   
   p {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0 0 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -355,7 +355,7 @@ function openLesson(lesson: Lesson) {
 .lesson-duration {
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   
   i { margin-right: 0.25rem; }
 }
@@ -368,16 +368,16 @@ function openLesson(lesson: Lesson) {
   i { margin-right: 0.25rem; }
   
   &--completed {
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
   
   &--pending {
-    color: $gray-400;
+    color: var(--c-text-faint);
   }
 }
 
 .lesson-action {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-size: 1.25rem;
   transition: transform 0.2s;
   
