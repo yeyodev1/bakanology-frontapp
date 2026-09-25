@@ -103,7 +103,7 @@ async function payWithStripe() {
 <style lang="scss" scoped>
 .plans {
   padding-block: 5rem 4rem;
-  background: $bakano-light;
+  background: var(--c-bg);
 }
 
 .plans__inner {
@@ -122,7 +122,7 @@ async function payWithStripe() {
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -130,13 +130,13 @@ async function payWithStripe() {
   font-family: $font-display;
   font-weight: 800;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .plans__lede {
   font-family: $font-sans;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-size: 1rem;
   line-height: 1.6;
   max-width: 540px;
@@ -144,8 +144,8 @@ async function payWithStripe() {
 }
 
 .plans__card {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
   padding: 2.5rem 2rem;
   display: flex;
@@ -153,7 +153,7 @@ async function payWithStripe() {
   align-items: center;
   gap: 1.25rem;
   width: 100%;
-  box-shadow: 0 4px 24px rgba($bakano-dark, 0.06);
+  box-shadow: 0 4px 24px rgb(var(--c-shadow-rgb) / 0.06);
 }
 
 .plans__card-badge {
@@ -161,8 +161,8 @@ async function payWithStripe() {
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   padding: 0.4rem 1rem;
   border-radius: 2rem;
   font-weight: 600;
@@ -172,13 +172,13 @@ async function payWithStripe() {
   font-family: $font-display;
   font-weight: 700;
   font-size: 1.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .plans__card-desc {
   font-family: $font-sans;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -192,7 +192,7 @@ async function payWithStripe() {
 .plans__card-currency {
   font-family: $font-sans;
   font-size: 1.5rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-weight: 600;
 }
 
@@ -200,7 +200,7 @@ async function payWithStripe() {
   font-family: $font-display;
   font-weight: 800;
   font-size: 3.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   line-height: 1;
 }
 
@@ -208,7 +208,7 @@ async function payWithStripe() {
   font-family: $font-mono;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
-  color: $gray-500;
+  color: var(--c-text-muted);
   text-transform: uppercase;
   margin-top: -0.5rem;
 }
@@ -228,10 +228,10 @@ async function payWithStripe() {
     gap: 0.6rem;
     font-family: $font-sans;
     font-size: 0.95rem;
-    color: $gray-700;
+    color: var(--c-text-2);
 
     i {
-      color: $bakano-green;
+      color: var(--c-success-text);
       font-size: 0.85rem;
       width: 1rem;
     }
@@ -248,21 +248,21 @@ async function payWithStripe() {
 .plans__input {
   width: 100%;
   padding: 0.85rem 1rem;
-  border: 1px solid $gray-300;
+  border: 1px solid var(--c-border-strong);
   border-radius: 0.5rem;
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $bakano-dark;
-  background: $white;
+  color: var(--c-text);
+  background: var(--c-surface);
   transition: border-color 0.2s;
   outline: none;
 
   &::placeholder {
-    color: $gray-400;
+    color: var(--c-text-faint);
   }
 
   &:focus {
-    border-color: $bakano-pink;
+    border-color: var(--c-accent);
   }
 
   &:disabled {
@@ -274,8 +274,8 @@ async function payWithStripe() {
 .plans__card-btn {
   width: 100%;
   padding: 1rem;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   border: none;
   border-radius: 0.5rem;
   font-family: $font-sans;
@@ -285,7 +285,7 @@ async function payWithStripe() {
   transition: background .25s ease;
 
   &:hover:not(:disabled) {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
   }
 
   &:disabled {
@@ -297,7 +297,7 @@ async function payWithStripe() {
 .plans__card-error {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $alert-error;
+  color: var(--c-error);
   margin: 0;
 }
 </style>
