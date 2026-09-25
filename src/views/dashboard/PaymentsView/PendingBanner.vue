@@ -27,7 +27,7 @@ const emit = defineEmits<{
 
 <style lang="scss" scoped>
 .banner {
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem 1.5rem;
@@ -45,14 +45,14 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 1.15rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .banner__text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0.25rem 0 0;
   max-width: 60ch;
 }
@@ -69,16 +69,16 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
-  border: 1px solid rgba($alert-error, 0.3);
-  background: $light;
-  color: $alert-error;
+  border: 1px solid rgb(var(--c-error-rgb) / 0.3);
+  background: var(--c-bg);
+  color: var(--c-error);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
 
   &:hover:not(:disabled) {
-    background: $alert-error;
-    color: $white;
+    background: var(--c-error);
+    color: var(--c-on-accent);
   }
 
   &:disabled {
