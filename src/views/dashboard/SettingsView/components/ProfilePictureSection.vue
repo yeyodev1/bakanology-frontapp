@@ -59,7 +59,7 @@ function displayUrl() {
 
 <style lang="scss" scoped>
 .card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -71,7 +71,7 @@ function displayUrl() {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 }
@@ -94,8 +94,8 @@ function displayUrl() {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -106,7 +106,7 @@ function displayUrl() {
   cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover { background: $bakano-green; }
+  &:hover { background: var(--c-success-fill); }
 }
 
 .profile__input {
@@ -122,8 +122,8 @@ function displayUrl() {
 }
 
 .profile__save {
-  background: $bakano-green;
-  color: $bakano-dark;
+  background: var(--c-success-fill);
+  color: var(--c-text);
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -133,13 +133,13 @@ function displayUrl() {
   border-radius: 999px;
   transition: background 0.2s ease;
 
-  &:hover:not(:disabled) { background: $bakano-green; color: $white; }
+  &:hover:not(:disabled) { background: var(--c-success-fill); color: var(--c-on-accent); }
   &:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 
 .profile__delete {
   background: transparent;
-  color: $alert-error;
+  color: var(--c-error);
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -147,10 +147,10 @@ function displayUrl() {
   text-transform: uppercase;
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
-  border: 1px solid $alert-error;
+  border: 1px solid var(--c-error);
   transition: background 0.2s ease, color 0.2s ease;
 
-  &:hover:not(:disabled) { background: $alert-error; color: $white; }
+  &:hover:not(:disabled) { background: var(--c-error); color: var(--c-on-accent); }
   &:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 
@@ -159,9 +159,9 @@ function displayUrl() {
   font-size: 0.8rem;
   margin: 0;
 }
-.profile__hint { color: $gray-500; }
-.profile__error { color: $alert-error; }
-.profile__success { color: $bakano-green; }
+.profile__hint { color: var(--c-text-muted); }
+.profile__error { color: var(--c-error); }
+.profile__success { color: var(--c-success-text); }
 
 @media (max-width: 640px) {
   .profile { flex-direction: column; align-items: flex-start; }
