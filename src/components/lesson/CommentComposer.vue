@@ -164,12 +164,12 @@ async function onPhotoSelected(event: Event) {
     font-family: $font-sans;
     font-size: 0.7rem;
     font-weight: 600;
-    color: $bakano-pink;
+    color: var(--c-accent-text);
     cursor: pointer;
     white-space: nowrap;
 
     &:hover { text-decoration: underline; }
-    &:disabled { color: $gray-400; cursor: progress; }
+    &:disabled { color: var(--c-text-faint); cursor: progress; }
   }
 
   &__file { display: none; }
@@ -189,23 +189,23 @@ async function onPhotoSelected(event: Event) {
     width: 100%;
     min-height: 5.5rem;
     padding: 0.875rem 1rem;
-    border: 1px solid $gray-200;
+    border: 1px solid var(--c-border);
     border-radius: 0.875rem;
-    background: $gray-100;
+    background: var(--c-surface-2);
     font-family: $font-sans;
     font-size: 0.95rem;
     line-height: 1.55;
-    color: $bakano-dark;
+    color: var(--c-text);
     resize: vertical;
     transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 
-    &::placeholder { color: $gray-400; }
+    &::placeholder { color: var(--c-text-faint); }
 
     &:focus {
       outline: none;
-      background: $white;
-      border-color: $bakano-pink;
-      box-shadow: 0 0 0 3px rgba($bakano-pink, 0.15);
+      background: var(--c-surface);
+      border-color: var(--c-accent);
+      box-shadow: 0 0 0 3px rgb(var(--c-accent-rgb) / 0.15);
     }
   }
 
@@ -214,9 +214,9 @@ async function onPhotoSelected(event: Event) {
   &__hint {
     font-family: $font-sans;
     font-size: 0.75rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
 
-    &--warn { color: $alert-error; }
+    &--warn { color: var(--c-error); }
   }
 
   &__actions { display: flex; gap: 0.5rem; margin-left: auto; }
@@ -225,22 +225,22 @@ async function onPhotoSelected(event: Event) {
     padding: 0.6rem 1.25rem;
     border: 0;
     border-radius: 999px;
-    background: $bakano-pink;
-    color: $white;
+    background: var(--c-accent-fill);
+    color: var(--c-on-accent);
     font-family: $font-sans;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.15s ease, opacity 0.15s ease;
 
-    &:hover:not(:disabled) { background: $bakano-pink-dark; }
+    &:hover:not(:disabled) { background: var(--c-accent-fill-hover); }
     &:disabled { opacity: 0.45; cursor: not-allowed; }
 
     &--ghost {
       background: transparent;
-      color: $gray-600;
+      color: var(--c-text-2);
 
-      &:hover:not(:disabled) { background: $gray-100; }
+      &:hover:not(:disabled) { background: var(--c-surface-2); }
     }
   }
 
@@ -248,7 +248,7 @@ async function onPhotoSelected(event: Event) {
     margin: 0;
     font-family: $font-sans;
     font-size: 0.8rem;
-    color: $alert-error;
+    color: var(--c-error);
   }
 
   &__status {
