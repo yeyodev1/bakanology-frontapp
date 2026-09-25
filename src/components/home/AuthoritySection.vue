@@ -65,7 +65,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
 <style lang="scss" scoped>
 .authority {
   padding-block: 5rem;
-  background: $white;
+  background: var(--c-surface);
 }
 
 .authority__inner {
@@ -84,7 +84,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -92,7 +92,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   font-family: $font-display;
   font-weight: 800;
   font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
   max-width: 600px;
 }
@@ -101,7 +101,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   font-family: $font-sans;
   font-size: 1rem;
   line-height: 1.65;
-  color: $gray-600;
+  color: var(--c-text-2);
   max-width: 600px;
   margin: 0;
 }
@@ -126,7 +126,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid $bakano-pink;
+  border: 3px solid var(--c-accent);
 
   img {
     width: 100%;
@@ -146,13 +146,13 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   font-family: $font-display;
   font-weight: 700;
   font-size: 1.1rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .authority__founder-role {
   font-family: $font-mono;
   font-size: 0.75rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -176,14 +176,14 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   font-family: $font-display;
   font-weight: 800;
   font-size: 2rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   line-height: 1;
 }
 
 .authority__stat-label {
   font-family: $font-mono;
   font-size: 0.72rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -192,7 +192,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   font-family: $font-mono;
   font-weight: 600;
   font-size: 0.85rem;
@@ -202,7 +202,7 @@ const denissePortrait = img('bakanology/denisse-cofounder', { w: 800, h: 1000, c
   transition: color .25s ease;
 
   &:hover {
-    color: $bakano-pink;
+    color: var(--c-accent-text);
   }
 }
 </style>
