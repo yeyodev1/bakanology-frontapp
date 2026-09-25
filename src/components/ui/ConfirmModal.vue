@@ -129,32 +129,32 @@ export default { name: 'ConfirmModal' }
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($bakano-dark, 0.55);
+  background: rgb(var(--c-ink-rgb) / 0.55);
   backdrop-filter: blur(6px);
 }
 
 .confirm-modal__panel {
   width: 100%;
   max-width: 420px;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 60px rgba($bakano-dark, 0.2);
+  box-shadow: 0 24px 60px rgb(var(--c-shadow-rgb) / 0.2);
 }
 
 .confirm-modal__title {
   font-family: $font-display;
   font-size: 1.4rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0 0 0.5rem;
 }
 
 .confirm-modal__message {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0 0 1.25rem;
   line-height: 1.5;
 }
@@ -171,10 +171,10 @@ export default { name: 'ConfirmModal' }
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-600;
+  color: var(--c-text-2);
 
   strong {
-    color: $bakano-dark;
+    color: var(--c-text);
     text-transform: none;
     font-size: 0.85rem;
   }
@@ -183,7 +183,7 @@ export default { name: 'ConfirmModal' }
 .confirm-modal__input {
   font-family: $font-sans;
   font-size: 1rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 0.75rem;
@@ -192,20 +192,20 @@ export default { name: 'ConfirmModal' }
 
   &:focus {
     outline: none;
-    border-color: $bakano-green;
-    box-shadow: 0 0 0 3px rgba($bakano-green, 0.15);
+    border-color: var(--c-success);
+    box-shadow: 0 0 0 3px rgb(var(--c-success-rgb) / 0.15);
   }
 
   &--valid {
-    border-color: $bakano-green;
-    background: rgba($bakano-green, 0.06);
+    border-color: var(--c-success);
+    background: rgb(var(--c-success-fill-rgb) / 0.06);
   }
 }
 
 .confirm-modal__hint {
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 }
 
@@ -233,26 +233,26 @@ export default { name: 'ConfirmModal' }
 }
 
 .confirm-modal__btn--primary {
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
 
   &:hover:not(:disabled) {
-    background: $bakano-green;
+    background: var(--c-success-fill);
   }
 }
 
 .confirm-modal__btn--danger {
-  background: $alert-error;
-  color: $white;
+  background: var(--c-error);
+  color: var(--c-on-accent);
 
   &:hover:not(:disabled) {
-    background: darken($alert-error, 8%);
+    background: rgb(var(--c-error-rgb) / 0.85);
   }
 }
 
 .confirm-modal__btn--secondary {
   background: transparent;
-  color: $gray-600;
+  color: var(--c-text-2);
   border: 1px solid var(--border);
 
   &:hover {
@@ -263,8 +263,8 @@ export default { name: 'ConfirmModal' }
 .confirm-modal__spinner {
   width: 0.85rem;
   height: 0.85rem;
-  border: 2px solid rgba($white, 0.3);
-  border-top-color: $white;
+  border: 2px solid rgb(var(--c-on-accent-rgb) / 0.3);
+  border-top-color: var(--c-surface);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   display: inline-block;
