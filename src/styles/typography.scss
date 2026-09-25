@@ -48,18 +48,18 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .eyebrow--green {
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .lede {
   font-family: $font-sans;
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.55;
-  color: $gray-600;
+  color: var(--c-text-2);
   max-width: 85ch;
 }
 
@@ -67,7 +67,7 @@
   font-family: $font-sans;
   font-size: 1rem;
   line-height: 1.65;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .community__title {
