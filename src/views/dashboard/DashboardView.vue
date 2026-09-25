@@ -2,14 +2,12 @@
 import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { academyService, type Course } from '@/services/academyService'
-import { useDashboardStore } from '@/stores/dashboard'
 import { useUserStore } from '@/stores/user'
 import LaunchBlocker from '@/components/dashboard/LaunchBlocker.vue'
 
 const launchDeadline = (import.meta.env.VITE_LAUNCH_DEADLINE as string) || '2026-07-06T00:00:00-05:00'
 const isBeforeLaunch = computed(() => new Date().getTime() < new Date(launchDeadline).getTime())
 
-const dashboardStore = useDashboardStore()
 const userStore = useUserStore()
 const courses = ref<Course[]>([])
 const loading = ref(true)
@@ -24,12 +22,15 @@ const expiresAtLabel = computed(() => {
   return userStore.hasActiveAccess ? `Acceso hasta el ${label}` : `Venció el ${label}`
 })
 
-const totalProgress = computed(() => {
-  if (!courses.value.length) return 0
-  const total = courses.value.reduce((acc, c) => acc + (c.progress?.totalLessons || 0), 0)
-  const completed = courses.value.reduce((acc, c) => acc + (c.progress?.completedLessons || 0), 0)
-  return total === 0 ? 0 : Math.round((completed / total) * 100)
-})
+const totalLessons = computed(() => courses.value.reduce((acc, c) => acc + lessonCount(c), 0))
+const completedLessons = computed(() => courses.value.reduce((acc, c) => acc + (c.progress?.completedLessons || 0), 0))
+const totalProgress = computed(() =>
+  totalLessons.value === 0 ? 0 : Math.round((completedLessons.value / totalLessons.value) * 100),
+)
+
+function lessonCount(course: Course) {
+  return course.progress?.totalLessons ?? course.lessons?.length ?? 0
+}
 
 const recentCourses = computed(() => courses.value.slice(0, 3))
 
@@ -63,8 +64,8 @@ onMounted(async () => {
         <span class="stat-card__label">Cursos disponibles</span>
       </div>
       <div class="stat-card">
-        <span class="stat-card__value">{{ dashboardStore.completedAchievements.length }}</span>
-        <span class="stat-card__label">Logros desbloqueados</span>
+        <span class="stat-card__value">{{ completedLessons }}<small class="stat-card__of"> / {{ totalLessons }}</small></span>
+        <span class="stat-card__label">Clases completadas</span>
       </div>
       <div class="stat-card" :class="`stat-card--${accessState}`">
         <span class="stat-card__value">{{ subscriptionStatusLabel }}</span>
@@ -95,7 +96,7 @@ onMounted(async () => {
           <div class="course-card__thumb">
             <img v-if="course.cover" :src="course.cover.deliveryUrl || course.cover.publicId" :alt="course.title" />
             <div v-else class="course-card__placeholder"><i class="fa-solid fa-graduation-cap" /></div>
-            <span class="course-card__category">{{ course.lessons?.length || 0 }} clases</span>
+            <span class="course-card__category">{{ lessonCount(course) }} {{ lessonCount(course) === 1 ? 'clase' : 'clases' }}</span>
           </div>
           <div class="course-card__body">
             <h3 class="course-card__title">{{ course.title }}</h3>
@@ -109,25 +110,6 @@ onMounted(async () => {
       </div>
     </section>
 
-    <section class="section">
-      <div class="section__header">
-        <h2 class="section__title">Últimos logros</h2>
-        <RouterLink :to="{ name: 'achievements' }" class="section__link">Ver todos</RouterLink>
-      </div>
-      <div class="achievements-row">
-        <div
-          v-for="achievement in dashboardStore.achievements.slice(0, 4)"
-          :key="achievement.id"
-          class="achievement-badge"
-          :class="{ 'achievement-badge--locked': achievement.isLocked }"
-        >
-          <div class="achievement-badge__icon">
-            <i :class="achievement.isLocked ? 'fa-solid fa-lock' : 'fa-solid fa-medal'" aria-hidden="true" />
-          </div>
-          <span class="achievement-badge__title">{{ achievement.title }}</span>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -146,6 +128,7 @@ onMounted(async () => {
 
 .stat-card { min-width: 0; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;
   &__value { font-family: $font-display; font-size: 1.75rem; font-weight: 700; color: var(--c-text); }
+  &__of { font-size: 1rem; font-weight: 600; color: var(--c-text-muted); }
   &__label { font-family: $font-sans; font-size: 0.85rem; color: var(--c-text-2); }
   &__bar { height: 6px; background: var(--c-surface-3); border-radius: 999px; margin-top: 0.5rem; overflow: hidden; }
   &__fill { height: 100%; background: linear-gradient(90deg, var(--c-accent-fill), var(--c-purple-deep)); border-radius: 999px; transition: width 0.6s cubic-bezier(0.2, 0.7, 0, 1); }
@@ -178,14 +161,6 @@ onMounted(async () => {
   &__progress-value { font-family: $font-mono; font-size: 0.7rem; color: var(--c-accent-text); font-weight: 600; }
 }
 
-.achievements-row { display: flex; flex-wrap: wrap; gap: 1rem; }
-
-.achievement-badge { flex: 1 1 calc(25% - 1rem); min-width: 150px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 1rem; padding: 1.25rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;
-  &__icon { width: 44px; height: 44px; border-radius: 50%; background: rgb(var(--c-accent-fill-rgb) / 0.1); color: var(--c-accent-text); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-  &__title { font-family: $font-sans; font-size: 0.9rem; font-weight: 600; color: var(--c-text); }
-  &--locked { opacity: 0.5; .achievement-badge__icon { background: var(--c-surface-3); color: var(--c-text-muted); } }
-}
-
-@media (max-width: 1200px) { .stat-card { flex-basis: calc(50% - 1rem); } .course-card { flex-basis: calc(50% - 1rem); max-width: calc(50% - 1rem); } .achievement-badge { flex-basis: calc(50% - 1rem); } }
-@media (max-width: 720px) { .stat-card { flex-basis: 100%; } .course-card { flex-basis: 100%; max-width: 100%; } .achievement-badge { flex-basis: calc(50% - 1rem); } }
+@media (max-width: 1200px) { .stat-card { flex-basis: calc(50% - 1rem); } .course-card { flex-basis: calc(50% - 1rem); max-width: calc(50% - 1rem); } }
+@media (max-width: 720px) { .stat-card { flex-basis: 100%; } .course-card { flex-basis: 100%; max-width: 100%; } }
 </style>
