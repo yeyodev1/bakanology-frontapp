@@ -39,7 +39,7 @@ defineProps<{
 }
 
 .stat-card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -50,18 +50,18 @@ defineProps<{
   &__value {
     font-family: $font-display;
     font-size: 1.75rem;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__label {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__bar {
     height: 6px;
-    background: rgba($bakano-dark, 0.06);
+    background: rgb(var(--c-text-rgb) / 0.06);
     border-radius: 999px;
     margin-top: 0.5rem;
     overflow: hidden;
@@ -69,14 +69,14 @@ defineProps<{
 
   &__fill {
     height: 100%;
-    background: $bakano-green;
+    background: var(--c-success-fill);
     border-radius: 999px;
     transition: width 0.6s cubic-bezier(0.2, 0.7, 0, 1);
   }
 
-  &--active &__value { color: $bakano-green; }
-  &--pending &__value { color: $bakano-pink; }
-  &--none &__value { color: $gray-500; }
+  &--active &__value { color: var(--c-success-text); }
+  &--pending &__value { color: var(--c-accent-text); }
+  &--none &__value { color: var(--c-text-muted); }
 }
 
 @media (max-width: 1200px) {
