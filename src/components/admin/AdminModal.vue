@@ -57,7 +57,7 @@ function onOverlayClick(event: MouseEvent) {
   justify-content: center;
   padding: 2rem 1rem;
   overflow-y: auto;
-  background: rgba($bakano-dark, 0.5);
+  background: rgb(var(--c-ink-rgb) / 0.5);
   backdrop-filter: blur(6px);
   -webkit-overflow-scrolling: touch;
 }
@@ -66,11 +66,11 @@ function onOverlayClick(event: MouseEvent) {
   width: 100%;
   max-width: 520px;
   margin: auto 0;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 80px rgba($bakano-dark, 0.25);
+  box-shadow: 0 24px 80px rgb(var(--c-shadow-rgb) / 0.25);
 
   &--small {
     max-width: 400px;
@@ -89,7 +89,7 @@ function onOverlayClick(event: MouseEvent) {
   font-family: $font-display;
   font-size: 1.5rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -100,19 +100,19 @@ function onOverlayClick(event: MouseEvent) {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $gray-500;
+  color: var(--c-text-muted);
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
     background: var(--cream);
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 }
 
 .admin-modal__description {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-700;
+  color: var(--c-text-2);
   margin: 0 0 1.5rem;
   line-height: 1.5;
 }
@@ -148,19 +148,19 @@ function onOverlayClick(event: MouseEvent) {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 500;
-  color: $gray-700;
+  color: var(--c-text-2);
 }
 
 :deep(.admin-modal__optional) {
   font-weight: 400;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 0.8rem;
 }
 
 :deep(.admin-modal__input) {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 0.85rem;
@@ -169,12 +169,12 @@ function onOverlayClick(event: MouseEvent) {
 
   &:focus {
     outline: none;
-    border-color: $bakano-green;
-    box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
+    border-color: var(--c-success);
+    box-shadow: 0 0 0 3px rgb(var(--c-success-rgb) / 0.12);
   }
 
   &::placeholder {
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 }
 
