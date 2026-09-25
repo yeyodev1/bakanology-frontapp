@@ -48,7 +48,7 @@ function toggle(i: number) {
 <style lang="scss" scoped>
 .faq {
   padding-block: 5rem;
-  background: $bakano-light;
+  background: var(--c-bg);
 }
 
 .faq__inner {
@@ -67,7 +67,7 @@ function toggle(i: number) {
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -75,7 +75,7 @@ function toggle(i: number) {
   font-family: $font-display;
   font-weight: 800;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -88,14 +88,14 @@ function toggle(i: number) {
 }
 
 .faq__item {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: box-shadow .25s ease;
 
   &:hover {
-    box-shadow: 0 2px 12px rgba($bakano-dark, 0.06);
+    box-shadow: 0 2px 12px rgb(var(--c-shadow-rgb) / 0.06);
   }
 }
 
@@ -109,7 +109,7 @@ function toggle(i: number) {
   font-family: $font-sans;
   font-weight: 600;
   font-size: 0.98rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   background: none;
   border: none;
   cursor: pointer;
@@ -122,7 +122,7 @@ function toggle(i: number) {
 
 .faq__chevron {
   flex-shrink: 0;
-  color: $gray-400;
+  color: var(--c-text-faint);
   transition: transform .3s ease;
 }
 
@@ -138,7 +138,7 @@ function toggle(i: number) {
   font-family: $font-sans;
   font-size: 0.93rem;
   line-height: 1.6;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 }
 </style>
