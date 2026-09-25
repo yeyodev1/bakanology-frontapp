@@ -20,6 +20,7 @@ export interface UserProfileResponse {
   role: 'user' | 'admin'
   isVerified: boolean
   subscriptionStatus: 'none' | 'pending' | 'active'
+  themePreference?: 'light' | 'dark' | 'system'
 }
 
 class UserService extends APIBase {
@@ -40,6 +41,13 @@ class UserService extends APIBase {
     return this.put<{ data: { user: UserProfileResponse }; message: string }>(
       'auth/profile-picture',
       formData,
+    )
+  }
+
+  async updateThemePreference(themePreference: 'light' | 'dark' | 'system') {
+    return this.put<{ data: { user: UserProfileResponse }; message: string }>(
+      'auth/preferences',
+      { themePreference },
     )
   }
 
