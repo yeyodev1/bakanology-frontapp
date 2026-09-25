@@ -26,7 +26,7 @@ const benefits = [
 <style lang="scss" scoped>
 .benefits {
   padding-block: 5rem;
-  background: $white;
+  background: var(--c-surface);
 }
 
 .benefits__inner {
@@ -45,7 +45,7 @@ const benefits = [
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -53,7 +53,7 @@ const benefits = [
   font-family: $font-display;
   font-weight: 800;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
   max-width: 600px;
 }
@@ -67,8 +67,8 @@ const benefits = [
 }
 
 .benefit-card {
-  background: $bakano-light;
-  border: 1px solid $gray-200;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
   border-radius: 0.75rem;
   padding: 1.75rem;
   display: flex;
@@ -83,17 +83,17 @@ const benefits = [
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba($bakano-pink, 0.1);
+  background: rgb(var(--c-accent-fill-rgb) / 0.1);
   border-radius: 0.75rem;
   font-size: 1.25rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .benefit-card__title {
   font-family: $font-display;
   font-weight: 700;
   font-size: 1.1rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -101,7 +101,7 @@ const benefits = [
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 }
 </style>
