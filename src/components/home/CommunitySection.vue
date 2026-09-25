@@ -58,8 +58,8 @@ onBeforeUnmount(() => ctx?.revert())
 
 <style lang="scss" scoped>
 .community {
-  background: $light;
-  color: $bakano-dark;
+  background: var(--c-bg);
+  color: var(--c-text);
   padding-block: clamp(5rem, 12vw, 10rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
   width: 100%;
@@ -99,7 +99,7 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .community__eyebrow {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .community__title {
@@ -114,7 +114,7 @@ onBeforeUnmount(() => ctx?.revert())
 
 .community__title--italic {
   font-style: italic;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   display: block;
   margin-top: 0.15em;
 }
@@ -123,7 +123,7 @@ onBeforeUnmount(() => ctx?.revert())
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid rgba($bakano-dark, 0.12);
+  border-top: 1px solid rgb(var(--c-text-rgb) / 0.12);
 }
 
 .community__row {
@@ -149,7 +149,7 @@ onBeforeUnmount(() => ctx?.revert())
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, $bakano-pink, $bakano-green, transparent);
+  background: linear-gradient(180deg, var(--c-accent-fill), var(--c-success-fill), transparent);
   border-radius: 2px;
   opacity: 0.3;
   transition: opacity .3s ease;
@@ -170,7 +170,7 @@ onBeforeUnmount(() => ctx?.revert())
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.18em;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   padding-top: 0.45rem;
   position: relative;
   z-index: 1;
@@ -178,7 +178,7 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 .community__row:hover .community__num {
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .community__text {
@@ -194,13 +194,13 @@ onBeforeUnmount(() => ctx?.revert())
     line-height: 1.15;
     letter-spacing: -0.015em;
     margin: 0;
-    color: $bakano-dark;
+    color: var(--c-text);
     text-wrap: balance;
   }
 
   p {
     font-family: $font-sans;
-    color: $gray-700;
+    color: var(--c-text-2);
     line-height: 1.6;
     margin: 0;
     max-width: 65ch;
@@ -211,7 +211,7 @@ onBeforeUnmount(() => ctx?.revert())
   position: absolute;
   inset: auto 0 0 0;
   height: 1px;
-  background: rgba($bakano-dark, 0.1);
+  background: rgb(var(--c-text-rgb) / 0.1);
   grid-column: 1 / -1;
 }
 </style>
