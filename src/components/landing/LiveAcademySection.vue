@@ -41,8 +41,8 @@ const releases = [
 <style lang="scss" scoped>
 .live-academy {
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: $bakano-light;
-  color: $bakano-dark;
+  background: var(--c-bg);
+  color: var(--c-text);
 }
 
 .live-academy__inner {
@@ -61,7 +61,7 @@ const releases = [
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -74,7 +74,7 @@ const releases = [
 }
 
 .live-academy__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .live-academy__timeline {
@@ -89,8 +89,8 @@ const releases = [
 }
 
 .live-academy__card {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
   padding: 1.5rem;
   display: flex;
@@ -101,15 +101,15 @@ const releases = [
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba($bakano-dark, 0.08);
+    box-shadow: 0 12px 30px rgb(var(--c-shadow-rgb) / 0.08);
   }
 
   &--done {
-    border-color: rgba($bakano-green, 0.35);
+    border-color: rgb(var(--c-success-rgb) / 0.35);
   }
 
   &--future {
-    border-color: rgba($bakano-pink, 0.35);
+    border-color: rgb(var(--c-accent-rgb) / 0.35);
   }
 }
 
@@ -119,14 +119,14 @@ const releases = [
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .live-academy__card-title {
   font-family: $font-sans;
   font-size: 1rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
   display: flex;
   align-items: center;
@@ -135,18 +135,18 @@ const releases = [
 
   i {
     font-size: 0.9rem;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 
   .live-academy__card--future & i {
-    color: $bakano-pink;
+    color: var(--c-accent-text);
   }
 }
 
 .live-academy__note {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 }
 </style>
