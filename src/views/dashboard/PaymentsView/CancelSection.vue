@@ -43,7 +43,7 @@ const emit = defineEmits<{
 
 <style lang="scss" scoped>
 .cancel {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem 1.5rem;
@@ -51,20 +51,20 @@ const emit = defineEmits<{
   &--canceled {
     font-family: $font-sans;
     font-size: 0.9rem;
-    color: $gray-600;
+    color: var(--c-text-2);
     background: var(--cream);
 
     i {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
       margin-right: 0.35rem;
     }
   }
 
   &--inactive {
-    color: $gray-600;
+    color: var(--c-text-2);
     background: var(--cream);
 
-    i { color: $bakano-green; margin-right: 0.35rem; }
+    i { color: var(--c-success-text); margin-right: 0.35rem; }
   }
 }
 
@@ -73,17 +73,17 @@ const emit = defineEmits<{
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 0.45rem;
-  color: $bakano-green;
+  color: var(--c-success-text);
   font-family: $font-mono;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 
-  i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: $bakano-green; }
+  i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--c-success-fill); }
 
-  &--canceled { color: $gray-600; }
-  &--canceled i { background: $gray-500; }
+  &--canceled { color: var(--c-text-2); }
+  &--canceled i { background: var(--c-border-strong); }
 }
 
 .cancel__content {
@@ -98,19 +98,19 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 1.15rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .cancel__text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0.25rem 0 0;
   max-width: 60ch;
 
   strong {
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 }
 
@@ -126,16 +126,16 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
-  border: 1px solid rgba($alert-error, 0.3);
-  background: $white;
-  color: $alert-error;
+  border: 1px solid rgb(var(--c-error-rgb) / 0.3);
+  background: var(--c-surface);
+  color: var(--c-error);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
 
   &:hover:not(:disabled) {
-    background: $alert-error;
-    color: $white;
+    background: var(--c-error);
+    color: var(--c-on-accent);
   }
 
   &:disabled {
