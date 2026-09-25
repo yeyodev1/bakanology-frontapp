@@ -131,20 +131,20 @@ function closeDetail() {
   flex-direction: column;
   gap: 0.35rem;
   padding: 1.25rem;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
 
   &__value {
     font-family: $font-display;
     font-size: 1.75rem;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__label {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 }
 
@@ -157,9 +157,9 @@ function closeDetail() {
 .filter-btn {
   padding: 0.55rem 1rem;
   border-radius: 999px;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
-  color: $gray-600;
+  color: var(--c-text-2);
   font-family: $font-mono;
   font-size: 0.7rem;
   font-weight: 600;
@@ -169,13 +169,13 @@ function closeDetail() {
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
   }
 
   &--active {
-    background: $bakano-dark;
-    color: $white;
-    border-color: $bakano-dark;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
+    border-color: var(--c-text);
   }
 }
 
@@ -189,7 +189,7 @@ function closeDetail() {
   width: calc((100% - 2 * 1.25rem) / 3);
   min-width: 260px;
   flex: 1 1 260px;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
   overflow: hidden;
@@ -198,7 +198,7 @@ function closeDetail() {
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba($bakano-dark, 0.08);
+    box-shadow: 0 16px 40px rgb(var(--c-shadow-rgb) / 0.08);
   }
 
   &__image {
@@ -221,8 +221,8 @@ function closeDetail() {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    background: $light;
-    color: $bakano-dark;
+    background: var(--c-bg);
+    color: var(--c-text);
     font-family: $font-mono;
     font-size: 0.65rem;
     font-weight: 600;
@@ -243,7 +243,7 @@ function closeDetail() {
     font-family: $font-display;
     font-size: 1.15rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 
@@ -251,14 +251,14 @@ function closeDetail() {
     font-family: $font-sans;
     font-size: 0.85rem;
     line-height: 1.5;
-    color: $gray-600;
+    color: var(--c-text-2);
     margin: 0;
   }
 
   &__meta {
     font-family: $font-sans;
     font-size: 0.8rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
 
     i {
       margin-right: 0.25rem;
@@ -277,7 +277,7 @@ function closeDetail() {
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
     border: 1px solid var(--border);
@@ -287,7 +287,7 @@ function closeDetail() {
 .empty {
   text-align: center;
   padding: 3rem 1rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-family: $font-sans;
 }
 
@@ -299,7 +299,7 @@ function closeDetail() {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($bakano-dark, 0.55);
+  background: rgb(var(--c-ink-rgb) / 0.55);
   backdrop-filter: blur(6px);
   overflow-y: auto;
 }
@@ -309,7 +309,7 @@ function closeDetail() {
   width: 100%;
   max-width: 560px;
   max-height: 90vh;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
   overflow: hidden;
@@ -324,19 +324,19 @@ function closeDetail() {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba($light, 0.92);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $bakano-dark;
+  color: var(--c-text);
   font-size: 1.1rem;
   cursor: pointer;
   z-index: 2;
   transition: background 0.2s ease;
 
   &:hover {
-    background: $light;
+    background: var(--c-bg);
   }
 }
 
@@ -356,8 +356,8 @@ function closeDetail() {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: $light;
-  color: $bakano-dark;
+  background: var(--c-bg);
+  color: var(--c-text);
   font-family: $font-mono;
   font-size: 0.7rem;
   font-weight: 600;
@@ -379,7 +379,7 @@ function closeDetail() {
   font-family: $font-display;
   font-size: 1.4rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -387,14 +387,14 @@ function closeDetail() {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 }
 
 .modal__meta {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
 
   i {
     margin-right: 0.3rem;
@@ -413,7 +413,7 @@ function closeDetail() {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
   padding: 0.3rem 0.55rem;
   border-radius: 999px;
   border: 1px solid var(--border);
