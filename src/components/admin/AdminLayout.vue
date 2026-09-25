@@ -4,6 +4,7 @@ import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import BrandWordmark from '@/components/ui/BrandWordmark.vue'
 import ConfirmModal from '@/components/ui/ConfirmModal.vue'
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -78,6 +79,7 @@ function logout() {
       </nav>
 
       <div class="admin__sidebar-footer">
+        <ThemeToggle class="admin__theme" />
         <button class="admin__logout" type="button" @click="promptLogout">
           <span class="admin__icon" aria-hidden="true">
             <i class="fa-solid fa-arrow-right-from-bracket" />
@@ -144,7 +146,7 @@ function logout() {
   left: 0;
   width: 260px;
   height: 100dvh;
-  background: $light;
+  background: var(--c-bg);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -157,12 +159,12 @@ function logout() {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background: $light;
+  background: var(--c-bg);
   border-bottom: 1px solid var(--border);
 }
 
 .admin__brand {
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .admin__close {
@@ -178,7 +180,7 @@ function logout() {
     display: block;
     width: 20px;
     height: 2px;
-    background: $bakano-dark;
+    background: var(--c-ink);
     border-radius: 1px;
   }
 
@@ -201,23 +203,23 @@ function logout() {
   gap: 0.85rem;
   padding: 0.85rem 1rem;
   border-radius: 0.75rem;
-  color: $gray-700;
+  color: var(--c-text-2);
   font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
-    color: $bakano-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    color: var(--c-text);
   }
 
   &--active {
-    background: rgba($bakano-pink, 0.14);
-    color: $bakano-pink;
+    background: rgb(var(--c-accent-fill-rgb) / 0.14);
+    color: var(--c-accent-text);
 
     .admin__icon {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
     }
   }
 }
@@ -228,7 +230,7 @@ function logout() {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: $gray-500;
+  color: var(--c-text-muted);
   transition: color 0.2s ease;
 }
 
@@ -247,7 +249,7 @@ function logout() {
   width: 100%;
   padding: 0.7rem 0.75rem;
   border-radius: 0.625rem;
-  color: $gray-700;
+  color: var(--c-text-2);
   font-family: $font-sans;
   font-size: 0.9rem;
   font-weight: 500;
@@ -255,8 +257,8 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
-    color: $bakano-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    color: var(--c-text);
   }
 }
 
@@ -265,7 +267,7 @@ function logout() {
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
   text-align: center;
 }
@@ -289,12 +291,12 @@ function logout() {
   z-index: 800;
   padding: 0.55rem 0.9rem 0.55rem 0.75rem;
   border-radius: 999px;
-  background: rgba($light, 0.92);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
-  color: $bakano-dark;
+  color: var(--c-text);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba($bakano-dark, 0.08);
+  box-shadow: 0 4px 20px rgb(var(--c-shadow-rgb) / 0.08);
 
   &-text {
     font-family: $font-mono;
@@ -338,7 +340,7 @@ function logout() {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.5rem 2rem;
-  background: rgba($bakano-light, 0.92);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -351,7 +353,7 @@ function logout() {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -361,7 +363,7 @@ function logout() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 
   &:hover {
     text-decoration: underline;
@@ -378,7 +380,7 @@ function logout() {
   position: fixed;
   inset: 0;
   z-index: 890;
-  background: rgba($bakano-dark, 0.35);
+  background: rgb(var(--c-ink-rgb) / 0.35);
   backdrop-filter: blur(4px);
 }
 
@@ -420,5 +422,9 @@ function logout() {
   .admin__content {
     padding: 1rem 1rem 2rem;
   }
+}
+.admin__theme {
+  align-self: flex-start;
+  margin-bottom: 0.75rem;
 }
 </style>
