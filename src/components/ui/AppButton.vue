@@ -94,38 +94,38 @@ defineProps<{
 }
 
 .btn--primary {
-  background: $bakano-green;
-  color: $bakano-dark;
-  box-shadow: 0 12px 32px rgba($bakano-green, 0.28);
+  background: var(--c-success-fill);
+  color: var(--c-text);
+  box-shadow: 0 12px 32px rgb(var(--c-success-rgb) / 0.28);
 
   &:hover {
-    background: $bakano-green;
-    color: $white;
+    background: var(--c-success-fill);
+    color: var(--c-on-accent);
     transform: translateY(-2px);
-    box-shadow: 0 18px 42px rgba($bakano-green, 0.38);
+    box-shadow: 0 18px 42px rgb(var(--c-success-rgb) / 0.38);
   }
 }
 
 .btn--ghost {
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
 
   &:hover {
-    background: $bakano-green;
-    color: $bakano-dark;
+    background: var(--c-success-fill);
+    color: var(--c-text);
     transform: translateY(-2px);
   }
 }
 
 .btn--outline-light {
   background: transparent;
-  color: $white;
-  border-color: rgba($white, 0.4);
+  color: var(--c-on-accent);
+  border-color: rgb(var(--c-on-accent-rgb) / 0.4);
 
   &:hover {
-    background: $white;
-    color: $bakano-dark;
-    border-color: $white;
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-surface);
   }
 }
 </style>
