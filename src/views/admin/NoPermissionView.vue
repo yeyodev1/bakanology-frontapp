@@ -53,19 +53,19 @@ onUnmounted(() => {
   max-width: 420px;
   width: 100%;
   text-align: center;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 2.5rem;
-  box-shadow: 0 24px 60px rgba($bakano-dark, 0.08);
+  box-shadow: 0 24px 60px rgb(var(--c-shadow-rgb) / 0.08);
 }
 
 .no-permission__icon {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba($bakano-pink, 0.12);
-  color: $bakano-pink;
+  background: rgb(var(--c-accent-fill-rgb) / 0.12);
+  color: var(--c-accent-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,14 +77,14 @@ onUnmounted(() => {
   font-family: $font-display;
   font-size: 1.6rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0 0 0.75rem;
 }
 
 .no-permission__message {
   font-family: $font-sans;
   font-size: 1rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0 0 1.5rem;
   line-height: 1.5;
 }
@@ -93,8 +93,8 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   font-family: $font-mono;
   font-size: 0.75rem;
   font-weight: 600;
@@ -105,7 +105,7 @@ onUnmounted(() => {
   transition: background 0.2s ease;
 
   &:hover {
-    background: $bakano-dark;
+    background: var(--c-ink);
   }
 }
 </style>
