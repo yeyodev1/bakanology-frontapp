@@ -63,7 +63,7 @@ defineProps<{
   font-family: $font-display;
   font-size: 1.35rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -73,7 +73,7 @@ defineProps<{
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $bakano-green;
+  color: var(--c-success-text);
 
   &:hover { text-decoration: underline; }
 }
@@ -85,7 +85,7 @@ defineProps<{
 }
 
 .card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   overflow: hidden;
@@ -93,7 +93,7 @@ defineProps<{
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba($bakano-dark, 0.08);
+    box-shadow: 0 12px 32px rgb(var(--c-shadow-rgb) / 0.08);
   }
 
   &__thumb {
@@ -108,8 +108,8 @@ defineProps<{
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    background: $light;
-    color: $bakano-dark;
+    background: var(--c-bg);
+    color: var(--c-text);
     font-family: $font-mono;
     font-size: 0.65rem;
     font-weight: 600;
@@ -131,13 +131,13 @@ defineProps<{
     font-size: 1.1rem;
     font-weight: 700;
     margin: 0;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__subtitle {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
     line-height: 1.4;
     display: -webkit-box;
@@ -156,21 +156,21 @@ defineProps<{
   &__progress-bar {
     flex: 1 1 auto;
     height: 6px;
-    background: rgba($bakano-dark, 0.06);
+    background: rgb(var(--c-text-rgb) / 0.06);
     border-radius: 999px;
     overflow: hidden;
   }
 
   &__progress-fill {
     height: 100%;
-    background: $bakano-green;
+    background: var(--c-success-fill);
     border-radius: 999px;
   }
 
   &__progress-value {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 }
 
