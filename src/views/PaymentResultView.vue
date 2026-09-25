@@ -121,8 +121,8 @@ async function resendEmail() {
 .payment-state__spinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 3px solid rgba($bakano-pink, 0.2);
-  border-top-color: $bakano-pink;
+  border: 3px solid rgb(var(--c-accent-rgb) / 0.2);
+  border-top-color: var(--c-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -138,12 +138,12 @@ async function resendEmail() {
 
   &--success {
     background: $alert-success-bg;
-    color: $alert-success;
+    color: var(--c-success-text);
   }
 
   &--error {
     background: $alert-error-bg;
-    color: $alert-error;
+    color: var(--c-error);
   }
 }
 
@@ -155,18 +155,18 @@ async function resendEmail() {
 .payment-state__email-line {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0 0 0.75rem;
 }
 
 .payment-state__spam-warning {
-  background: #fff3cd;
-  border: 1px solid #ffeeba;
+  background: $alert-warning-bg;
+  border: 1px solid rgb(var(--c-warning-rgb) / 0.3);
   border-radius: 0.75rem;
   padding: 0.75rem 1rem;
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: #856404;
+  color: var(--c-warning);
   line-height: 1.5;
   text-align: left;
 }
@@ -179,17 +179,17 @@ async function resendEmail() {
   font-family: $font-sans;
   font-size: 0.8rem;
   font-weight: 600;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   background: none;
-  border: 1px solid $bakano-pink;
+  border: 1px solid var(--c-accent);
   padding: 0.5rem 1.25rem;
   border-radius: 0.4rem;
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover:not(:disabled) {
-    background: $bakano-pink;
-    color: $white;
+    background: var(--c-accent-fill);
+    color: var(--c-on-accent);
   }
 
   &:disabled {
@@ -201,14 +201,14 @@ async function resendEmail() {
 .payment-state__resend-ok {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $alert-success;
+  color: var(--c-success-text);
   margin: 0;
 }
 
 .payment-state__resend-err {
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $alert-error;
+  color: var(--c-error);
   margin: 0.25rem 0 0;
 }
 
