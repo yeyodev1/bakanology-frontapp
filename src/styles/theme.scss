@@ -1,0 +1,136 @@
+// Tokens de tema de Bakanology.
+// Cada color existe como var(--c-*) y, si se usa con transparencia, como canales var(--c-*-rgb)
+// para escribir rgb(var(--c-accent-rgb) / 0.12). Los valores cumplen WCAG AA sobre surface y bg.
+// El área pública (home y legales) siempre usa el tema claro: ver src/composables/useTheme.ts.
+
+:root {
+  color-scheme: light;
+
+  --c-bg-rgb: 247 244 242;
+  --c-surface-rgb: 255 255 255;
+  --c-surface-2-rgb: 243 238 236;
+  --c-surface-3-rgb: 234 227 224;
+  --c-border-rgb: 232 225 222;
+  --c-border-strong-rgb: 214 204 200;
+  --c-text-rgb: 30 21 25;
+  --c-text-2-rgb: 79 66 71;
+  --c-text-muted-rgb: 107 94 99;
+  --c-text-faint-rgb: 150 138 143;
+  --c-ink-rgb: 30 19 32;
+  --c-on-accent-rgb: 255 255 255;
+  --c-on-ink-soft-rgb: 245 243 239;
+  --c-accent-rgb: 230 40 92;
+  --c-accent-text-rgb: 192 28 74;
+  --c-accent-fill-rgb: 216 31 82;
+  --c-accent-fill-hover-rgb: 185 26 70;
+  --c-purple-rgb: 122 74 145;
+  --c-purple-deep-rgb: 133 82 156;
+  --c-success-rgb: 31 157 99;
+  --c-success-text-rgb: 21 122 75;
+  --c-success-fill-rgb: 23 133 82;
+  --c-error-rgb: 200 40 58;
+  --c-warning-rgb: 163 74 6;
+  --c-info-rgb: 36 89 214;
+  --c-shadow-rgb: 30 19 32;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --c-bg-rgb: 18 14 17;
+  --c-surface-rgb: 27 21 25;
+  --c-surface-2-rgb: 36 28 33;
+  --c-surface-3-rgb: 46 37 42;
+  --c-border-rgb: 51 41 47;
+  --c-border-strong-rgb: 70 58 65;
+  --c-text-rgb: 246 239 242;
+  --c-text-2-rgb: 210 197 203;
+  --c-text-muted-rgb: 169 155 162;
+  --c-text-faint-rgb: 138 124 131;
+  --c-ink-rgb: 12 8 11;
+  --c-on-accent-rgb: 255 255 255;
+  --c-on-ink-soft-rgb: 245 243 239;
+  --c-accent-rgb: 255 77 124;
+  --c-accent-text-rgb: 255 112 150;
+  --c-accent-fill-rgb: 216 31 82;
+  --c-accent-fill-hover-rgb: 236 52 102;
+  --c-purple-rgb: 199 155 224;
+  --c-purple-deep-rgb: 66 38 82;
+  --c-success-rgb: 74 201 139;
+  --c-success-text-rgb: 91 211 154;
+  --c-success-fill-rgb: 23 133 82;
+  --c-error-rgb: 255 107 120;
+  --c-warning-rgb: 245 165 36;
+  --c-info-rgb: 126 166 255;
+  --c-shadow-rgb: 0 0 0;
+}
+
+:root {
+  --c-bg: rgb(var(--c-bg-rgb));
+  --c-surface: rgb(var(--c-surface-rgb));
+  --c-surface-2: rgb(var(--c-surface-2-rgb));
+  --c-surface-3: rgb(var(--c-surface-3-rgb));
+  --c-border: rgb(var(--c-border-rgb));
+  --c-border-strong: rgb(var(--c-border-strong-rgb));
+  --c-text: rgb(var(--c-text-rgb));
+  --c-text-2: rgb(var(--c-text-2-rgb));
+  --c-text-muted: rgb(var(--c-text-muted-rgb));
+  --c-text-faint: rgb(var(--c-text-faint-rgb));
+  --c-ink: rgb(var(--c-ink-rgb));
+  --c-on-accent: rgb(var(--c-on-accent-rgb));
+  --c-on-ink-soft: rgb(var(--c-on-ink-soft-rgb));
+  --c-accent: rgb(var(--c-accent-rgb));
+  --c-accent-text: rgb(var(--c-accent-text-rgb));
+  --c-accent-fill: rgb(var(--c-accent-fill-rgb));
+  --c-accent-fill-hover: rgb(var(--c-accent-fill-hover-rgb));
+  --c-purple: rgb(var(--c-purple-rgb));
+  --c-purple-deep: rgb(var(--c-purple-deep-rgb));
+  --c-success: rgb(var(--c-success-rgb));
+  --c-success-text: rgb(var(--c-success-text-rgb));
+  --c-success-fill: rgb(var(--c-success-fill-rgb));
+  --c-error: rgb(var(--c-error-rgb));
+  --c-warning: rgb(var(--c-warning-rgb));
+  --c-info: rgb(var(--c-info-rgb));
+
+  // Alias que ya usaban algunos componentes
+  --bg: var(--c-bg);
+  --bg-dark: var(--c-ink);
+  --text: var(--c-text);
+  --text-soft: var(--c-text-2);
+  --text-mute: var(--c-text-muted);
+  --border: rgb(var(--c-text-rgb) / 0.08);
+  --accent: var(--c-accent);
+  --accent-dark: var(--c-accent-fill-hover);
+  --surface: var(--c-surface);
+  --cream: var(--c-bg);
+  --line: var(--c-border);
+}
+
+// Solo al cambiar de tema (useTheme agrega la clase unos 300 ms). Nunca al cargar.
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease,
+    fill 250ms ease,
+    stroke 250ms ease,
+    box-shadow 250ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: none !important;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: ease;
+}
