@@ -80,8 +80,8 @@ const goToApp = () => router.push({ name: 'dashboard' })
 .verify-state__spinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 3px solid rgba($bakano-green, 0.2);
-  border-top-color: $bakano-green;
+  border: 3px solid rgb(var(--c-success-rgb) / 0.2);
+  border-top-color: var(--c-success);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -97,12 +97,12 @@ const goToApp = () => router.push({ name: 'dashboard' })
 
   &--success {
     background: $alert-success-bg;
-    color: $alert-success;
+    color: var(--c-success-text);
   }
 
   &--error {
     background: $alert-error-bg;
-    color: $alert-error;
+    color: var(--c-error);
   }
 }
 
