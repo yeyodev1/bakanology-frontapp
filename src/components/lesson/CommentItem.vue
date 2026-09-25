@@ -119,14 +119,14 @@ async function submitEdit(body: string) {
     font-family: $font-sans;
     font-size: 0.9rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__badge {
     padding: 0.15rem 0.55rem;
     border-radius: 999px;
-    background: rgba($bakano-pink, 0.1);
-    color: $bakano-pink-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.1);
+    color: var(--c-accent-text);
     font-family: $font-sans;
     font-size: 0.68rem;
     font-weight: 700;
@@ -136,7 +136,7 @@ async function submitEdit(body: string) {
   &__time {
     font-family: $font-sans;
     font-size: 0.75rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__body {
@@ -144,17 +144,17 @@ async function submitEdit(body: string) {
     font-family: $font-sans;
     font-size: 0.93rem;
     line-height: 1.6;
-    color: $gray-700;
+    color: var(--c-text-2);
     white-space: pre-line;
     overflow-wrap: anywhere;
   }
 
   &--team > &__main > &__body {
     padding: 0.75rem 0.9rem;
-    border-left: 3px solid $bakano-pink;
+    border-left: 3px solid var(--c-accent);
     border-radius: 0 0.6rem 0.6rem 0;
-    background: rgba($bakano-pink, 0.04);
-    color: $bakano-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.04);
+    color: var(--c-text);
   }
 
   &__actions { display: flex; gap: 1rem; }
@@ -169,11 +169,11 @@ async function submitEdit(body: string) {
     font-family: $font-sans;
     font-size: 0.78rem;
     font-weight: 600;
-    color: $gray-500;
+    color: var(--c-text-muted);
     cursor: pointer;
 
-    &:hover { color: $bakano-pink; }
-    &--danger:hover { color: $alert-error; }
+    &:hover { color: var(--c-accent-text); }
+    &--danger:hover { color: var(--c-error); }
   }
 
   &__reply-box { margin-top: 0.5rem; }
@@ -184,7 +184,7 @@ async function submitEdit(body: string) {
     gap: 1rem;
     margin-top: 0.75rem;
     padding-left: 0.9rem;
-    border-left: 2px solid $gray-200;
+    border-left: 2px solid var(--c-border);
   }
 }
 </style>
