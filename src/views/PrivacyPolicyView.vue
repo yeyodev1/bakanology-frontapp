@@ -115,8 +115,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .legal {
-  background: $bakano-light;
-  color: $bakano-dark;
+  background: var(--c-bg);
+  color: var(--c-text);
   padding-block: clamp(7rem, 12vh, 9rem) clamp(4rem, 8vw, 6rem);
   min-height: 100vh;
 }
@@ -137,7 +137,7 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-family: $font-mono;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -146,7 +146,7 @@ onMounted(() => {
   transition: color .25s ease, gap .25s ease;
 
   &:hover {
-    color: $bakano-dark;
+    color: var(--c-text);
     gap: 0.8rem;
   }
 }
@@ -158,11 +158,11 @@ h1 {
   font-size: clamp(2rem, 4.5vw, 3rem);
   letter-spacing: -0.015em;
   margin: 0.25rem 0 0;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .legal__updated {
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-family: $font-mono;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -170,7 +170,7 @@ h1 {
 }
 
 section {
-  border-top: 1px solid rgba($bakano-dark, 0.12);
+  border-top: 1px solid rgb(var(--c-text-rgb) / 0.12);
   padding-top: 1.25rem;
 }
 
@@ -180,11 +180,11 @@ h2 {
   font-weight: 500;
   font-size: 1.2rem;
   margin: 0 0 0.75rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 p, li {
-  color: $gray-600;
+  color: var(--c-text-2);
   line-height: 1.65;
   font-size: 0.98rem;
 }
@@ -198,16 +198,16 @@ ul {
 }
 
 strong {
-  color: $bakano-dark;
+  color: var(--c-text);
   font-weight: 600;
 }
 
 em {
-  background: rgba($bakano-pink, 0.12);
+  background: rgb(var(--c-accent-fill-rgb) / 0.12);
   padding: 0.1rem 0.45rem;
   border-radius: 0.25rem;
   font-style: normal;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-family: $font-mono;
   font-size: 0.85em;
 }
