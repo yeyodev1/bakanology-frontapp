@@ -86,8 +86,8 @@ onBeforeUnmount(() => ctx?.revert())
 <style lang="scss" scoped>
 .testimonials {
   position: relative;
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   width: 100%;
 }
 
@@ -126,12 +126,12 @@ onBeforeUnmount(() => ctx?.revert())
 
 .testimonials__title {
   margin: 0;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .testimonials__title--italic {
   font-style: italic;
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .testimonials__cards {
@@ -153,8 +153,8 @@ onBeforeUnmount(() => ctx?.revert())
 .testimonials__card {
   position: relative;
   flex: 0 0 auto;
-  background: $bakano-dark;
-  border: 1px solid rgba($white, 0.08);
+  background: var(--c-ink);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   border-radius: 12px;
   padding: clamp(1.5rem, 2.5vw, 2rem);
   display: flex;
@@ -172,8 +172,8 @@ onBeforeUnmount(() => ctx?.revert())
 
     &:hover {
       transform: translateY(-6px);
-      border-color: rgba($bakano-green, 0.3);
-      box-shadow: 0 24px 48px -20px rgba($bakano-green, 0.25);
+      border-color: rgb(var(--c-success-rgb) / 0.3);
+      box-shadow: 0 24px 48px -20px rgb(var(--c-success-rgb) / 0.25);
     }
   }
 
@@ -184,7 +184,7 @@ onBeforeUnmount(() => ctx?.revert())
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, $bakano-green, $bakano-pink, $bakano-green);
+    background: linear-gradient(90deg, var(--c-success-fill), var(--c-accent-fill), var(--c-success-fill));
     opacity: 0;
     transition: opacity 0.4s ease;
     border-radius: 12px 12px 0 0;
@@ -201,7 +201,7 @@ onBeforeUnmount(() => ctx?.revert())
   font-family: $font-mono;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .testimonials__quote {
@@ -214,7 +214,7 @@ onBeforeUnmount(() => ctx?.revert())
     font-weight: 400;
     font-size: clamp(1rem, 1.6vw, 1.25rem);
     line-height: 1.4;
-    color: $white;
+    color: var(--c-on-accent);
     margin: 0;
     text-wrap: balance;
   }
@@ -224,7 +224,7 @@ onBeforeUnmount(() => ctx?.revert())
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  border-top: 1px solid rgba($white, 0.08);
+  border-top: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   padding-top: 0.85rem;
 
   > div {
@@ -254,15 +254,15 @@ onBeforeUnmount(() => ctx?.revert())
   font-size: 1.1rem;
   font-weight: 500;
   flex-shrink: 0;
-  background: linear-gradient(135deg, $bakano-green, $bakano-pink);
-  color: $white;
+  background: linear-gradient(135deg, var(--c-success-fill), var(--c-accent-fill));
+  color: var(--c-on-accent);
 }
 
 .testimonials__name {
   font-family: $font-sans;
   font-weight: 600;
   font-size: 0.9rem;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .testimonials__role {
@@ -270,6 +270,6 @@ onBeforeUnmount(() => ctx?.revert())
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.55);
+  color: rgb(var(--c-on-accent-rgb) / 0.55);
 }
 </style>
