@@ -62,9 +62,9 @@ const onSubmit = async () => {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $gray-600;
+  color: var(--c-text-2);
   background: $alert-success-bg;
-  border: 1px solid rgba($alert-success, 0.15);
+  border: 1px solid rgb(var(--c-success-rgb) / 0.15);
   border-radius: 0.75rem;
   padding: 1rem;
   margin-bottom: 1rem;
