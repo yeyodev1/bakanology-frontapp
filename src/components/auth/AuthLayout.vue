@@ -29,26 +29,26 @@ defineProps<{
   justify-content: center;
   padding: clamp(1rem, 4vw, 2rem);
   background:
-    radial-gradient(60rem 30rem at 50% -10%, rgba($bakano-pink, 0.08), transparent 70%),
-    $light;
+    radial-gradient(60rem 30rem at 50% -10%, rgb(var(--c-accent-fill-rgb) / 0.08), transparent 70%),
+    var(--c-bg);
 }
 
 .auth-layout__card {
   width: 100%;
   max-width: 420px;
-  background: $white;
-  border: 1px solid rgba($bakano-dark, 0.06);
+  background: var(--c-surface);
+  border: 1px solid rgb(var(--c-text-rgb) / 0.06);
   border-radius: 1.5rem;
   padding: clamp(1.75rem, 6vw, 3rem);
   box-shadow:
-    0 1px 2px rgba($bakano-dark, 0.04),
-    0 24px 64px rgba($bakano-dark, 0.08);
+    0 1px 2px rgb(var(--c-shadow-rgb) / 0.04),
+    0 24px 64px rgb(var(--c-shadow-rgb) / 0.08);
 }
 
 .auth-layout__brand {
   display: inline-flex;
   margin-bottom: 1.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .auth-layout__title {
@@ -59,14 +59,14 @@ defineProps<{
   letter-spacing: -0.02em;
   text-wrap: balance;
   margin: 0 0 0.5rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .auth-layout__subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $gray-600;
+  color: var(--c-text-2);
   text-wrap: pretty;
   margin: 0 0 1.75rem;
 }
