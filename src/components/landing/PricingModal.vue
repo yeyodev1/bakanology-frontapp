@@ -182,7 +182,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgba($bakano-dark, 0.75);
+  background: rgb(var(--c-ink-rgb) / 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
@@ -196,10 +196,10 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   position: relative;
   width: 100%;
   max-width: 460px;
-  background: $white;
+  background: var(--c-surface);
   border-radius: 1.5rem;
   padding: clamp(1.75rem, 5vw, 2.5rem);
-  box-shadow: 0 32px 80px rgba($bakano-dark, 0.35);
+  box-shadow: 0 32px 80px rgb(var(--c-shadow-rgb) / 0.35);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -219,7 +219,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, $bakano-pink, $bakano-purple, $bakano-pink);
+  background: linear-gradient(90deg, var(--c-accent-fill), var(--c-purple-deep), var(--c-accent-fill));
 }
 
 .pricing-modal__close {
@@ -230,8 +230,8 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   height: 2.25rem;
   border-radius: 50%;
   border: none;
-  background: $gray-100;
-  color: $gray-600;
+  background: var(--c-surface-2);
+  color: var(--c-text-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,8 +239,8 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: $gray-200;
-    color: $bakano-dark;
+    background: var(--c-surface-3);
+    color: var(--c-text);
     transform: rotate(90deg);
   }
 
@@ -262,7 +262,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -271,14 +271,14 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   font-weight: 800;
   font-size: clamp(1.5rem, 4vw, 1.9rem);
   line-height: 1.1;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .pricing-modal__subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 }
 
@@ -297,33 +297,33 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
     font-family: $font-sans;
     font-size: 0.8rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   input {
     width: 100%;
     padding: 0.95rem 1rem;
-    border: 1px solid $gray-300;
+    border: 1px solid var(--c-border-strong);
     border-radius: 0.85rem;
     font-family: $font-sans;
     font-size: 1rem;
-    color: $bakano-dark;
-    background: $white;
+    color: var(--c-text);
+    background: var(--c-surface);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &::placeholder {
-      color: $gray-400;
+      color: var(--c-text-faint);
     }
 
     &:focus {
-      border-color: $bakano-pink;
-      box-shadow: 0 0 0 4px rgba($bakano-pink, 0.1);
+      border-color: var(--c-accent);
+      box-shadow: 0 0 0 4px rgb(var(--c-accent-rgb) / 0.1);
     }
 
     &:disabled {
       opacity: 0.6;
-      background: $gray-100;
+      background: var(--c-surface-2);
     }
   }
 }
@@ -332,8 +332,8 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   width: 100%;
   padding: 1.05rem;
   margin-top: 0.35rem;
-  background: linear-gradient(90deg, $bakano-pink, $bakano-pink-dark);
-  color: $white;
+  background: linear-gradient(90deg, var(--c-accent-fill), var(--c-accent-fill-hover));
+  color: var(--c-on-accent);
   border: none;
   border-radius: 999px;
   font-family: $font-sans;
@@ -348,7 +348,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba($bakano-pink, 0.4);
+    box-shadow: 0 12px 32px rgb(var(--c-accent-rgb) / 0.4);
   }
 
   &:disabled {
@@ -364,7 +364,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 .pricing-modal__error {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $alert-error;
+  color: var(--c-error);
   text-align: center;
   margin: 0;
   padding: 0.5rem;
@@ -379,7 +379,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   gap: 0.4rem;
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 
   i {
