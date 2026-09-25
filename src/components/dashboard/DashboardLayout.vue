@@ -91,12 +91,12 @@ function toggleMobileMenu() {
   z-index: 800;
   padding: 0.55rem 0.9rem 0.55rem 0.75rem;
   border-radius: 999px;
-  background: rgba($light, 0.92);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
-  color: $bakano-dark;
+  color: var(--c-text);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba($bakano-dark, 0.08);
+  box-shadow: 0 4px 20px rgb(var(--c-shadow-rgb) / 0.08);
 
   &-text {
     font-family: $font-mono;
