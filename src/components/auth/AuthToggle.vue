@@ -20,19 +20,19 @@ defineProps<{
   text-align: center;
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 1.5rem 0 0;
 }
 
 .auth-toggle__link {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
   text-decoration: none;
   text-underline-offset: 3px;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $bakano-pink-dark;
+    color: var(--c-accent-text);
     text-decoration: underline;
   }
 }
