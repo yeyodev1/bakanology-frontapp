@@ -47,32 +47,32 @@ const emit = defineEmits<{
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba($bakano-dark, 0.55);
+  background: rgb(var(--c-ink-rgb) / 0.55);
   backdrop-filter: blur(6px);
 }
 
 .pfm__panel {
   width: 100%;
   max-width: 400px;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 24px 60px rgba($bakano-dark, 0.2);
+  box-shadow: 0 24px 60px rgb(var(--c-shadow-rgb) / 0.2);
 }
 
 .pfm__title {
   font-family: $font-display;
   font-size: 1.3rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0 0 0.5rem;
 }
 
 .pfm__message {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0 0 1.5rem;
   line-height: 1.5;
 }
@@ -96,17 +96,17 @@ const emit = defineEmits<{
   transition: background 0.2s ease, opacity 0.2s ease;
 
   &--primary {
-    background: $bakano-dark;
-    color: $white;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
 
     &:hover {
-      background: $bakano-green;
+      background: var(--c-success-fill);
     }
   }
 
   &--secondary {
     background: transparent;
-    color: $gray-600;
+    color: var(--c-text-2);
     border: 1px solid var(--border);
 
     &:hover {
