@@ -67,7 +67,7 @@ defineEmits<{
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
-  color: $gray-800;
+  color: var(--c-text);
 }
 
 .auth-input__control {
@@ -77,9 +77,9 @@ defineEmits<{
 .auth-input__field {
   font-family: $font-sans;
   font-size: 1rem;
-  color: $bakano-dark;
-  background: $light;
-  border: 1px solid rgba($bakano-dark, 0.08);
+  color: var(--c-text);
+  background: var(--c-bg);
+  border: 1px solid rgb(var(--c-text-rgb) / 0.08);
   border-radius: 0.75rem;
   padding: 0.85rem 1rem;
   width: 100%;
@@ -91,18 +91,18 @@ defineEmits<{
   }
 
   &::placeholder {
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &:hover {
-    border-color: rgba($bakano-dark, 0.18);
+    border-color: rgb(var(--c-text-rgb) / 0.18);
   }
 
   &:focus {
     outline: none;
-    background: $white;
-    border-color: $bakano-pink;
-    box-shadow: 0 0 0 3px rgba($bakano-pink, 0.15);
+    background: var(--c-surface);
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px rgb(var(--c-accent-rgb) / 0.15);
   }
 }
 
@@ -117,12 +117,12 @@ defineEmits<{
   height: 2.5rem;
   min-height: 0;
   border-radius: 0.6rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   transition: color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    color: $bakano-dark;
-    background: rgba($bakano-dark, 0.05);
+    color: var(--c-text);
+    background: rgb(var(--c-text-rgb) / 0.05);
   }
 }
 </style>
