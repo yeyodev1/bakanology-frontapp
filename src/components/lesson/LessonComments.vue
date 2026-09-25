@@ -167,18 +167,18 @@ async function confirmDelete() {
     font-family: $font-display;
     font-size: 1.15rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 
   &__count {
     min-width: 1.6rem;
     padding: 0.1rem 0.5rem;
     border-radius: 999px;
-    background: $gray-100;
+    background: var(--c-surface-2);
     font-family: $font-sans;
     font-size: 0.75rem;
     font-weight: 700;
-    color: $gray-600;
+    color: var(--c-text-2);
     text-align: center;
   }
 
@@ -190,41 +190,41 @@ async function confirmDelete() {
     align-items: center;
     gap: 0.75rem;
     padding: 2rem 1rem;
-    border: 1px dashed $gray-200;
+    border: 1px dashed var(--c-border);
     border-radius: 1rem;
     text-align: center;
     font-family: $font-sans;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: $gray-500;
+    color: var(--c-text-muted);
 
-    i { font-size: 1.75rem; color: rgba($bakano-pink, 0.6); }
+    i { font-size: 1.75rem; color: rgb(var(--c-accent-text-rgb) / 0.6); }
     p { margin: 0; max-width: 38ch; }
-    strong { color: $bakano-dark; }
+    strong { color: var(--c-text); }
   }
 
   &__retry,
   &__more {
     align-self: center;
     padding: 0.6rem 1.25rem;
-    border: 1px solid $gray-200;
+    border: 1px solid var(--c-border);
     border-radius: 999px;
-    background: $white;
+    background: var(--c-surface);
     font-family: $font-sans;
     font-size: 0.85rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     cursor: pointer;
 
-    &:hover:not(:disabled) { border-color: $bakano-pink; color: $bakano-pink; }
+    &:hover:not(:disabled) { border-color: var(--c-accent); color: var(--c-accent-text); }
     &:disabled { opacity: 0.6; cursor: progress; }
   }
 
-  &__inline-error { margin: 0; font-family: $font-sans; font-size: 0.85rem; color: $alert-error; }
+  &__inline-error { margin: 0; font-family: $font-sans; font-size: 0.85rem; color: var(--c-error); }
 
   &__skeleton { display: flex; flex-direction: column; gap: 1.25rem; }
   &__skeleton-row { display: flex; gap: 0.875rem; }
-  &__skeleton-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: $gray-100; flex-shrink: 0; }
+  &__skeleton-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--c-surface-2); flex-shrink: 0; }
   &__skeleton-lines {
     flex: 1;
     display: flex;
@@ -232,7 +232,7 @@ async function confirmDelete() {
     gap: 0.5rem;
     padding-top: 0.25rem;
 
-    span { height: 0.7rem; border-radius: 999px; background: $gray-100; }
+    span { height: 0.7rem; border-radius: 999px; background: var(--c-surface-2); }
     span:first-child { width: 30%; }
     span:last-child { width: 80%; }
   }
