@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { academyService, type Course, type Lesson, type MediaAsset } from '@/services/academyService'
+import { renderRichText } from '@/utils/richText'
 
 const route = useRoute()
 const router = useRouter()
@@ -175,7 +176,7 @@ function markCompleted() {
     <div class="lesson-meta">
       <h1 class="lesson-meta__title">{{ lesson.title }}</h1>
       <p v-if="lesson.summary" class="lesson-meta__description">{{ lesson.summary }}</p>
-      <div v-if="lesson.content" class="lesson-content" v-html="lesson.content" />
+      <div v-if="lesson.content" class="lesson-content" v-html="renderRichText(lesson.content)" />
     </div>
 
     <div class="lesson-nav">
