@@ -1,40 +1,49 @@
-// Bakano — Brand tokens
-$bakano-pink:        #e6285c;
-$bakano-dark:        #191423;
-$bakano-light:       #f5f3ef;
+// Bakano — tokens de color
+// Los colores viven como variables CSS en theme.scss (tema claro y oscuro).
+// Estas variables Sass apuntan a esos tokens para que cualquier componente cambie con el tema.
+// Para transparencias usa tint(accent, 0.12) → rgb(var(--c-accent-rgb) / 0.12).
+
+@function tint($token, $alpha) {
+  @return rgb(var(--c-#{$token}-rgb) / $alpha);
+}
+
+// Marca
+$bakano-pink:        var(--c-accent);
+$bakano-dark:        var(--c-text);
+$bakano-light:       var(--c-bg);
 $light:              $bakano-light;
-$bakano-purple:      #85529c;
-$bakano-green:       #3bb77e;
-$bakano-pink-dark:   #c91f4e;
+$bakano-purple:      var(--c-purple);
+$bakano-green:       var(--c-success);
+$bakano-pink-dark:   var(--c-accent-text);
 
 // Base
-$white:              #ffffff;
-$black:              #000000;
-$text-light:         #f5f5f5;
-$overlay-purple:     rgba($bakano-purple, 0.1);
+$white:              var(--c-surface);
+$black:              var(--c-ink);
+$text-light:         var(--c-on-ink-soft);
+$overlay-purple:     tint(purple, 0.1);
 
-// Legacy aliases
+// Alias heredados
 $primary:            $bakano-pink;
 $primary-dark:       $bakano-dark;
 $primary-light:      $bakano-light;
 
-// Grays
-$gray-100:           #f8f9fa;
-$gray-200:           #e9ecef;
-$gray-300:           #dee2e6;
-$gray-400:           #ced4da;
-$gray-500:           #adb5bd;
-$gray-600:           #6c757d;
-$gray-700:           #495057;
-$gray-800:           #343a40;
-$gray-900:           #212529;
+// Neutros
+$gray-100:           var(--c-surface-2);
+$gray-200:           var(--c-border);
+$gray-300:           var(--c-border-strong);
+$gray-400:           var(--c-text-faint);
+$gray-500:           var(--c-text-muted);
+$gray-600:           var(--c-text-2);
+$gray-700:           var(--c-text-2);
+$gray-800:           var(--c-text);
+$gray-900:           var(--c-text);
 
-// Alert colors
-$alert-warning:      #F59E0B;
-$alert-info:         #3B82F6;
-$alert-success:      $bakano-green;
-$alert-error:        #EF4444;
-$alert-warning-bg:   rgba($alert-warning, 0.1);
-$alert-info-bg:      rgba($alert-info, 0.1);
-$alert-success-bg:   rgba($alert-success, 0.1);
-$alert-error-bg:     rgba($alert-error, 0.1);
+// Estados
+$alert-warning:      var(--c-warning);
+$alert-info:         var(--c-info);
+$alert-success:      var(--c-success-text);
+$alert-error:        var(--c-error);
+$alert-warning-bg:   tint(warning, 0.12);
+$alert-info-bg:      tint(info, 0.12);
+$alert-success-bg:   tint(success, 0.12);
+$alert-error-bg:     tint(error, 0.12);
