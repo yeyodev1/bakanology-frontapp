@@ -40,8 +40,8 @@ const points = [
 <style lang="scss" scoped>
 .pain-points {
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
 }
 
 .pain-points__inner {
@@ -78,14 +78,14 @@ const points = [
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba($white, 0.04);
-  border: 1px solid rgba($white, 0.08);
+  background: rgb(var(--c-on-accent-rgb) / 0.04);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   border-radius: 1rem;
   transition: background 0.25s ease, border-color 0.25s ease;
 
   &:hover {
-    background: rgba($white, 0.07);
-    border-color: rgba($bakano-pink, 0.3);
+    background: rgb(var(--c-on-accent-rgb) / 0.07);
+    border-color: rgb(var(--c-accent-rgb) / 0.3);
   }
 }
 
@@ -96,8 +96,8 @@ const points = [
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba($bakano-pink, 0.15);
-  color: $bakano-pink;
+  background: rgb(var(--c-accent-fill-rgb) / 0.15);
+  color: var(--c-accent-text);
   border-radius: 0.75rem;
   font-size: 1.25rem;
 }
@@ -118,7 +118,7 @@ const points = [
     font-family: $font-sans;
     font-size: 0.92rem;
     line-height: 1.55;
-    color: rgba($white, 0.7);
+    color: rgb(var(--c-on-accent-rgb) / 0.7);
     margin: 0;
   }
 }
@@ -128,8 +128,8 @@ const points = [
   align-items: center;
   gap: 0.6rem;
   margin-top: 0.5rem;
-  background: linear-gradient(90deg, $bakano-pink, $bakano-pink-dark);
-  color: $white;
+  background: linear-gradient(90deg, var(--c-accent-fill), var(--c-accent-fill-hover));
+  color: var(--c-on-accent);
   border: none;
   border-radius: 999px;
   padding: 1rem 1.75rem;
@@ -138,11 +138,11 @@ const points = [
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 8px 28px rgba($bakano-pink, 0.35);
+  box-shadow: 0 8px 28px rgb(var(--c-accent-rgb) / 0.35);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba($bakano-pink, 0.45);
+    box-shadow: 0 14px 36px rgb(var(--c-accent-rgb) / 0.45);
   }
 }
 </style>
