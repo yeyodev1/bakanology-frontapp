@@ -75,7 +75,7 @@ function typeClass(type: string) {
 }
 
 .day-column {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1rem;
@@ -90,7 +90,7 @@ function typeClass(type: string) {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
@@ -105,7 +105,7 @@ function typeClass(type: string) {
   &__empty {
     font-family: $font-sans;
     font-size: 0.8rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     text-align: center;
     padding: 1rem 0;
   }
@@ -118,20 +118,20 @@ function typeClass(type: string) {
   padding: 0.75rem;
   border-radius: 0.6rem;
   background: var(--cream);
-  border-left: 3px solid $bakano-green;
+  border-left: 3px solid var(--c-success);
 
   &__time {
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__title {
     font-family: $font-sans;
     font-size: 0.85rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 
@@ -141,13 +141,13 @@ function typeClass(type: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
-  &--live { border-left-color: $bakano-green; }
-  &--qa { border-left-color: $bakano-pink; }
-  &--workshop { border-left-color: $alert-info; }
-  &--review { border-left-color: $bakano-pink; }
+  &--live { border-left-color: var(--c-success); }
+  &--qa { border-left-color: var(--c-accent); }
+  &--workshop { border-left-color: var(--c-info); }
+  &--review { border-left-color: var(--c-accent); }
 }
 
 @media (max-width: 1200px) {
