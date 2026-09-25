@@ -15,6 +15,7 @@ const showLogoutConfirm = ref(false)
 const menuItems = [
   { name: 'admin-users', label: 'Usuarios', icon: 'users' },
   { name: 'admin-payments', label: 'Pagos manuales', icon: 'money-bill' },
+  { name: 'admin-comments', label: 'Comentarios', icon: 'comments' },
 ]
 
 function isActive(name: string): boolean {
@@ -68,6 +69,7 @@ function logout() {
               :class="{
                 'fa-users': item.icon === 'users',
                 'fa-money-bill': item.icon === 'money-bill',
+                'fa-comments': item.icon === 'comments',
               }"
             />
           </span>
