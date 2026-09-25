@@ -22,8 +22,8 @@ defineProps<{
   border: none;
   border-radius: 999px;
   margin-top: 0.25rem;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   font-family: $font-sans;
   font-size: 1rem;
   font-weight: 700;
@@ -31,9 +31,9 @@ defineProps<{
   transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 
   &:hover:not(:disabled) {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
     transform: translateY(-1px);
-    box-shadow: 0 10px 24px rgba($bakano-pink, 0.3);
+    box-shadow: 0 10px 24px rgb(var(--c-accent-rgb) / 0.3);
   }
 
   &:active:not(:disabled) {
@@ -49,8 +49,8 @@ defineProps<{
 .auth-submit__spinner {
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgba($white, 0.3);
-  border-top-color: $white;
+  border: 2px solid rgb(var(--c-on-accent-rgb) / 0.3);
+  border-top-color: var(--c-surface);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
