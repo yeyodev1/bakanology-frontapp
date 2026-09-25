@@ -116,9 +116,9 @@ async function setReminder() {
   width: 100%;
   max-width: 560px;
   padding: 2.5rem 2rem;
-  background: $light;
+  background: var(--c-bg);
   border-radius: 1.5rem;
-  box-shadow: 0 24px 80px rgba($bakano-dark, 0.08);
+  box-shadow: 0 24px 80px rgb(var(--c-shadow-rgb) / 0.08);
   text-align: center;
 }
 
@@ -134,7 +134,7 @@ async function setReminder() {
   font-family: $font-display;
   font-size: 1.5rem;
   font-weight: 800;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .launch-blocker__tag {
@@ -143,7 +143,7 @@ async function setReminder() {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .launch-blocker__title {
@@ -151,7 +151,7 @@ async function setReminder() {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.15;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin-bottom: 0.75rem;
 }
 
@@ -159,7 +159,7 @@ async function setReminder() {
   font-family: $font-sans;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin-bottom: 2rem;
 }
 
@@ -173,8 +173,8 @@ async function setReminder() {
   align-items: center;
   gap: 0.75rem;
   padding: 1.25rem;
-  background: rgba($bakano-pink, 0.05);
-  border: 1px solid rgba($bakano-pink, 0.12);
+  background: rgb(var(--c-accent-fill-rgb) / 0.05);
+  border: 1px solid rgb(var(--c-accent-rgb) / 0.12);
   border-radius: 1rem;
   margin-bottom: 1.25rem;
 }
@@ -182,7 +182,7 @@ async function setReminder() {
 .launch-blocker__reminder-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -193,11 +193,11 @@ async function setReminder() {
   margin: 0;
 
   &--success {
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 
   &--error {
-    color: $alert-error;
+    color: var(--c-error);
   }
 }
 
@@ -206,7 +206,7 @@ async function setReminder() {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 500;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   margin-bottom: 1rem;
   text-decoration: none;
 
@@ -223,13 +223,13 @@ async function setReminder() {
   border: none;
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   text-decoration: underline;
   cursor: pointer;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $bakano-dark;
+    color: var(--c-text);
   }
 }
 
@@ -239,7 +239,7 @@ async function setReminder() {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 }
 
