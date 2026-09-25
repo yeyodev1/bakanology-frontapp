@@ -45,8 +45,8 @@ const year = new Date().getFullYear()
 
 <style lang="scss" scoped>
 .footer {
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
   padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
   padding-inline: clamp(2.5rem, 9vw, 9rem);
   width: 100%;
@@ -73,7 +73,7 @@ const year = new Date().getFullYear()
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  color: $white;
+  color: var(--c-on-accent);
 
   :deep(svg),
   :deep(.wordmark__image) {
@@ -85,7 +85,7 @@ const year = new Date().getFullYear()
   font-family: $font-sans;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   line-height: 1.4;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   max-width: 40ch;
 }
 
@@ -98,9 +98,9 @@ const year = new Date().getFullYear()
   align-items: center;
   gap: 0.8rem;
   padding: 1.1rem 1.7rem;
-  border: 1px solid rgba($white, 0.25);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.25);
   border-radius: 999px;
-  color: $white;
+  color: var(--c-on-accent);
   font-family: $font-mono;
   font-size: 0.85rem;
   font-weight: 600;
@@ -109,16 +109,16 @@ const year = new Date().getFullYear()
   transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
 
   &:hover {
-    background: $bakano-green;
-    color: $bakano-dark;
-    border-color: $bakano-green;
+    background: var(--c-success-fill);
+    color: var(--c-text);
+    border-color: var(--c-success);
     transform: translateY(-1px);
   }
 }
 
 .footer__rule {
   height: 1px;
-  background: rgba($white, 0.12);
+  background: rgb(var(--c-on-accent-rgb) / 0.12);
   margin-block: clamp(2rem, 4vw, 3rem);
   width: 100%;
   margin-inline: auto;
@@ -147,16 +147,16 @@ const year = new Date().getFullYear()
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.65);
+  color: rgb(var(--c-on-accent-rgb) / 0.65);
   transition: color .25s ease;
 
   em {
     font-style: normal;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 
   &:hover {
-    color: $white;
+    color: var(--c-on-accent);
   }
 }
 
@@ -165,7 +165,7 @@ const year = new Date().getFullYear()
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.45);
+  color: rgb(var(--c-on-accent-rgb) / 0.45);
   margin: 0;
 }
 </style>
