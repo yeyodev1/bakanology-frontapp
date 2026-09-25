@@ -1,28 +1,7 @@
 @use './colorVariables.module.scss' as *;
 @use './fonts.module.scss' as *;
 @use './typography.scss' as *;
-
-:root {
-  --bg:          #{$bakano-light};
-  --bg-dark:     #{$bakano-dark};
-  --text:        #{$bakano-dark};
-  --text-soft:   #{$gray-600};
-  --text-mute:   #{$gray-500};
-  --border:      #{rgba($bakano-dark, 0.08)};
-  --accent:      #{$bakano-pink};
-  --accent-dark: #{$bakano-pink-dark};
-  --surface:     #{$white};
-  --cream:       #{$bakano-light};
-  --line:        #{$gray-200};
-}
-
-[data-theme='dark'] {
-  --bg:          #{$bakano-dark};
-  --text:        #{$bakano-light};
-  --text-soft:   #{rgba($bakano-light, 0.78)};
-  --text-mute:   #{rgba($bakano-light, 0.5)};
-  --border:      #{rgba($bakano-light, 0.12)};
-}
+@use './theme.scss';
 
 html {
   scroll-behavior: auto;
@@ -43,7 +22,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid $bakano-pink;
+  outline: 2px solid var(--c-accent);
   outline-offset: 3px;
 }
 
@@ -52,8 +31,8 @@ body {
 }
 
 ::selection {
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
 }
 
 a {
