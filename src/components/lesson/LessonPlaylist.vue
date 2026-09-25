@@ -74,8 +74,8 @@ function formatDuration(seconds: number) {
 
 <style lang="scss" scoped>
 .playlist {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1rem;
   overflow: hidden;
 
@@ -91,9 +91,9 @@ function formatDuration(seconds: number) {
     text-align: left;
 
     span { display: flex; flex-direction: column; gap: 0.15rem; }
-    strong { font-family: $font-sans; font-size: 0.95rem; color: $bakano-dark; }
-    small { font-family: $font-sans; font-size: 0.78rem; color: $gray-500; }
-    i { color: $gray-500; transition: transform 0.2s ease; }
+    strong { font-family: $font-sans; font-size: 0.95rem; color: var(--c-text); }
+    small { font-family: $font-sans; font-size: 0.78rem; color: var(--c-text-muted); }
+    i { color: var(--c-text-muted); transition: transform 0.2s ease; }
   }
 
   &__chevron--open { transform: rotate(180deg); }
@@ -104,8 +104,8 @@ function formatDuration(seconds: number) {
     justify-content: space-between;
     padding: 1.25rem 1.25rem 0.75rem;
 
-    h2 { margin: 0; font-family: $font-display; font-size: 1rem; font-weight: 700; color: $bakano-dark; }
-    span { font-family: $font-mono; font-size: 0.75rem; color: $gray-500; }
+    h2 { margin: 0; font-family: $font-display; font-size: 1rem; font-weight: 700; color: var(--c-text); }
+    span { font-family: $font-mono; font-size: 0.75rem; color: var(--c-text-muted); }
   }
 
   &__items {
@@ -131,12 +131,12 @@ function formatDuration(seconds: number) {
     cursor: pointer;
     transition: background 0.15s ease;
 
-    &:hover { background: $gray-100; }
+    &:hover { background: var(--c-surface-2); }
 
     &--current {
-      background: rgba($bakano-pink, 0.08);
+      background: rgb(var(--c-accent-fill-rgb) / 0.08);
 
-      &:hover { background: rgba($bakano-pink, 0.12); }
+      &:hover { background: rgb(var(--c-accent-fill-rgb) / 0.12); }
     }
   }
 
@@ -148,14 +148,14 @@ function formatDuration(seconds: number) {
     height: 1.75rem;
     flex-shrink: 0;
     border-radius: 50%;
-    border: 1.5px solid $gray-300;
+    border: 1.5px solid var(--c-border-strong);
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
-    color: $gray-500;
+    color: var(--c-text-muted);
 
-    .playlist__item--done & { background: $bakano-green; border-color: $bakano-green; color: $white; }
-    .playlist__item--current & { background: $bakano-pink; border-color: $bakano-pink; color: $white; font-size: 0.6rem; }
+    .playlist__item--done & { background: var(--c-success-fill); border-color: var(--c-success); color: var(--c-on-accent); }
+    .playlist__item--current & { background: var(--c-accent-fill); border-color: var(--c-accent); color: var(--c-on-accent); font-size: 0.6rem; }
   }
 
   &__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
@@ -165,12 +165,12 @@ function formatDuration(seconds: number) {
     font-size: 0.85rem;
     font-weight: 600;
     line-height: 1.35;
-    color: $bakano-dark;
+    color: var(--c-text);
 
-    .playlist__item--current & { color: $bakano-pink-dark; }
+    .playlist__item--current & { color: var(--c-accent-text); }
   }
 
-  &__meta { font-family: $font-sans; font-size: 0.72rem; color: $gray-500; }
+  &__meta { font-family: $font-sans; font-size: 0.72rem; color: var(--c-text-muted); }
 }
 
 @media (min-width: 1024px) {
