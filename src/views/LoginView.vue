@@ -39,6 +39,7 @@ const onSubmit = async () => {
       subscriptionStatus: data.data.user.subscriptionStatus,
       accessUntil: data.data.user.accessUntil,
       foundingMember: data.data.user.foundingMember,
+      themePreference: data.data.user.themePreference,
     })
 
     const redirect = resolveSafeRedirect(router, route.query.redirect)
@@ -99,13 +100,13 @@ const onSubmit = async () => {
 .auth-form__link {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   text-align: center;
   text-decoration: none;
   text-underline-offset: 3px;
 
   &:hover {
-    color: $bakano-pink;
+    color: var(--c-accent-text);
     text-decoration: underline;
   }
 }
