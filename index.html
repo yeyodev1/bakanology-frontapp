@@ -33,6 +33,16 @@
     <meta name="author" content="Bakanology Academy" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#191423" />
+    <script>
+      // Aplica el tema antes de montar Vue para que no parpadee. Ver src/composables/useTheme.ts
+      (function () {
+        var light = ['/', '/politicas-privacidad', '/aviso-legal'];
+        var pref = 'system';
+        try { pref = localStorage.getItem('bakanology-theme') || 'system'; } catch (e) {}
+        var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = light.indexOf(location.pathname) === -1 && dark ? 'dark' : 'light';
+      })();
+    </script>
     <meta name="color-scheme" content="light dark" />
     <meta name="language" content="es" />
     <meta name="geo.region" content="EC" />
