@@ -57,7 +57,7 @@ const menuItems = computed(() => {
     { name: 'purchased-products', label: 'Productos adquiridos', icon: 'bag-shopping' },
     { name: 'courses', label: 'Mis cursos', icon: 'book-open' },
     { name: 'live-classes', label: 'Clases en vivo', icon: 'video' },
-    { name: 'schedule', label: 'Horario', icon: 'calendar' },
+    { name: 'schedule', label: 'Horario', icon: 'calendar', comingSoon: true },
     { name: 'recipes', label: 'Recursos', icon: 'folder-open' },
     { name: 'achievements', label: 'Logros', icon: 'trophy' },
     { name: 'payments', label: 'Pagos', icon: 'credit-card' },
@@ -152,8 +152,11 @@ function logout() {
         :key="item.name"
         type="button"
         class="sidebar__link"
-        :class="{ 'sidebar__link--active': isActive(item.name) }"
-        @click="handleNavClick(item.name)"
+        :class="{ 'sidebar__link--active': isActive(item.name), 'sidebar__link--soon': item.comingSoon }"
+        :disabled="item.comingSoon"
+        :aria-disabled="item.comingSoon || undefined"
+        :title="item.comingSoon ? 'Próximamente' : undefined"
+        @click="!item.comingSoon && handleNavClick(item.name)"
       >
         <span class="sidebar__icon" aria-hidden="true">
           <i
@@ -172,6 +175,7 @@ function logout() {
           />
         </span>
         <span class="sidebar__label">{{ item.label }}</span>
+        <span v-if="item.comingSoon" class="sidebar__soon">Pronto</span>
       </button>
     </nav>
 
@@ -320,7 +324,9 @@ function logout() {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.85rem 1rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  text-align: left;
   border-radius: 0.75rem;
   color: var(--c-text-2);
   font-family: $font-sans;
@@ -341,6 +347,36 @@ function logout() {
       color: var(--c-accent-text);
     }
   }
+
+  &--soon {
+    cursor: not-allowed;
+    opacity: 0.55;
+
+    &:hover {
+      background: none;
+      color: var(--c-text-2);
+    }
+  }
+}
+
+.sidebar__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__soon {
+  flex: 0 0 auto;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgb(var(--c-text-rgb) / 0.08);
+  color: var(--c-text-2);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sidebar__icon {
