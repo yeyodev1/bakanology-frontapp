@@ -52,15 +52,15 @@ const emit = defineEmits<{
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 2rem 2.25rem;
   flex-wrap: wrap;
 
   &--active {
-    background: linear-gradient(135deg, $bakano-green 0%, darken(#3bb77e, 12%) 100%);
-    color: $white;
+    background: linear-gradient(135deg, var(--c-success-fill) 0%, rgb(var(--c-success-fill-rgb) / 0.8) 100%);
+    color: var(--c-on-accent);
     border-color: transparent;
   }
 }
@@ -88,12 +88,12 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba($bakano-dark, 0.08);
-  color: $bakano-dark;
+  background: rgb(var(--c-text-rgb) / 0.08);
+  color: var(--c-text);
 
   .hero--active & {
-    background: rgba($white, 0.15);
-    color: $white;
+    background: rgb(var(--c-on-accent-rgb) / 0.15);
+    color: var(--c-on-accent);
   }
 }
 
@@ -105,12 +105,12 @@ const emit = defineEmits<{
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
 
   .hero--active & {
-    background: rgba($white, 0.2);
-    color: $white;
+    background: rgb(var(--c-on-accent-rgb) / 0.2);
+    color: var(--c-on-accent);
   }
 }
 
@@ -144,14 +144,14 @@ const emit = defineEmits<{
   padding: 0.85rem 1.5rem;
   border: none;
   border-radius: 999px;
-  background: $bakano-green;
-  color: $white;
+  background: var(--c-success-fill);
+  color: var(--c-on-accent);
   cursor: pointer;
   transition: background 0.2s ease;
   width: fit-content;
 
   &:hover {
-    background: darken(#3bb77e, 10%);
+    background: rgb(var(--c-success-fill-rgb) / 0.85);
   }
 }
 
