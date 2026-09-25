@@ -1,7 +1,7 @@
 @use '@/styles/index.scss' as *;
 
 .admin-payments__table-card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   overflow: hidden;
@@ -11,10 +11,10 @@
 .admin-payments__table-wrap {
   overflow-x: auto;
   background-image:
-    linear-gradient(to right, $white, transparent),
-    linear-gradient(to left, $white, transparent),
-    radial-gradient(farthest-side at 0 50%, rgba($bakano-dark, 0.1), transparent),
-    radial-gradient(farthest-side at 100% 50%, rgba($bakano-dark, 0.1), transparent);
+    linear-gradient(to right, var(--c-surface), transparent),
+    linear-gradient(to left, var(--c-surface), transparent),
+    radial-gradient(farthest-side at 0 50%, rgb(var(--c-text-rgb) / 0.1), transparent),
+    radial-gradient(farthest-side at 100% 50%, rgb(var(--c-text-rgb) / 0.1), transparent);
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 24px 100%, 24px 100%, 14px 100%, 14px 100%;
@@ -41,7 +41,7 @@
     font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     background: var(--cream);
     white-space: nowrap;
   }
@@ -55,7 +55,7 @@
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba($bakano-green, 0.03);
+    background: rgb(var(--c-success-fill-rgb) / 0.03);
   }
 }
 
@@ -69,8 +69,8 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
-  color: $bakano-dark;
+  background: linear-gradient(135deg, var(--c-success-fill) 0%, var(--c-success-fill) 100%);
+  color: var(--c-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,7 +89,7 @@
 
 .admin-payments__student-name {
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -97,7 +97,7 @@
 
 .admin-payments__student-email {
   font-size: 0.8rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -109,13 +109,13 @@
   gap: 0.4rem;
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .admin-payments__amount {
   font-family: $font-mono;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .admin-payments__badge {
@@ -129,19 +129,19 @@
   font-weight: 600;
 
   &--approved {
-    background: rgba($bakano-green, 0.12);
-    color: $bakano-green;
+    background: rgb(var(--c-success-fill-rgb) / 0.12);
+    color: var(--c-success-text);
   }
 
   &--pending {
-    background: rgba($bakano-pink, 0.12);
-    color: #92400E;
+    background: rgb(var(--c-accent-fill-rgb) / 0.12);
+    color: var(--c-warning);
   }
 }
 
 .admin-payments__notes {
   font-size: 0.85rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -154,15 +154,15 @@
   gap: 0.4rem;
   padding: 0.5rem 0.85rem;
   border-radius: 999px;
-  background: rgba($bakano-dark, 0.05);
-  color: $bakano-dark;
+  background: rgb(var(--c-text-rgb) / 0.05);
+  color: var(--c-text);
   font-family: $font-mono;
   font-size: 0.7rem;
   font-weight: 600;
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-dark, 0.1);
+    background: rgb(var(--c-text-rgb) / 0.1);
   }
 }
 
@@ -186,11 +186,11 @@
   }
 
   &--delete {
-    background: rgba($alert-error, 0.08);
-    color: $alert-error;
+    background: rgb(var(--c-error-rgb) / 0.08);
+    color: var(--c-error);
 
     &:hover {
-      background: rgba($alert-error, 0.15);
+      background: rgb(var(--c-error-rgb) / 0.15);
     }
   }
 }
@@ -209,8 +209,8 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba($bakano-dark, 0.04);
-  color: $gray-500;
+  background: rgb(var(--c-text-rgb) / 0.04);
+  color: var(--c-text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -222,14 +222,14 @@
   font-family: $font-display;
   font-size: 1.25rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .admin-payments__empty-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
   max-width: 320px;
 }
@@ -255,9 +255,9 @@
   border-radius: 0.5rem;
   background: linear-gradient(
     90deg,
-    rgba($bakano-dark, 0.05) 25%,
-    rgba($bakano-dark, 0.09) 50%,
-    rgba($bakano-dark, 0.05) 75%
+    rgb(var(--c-text-rgb) / 0.05) 25%,
+    rgb(var(--c-text-rgb) / 0.09) 50%,
+    rgb(var(--c-text-rgb) / 0.05) 75%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;
