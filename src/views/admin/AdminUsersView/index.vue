@@ -316,8 +316,8 @@ onMounted(loadUsers)
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, $bakano-dark 0%, $bakano-dark 100%);
-  color: $white;
+  background: linear-gradient(135deg, var(--c-ink) 0%, var(--c-ink) 100%);
+  color: var(--c-on-accent);
   border-radius: 1.25rem;
   padding: 1.75rem 2rem;
 }
@@ -335,7 +335,7 @@ onMounted(loadUsers)
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
 }
 
 .admin-users__timer-title {
@@ -343,32 +343,32 @@ onMounted(loadUsers)
   font-size: 1.6rem;
   font-weight: 700;
   margin: 0;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .admin-users__timer-text {
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: rgba($white, 0.75);
+  color: rgb(var(--c-on-accent-rgb) / 0.75);
   margin: 0;
   max-width: 45ch;
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__block) {
-  background: rgba($white, 0.1);
-  border-color: rgba($white, 0.15);
+  background: rgb(var(--c-on-accent-rgb) / 0.1);
+  border-color: rgb(var(--c-on-accent-rgb) / 0.15);
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__value) {
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__label) {
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
 }
 
 .admin-users__timer-banner .countdown-timer :deep(.countdown-timer__unit) {
-  color: rgba($white, 0.6);
+  color: rgb(var(--c-on-accent-rgb) / 0.6);
 }
 
 .admin-users__top {
@@ -389,14 +389,14 @@ onMounted(loadUsers)
   font-family: $font-display;
   font-size: 1.85rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .admin-users__page-subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 }
 
@@ -406,7 +406,7 @@ onMounted(loadUsers)
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .admin-users__alerts {
@@ -426,12 +426,12 @@ onMounted(loadUsers)
 
   &--error {
     background: $alert-error-bg;
-    color: $alert-error;
+    color: var(--c-error);
   }
 
   &--success {
     background: $alert-success-bg;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 }
 
