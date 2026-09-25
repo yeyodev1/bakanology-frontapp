@@ -4,6 +4,7 @@ import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import BrandWordmark from '@/components/ui/BrandWordmark.vue'
 import UserAvatar from '@/components/ui/UserAvatar.vue'
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 import ConfirmModal from '@/components/ui/ConfirmModal.vue'
 import PayFirstModal from '@/components/ui/PayFirstModal/index.vue'
 
@@ -190,6 +191,11 @@ function logout() {
         </div>
       </div>
 
+      <div class="sidebar__theme">
+        <span class="sidebar__theme-label">Tema</span>
+        <ThemeToggle />
+      </div>
+
       <div class="sidebar__actions">
         <button class="sidebar__action" type="button" @click="goToSettings">
           <span class="sidebar__action-icon" aria-hidden="true">
@@ -256,7 +262,7 @@ function logout() {
   left: 0;
   width: 260px;
   height: 100dvh;
-  background: $light;
+  background: var(--c-bg);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -272,12 +278,12 @@ function logout() {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background: $light;
+  background: var(--c-bg);
   border-bottom: 1px solid var(--border);
 }
 
 .sidebar__brand {
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .sidebar__close {
@@ -293,7 +299,7 @@ function logout() {
     display: block;
     width: 20px;
     height: 2px;
-    background: $bakano-dark;
+    background: var(--c-ink);
     border-radius: 1px;
   }
 
@@ -316,23 +322,23 @@ function logout() {
   gap: 0.85rem;
   padding: 0.85rem 1rem;
   border-radius: 0.75rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
-    color: $bakano-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    color: var(--c-text);
   }
 
   &--active {
-    background: rgba($bakano-pink, 0.12);
-    color: $bakano-pink;
+    background: rgb(var(--c-accent-fill-rgb) / 0.12);
+    color: var(--c-accent-text);
 
     .sidebar__icon {
-      color: $bakano-pink;
+      color: var(--c-accent-text);
     }
   }
 }
@@ -343,7 +349,7 @@ function logout() {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: $gray-500;
+  color: var(--c-text-muted);
   transition: color 0.2s ease;
 }
 
@@ -361,7 +367,7 @@ function logout() {
   gap: 0.75rem;
   padding: 0.5rem;
   border-radius: 0.75rem;
-  background: rgba($bakano-dark, 0.03);
+  background: rgb(var(--c-text-rgb) / 0.03);
   border: 1px solid var(--border);
 }
 
@@ -376,7 +382,7 @@ function logout() {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -388,7 +394,7 @@ function logout() {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .sidebar__actions {
@@ -404,7 +410,7 @@ function logout() {
   width: 100%;
   padding: 0.7rem 0.75rem;
   border-radius: 0.625rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   font-family: $font-sans;
   font-size: 0.9rem;
   font-weight: 500;
@@ -412,17 +418,17 @@ function logout() {
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-pink, 0.08);
-    color: $bakano-dark;
+    background: rgb(var(--c-accent-fill-rgb) / 0.08);
+    color: var(--c-text);
   }
 }
 
 .sidebar__action--danger {
-  color: $alert-error;
+  color: var(--c-error);
 
   &:hover {
     background: $alert-error-bg;
-    color: darken($alert-error, 10%);
+    color: var(--c-error);
   }
 }
 
@@ -439,7 +445,7 @@ function logout() {
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
   text-align: center;
 }
@@ -448,7 +454,7 @@ function logout() {
   position: fixed;
   inset: 0;
   z-index: 890;
-  background: rgba($bakano-dark, 0.35);
+  background: rgb(var(--c-ink-rgb) / 0.35);
   backdrop-filter: blur(4px);
 }
 
@@ -478,10 +484,10 @@ function logout() {
   align-items: flex-start;
   gap: 0.65rem;
   padding: 0.75rem 1rem;
-  background: $light;
-  border: 1px solid rgba($bakano-dark, 0.1);
+  background: var(--c-bg);
+  border: 1px solid rgb(var(--c-text-rgb) / 0.1);
   border-radius: 0.75rem;
-  box-shadow: 0 8px 32px rgba($bakano-dark, 0.12);
+  box-shadow: 0 8px 32px rgb(var(--c-shadow-rgb) / 0.12);
   font-family: $font-sans;
   line-height: 1.3;
 }
@@ -489,7 +495,7 @@ function logout() {
 .toast-item__icon {
   flex-shrink: 0;
   font-size: 0.9rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   margin-top: 0.1rem;
 }
 
@@ -503,12 +509,12 @@ function logout() {
 .toast-item__title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .toast-item__text {
   font-size: 0.8rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .toast-item__close {
@@ -519,16 +525,16 @@ function logout() {
   width: 22px;
   height: 22px;
   padding: 0;
-  background: rgba($bakano-dark, 0.04);
+  background: rgb(var(--c-text-rgb) / 0.04);
   border: none;
-  color: $gray-500;
+  color: var(--c-text-muted);
   cursor: pointer;
   border-radius: 0.35rem;
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba($bakano-dark, 0.08);
-    color: $bakano-dark;
+    background: rgb(var(--c-text-rgb) / 0.08);
+    color: var(--c-text);
   }
 }
 
@@ -567,5 +573,19 @@ function logout() {
   .sidebar__close {
     display: flex;
   }
+}
+.sidebar__theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 0.25rem;
+}
+
+.sidebar__theme-label {
+  font-family: $font-sans;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--c-text-muted);
 }
 </style>
