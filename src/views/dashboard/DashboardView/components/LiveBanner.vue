@@ -27,8 +27,8 @@ defineProps<{
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
-  color: $bakano-dark;
+  background: linear-gradient(135deg, var(--c-success-fill) 0%, var(--c-success-fill) 100%);
+  color: var(--c-text);
   border-radius: 1rem;
   padding: 1.5rem 2rem;
 
@@ -57,8 +57,8 @@ defineProps<{
 
   &__cta {
     flex-shrink: 0;
-    background: $bakano-dark;
-    color: $white;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -68,7 +68,7 @@ defineProps<{
     border-radius: 999px;
     transition: background 0.2s ease;
 
-    &:hover { background: $bakano-dark; }
+    &:hover { background: var(--c-ink); }
   }
 }
 
