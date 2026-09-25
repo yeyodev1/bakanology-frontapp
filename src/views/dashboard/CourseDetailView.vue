@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { academyService, type Course, type Lesson } from '@/services/academyService'
+import { renderRichText } from '@/utils/richText'
 
 const route = useRoute()
 const router = useRouter()
@@ -60,7 +61,7 @@ function openLesson(lesson: Lesson) {
 
     <div v-if="course.description" class="course-description">
       <h2><i class="fa-solid fa-book-open"></i> Descripción del curso</h2>
-      <div v-html="course.description"></div>
+      <div class="course-description__body" v-html="renderRichText(course.description)"></div>
     </div>
 
     <div class="lessons-section">
@@ -220,15 +221,36 @@ function openLesson(lesson: Lesson) {
     }
   }
   
-  :deep(p) {
+  &__body {
+    max-width: 68ch;
     font-family: $font-sans;
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.75;
     color: $gray-600;
-    margin: 0 0 1rem;
   }
-  
-  :deep(strong) { color: $bakano-dark; }
+
+  :deep(p) {
+    margin: 0 0 1rem;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  :deep(strong) {
+    color: $bakano-dark;
+    font-weight: 600;
+  }
+
+  :deep(ul),
+  :deep(ol) {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+  }
+
+  :deep(li) {
+    margin-bottom: 0.5rem;
+
+    &::marker { color: $bakano-pink; }
+  }
 }
 
 .lessons-section {
