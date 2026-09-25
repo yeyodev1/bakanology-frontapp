@@ -224,14 +224,14 @@ onMounted(loadPayments)
   font-family: $font-display;
   font-size: 1.85rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .admin-payments__page-subtitle {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 }
 
@@ -262,7 +262,7 @@ onMounted(loadPayments)
 }
 
 .admin-payments__filter-icon {
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 0.85rem;
 }
 
@@ -272,7 +272,7 @@ onMounted(loadPayments)
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .admin-payments__alerts {
@@ -292,12 +292,12 @@ onMounted(loadPayments)
 
   &--error {
     background: $alert-error-bg;
-    color: $alert-error;
+    color: var(--c-error);
   }
 
   &--success {
     background: $alert-success-bg;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 }
 
