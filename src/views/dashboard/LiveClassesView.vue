@@ -78,8 +78,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
 }
 
 .next-live {
-  background: linear-gradient(135deg, $bakano-green 0%, $bakano-green 100%);
-  color: $bakano-dark;
+  background: linear-gradient(135deg, var(--c-success-fill) 0%, var(--c-success-fill) 100%);
+  color: var(--c-text);
   border-radius: 1rem;
   padding: 2rem;
   display: flex;
@@ -112,8 +112,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
 
   &__cta {
     margin-top: 0.75rem;
-    background: $bakano-dark;
-    color: $white;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -124,7 +124,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     transition: background 0.2s ease;
 
     &:hover {
-      background: $bakano-dark;
+      background: var(--c-ink);
     }
   }
 }
@@ -138,7 +138,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-display;
     font-size: 1.35rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 }
@@ -153,7 +153,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.25rem;
@@ -178,7 +178,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-display;
     font-size: 1.5rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     line-height: 1;
   }
 
@@ -188,7 +188,7 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__info {
@@ -202,28 +202,28 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-family: $font-sans;
     font-size: 1.05rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 
   &__coach {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-600;
+    color: var(--c-text-2);
     margin: 0;
   }
 
   &__time {
     font-family: $font-mono;
     font-size: 0.7rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
   }
 
   &__link {
     flex-shrink: 0;
-    background: $bakano-green;
-    color: $bakano-dark;
+    background: var(--c-success-fill);
+    color: var(--c-text);
     font-family: $font-mono;
     font-size: 0.7rem;
     font-weight: 600;
@@ -234,8 +234,8 @@ function isUpcoming(dateStr: string, timeStr: string) {
     transition: background 0.2s ease;
 
     &:hover {
-      background: $bakano-green;
-      color: $white;
+      background: var(--c-success-fill);
+      color: var(--c-on-accent);
     }
   }
 
@@ -246,10 +246,10 @@ function isUpcoming(dateStr: string, timeStr: string) {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
     padding: 0.65rem 1rem;
     border-radius: 999px;
-    background: rgba($bakano-dark, 0.05);
+    background: rgb(var(--c-text-rgb) / 0.05);
   }
 }
 
