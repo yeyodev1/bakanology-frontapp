@@ -77,7 +77,7 @@ const todayLabel = computed(() => {
   gap: 1rem;
   margin: 0 -2rem 1.5rem;
   padding: 1.5rem 2rem;
-  background: rgba($bakano-light, 0.92);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -92,7 +92,7 @@ const todayLabel = computed(() => {
 .page-header__greeting {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .page-header__title {
@@ -101,7 +101,7 @@ const todayLabel = computed(() => {
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.15;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -111,16 +111,16 @@ const todayLabel = computed(() => {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .skeleton {
   display: block;
   background: linear-gradient(
     90deg,
-    rgba($bakano-dark, 0.06) 25%,
-    rgba($bakano-dark, 0.1) 50%,
-    rgba($bakano-dark, 0.06) 75%
+    rgb(var(--c-text-rgb) / 0.06) 25%,
+    rgb(var(--c-text-rgb) / 0.1) 50%,
+    rgb(var(--c-text-rgb) / 0.06) 75%
   );
   background-size: 200% 100%;
   border-radius: 0.5rem;
