@@ -94,7 +94,7 @@ const scrollTo = (id: string) => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: $bakano-dark;
+  background: var(--c-ink);
 }
 
 .hero__bg {
@@ -102,8 +102,8 @@ const scrollTo = (id: string) => {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba($bakano-pink, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba($bakano-purple, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgb(var(--c-accent-fill-rgb) / 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgb(var(--c-purple-rgb) / 0.08) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -124,7 +124,7 @@ const scrollTo = (id: string) => {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 600;
 }
 
@@ -133,12 +133,12 @@ const scrollTo = (id: string) => {
   font-weight: 800;
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.1;
-  color: $white;
+  color: var(--c-on-accent);
   margin: 0;
 }
 
 .hero__highlight {
-  color: $bakano-pink;
+  color: var(--c-accent-text);
 }
 
 .hero__pricing {
@@ -147,9 +147,9 @@ const scrollTo = (id: string) => {
   align-items: center;
   gap: 0.35rem;
   padding: 1.5rem 2.25rem;
-  border: 1px solid rgba($bakano-pink, 0.3);
+  border: 1px solid rgb(var(--c-accent-rgb) / 0.3);
   border-radius: 1rem;
-  background: rgba($bakano-pink, 0.06);
+  background: rgb(var(--c-accent-fill-rgb) / 0.06);
 }
 
 .hero__price-label {
@@ -157,7 +157,7 @@ const scrollTo = (id: string) => {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.5);
+  color: rgb(var(--c-on-accent-rgb) / 0.5);
 }
 
 .hero__price {
@@ -165,13 +165,13 @@ const scrollTo = (id: string) => {
   font-size: clamp(2.5rem, 6vw, 3.75rem);
   font-weight: 800;
   line-height: 1;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .hero__price-desc {
   font-family: $font-sans;
   font-size: 0.88rem;
-  color: rgba($white, 0.65);
+  color: rgb(var(--c-on-accent-rgb) / 0.65);
   line-height: 1.4;
 }
 
@@ -186,7 +186,7 @@ const scrollTo = (id: string) => {
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
-  color: $alert-warning;
+  color: var(--c-warning);
 }
 
 .hero__countdown {
@@ -208,7 +208,7 @@ const scrollTo = (id: string) => {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 700;
   line-height: 1;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .hero__countdown-label {
@@ -216,14 +216,14 @@ const scrollTo = (id: string) => {
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.55);
+  color: rgb(var(--c-on-accent-rgb) / 0.55);
 }
 
 .hero__countdown-sep {
   font-family: $font-display;
   font-size: 1.6rem;
   font-weight: 700;
-  color: rgba($white, 0.25);
+  color: rgb(var(--c-on-accent-rgb) / 0.25);
   margin-top: -1.25rem;
 }
 
@@ -252,23 +252,23 @@ const scrollTo = (id: string) => {
 }
 
 .hero__btn--primary {
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
 
   &:hover {
-    background: $bakano-pink-dark;
+    background: var(--c-accent-fill-hover);
     transform: translateY(-1px);
   }
 }
 
 .hero__btn--ghost {
   background: transparent;
-  color: rgba($white, 0.8);
-  border: 1px solid rgba($white, 0.25);
+  color: rgb(var(--c-on-accent-rgb) / 0.8);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.25);
 
   &:hover {
-    color: $white;
-    border-color: $white;
+    color: var(--c-on-accent);
+    border-color: var(--c-surface);
   }
 }
 </style>
