@@ -54,8 +54,8 @@ const results = [
 <style lang="scss" scoped>
 .results {
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: $bakano-dark;
-  color: $white;
+  background: var(--c-ink);
+  color: var(--c-on-accent);
 }
 
 .results__inner {
@@ -74,7 +74,7 @@ const results = [
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
 }
 
@@ -98,14 +98,14 @@ const results = [
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba($white, 0.06);
-  border: 1px solid rgba($white, 0.1);
+  background: rgb(var(--c-on-accent-rgb) / 0.06);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.1);
   border-radius: 999px;
   padding: 0.45rem 1rem 0.45rem 0.45rem;
   transition: background 0.25s ease;
 
   &:hover {
-    background: rgba($white, 0.1);
+    background: rgb(var(--c-on-accent-rgb) / 0.1);
   }
 }
 
@@ -113,8 +113,8 @@ const results = [
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  background: $bakano-pink;
-  color: $white;
+  background: var(--c-accent-fill);
+  color: var(--c-on-accent);
   font-family: $font-mono;
   font-size: 0.6rem;
   font-weight: 700;
@@ -127,7 +127,7 @@ const results = [
   font-family: $font-sans;
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba($white, 0.9);
+  color: rgb(var(--c-on-accent-rgb) / 0.9);
 }
 
 .results__grid {
@@ -143,8 +143,8 @@ const results = [
 }
 
 .results__card {
-  background: rgba($white, 0.04);
-  border: 1px solid rgba($white, 0.08);
+  background: rgb(var(--c-on-accent-rgb) / 0.04);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.08);
   border-radius: 1.25rem;
   padding: 1.75rem;
   display: flex;
@@ -155,7 +155,7 @@ const results = [
   transition: border-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba($bakano-pink, 0.35);
+    border-color: rgb(var(--c-accent-rgb) / 0.35);
     transform: translateY(-4px);
   }
 }
@@ -164,8 +164,8 @@ const results = [
   width: 3rem;
   height: 3rem;
   border-radius: 0.75rem;
-  background: rgba($bakano-pink, 0.15);
-  color: $bakano-pink;
+  background: rgb(var(--c-accent-fill-rgb) / 0.15);
+  color: var(--c-accent-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,21 +183,21 @@ const results = [
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba($white, 0.5);
+  color: rgb(var(--c-on-accent-rgb) / 0.5);
 }
 
 .results__value {
   font-family: $font-display;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 800;
-  color: $white;
+  color: var(--c-on-accent);
 }
 
 .results__body {
   font-family: $font-sans;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: rgba($white, 0.7);
+  color: rgb(var(--c-on-accent-rgb) / 0.7);
   margin: 0;
 }
 
@@ -209,7 +209,7 @@ const results = [
   font-size: 0.65rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $bakano-green;
+  color: var(--c-success-text);
   margin-top: auto;
 
   i {
@@ -222,8 +222,8 @@ const results = [
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: $white;
-  border: 1px solid rgba($white, 0.3);
+  color: var(--c-on-accent);
+  border: 1px solid rgb(var(--c-on-accent-rgb) / 0.3);
   border-radius: 999px;
   padding: 0.95rem 1.75rem;
   font-family: $font-sans;
@@ -233,9 +233,9 @@ const results = [
   transition: all 0.25s ease;
 
   &:hover {
-    background: $white;
-    color: $bakano-dark;
-    border-color: $white;
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-surface);
   }
 }
 </style>
