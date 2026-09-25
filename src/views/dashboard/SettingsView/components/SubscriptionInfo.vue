@@ -52,7 +52,7 @@ function isActive(s: string) {
 
 <style lang="scss" scoped>
 .card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -64,7 +64,7 @@ function isActive(s: string) {
     font-family: $font-display;
     font-size: 1.25rem;
     font-weight: 700;
-    color: $bakano-dark;
+    color: var(--c-text);
     margin: 0;
   }
 }
@@ -89,16 +89,16 @@ function isActive(s: string) {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 
   &__value {
     font-family: $font-sans;
     font-size: 1rem;
     font-weight: 600;
-    color: $bakano-dark;
+    color: var(--c-text);
 
-    &--active { color: $bakano-green; }
+    &--active { color: var(--c-success-text); }
   }
 }
 
@@ -106,13 +106,13 @@ function isActive(s: string) {
   font-family: $font-sans;
   font-size: 1rem;
   font-weight: 600;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
 
   &__sub {
     font-family: $font-sans;
     font-size: 0.85rem;
-    color: $gray-500;
+    color: var(--c-text-muted);
     margin: 0;
   }
 
@@ -120,8 +120,8 @@ function isActive(s: string) {
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
-    background: $bakano-dark;
-    color: $white;
+    background: var(--c-ink);
+    color: var(--c-on-accent);
     font-family: $font-mono;
     font-size: 0.75rem;
     font-weight: 600;
@@ -131,7 +131,7 @@ function isActive(s: string) {
     border-radius: 999px;
     transition: background 0.2s ease;
 
-    &:hover { background: $bakano-green; }
+    &:hover { background: var(--c-success-fill); }
   }
 }
 </style>
