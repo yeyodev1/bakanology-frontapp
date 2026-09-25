@@ -30,9 +30,9 @@
 @mixin shimmer {
   background: linear-gradient(
     90deg,
-    rgba($bakano-dark, 0.04) 0%,
-    rgba($bakano-dark, 0.08) 50%,
-    rgba($bakano-dark, 0.04) 100%
+    rgb(var(--c-text-rgb) / 0.04) 0%,
+    rgb(var(--c-text-rgb) / 0.08) 50%,
+    rgb(var(--c-text-rgb) / 0.04) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite linear;
@@ -116,7 +116,7 @@
 }
 
 .skeleton__card {
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: 1rem;
