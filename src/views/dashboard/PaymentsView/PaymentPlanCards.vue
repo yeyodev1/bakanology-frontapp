@@ -77,7 +77,7 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 1.25rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -90,14 +90,14 @@ const emit = defineEmits<{
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: $light;
+  background: var(--c-bg);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   padding: 2rem 1.5rem 1.5rem;
 
   &--featured {
-    border-color: $bakano-green;
-    box-shadow: 0 12px 32px rgba($bakano-green, 0.1);
+    border-color: var(--c-success);
+    box-shadow: 0 12px 32px rgb(var(--c-success-rgb) / 0.1);
   }
 }
 
@@ -115,7 +115,7 @@ const emit = defineEmits<{
   border-radius: 999px;
   white-space: nowrap;
 
-  &--featured { background: $bakano-green; color: $white; }
+  &--featured { background: var(--c-success-fill); color: var(--c-on-accent); }
 }
 
 .plan__header {
@@ -126,7 +126,7 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 1.15rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .plan__pricing {
@@ -139,14 +139,14 @@ const emit = defineEmits<{
   font-family: $font-display;
   font-size: 2.4rem;
   font-weight: 600;
-  color: $bakano-green;
+  color: var(--c-success-text);
   line-height: 1.1;
 }
 
 .plan__year {
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -156,8 +156,8 @@ const emit = defineEmits<{
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1rem;
-  background: linear-gradient(135deg, rgba($bakano-pink, 0.08) 0%, rgba($bakano-pink, 0.03) 100%);
-  border: 1px solid rgba($bakano-pink, 0.15);
+  background: linear-gradient(135deg, rgb(var(--c-accent-fill-rgb) / 0.08) 0%, rgb(var(--c-accent-fill-rgb) / 0.03) 100%);
+  border: 1px solid rgb(var(--c-accent-rgb) / 0.15);
   border-radius: 0.75rem;
 }
 
@@ -167,10 +167,10 @@ const emit = defineEmits<{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $bakano-pink;
+  background: var(--c-accent-fill);
   border-radius: 50%;
   flex-shrink: 0;
-  color: $white;
+  color: var(--c-on-accent);
   font-size: 1rem;
 }
 
@@ -193,22 +193,22 @@ const emit = defineEmits<{
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .plan__deal-value {
   font-family: $font-display;
   font-size: 1.1rem;
   font-weight: 600;
-  color: $bakano-dark;
+  color: var(--c-text);
 
   &--highlight {
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 }
 
 .plan__deal-arrow {
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 1rem;
 }
 
@@ -232,13 +232,13 @@ const emit = defineEmits<{
 .plan__compare-label {
   font-family: $font-sans;
   font-size: 0.8rem;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .plan__compare-old {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   text-decoration: line-through;
 }
 
@@ -246,7 +246,7 @@ const emit = defineEmits<{
   font-family: $font-mono;
   font-size: 0.85rem;
   font-weight: 700;
-  color: $bakano-green;
+  color: var(--c-success-text);
 }
 
 .plan__compare-divider {
@@ -259,7 +259,7 @@ const emit = defineEmits<{
   font-family: $font-mono;
   font-size: 0.85rem;
   font-weight: 700;
-  color: $bakano-green;
+  color: var(--c-success-text);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -270,8 +270,8 @@ const emit = defineEmits<{
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  background: $bakano-green;
-  color: $white;
+  background: var(--c-success-fill);
+  color: var(--c-on-accent);
   font-family: $font-mono;
   font-size: 0.8rem;
   font-weight: 700;
@@ -283,7 +283,7 @@ const emit = defineEmits<{
   transition: background 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 
-  &:hover:not(:disabled) { background: darken(#3bb77e, 8%); }
+  &:hover:not(:disabled) { background: rgb(var(--c-success-fill-rgb) / 0.85); }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
