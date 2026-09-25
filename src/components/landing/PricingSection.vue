@@ -89,8 +89,8 @@ const annualFeatures = [
 .pricing {
   scroll-margin-top: 5.5rem;
   padding-block: clamp(4rem, 8vw, 6rem);
-  background: $bakano-light;
-  color: $bakano-dark;
+  background: var(--c-bg);
+  color: var(--c-text);
 }
 
 .pricing__inner {
@@ -109,7 +109,7 @@ const annualFeatures = [
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba($alert-warning, 0.15);
+  background: rgb(var(--c-warning-rgb) / 0.15);
   color: #b45309;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
@@ -127,7 +127,7 @@ const annualFeatures = [
 .pricing__lede {
   font-family: $font-sans;
   font-size: 1rem;
-  color: $gray-600;
+  color: var(--c-text-2);
   margin: 0;
   max-width: 54ch;
 }
@@ -150,8 +150,8 @@ const annualFeatures = [
 }
 
 .pricing__column {
-  background: $white;
-  border: 1px solid $gray-200;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
   border-radius: 1.25rem;
   padding: 2rem 1.5rem;
   display: flex;
@@ -162,8 +162,8 @@ const annualFeatures = [
 
   &--founder {
     order: -1;
-    border: 2px solid $bakano-pink;
-    box-shadow: 0 16px 48px rgba($bakano-pink, 0.14);
+    border: 2px solid var(--c-accent);
+    box-shadow: 0 16px 48px rgb(var(--c-accent-rgb) / 0.14);
   }
 
   @media (min-width: 720px) {
@@ -185,13 +185,13 @@ const annualFeatures = [
   border-radius: 999px;
 
   &--outline {
-    border: 1px solid $gray-300;
-    color: $gray-600;
+    border: 1px solid var(--c-border-strong);
+    color: var(--c-text-2);
   }
 
   &--highlight {
-    background: $bakano-pink;
-    color: $white;
+    background: var(--c-accent-fill);
+    color: var(--c-on-accent);
   }
 }
 
@@ -199,14 +199,14 @@ const annualFeatures = [
   font-family: $font-sans;
   font-size: 1rem;
   font-weight: 700;
-  color: $bakano-dark;
+  color: var(--c-text);
   margin: 0;
 }
 
 .pricing__spots {
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $bakano-pink;
+  color: var(--c-accent-text);
   font-weight: 700;
   margin: 0;
 }
@@ -222,7 +222,7 @@ const annualFeatures = [
   font-family: $font-sans;
   font-size: 1.4rem;
   font-weight: 700;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .pricing__amount {
@@ -230,19 +230,19 @@ const annualFeatures = [
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1;
-  color: $bakano-dark;
+  color: var(--c-text);
 }
 
 .pricing__period {
   font-family: $font-sans;
   font-size: 0.95rem;
-  color: $gray-600;
+  color: var(--c-text-2);
 }
 
 .pricing__note {
   font-family: $font-sans;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: -0.25rem 0 0.5rem;
 }
 
@@ -262,21 +262,21 @@ const annualFeatures = [
     gap: 0.6rem;
     font-family: $font-sans;
     font-size: 0.9rem;
-    color: $gray-700;
+    color: var(--c-text-2);
 
     i {
       font-size: 0.85rem;
       width: 1rem;
-      color: $bakano-green;
+      color: var(--c-success-text);
     }
   }
 }
 
 .pricing__feature--missing {
-  color: $gray-400;
+  color: var(--c-text-faint);
 
   i {
-    color: $gray-400 !important;
+    color: var(--c-text-faint) !important;
   }
 }
 
@@ -285,8 +285,8 @@ const annualFeatures = [
   padding: 0.85rem;
   margin-top: auto;
   background: transparent;
-  color: $bakano-dark;
-  border: 1.5px solid $gray-300;
+  color: var(--c-text);
+  border: 1.5px solid var(--c-border-strong);
   border-radius: 999px;
   font-family: $font-sans;
   font-weight: 700;
@@ -295,8 +295,8 @@ const annualFeatures = [
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: $bakano-dark;
-    background: $gray-100;
+    border-color: var(--c-text);
+    background: var(--c-surface-2);
     transform: translateY(-2px);
   }
 }
@@ -306,7 +306,7 @@ const annualFeatures = [
   margin-right: 0.5rem;
   font-family: $font-sans;
   font-size: 1.1rem;
-  color: $gray-400;
+  color: var(--c-text-faint);
   text-decoration: line-through;
 }
 
@@ -314,8 +314,8 @@ const annualFeatures = [
   width: 100%;
   padding: 1rem;
   margin-top: auto;
-  background: linear-gradient(90deg, $bakano-pink, $bakano-pink-dark);
-  color: $white;
+  background: linear-gradient(90deg, var(--c-accent-fill), var(--c-accent-fill-hover));
+  color: var(--c-on-accent);
   border: none;
   border-radius: 999px;
   font-family: $font-sans;
@@ -330,7 +330,7 @@ const annualFeatures = [
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba($bakano-pink, 0.4);
+    box-shadow: 0 10px 28px rgb(var(--c-accent-rgb) / 0.4);
   }
 
   i {
@@ -361,7 +361,7 @@ const annualFeatures = [
   gap: 0.4rem;
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
   margin: 0;
 
   i {
