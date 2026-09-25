@@ -27,12 +27,12 @@ defineProps<{
 
   &--error {
     background: $alert-error-bg;
-    color: $alert-error;
+    color: var(--c-error);
   }
 
   &--success {
     background: $alert-success-bg;
-    color: $bakano-green;
+    color: var(--c-success-text);
   }
 }
 </style>
