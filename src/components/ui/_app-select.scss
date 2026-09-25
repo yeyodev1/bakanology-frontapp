@@ -14,28 +14,28 @@
   width: 100%;
   min-height: 44px;
   padding: 0.75rem 1rem;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 0.85rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   text-align: left;
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover:not(:disabled) {
-    border-color: rgba($bakano-dark, 0.25);
+    border-color: rgb(var(--c-text-rgb) / 0.25);
   }
 
   &:focus-visible {
     outline: none;
-    border-color: $bakano-green;
-    box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
+    border-color: var(--c-success);
+    box-shadow: 0 0 0 3px rgb(var(--c-success-rgb) / 0.12);
   }
 }
 
 .app-select--open .app-select__trigger {
-  border-color: $bakano-green;
-  box-shadow: 0 0 0 3px rgba($bakano-green, 0.12);
+  border-color: var(--c-success);
+  box-shadow: 0 0 0 3px rgb(var(--c-success-rgb) / 0.12);
 }
 
 .app-select--disabled .app-select__trigger {
@@ -51,7 +51,7 @@
   text-overflow: ellipsis;
 
   &--placeholder {
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 0.75rem;
   transition: transform 0.2s ease;
   flex-shrink: 0;
@@ -75,10 +75,10 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: $white;
+  background: var(--c-surface);
   border: 1px solid var(--border);
   border-radius: 0.85rem;
-  box-shadow: 0 16px 48px rgba($bakano-dark, 0.12);
+  box-shadow: 0 16px 48px rgb(var(--c-shadow-rgb) / 0.12);
   overflow: hidden;
   max-height: 320px;
   display: flex;
@@ -101,13 +101,13 @@
   gap: 0.5rem;
   padding: 0.75rem;
   border-bottom: 1px solid var(--border);
-  background: $white;
+  background: var(--c-surface);
   z-index: 1;
 }
 
 .app-select__search-icon,
 .app-select__search-loading {
-  color: $gray-500;
+  color: var(--c-text-muted);
   font-size: 0.85rem;
   flex-shrink: 0;
 }
@@ -118,12 +118,12 @@
   background: transparent;
   font-family: $font-sans;
   font-size: 0.9rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   outline: none;
   min-width: 0;
 
   &::placeholder {
-    color: $gray-500;
+    color: var(--c-text-muted);
   }
 }
 
@@ -143,17 +143,17 @@
   padding: 0.65rem 0.75rem;
   border-radius: 0.55rem;
   font-size: 0.9rem;
-  color: $bakano-dark;
+  color: var(--c-text);
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover,
   &--selected {
-    background: rgba($bakano-green, 0.08);
+    background: rgb(var(--c-success-fill-rgb) / 0.08);
   }
 
   &:active {
-    background: rgba($bakano-green, 0.14);
+    background: rgb(var(--c-success-fill-rgb) / 0.14);
   }
 }
 
@@ -164,7 +164,7 @@
 }
 
 .app-select__check {
-  color: $bakano-green;
+  color: var(--c-success-text);
   font-size: 0.8rem;
   flex-shrink: 0;
 }
@@ -174,7 +174,7 @@
   padding: 1rem;
   text-align: center;
   font-size: 0.85rem;
-  color: $gray-500;
+  color: var(--c-text-muted);
 }
 
 .app-select-dropdown-enter-active,
