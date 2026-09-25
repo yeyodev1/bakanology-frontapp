@@ -80,7 +80,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   right: 0;
   z-index: 1100;
   background: linear-gradient(90deg, #c62828 0%, #d84315 50%, #ef6c00 100%);
-  color: $white;
+  color: var(--c-on-accent);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
@@ -127,7 +127,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba($white, 0.18);
+  background: rgb(var(--c-on-accent-rgb) / 0.18);
   padding: 0.3rem 0.55rem;
   border-radius: 999px;
   white-space: nowrap;
@@ -201,7 +201,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: $white;
+  background: var(--c-surface);
   color: #c62828;
   border: none;
   border-radius: 999px;
@@ -224,7 +224,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   }
 
   &:focus-visible {
-    outline: 2px solid $white;
+    outline: 2px solid var(--c-surface);
     outline-offset: 3px;
   }
 }
@@ -232,7 +232,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 .urgency-banner__login {
   font-family: $font-sans;
   font-size: 0.75rem;
-  color: rgba($white, 0.85);
+  color: rgb(var(--c-on-accent-rgb) / 0.85);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color 0.2s ease;
@@ -242,11 +242,11 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   align-items: center;
 
   &:hover {
-    color: $white;
+    color: var(--c-on-accent);
   }
 
   &:focus-visible {
-    outline: 2px solid $white;
+    outline: 2px solid var(--c-surface);
     outline-offset: 3px;
     border-radius: 4px;
   }
